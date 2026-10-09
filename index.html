@@ -465,10 +465,10 @@ body.touring .toast { bottom: auto; top: 16px; }
 .cgh { display: flex; justify-content: space-between; align-items: baseline; font-size: .86em; margin: 0 2px 4px; }
 .cgh span { color: var(--ink-3); font-size: .92em; }
 .cgh em { color: var(--err); font-style: normal; font-weight: 700; }
-.cnb { width: 100%; display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 2px 6px; text-align: left; border: 1px solid transparent; background: transparent; border-radius: 10px; padding: 7px 8px; color: var(--ink); font-size: .84em; line-height: 1.45; }
+.cnb { width: 100%; display: grid; grid-template-columns: minmax(22px, auto) minmax(0, 1fr); gap: 2px 6px; text-align: left; border: 1px solid transparent; background: transparent; border-radius: 10px; padding: 7px 8px; color: var(--ink); font-size: .84em; line-height: 1.45; }
 .cnb:hover { background: #f5f6ff; }
 .cnb.on { background: var(--lav); border-color: var(--lav-2); }
-.cnb .no { font-weight: 800; color: var(--indigo); }
+.cnb .no { font-weight: 800; color: var(--indigo); white-space: nowrap; }
 .cnb .bd { grid-column: 2; display: flex; gap: 4px; flex-wrap: wrap; }
 .cnb .bd:empty { display: none; }
 .cnb .b { font-style: normal; font-size: .82em; font-weight: 700; border-radius: 999px; padding: 0 7px; }
@@ -488,6 +488,16 @@ body.touring .toast { bottom: auto; top: 16px; }
 .cflag { margin-top: 8px; border-radius: 10px; padding: 8px 12px; font-size: .88em; line-height: 1.6; }
 .cflag.err { background: var(--err-soft); color: #8c2a19; }
 .cflag.warn { background: var(--warn-soft); color: #7a3810; }
+.ccond { margin: 0 0 10px; background: #f6f7fd; border-radius: 10px; padding: 8px 12px; font-size: .92em; line-height: 1.65; }
+.ccond ol { margin: 4px 0 0; padding-left: 1.4em; }
+.cst { background: #fff; border: 1px solid #dfe2f3; border-radius: 16px; padding: 12px 16px; margin-bottom: 14px; }
+.cst h4 { margin: 0 0 8px; font-size: .9em; color: var(--navy); }
+.cstw { overflow-x: auto; }
+.cst table { width: 100%; border-collapse: collapse; font-size: .88em; line-height: 1.6; min-width: 480px; }
+.cst th, .cst td { border-bottom: 1px solid var(--rule); padding: 7px 8px; text-align: left; vertical-align: top; }
+.cst th { background: var(--lav); color: var(--ink-2); font-weight: 700; }
+.cst td:last-child, .cst th:last-child { text-align: center; white-space: nowrap; color: var(--indigo); }
+.cst p { margin: 8px 0 0; font-size: .84em; color: var(--ink-2); line-height: 1.6; }
 .sys { display: inline-flex; flex-direction: column; vertical-align: middle; border-left: 2px solid currentColor; border-radius: 8px 0 0 8px; padding: 0 4px 0 7px; line-height: 1.35; margin: 0 2px; }
 .ccols { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: 14px; margin-bottom: 14px; align-items: start; }
 .ccols.one { grid-template-columns: minmax(0, 1fr); }
@@ -776,7 +786,7 @@ body.touring .toast { bottom: auto; top: 16px; }
     <main class="cmain">
       <div id="cmpMain"></div>
       <div class="cpn"><button class="nbtn" id="cmpPrev">← 이전</button><button class="nbtn ind" id="cmpNext">다음 →</button></div>
-      <p class="csrc">자료: 2025학년도 수학과 1학기 서술형 평가 대비(2학년) 문항과 풀이과정. ‘AI용’ 칸은 연수 토론을 위한 제안이며 확정된 채점 기준이 아닙니다.</p>
+      <p class="csrc">자료: 0번 예제는 연수용으로 만든 문항, 서술형 1~3은 2025학년도 수학과 1학기 서술형 평가 대비(2학년) 문항과 풀이과정. ‘AI용’ 칸은 연수 토론을 위한 제안이며 확정된 채점 기준이 아닙니다.</p>
     </main>
   </div>
 </div>
@@ -1768,7 +1778,7 @@ var MISSIONS = [
     done: function(){ return !!mflags.sumwarn; }, go: function(){ openTeacher(0, 'rubric'); } },
   { k: 'm5', t: '선택형 결론을 넣고 미리보기', d: '2-3 문항의 ‘선택형 결론’에 앞 문장 ‘행사를’, 선택지 ‘진행 / 취소’, 뒷 문장 ‘하는 것이 더 합리적이다.’를 넣고 학생 미리보기로 확인합니다. 채점이 쉬워지는 대신 무엇을 잃는지 토론해 보세요.',
     done: function(){ return !!mflags.pickprev; }, go: function(){ openTeacher(1, 'items'); } },
-  { k: 'm6', t: '기존 채점기준을 AI용으로 바꿔 써 보기', d: '‘채점기준 비교 실습’에서 AI용 칸을 가리고, 2025 서술형 소문항 하나의 기존 기준(⋯[1점])을 점수별 수행 특성·대표 오답·예시답안으로 바꿔 씁니다. 다 쓰면 AI용 예시와 비교해 보세요.',
+  { k: 'm6', t: '기존 채점기준을 AI용으로 바꿔 써 보기', d: '‘채점기준 비교 실습’에서 AI용 칸을 가리고, 0번 예제나 2025 서술형 소문항 하나의 기존 기준(⋯[1점])을 점수별 수행 특성·대표 오답·예시답안으로 바꿔 씁니다. 다 쓰면 AI용 예시와 비교해 보세요.',
     done: function(){ return !!mflags.cmpdraft; }, go: function(){ openCompare(0, true); } }
 ];
 var lastDone = null;
@@ -1897,11 +1907,39 @@ document.addEventListener('keydown', function(e){
    채점기준 비교 실습 (기존 사람 채점 기준 → AI용 기준표)
    ========================================================= */
 var CMP_GROUPS = [
+  { no: 0, title: '0번 예제', pts: 4, stem: '단계마다 1점씩 주던 기준을 AI용으로 바꾸는 가장 간단한 예' },
   { no: 1, title: '서술형 1', pts: 8, stem: '연립방정식 {{x+y−4=0|x−3y=0}} 에 대하여 다음 물음에 답하시오.' },
   { no: 2, title: '서술형 2', pts: 5, stem: '일차함수 y=−½x+2에 대하여 다음 물음에 답하시오.', ptsNote: '문항지에 총점 표기 없음(소문항 합 5점)' },
   { no: 3, title: '서술형 3', pts: 7, stem: '두 점 (−3, 2), (1, −6)을 지나는 일차함수 y=ax+b에 대하여 다음 물음에 답하시오.' }
 ];
 var CMP_PARTS = [
+  { id: '0', g: 0, no: '예제', pts: 4, q: '일차방정식 0.2(x−2)=1의 해를 구하는 과정을 조건에 따라 서술하시오.',
+    cond: [ '등식의 성질이나 이항을 이용하여 식을 바꾼 과정을 한 줄에 하나씩 쓸 것', '해는 x=(값)의 꼴로 쓸 것' ],
+    old: { lines: [ ['① 소수를 정수로: 양변에 10을 곱하여 2(x−2)=10', 1], ['② 괄호 풀기: 2x−4=10', 1], ['③ 이항하여 정리: 2x=14', 1], ['④ 해 구하기: x=7', 1] ],
+      post: '※ 과정 없이 답만 쓴 경우 1점' },
+    ai: [ { sub: '해를 구하는 과정 서술', pts: 4,
+      lv: { 4: '등식의 성질과 분배법칙을 바르게 써서 식을 바꾸고, 해 x=7을 구한 경우 (어떤 경로로 풀어도 인정: 양변에 10을 곱함 / 괄호를 먼저 풂 / 양변을 0.2로 나눔. 두 단계를 한 줄에 합쳐 써도 각 식이 옳으면 인정)',
+            3: '등식의 성질과 분배법칙은 모두 바르게 썼으나, 수 계산 실수가 1번 있어 해가 틀린 경우 (실수한 뒤의 변형이 그 값으로 옳으면 인정: 이월)',
+            2: '2x=14, 0.2x=1.4처럼 ax=b 꼴까지 바르게 바꾸었으나 해를 쓰지 않았거나 그다음 단계에서 등식의 성질을 잘못 쓴 경우, 또는 수 계산 실수가 2번 이상인 경우',
+            1: '첫 변형(소수를 정수로 고친 2(x−2)=10, 괄호를 푼 0.2x−0.4=1, 양변을 0.2로 나눈 x−2=5 등)까지만 바르게 한 경우, 또는 과정 없이 x=7만 쓴 경우',
+            0: '4점, 3점, 2점, 1점 기준을 모두 만족하지 못한 경우 (대표 오답: 2(x−2)=1처럼 한쪽 변에만 10을 곱하거나, x−2=1−0.2처럼 나눗셈을 뺄셈으로 바꾸는 등 첫 변형부터 등식의 성질을 잘못 쓴 경우)' },
+      ex: { 4: [ '양변에 10을 곱하면 2(x−2)=10\n괄호를 풀면 2x−4=10\n−4를 이항하면 2x=14\n따라서 x=7', '양변을 0.2로 나누면 x−2=5\n−2를 이항하면 x=7' ],
+            3: [ '2(x−2)=10\n2x−2=10\n2x=12\nx=6', '0.2x−0.4=1\n0.2x=1.4\nx=0.7' ],
+            2: [ '2(x−2)=10\n2x−4=10\n2x=14', '0.2x−0.4=1\n0.2x=1.4\nx=1.4×0.2=0.28' ],
+            1: [ '양변에 10을 곱하면 2(x−2)=10, x−2=10이므로 x=12', '0.2x−0.4=1\n0.2x=1−0.4=0.6\nx=3' ] } } ],
+    scoreTable: { cols: ['학생 답안', '기존 (단계별)', 'AI용'], rows: [
+      [ 'x−2=5, x=7 (양변을 0.2로 나눔)', '①②③ 단계가 답안에 없음 → 채점자에 따라 1~4점', '4점' ],
+      [ '2x−2=10 → x=6 (분배 실수)', '이월을 인정하는지에 따라 2~3점', '3점' ],
+      [ '2(x−2)=1에서 시작해 끝까지 계산', '①은 0점, 이후를 이월로 보면 3점, 아니면 0점', '0점' ],
+      [ 'x=7만 씀', '※ 규칙으로 1점', '1점' ] ] },
+    tacit: [ '다른 경로로 풀어도 인정한다. 단계별 기준표는 정답 경로를 따라간 답안에서만 점수가 분명하다.',
+             '수 계산 실수(1.4÷0.2=0.7)와 등식의 성질 오류(한쪽 변에만 곱함, 이항할 때 부호를 그대로 둠)를 구분한다.',
+             '실수한 뒤의 올바른 변형은 인정한다(이월). 기존 기준표에서는 채점자마다 달랐던 판단이다.',
+             '‘4점 풀이, 3점 풀이…’를 늘어놓는 대신, 점수마다 어디까지 바르게 했는지를 판정하는 규칙을 쓰고 그 규칙에 맞는 답안을 2개씩 붙인다.' ],
+    decide: [ '2(x−2)=1에서 시작해 이후를 바르게 계산한 답안: 0점인가, 이월로 보아 점수를 주는가 (0점과 3점의 경계)',
+              '과정 없이 x=7만 쓴 답안을 1점으로 둘지',
+              '조건 ①(한 줄에 하나씩)을 지키지 않고 여러 단계를 한 줄에 쓴 답안을 감점하지 않는지 확인' ] },
+
   { id: '1-1', g: 1, no: '⑴', pts: 2, q: '미지수가 2개인 일차방정식 x+y−4=0을 만족하는 정수해를 순서쌍 형태로 2개 구하시오.',
     old: { note: '대입을 이용하여 해를 구하는 과정 포함되어야 점수 인정', lines: [
       ['ⅰ) x=0일 때, y−4=0, y=4이므로 (0, 4)를 해로 갖는다.', 1],
@@ -2119,14 +2157,16 @@ function renderCmp(){
       CMP_COMMON.map(function(c, i){ return '<div class="crule"><span class="n">' + (i + 1) + '</span><div><b>' + esc(c.t) + '</b><p>' + mfmt(c.b) + '</p></div></div>'; }).join('') + '</div>';
     $('cmpPrev').disabled = false; $('cmpNext').disabled = true; return;
   }
-  var p = CMP_PARTS[cmpIdx], g = CMP_GROUPS[p.g - 1], os = oldSum(p);
+  var p = CMP_PARTS[cmpIdx], g = CMP_GROUPS.filter(function(x){ return x.no === p.g; })[0], os = oldSum(p);
   var h = '<div class="cq"><div class="cqh"><span class="pill mute">' + esc(g.title) + '</span><span class="stem">' + mfmt(g.stem) + '</span></div>' +
     '<p class="qq"><b>' + p.no + '</b> ' + mfmt(p.q) + ' <span class="pt">[' + p.pts + '점]</span></p>' +
+    (p.cond ? '<div class="ccond"><b>〈조건〉</b><ol>' + p.cond.map(function(c){ return '<li>' + mfmt(c) + '</li>'; }).join('') + '</ol></div>' : '') +
     '<div class="cmeta"><span class="pill ' + (os === p.pts ? 'ok' : 'err') + '">문항 배점 ' + p.pts + '점 · 기존 기준 합 ' + os + '점</span>' + (p.graph ? '<span class="pill warn">그림(그리기 입력) 답안</span>' : '') + '</div>' +
     (p.flags || []).map(function(f){ return '<div class="cflag ' + f.lvl + '">' + mfmt(f.t) + '</div>'; }).join('') + '</div>';
   var oldH = '<section class="ccol cold" aria-label="기존 채점 기준"><h3><span class="tag">기존</span>사람이 채점할 때의 풀이과정 기준</h3>' +
     (p.old.note ? '<p class="onote">' + mfmt(p.old.note) + '</p>' : '') + (p.old.pre ? '<p class="oline">' + mfmt(p.old.pre) + '</p>' : '') +
     p.old.lines.map(function(l){ return '<p class="oline">' + mfmt(l[0]) + ' <span class="dots">⋯</span> <b>[' + l[1] + '점]</b></p>'; }).join('') +
+    (p.old.post ? '<p class="onote">' + mfmt(p.old.post) + '</p>' : '') +
     '<p class="ofoot">점수 칸 ' + p.old.lines.length + '줄 · 예시답안 없음 · 인정 범위와 오답은 채점자의 머릿속에</p></section>';
   var draft = cmpDraft[p.id] != null ? cmpDraft[p.id] : cmpTemplate(p);
   var draftH = '<section class="ccol cdraft" aria-label="직접 써 보기"><h3><span class="tag ind">실습</span>왼쪽 기준을 AI용으로 바꿔 써 보세요</h3>' +
@@ -2137,6 +2177,8 @@ function renderCmp(){
   if (!cmpPractice) h += '<div class="ccols">' + oldH + aiH + '</div>';
   else if (!cmpReveal[p.id]) h += '<div class="ccols">' + oldH + draftH + '</div>';
   else h += '<div class="ccols">' + oldH + aiH + '</div><div class="ccols one">' + draftH + '</div>';
+  if (p.scoreTable && (!cmpPractice || cmpReveal[p.id])) h += '<section class="cst"><h4>같은 답안을 두 기준표로 채점해 보면</h4><div class="cstw"><table><thead><tr>' + p.scoreTable.cols.map(function(c){ return '<th>' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+    p.scoreTable.rows.map(function(r){ return '<tr><td>' + mfmt(r[0]) + '</td><td>' + mfmt(r[1]) + '</td><td><b>' + mfmt(r[2]) + '</b></td></tr>'; }).join('') + '</tbody></table></div><p>단계별 기준표는 다른 풀이로 풀었거나 중간에 틀린 답안에서 점수가 채점자마다 달라집니다. AI용 기준표는 이런 답안의 판정을 미리 글로 정해 두는 문서입니다.</p></section>';
   h += '<div class="cnotes"><section class="cn"><h4>AI용으로 바꾸며 글로 꺼낸 것</h4><ul>' + p.tacit.map(function(t){ return '<li>' + mfmt(t) + '</li>'; }).join('') + '</ul></section>' +
     '<section class="cn dec"><h4>채점 협의로 미리 정할 것</h4><ul>' + p.decide.map(function(t){ return '<li><span class="cbx" aria-hidden="true"></span><span>' + mfmt(t) + '</span></li>'; }).join('') + '</ul></section></div>';
   m.innerHTML = h;
