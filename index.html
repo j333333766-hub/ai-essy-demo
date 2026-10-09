@@ -374,6 +374,80 @@ details[open] > summary::before { content: "▾ "; }
   .row2, .row3 { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } .fl { animation: none; } }
+
+/* ===== 글자 크기: 홈 화면도 함께 커지도록 ===== */
+.hcopy .eyebrow { font-size: calc(19px * var(--scale)); }
+.hcopy h1 { font-size: calc(clamp(32px, 5vw, 64px) * var(--scale)); }
+.ecard b { font-size: calc(30px * var(--scale)); }
+.ecard span { font-size: calc(14px * var(--scale)); }
+.ecard .go { font-size: calc(13px * var(--scale)); }
+.hlinks button { font-size: calc(14px * var(--scale)); }
+.intro h2 { font-size: calc(clamp(26px, 3vw, 38px) * var(--scale)); }
+.pillar b { font-size: calc(16px * var(--scale)); }
+.pillar p { font-size: calc(13.5px * var(--scale)); }
+.hfoot { font-size: calc(12.5px * var(--scale)); }
+body { padding-bottom: 76px; }
+
+/* ===== 연수 도우미 (하단 고정) ===== */
+.dock { position: fixed; left: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 45; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; max-width: calc(100% - 32px); }
+.dk-guide { display: flex; align-items: center; gap: 8px; border: 0; border-radius: 999px; padding: 10px 16px 10px 12px; background: var(--indigo); color: #fff; font-weight: 800; font-size: 14px; box-shadow: 0 10px 24px rgba(40,40,140,.35); }
+.dk-guide b { background: rgba(255,255,255,.22); border-radius: 999px; padding: 1px 8px; font-size: 12px; font-variant-numeric: tabular-nums; }
+.fs { display: flex; align-items: center; background: #fff; border: 1px solid #d6daea; border-radius: 999px; box-shadow: 0 8px 20px rgba(28,38,87,.16); overflow: hidden; }
+.fs button { border: 0; background: transparent; padding: 9px 12px; font-weight: 800; color: var(--ink); font-size: 14px; }
+.fs button:disabled { opacity: .35; cursor: default; }
+.fs #fsDown { font-size: 12px; }
+.fs #fsUp { font-size: 17px; }
+.fs #fsVal { font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; border-left: 1px solid var(--line); border-right: 1px solid var(--line); padding-inline: 10px; min-width: 52px; }
+.nudge { position: fixed; left: 16px; bottom: calc(74px + env(safe-area-inset-bottom, 0px)); z-index: 46; background: #fff; border: 1px solid #cfd2f7; border-radius: 14px; padding: 12px 14px; width: min(300px, calc(100% - 32px)); box-shadow: 0 14px 30px rgba(28,38,87,.22); font-size: 13.5px; line-height: 1.6; }
+.nudge::after { content: ""; position: absolute; left: 34px; bottom: -8px; width: 14px; height: 14px; background: #fff; border-right: 1px solid #cfd2f7; border-bottom: 1px solid #cfd2f7; transform: rotate(45deg); }
+.nudge .na { display: flex; gap: 6px; justify-content: flex-end; margin-top: 8px; }
+.gpanel { position: fixed; left: 16px; bottom: calc(74px + env(safe-area-inset-bottom, 0px)); z-index: 47; width: min(390px, calc(100% - 32px)); max-height: min(76vh, 720px); overflow: auto; background: #fff; border: 1px solid #dfe2f3; border-radius: 18px; box-shadow: 0 24px 50px rgba(28,38,87,.28); padding: 16px; font-size: calc(14px * var(--scale)); }
+.gpanel header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.gpanel header h3 { margin: 0; font-size: 1.1em; color: var(--navy); }
+.gpanel header button { border: 0; background: transparent; font-size: 1.3em; line-height: 1; color: var(--ink-2); }
+.gpanel .gsub { margin: 0 0 12px; color: var(--ink-2); font-size: .88em; line-height: 1.6; }
+.gpanel h4 { margin: 14px 0 8px; font-size: .86em; color: var(--ink-2); letter-spacing: .03em; }
+.tours { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tourbtn { border: 1px solid #dfe2f3; background: #f8f8ff; border-radius: 12px; padding: 10px 8px; text-align: center; display: flex; flex-direction: column; gap: 2px; align-items: center; color: var(--ink); }
+.tourbtn b { font-size: .92em; }
+.tourbtn span { font-size: .76em; color: var(--ink-3); }
+.tourbtn:hover { border-color: var(--indigo); }
+.mbar { height: 8px; border-radius: 99px; background: #eceef8; overflow: hidden; margin: 2px 0 10px; }
+.mbar i { display: block; height: 100%; background: linear-gradient(90deg, #4b4fd6, #2fb8a3); border-radius: 99px; transition: width .3s ease; }
+.mlist { display: flex; flex-direction: column; gap: 8px; }
+.mi { border: 1px solid #e3e5f4; border-radius: 12px; padding: 10px 12px; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: start; }
+.mi .mk2 { width: 24px; height: 24px; border-radius: 50%; border: 2px solid #c9cde3; display: grid; place-items: center; font-weight: 800; font-size: .8em; color: var(--ink-3); margin-top: 1px; font-variant-numeric: tabular-nums; }
+.mi.done { background: #f2fbf6; border-color: #bfe6cf; }
+.mi.done .mk2 { background: var(--ok); border-color: var(--ok); color: #fff; }
+.mi b { display: block; font-size: .94em; line-height: 1.45; }
+.mi p { margin: 4px 0 6px; font-size: .84em; color: var(--ink-2); line-height: 1.6; }
+.mi .go2 { border: 1px solid #cfd2f7; background: #fff; color: var(--indigo); border-radius: 8px; padding: 4px 10px; font-weight: 700; font-size: .8em; }
+.gfoot { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; font-size: .8em; color: var(--ink-3); gap: 8px; flex-wrap: wrap; }
+.gfoot button { border: 0; background: transparent; color: var(--ink-3); text-decoration: underline; font-size: 1em; padding: 0; }
+
+/* ===== 둘러보기(스포트라이트) ===== */
+#tourLayer { position: fixed; inset: 0; z-index: 70; pointer-events: none; }
+#tourSpot { position: fixed; border-radius: 12px; box-shadow: 0 0 0 9999px rgba(16,20,48,.56), 0 0 0 3px #f5b400, 0 0 24px 6px rgba(245,180,0,.45); transition: left .25s ease, top .25s ease, width .25s ease, height .25s ease; pointer-events: none; }
+#tourCard { position: fixed; width: min(370px, calc(100vw - 24px)); background: #fff; border-radius: 16px; padding: 14px 16px 14px; box-shadow: 0 24px 50px rgba(0,0,0,.35); pointer-events: auto; font-size: calc(14.5px * var(--scale)); color: var(--ink); }
+#tourCard .tc-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 6px; }
+#tourCard .tc-top span { font-size: .78em; font-weight: 800; color: var(--indigo); letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+#tourCard .tc-top button { border: 0; background: transparent; font-size: 1.25em; line-height: 1; color: var(--ink-3); }
+#tourCard h4 { margin: 0 0 6px; font-size: 1.08em; color: var(--navy); }
+#tourCard p { margin: 0; line-height: 1.7; color: var(--ink-2); }
+#tourCard .tc-dots { display: flex; gap: 4px; margin: 12px 0 0; flex-wrap: wrap; }
+#tourCard .tc-dots i { width: 7px; height: 7px; border-radius: 50%; background: #dfe1ee; }
+#tourCard .tc-dots i.on { background: var(--indigo); }
+#tourCard .tc-acts { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 12px; }
+#tourCard .tc-acts .hint { font-size: .74em; color: var(--ink-3); }
+.toast { z-index: 80; }
+body.touring .toast { bottom: auto; top: 16px; }
+.brand > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+@media (max-width: 760px) { .topbar { grid-template-columns: minmax(0, 1fr) auto; } .tright { gap: 8px; } }
+@media (max-width: 560px) {
+  .dk-guide { padding: 9px 12px; font-size: 13px; }
+  .tours { grid-template-columns: minmax(0, 1fr); }
+  #tourCard .tc-acts .hint { display: none; }
+}
 </style>
 </head>
 <body>
@@ -624,6 +698,43 @@ details[open] > summary::before { content: "▾ "; }
 <div class="memo" id="memo" hidden>
   <header>메모장 <button id="memoX" aria-label="메모장 닫기">×</button></header>
   <textarea id="memoTxt" placeholder="풀이 메모를 적어 보세요. 채점되지 않습니다."></textarea>
+</div>
+<!-- ============ 연수 도우미 ============ -->
+<div class="dock" id="guideDock">
+  <button class="dk-guide" id="openGuide" aria-expanded="false" aria-controls="gpanel"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="#fff" stroke-width="2"/><path d="M15.5 8.5l-2 5-5 2 2-5z" fill="#fff"/></svg>연수 가이드 <b id="mCount">0/5</b></button>
+  <div class="fs" role="group" aria-label="글자 크기">
+    <button id="fsDown" aria-label="글자 작게">가−</button>
+    <button id="fsVal" title="기본 크기(100%)로 되돌리기" aria-label="글자 크기 기본으로">100%</button>
+    <button id="fsUp" aria-label="글자 크게">가+</button>
+  </div>
+</div>
+<div class="nudge" id="nudge" hidden role="status">
+  <b>처음이신가요?</b><br>‘연수 가이드’에서 화면 둘러보기를 시작하세요. 글자가 작으면 <b>가+</b>를 누르세요.
+  <div class="na"><button class="nbtn sm" id="nudgeX">닫기</button><button class="nbtn sm ind" id="nudgeGo">둘러보기 시작</button></div>
+</div>
+<aside class="gpanel" id="gpanel" hidden aria-label="연수 가이드">
+  <header><h3>연수 가이드</h3><button id="closeGuide" aria-label="연수 가이드 닫기">×</button></header>
+  <p class="gsub">화면을 차례로 짚어 주는 둘러보기와, 직접 해 보면 자동으로 체크되는 연수 활동이 있습니다.</p>
+  <h4>화면 둘러보기</h4>
+  <div class="tours">
+    <button class="tourbtn" data-tour="home"><b>처음 화면</b><span>2단계</span></button>
+    <button class="tourbtn" data-tour="student"><b>학생 화면</b><span>10단계</span></button>
+    <button class="tourbtn" data-tour="teacher"><b>교사 화면</b><span>9단계</span></button>
+  </div>
+  <h4>연수 활동 <span id="mText" style="font-weight:500"></span></h4>
+  <div class="mbar"><i id="mBar" style="width:0%"></i></div>
+  <div class="mlist" id="mList"></div>
+  <div class="gfoot"><span>진행 상황은 이 브라우저에만 저장됩니다.</span><button id="mReset">활동 기록 지우기</button></div>
+</aside>
+<div id="tourLayer" hidden>
+  <div id="tourSpot"></div>
+  <div id="tourCard" role="dialog" aria-modal="false" aria-labelledby="tourTitle">
+    <div class="tc-top"><span id="tourProg">1 / 10</span><button id="tourX" aria-label="둘러보기 끝내기">×</button></div>
+    <h4 id="tourTitle"></h4>
+    <p id="tourBody"></p>
+    <div class="tc-dots" id="tourDots"></div>
+    <div class="tc-acts"><span class="hint">← → 키로 넘기기 · Esc 끝내기</span><span style="display:flex;gap:6px;margin-left:auto"><button class="nbtn sm" id="tourPrev">이전</button><button class="nbtn sm ind" id="tourNext">다음</button></span></div>
+  </div>
 </div>
 <div class="toast" id="toast" hidden></div>
 
@@ -1085,13 +1196,7 @@ function applyMark(){
 }
 document.addEventListener('mouseup', applyMark);
 document.addEventListener('touchend', function(){ setTimeout(applyMark, 0); });
-var scales = [1, 1.12, 1.25], si = 0;
-$('tZoom').addEventListener('click', function(){
-  si = (si + 1) % scales.length;
-  document.documentElement.style.setProperty('--scale', scales[si]);
-  $('zoomv').textContent = Math.round(scales[si] * 100) + '%';
-  if (!$('drawbox').hidden) { saveDraw(); sizePad(); }
-});
+$('tZoom').addEventListener('click', function(){ scaleIdx = (scaleIdx + 1) % SCALES.length; applyScale(); });
 function toggleMemo(open){ var m = $('memo'); m.hidden = open === undefined ? !m.hidden : !open; $('tMemo').setAttribute('aria-pressed', !m.hidden); if (!m.hidden) $('memoTxt').focus(); }
 $('tMemo').addEventListener('click', function(){ toggleMemo(); });
 $('memoX').addEventListener('click', function(){ toggleMemo(false); });
@@ -1101,7 +1206,7 @@ function setAnnot(on){
   $('btnAnnot').setAttribute('aria-pressed', on);
   $('btnAnnot').textContent = on ? '화면 구성 번호 숨기기' : '화면 구성 번호 보기';
   $('legend').hidden = !on;
-  if (on) { $('ovStart').hidden = true; started = true; }
+  if (on) { $('ovStart').hidden = true; started = true; flag('annot'); }
   render();
 }
 
@@ -1116,6 +1221,7 @@ function enterStudent(opts){
   if (preview) {
     $('prevMsg').textContent = '교사 미리보기 · ' + setTitle(sets[preview.set], preview.set) + ' — 학생에게 보이는 그대로입니다. 답안은 저장되지 않습니다.';
     cur = 0; stopTimer(); remain = (+sets[preview.set].info.time || 0) * 60; drawClock();
+    if (sets[preview.set].items.some(function(it){ return (it.picks || []).some(function(p){ return String(p.opts || '').trim(); }); })) flag('pickprev');
     Object.keys(answers).forEach(function(k){ if (k.indexOf('pv:') === 0) delete answers[k]; });
   } else {
     if (cur >= Q.length || cur < 0) cur = 0;
@@ -1457,6 +1563,7 @@ function checks(st, si){
 }
 function renderChecks(){
   var cs = checks(S(), tSet);
+  if (cs.some(function(c){ return c.lvl === 'err' && c.tab === 'rubric' && /채점기준 합/.test(c.msg); })) flag('sumwarn');
   var e = cs.filter(function(c){ return c.lvl === 'err'; }).length, w = cs.filter(function(c){ return c.lvl === 'warn'; }).length, o = cs.filter(function(c){ return c.lvl === 'ok'; }).length;
   $('chkSum').innerHTML = '<span class="pill err">확인 필요 ' + e + '</span><span class="pill warn">검토 권장 ' + w + '</span><span class="pill ok">통과 ' + o + '</span>';
   var order = { err: 0, warn: 1, ok: 2 };
@@ -1482,8 +1589,176 @@ $('goStudent').addEventListener('click', function(){ enterStudent(); });
 $('goTeacher').addEventListener('click', function(){ openTeacher(tSet, tTab); });
 $('lkGuide').addEventListener('click', function(){ $('intro').scrollIntoView({ behavior: 'smooth' }); });
 $('lkParts').addEventListener('click', function(){ enterStudent({ annot: true }); });
+/* =========================================================
+   글자 크기
+   ========================================================= */
+var SCALES = [0.9, 1, 1.12, 1.25, 1.4], scaleIdx = 1;
+(function(){ var s = lsGet('aiEssayDemo.scale'); if (typeof s === 'number' && s >= 0 && s < SCALES.length) scaleIdx = s; })();
+function applyScale(){
+  document.documentElement.style.setProperty('--scale', SCALES[scaleIdx]);
+  var p = Math.round(SCALES[scaleIdx] * 100) + '%';
+  $('fsVal').textContent = p; $('zoomv').textContent = p;
+  $('fsDown').disabled = scaleIdx === 0; $('fsUp').disabled = scaleIdx === SCALES.length - 1;
+  lsSet('aiEssayDemo.scale', scaleIdx);
+  if (view === 'student' && !$('drawbox').hidden) { saveDraw(); sizePad(); }
+  if (tour) setTimeout(placeTour, 30);
+}
+$('fsDown').addEventListener('click', function(){ if (scaleIdx > 0) { scaleIdx--; applyScale(); } });
+$('fsUp').addEventListener('click', function(){ if (scaleIdx < SCALES.length - 1) { scaleIdx++; applyScale(); } });
+$('fsVal').addEventListener('click', function(){ scaleIdx = 1; applyScale(); });
+
+/* =========================================================
+   연수 활동(미션)
+   ========================================================= */
+var MISS_KEY = 'aiEssayDemo.missions', mflags = lsGet(MISS_KEY) || {};
+function flag(k){ if (!mflags[k]) { mflags[k] = true; lsSet(MISS_KEY, mflags); } }
+function setTab(t){ tTab = t; renderTabs(); renderTab(); }
+function gotoItem(si, ii){
+  enterStudent(); $('ovStart').hidden = true; started = true;
+  var j = -1; for (var i = 0; i < Q.length; i++) if (Q[i].set === si && Q[i].idx === ii) { j = i; break; }
+  go(j < 0 ? firstReal() : j);
+}
+var MISSIONS = [
+  { k: 'm1', t: '학생이 되어 1-3번에 답 써 보기', d: '조건 세 가지를 지키며 20자 이상 써 봅니다. 조건이 답안의 구성을 어떻게 이끄는지 느껴 보세요.',
+    done: function(){ var s = sets[0]; if (!s) return false; var a = answers[s.id + ':2']; return !!(a && a.text && a.text.trim().length >= 20); },
+    go: function(){ gotoItem(0, 2); } },
+  { k: 'm2', t: '화면 구성 번호 01~07 확인하기', d: '학생 화면 위쪽 ‘화면 구성 번호 보기’를 켜고, 지시문·제시자료·발문·조건·답안 입력기가 어디에 보이는지 확인합니다.',
+    done: function(){ return !!mflags.annot; }, go: function(){ enterStudent({ annot: true }); } },
+  { k: 'm3', t: '2번 세트의 ‘확인 필요’를 0으로 만들기', d: '2-1의 3점·2점, 2-3 ‘정답 도출하기’ 1점 예시답안이 1개씩뿐입니다. 학생이 실제로 쓸 법한 답안을 하나씩 더 써서 자동 점검을 통과시켜 보세요.',
+    done: function(){ return sets[1] ? checks(sets[1], 1).filter(function(c){ return c.lvl === 'err'; }).length === 0 : false; },
+    go: function(){ openTeacher(1, 'ex'); } },
+  { k: 'm4', t: '배점을 바꿔 경고 확인하기', d: '채점기준표에서 세부 채점 요소의 배점을 하나 바꿔 ‘배점 ≠ 채점기준 합’ 경고가 뜨는지 보고, 원래대로 되돌립니다.',
+    done: function(){ return !!mflags.sumwarn; }, go: function(){ openTeacher(0, 'rubric'); } },
+  { k: 'm5', t: '선택형 결론을 넣고 미리보기', d: '2-3 문항의 ‘선택형 결론’에 앞 문장 ‘행사를’, 선택지 ‘진행 / 취소’, 뒷 문장 ‘하는 것이 더 합리적이다.’를 넣고 학생 미리보기로 확인합니다. 채점이 쉬워지는 대신 무엇을 잃는지 토론해 보세요.',
+    done: function(){ return !!mflags.pickprev; }, go: function(){ openTeacher(1, 'items'); } }
+];
+var lastDone = null;
+function missionState(){ return MISSIONS.map(function(m){ try { return !!m.done(); } catch (e) { return false; } }); }
+function refreshMissions(announce){
+  var st = missionState(), n = st.filter(Boolean).length;
+  $('mCount').textContent = n + '/' + MISSIONS.length;
+  $('mText').textContent = '· ' + n + '/' + MISSIONS.length + ' 완료';
+  $('mBar').style.width = Math.round(n / MISSIONS.length * 100) + '%';
+  if (!$('gpanel').hidden) {
+    $('mList').innerHTML = MISSIONS.map(function(m, i){
+      return '<div class="mi' + (st[i] ? ' done' : '') + '"><span class="mk2" aria-hidden="true">' + (st[i] ? '✓' : (i + 1)) + '</span><div><b>' + esc(m.t) + (st[i] ? ' <span class="pill ok">완료</span>' : '') + '</b><p>' + esc(m.d) + '</p><button class="go2" data-m="' + i + '">' + (st[i] ? '다시 해 보기' : '바로 가기') + ' →</button></div></div>';
+    }).join('');
+  }
+  if (announce && lastDone) st.forEach(function(d, i){ if (d && !lastDone[i]) toast('연수 활동 완료: ' + MISSIONS[i].t); });
+  lastDone = st;
+}
+setInterval(function(){ refreshMissions(true); }, 1500);
+$('mList').addEventListener('click', function(e){ var b = e.target.closest('.go2'); if (!b) return; closeGuide(); MISSIONS[+b.dataset.m].go(); });
+$('mReset').addEventListener('click', function(){ mflags = {}; lsSet(MISS_KEY, mflags); lastDone = null; refreshMissions(); toast('활동 기록을 지웠습니다. 답안·문항 내용은 그대로입니다.'); });
+function openGuide(){ $('gpanel').hidden = false; $('nudge').hidden = true; lsSet('aiEssayDemo.seenGuide', true); $('openGuide').setAttribute('aria-expanded', 'true'); refreshMissions(); $('closeGuide').focus(); }
+function closeGuide(){ $('gpanel').hidden = true; $('openGuide').setAttribute('aria-expanded', 'false'); }
+$('openGuide').addEventListener('click', function(){ if ($('gpanel').hidden) openGuide(); else closeGuide(); });
+$('closeGuide').addEventListener('click', closeGuide);
+$('gpanel').addEventListener('click', function(e){ var b = e.target.closest('.tourbtn'); if (b) startTour(b.dataset.tour); });
+$('nudgeX').addEventListener('click', function(){ $('nudge').hidden = true; lsSet('aiEssayDemo.seenGuide', true); });
+$('nudgeGo').addEventListener('click', function(){ $('nudge').hidden = true; lsSet('aiEssayDemo.seenGuide', true); startTour('home'); });
+
+/* =========================================================
+   둘러보기(스포트라이트 투어)
+   ========================================================= */
+var TOURS = {
+  home: { setup: function(){ show('home'); }, steps: [
+    { sel: '.entry', t: '학생과 교사, 두 입구', b: '‘학생’은 실제 응시 화면에서 문제를 풀고, ‘교사’는 문항·조건·채점기준표·예시답안을 입력하고 학생 화면으로 미리 봅니다. 두 화면은 같은 문항 데이터를 씁니다.' },
+    { sel: '#guideDock', t: '연수 가이드와 글자 크기', b: '언제든 이 버튼으로 둘러보기와 연수 활동을 열 수 있습니다. 프로젝터로 보여 줄 때는 오른쪽 가+ 버튼으로 글자를 키우세요.' }
+  ] },
+  student: { setup: function(){ gotoItem(0, 2); }, steps: [
+    { sel: '.topbar .timer', t: '평가 시간', b: '세트별 평가시간을 합친 시간이 줄어듭니다. 입력 연습 문제를 푸는 동안에는 시작하지 않습니다.' },
+    { sel: '#tabs', t: '문제 번호', b: '‘세트-문항’ 번호로 표시됩니다. 초록 점은 답을 쓴 문제, 빨간 테두리는 지나쳤지만 비워 둔 문제입니다.' },
+    { sel: '.directive', t: '지시문 (01)', b: '세트 전체에 대한 지시입니다. 교사 화면 ‘문항’ 탭의 공통(통합) 지시문이 그대로 나옵니다.' },
+    { sel: '.pwrap', t: '공통 제시자료 (02)', b: '같은 세트를 푸는 동안 왼쪽에 고정됩니다. 표·대화·그림도 여기에 함께 나옵니다.' },
+    { sel: '.qcard', t: '발문 (04)', b: '학생이 무엇을 해야 하는지 알려 주는 핵심 질문입니다. ‘구하시오·설명하시오·주장하시오’ 같은 반응지시어가 채점기준표의 수행 특성과 맞물려야 합니다.' },
+    { sel: '#cond', t: '조건 (05)', b: '답안에 꼭 들어가야 할 요소입니다. AI는 조건을 근거로 충족 여부를 판단하므로, 조건 하나하나가 세부 채점 요소와 대응되어야 하고 발문에는 ‘조건에 따라’가 있어야 합니다.' },
+    { sel: '.answer', t: '답안 입력기 (07)', b: '글 입력과 그리기 입력을 고를 수 있고, 수식은 기호·분수 버튼으로 넣습니다. 지금 한 줄 써 보세요. 이 둘러보기 중에도 화면을 그대로 쓸 수 있습니다.' },
+    { sel: '.tools', t: '보조 도구', b: '밑줄·형광펜은 버튼을 켠 뒤 제시자료에서 글자를 드래그합니다. 화면 크기와 메모장도 여기 있습니다.' },
+    { sel: '.navs', t: '저장과 이동', b: '임시저장은 이 브라우저에 보관됩니다. 마지막 문제에서는 ‘답안 제출’로 바뀌고, 제출 전에 미작성 문제를 보여 줍니다.' },
+    { sel: '#btnAnnot', t: '화면 구성 번호', b: '이 버튼을 켜면 01~07 번호와 설명이 화면에 붙습니다. 연수에서 화면 요소를 짚어 설명할 때 쓰세요.' }
+  ] },
+  teacher: { setup: function(){ openTeacher(0, 'items'); }, steps: [
+    { sel: '.tside', t: '문항 세트', b: '1번(중1 반티 업체)과 2번(중2 주말 야외 행사)이 들어 있습니다. ‘새 문항 세트’로 직접 문항을 만들어 볼 수도 있습니다.' },
+    { sel: '#ttabs', t: '편집 탭', b: '양식 순서대로 기본 정보 → 문항 → 조건 → 채점기준표 → 예시답안 → 피드백입니다. 탭 옆 빨간 숫자는 그 탭에서 확인할 점검 개수입니다.' },
+    { before: function(){ setTab('items'); }, sel: '#tbody > .blkcard:nth-child(3)', t: '제시자료', b: '지문·표·대화 형식과 그림을 넣을 수 있습니다. ‘표시 위치’를 특정 문항으로 바꾸면 학생 화면의 문항별 제시자료(06)로 옮겨집니다.' },
+    { before: function(){ setTab('cond'); }, sel: '#tbody > .blkcard:last-child', t: '조건', b: '하위 문항별로 조건을 적습니다. 바로 위에 그 문항의 세부 채점 요소가 보이니, 조건과 채점 요소가 1:1로 맞는지 비교하세요.' },
+    { before: function(){ setTab('rubric'); }, sel: '#tbody .rrow', t: '채점기준표', b: '세부 채점 요소의 배점을 정하면 그 점수부터 0점까지 칸이 생깁니다. 감점형보다 수준을 구분해 쓰고, 0점 칸은 위의 모든 배점 기준을 언급합니다. 인정하는 동치 표현과 대표 오답을 괄호로 적어 두세요.' },
+    { before: function(){ setTab('ex'); }, sel: '#tbody .rrow .lvl', t: '예시답안', b: '점수마다 2개 이상, 학생이 실제로 쓸 법한 문장으로 씁니다. ‘~한 경우’로 끝나면 채점기준 문장을 옮긴 것으로 보고 주황색으로 표시합니다.' },
+    { sel: '.tchk', t: '자동 점검', b: '외부검토에서 반복된 지적을 바로 확인합니다. 항목을 누르면 해당 탭으로 이동합니다. 왼쪽에서 2번 세트를 눌러 ‘확인 필요’ 항목을 찾아보세요.' },
+    { sel: '.ttab.pv', t: '학생 미리보기', b: '고친 내용이 학생에게 어떻게 보이는지 바로 확인합니다. 미리보기에서 쓴 답은 저장되지 않습니다.' },
+    { sel: '#tData', t: '데이터 옮기기', b: '고친 내용은 이 브라우저에만 저장됩니다. 다른 컴퓨터나 동료에게 넘길 때 이 버튼으로 복사·붙여넣기 하세요.' }
+  ] }
+};
+var tour = null, tourRaf = 0;
+function startTour(key){
+  closeGuide(); closeOv(); $('ovStart').hidden = true; $('ovConfirm').hidden = true; $('ovData').hidden = true;
+  var T = TOURS[key]; T.setup();
+  tour = { key: key, steps: T.steps, i: 0, el: null };
+  $('tourLayer').hidden = false; document.body.classList.add('touring');
+  showStep();
+}
+function endTour(){ tour = null; $('tourLayer').hidden = true; document.body.classList.remove('touring'); }
+function isVisible(el){ if (!el || el.closest('[hidden]')) return false; var r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0; }
+function showStep(){
+  var st = tour.steps[tour.i];
+  if (st.before) st.before();
+  setTimeout(function(){
+    if (!tour) return;
+    var el = st.sel ? document.querySelector(st.sel) : null;
+    tour.el = isVisible(el) ? el : null;
+    if (tour.el) tour.el.scrollIntoView({ block: 'center', inline: 'nearest' });
+    $('tourProg').textContent = (tour.i + 1) + ' / ' + tour.steps.length;
+    $('tourTitle').textContent = st.t;
+    $('tourBody').textContent = st.b;
+    $('tourDots').innerHTML = tour.steps.map(function(_, i){ return '<i class="' + (i === tour.i ? 'on' : '') + '"></i>'; }).join('');
+    $('tourPrev').disabled = tour.i === 0;
+    $('tourNext').textContent = tour.i === tour.steps.length - 1 ? '마치기' : '다음';
+    placeTour();
+    $('tourNext').focus({ preventScroll: true });
+  }, 80);
+}
+function placeTour(){
+  if (!tour) return;
+  var spot = $('tourSpot'), card = $('tourCard'), vw = window.innerWidth, vh = window.innerHeight, el = tour.el;
+  var r = el ? el.getBoundingClientRect() : null, pad = 6;
+  if (r) { spot.style.left = (r.left - pad) + 'px'; spot.style.top = (r.top - pad) + 'px'; spot.style.width = (r.width + pad * 2) + 'px'; spot.style.height = (r.height + pad * 2) + 'px'; }
+  else { spot.style.left = (vw / 2) + 'px'; spot.style.top = (vh / 2) + 'px'; spot.style.width = '0px'; spot.style.height = '0px'; }
+  var cw = card.offsetWidth, ch = card.offsetHeight, gap = 14, left, top;
+  if (vw < 640 || !r) {
+    left = Math.max(12, (vw - cw) / 2);
+    top = r && r.top > vh / 2 ? 12 : vh - ch - 12;
+    if (!r) top = (vh - ch) / 2;
+  } else {
+    if (r.bottom + gap + ch <= vh - 8) top = r.bottom + gap;
+    else if (r.top - gap - ch >= 8) top = r.top - gap - ch;
+    else top = Math.min(vh - ch - 12, Math.max(12, r.top));
+    if (top === r.bottom + gap || top === r.top - gap - ch) left = Math.min(vw - cw - 12, Math.max(12, r.left));
+    else left = r.right + gap + cw <= vw - 8 ? r.right + gap : Math.max(12, r.left - gap - cw);
+  }
+  card.style.left = left + 'px'; card.style.top = top + 'px';
+}
+function onMove(){ if (!tour) return; cancelAnimationFrame(tourRaf); tourRaf = requestAnimationFrame(placeTour); }
+window.addEventListener('scroll', onMove, true);
+window.addEventListener('resize', onMove);
+$('tourNext').addEventListener('click', function(){ if (tour.i < tour.steps.length - 1) { tour.i++; showStep(); } else { var k = tour.key; endTour(); toast(k === 'teacher' ? '교사 화면 둘러보기를 마쳤습니다. 연수 가이드에서 활동 3~5를 해 보세요.' : k === 'student' ? '학생 화면 둘러보기를 마쳤습니다. 연수 가이드에서 활동 1~2를 해 보세요.' : '이제 학생 또는 교사 화면으로 들어가 보세요.'); } });
+$('tourPrev').addEventListener('click', function(){ if (tour.i > 0) { tour.i--; showStep(); } });
+$('tourX').addEventListener('click', endTour);
+document.addEventListener('keydown', function(e){
+  if (!tour) return;
+  var tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'textarea' || tag === 'select') { if (e.key === 'Escape') endTour(); return; }
+  if (e.key === 'Escape') { endTour(); }
+  else if (e.key === 'ArrowRight' && !e.altKey) { e.preventDefault(); $('tourNext').click(); }
+  else if (e.key === 'ArrowLeft' && !e.altKey) { e.preventDefault(); $('tourPrev').click(); }
+});
+
+applyScale();
+refreshMissions();
+if (!lsGet('aiEssayDemo.seenGuide')) $('nudge').hidden = false;
 if (location.hash === '#student') enterStudent();
 else if (location.hash === '#teacher') openTeacher(0, 'items');
+else if (location.hash === '#guide') openGuide();
 })();
 </script>
 
