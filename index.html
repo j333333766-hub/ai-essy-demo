@@ -475,6 +475,7 @@ body.touring .toast { bottom: auto; top: 16px; }
 .cnb .b.err { background: var(--err-soft); color: var(--err); }
 .cnb .b.gr { background: var(--warn-soft); color: var(--warn); }
 .cnb .b.ok { background: var(--ok-soft); color: var(--ok); }
+.cnb .b.dot { background: var(--lav); color: var(--indigo); }
 .cnb.cm { border-top: 1px dashed var(--line); border-radius: 0 0 10px 10px; padding-top: 10px; }
 .cnb.cm.on { border-radius: 10px; }
 .cmain { min-width: 0; }
@@ -620,6 +621,58 @@ body.touring .toast { bottom: auto; top: 16px; }
   .cstep button { padding: 6px 8px; }
   .cstep button:not(.on) .lb { display: none; }
 }
+/* K-DOT */
+#kdView .chead { grid-template-columns: minmax(0, 1fr); }
+.kdb { display: inline-block; font-size: .78em; font-weight: 800; border-radius: 6px; padding: 1px 7px; color: #fff; vertical-align: middle; }
+.l1 { --k: #6b7a99; } .l2 { --k: #2f8f83; } .l3 { --k: #2c6fc9; } .l4 { --k: #5a4fd6; } .l5 { --k: #b8457a; }
+.kdb { background: var(--k); }
+.kladder { display: flex; flex-direction: column; gap: 6px; margin-bottom: 6px; }
+.krung { width: var(--w); min-width: 280px; max-width: 100%; display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; gap: 10px; align-items: center; text-align: left; border: 0; border-radius: 12px; padding: 10px 14px; color: #fff; background: var(--k); font-size: .92em; box-shadow: 0 4px 12px rgba(28,38,87,.12); }
+.krung:hover { filter: brightness(1.08); }
+.krung .kn { font-weight: 800; }
+.krung .ka { background: rgba(255,255,255,.22); border-radius: 999px; padding: 2px 10px; font-size: .82em; font-weight: 700; }
+.kcap { margin: 4px 0 14px; font-size: .82em; color: var(--ink-3); }
+.ktabs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin-bottom: 10px; }
+.ktabs button { border: 1px solid #dfe2f3; background: #fff; border-radius: 12px; padding: 8px; font-weight: 800; color: var(--k); display: flex; flex-direction: column; gap: 2px; align-items: center; }
+.ktabs button small { font-weight: 500; color: var(--ink-3); font-size: .74em; }
+.ktabs button.on { background: var(--k); color: #fff; border-color: var(--k); }
+.ktabs button.on small { color: rgba(255,255,255,.85); }
+.kdet { background: #fff; border: 1px solid #dfe2f3; border-top: 4px solid var(--k); border-radius: 16px; padding: 14px 16px; margin-bottom: 14px; }
+.kdh { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 1.02em; }
+.kdd { line-height: 1.75; margin: 8px 0 10px; }
+.kcols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.kdet h5 { margin: 6px 0 6px; font-size: .86em; color: var(--ink-2); }
+.kdet ol, .kdet ul { margin: 0; padding-left: 1.3em; font-size: .9em; line-height: 1.7; }
+.kquiz { display: grid; gap: 10px; }
+.kq { background: #fff; border: 1px solid #dfe2f3; border-radius: 14px; padding: 12px 14px; }
+.kq.ok { border-color: #b8e2cd; background: #f7fdf9; }
+.kq.no { border-color: #f1d0c9; background: #fffaf8; }
+.kqq { margin: 0 0 8px; line-height: 1.7; }
+.kqq b { color: var(--indigo); margin-right: 4px; }
+.kqb { display: flex; gap: 6px; flex-wrap: wrap; }
+.kqb button { border: 1.5px solid var(--k); color: var(--k); background: #fff; border-radius: 9px; padding: 5px 12px; font-weight: 800; font-size: .86em; }
+.kqb button:disabled { opacity: .45; cursor: default; }
+.kqb button.ans { background: var(--k); color: #fff; opacity: 1; }
+.kqb button.pick:not(.ans) { opacity: 1; text-decoration: line-through; }
+.kqw { margin: 8px 0 0; font-size: .88em; line-height: 1.65; color: var(--ink-2); }
+.kproc { list-style: none; margin: 0 0 14px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.kproc li { background: #fff; border: 1px solid #dfe2f3; border-radius: 14px; padding: 12px 14px; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 8px; }
+.kpn { width: 28px; height: 28px; border-radius: 50%; background: var(--indigo); color: #fff; font-weight: 800; display: grid; place-items: center; }
+.kproc b { display: block; margin-bottom: 4px; font-size: .95em; }
+.kproc p { margin: 0 0 6px; font-size: .86em; line-height: 1.6; color: var(--ink-2); }
+.kpo { font-size: .78em; color: var(--indigo); font-weight: 700; }
+.kinfo { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.kinfo div { display: grid; grid-template-columns: 86px minmax(0, 1fr); gap: 8px; font-size: .88em; line-height: 1.6; }
+.kinfo b { color: var(--navy); }
+.kinfo span { color: var(--ink-2); }
+.kvs td:first-child { white-space: nowrap; }
+.cst table.kvs td:last-child, .cst table.kvs th:last-child { text-align: left; white-space: normal; color: var(--indigo); }
+.cex.zero { border-left-color: #e3a79b; background: #fff6f4; }
+.kdot-hint { margin-top: 8px; font-size: .82em; color: var(--ink-2); background: #f6f7fd; border-radius: 8px; padding: 6px 10px; line-height: 1.6; }
+.kdot-hint button { border: 0; background: none; color: var(--indigo); font-weight: 700; padding: 0; text-decoration: underline; }
+.cdot { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+@media (max-width: 1100px) { .kproc { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 820px) { .ktabs { grid-template-columns: repeat(5, minmax(76px, 1fr)); overflow-x: auto; } .kcols, .kinfo, .kproc { grid-template-columns: minmax(0, 1fr); } .krung { min-width: 0; width: 100%; } }
 </style>
 </head>
 <body>
@@ -663,6 +716,7 @@ body.touring .toast { bottom: auto; top: 16px; }
         <button id="lkGuide">연수 안내</button>
         <button id="lkParts">화면 구성 보기</button>
         <button id="lkCmp">채점기준 비교 실습</button>
+        <button id="lkKdot">K-DOT 출제 매뉴얼</button>
       </div>
     </div>
   </section>
@@ -793,6 +847,7 @@ body.touring .toast { bottom: auto; top: 16px; }
     <div class="acts">
       <button class="nbtn sm" id="tHome">← 처음 화면</button>
       <button class="nbtn sm" id="tData">문항 데이터 복사·붙여넣기</button>
+      <button class="nbtn sm" id="tKdot">K-DOT 안내</button>
       <button class="nbtn sm" id="tCmp">채점기준 비교 실습</button>
       <button class="nbtn sm wht" id="tPreview">학생 화면 미리보기</button>
     </div>
@@ -828,6 +883,7 @@ body.touring .toast { bottom: auto; top: 16px; }
     <div class="acts">
       <button class="nbtn sm" id="cmpHome">← 처음 화면</button>
       <button class="nbtn sm" id="cmpTeacher">교사 · 문항 편집</button>
+      <button class="nbtn sm" id="cmpKdot">K-DOT 안내</button>
     </div>
   </div>
   <div class="chead">
@@ -846,6 +902,33 @@ body.touring .toast { bottom: auto; top: 16px; }
       <div id="cmpMain" aria-live="polite"></div>
       <div class="cpn"><button class="nbtn" id="cmpPrev">← 이전 단계</button><button class="nbtn ind" id="cmpNext">다음 단계 →</button></div>
       <p class="csrc">자료: 0번 예제는 연수용으로 만든 문항, 서술형 1~3은 2025학년도 수학과 1학기 서술형 평가 대비(2학년) 문항과 풀이과정. ‘AI용’ 칸은 연수 토론을 위한 제안이며 확정된 채점 기준이 아닙니다.</p>
+    </main>
+  </div>
+</div>
+
+<!-- ============ K-DOT 출제 매뉴얼 안내 ============ -->
+<div class="tview cview" id="kdView" hidden>
+  <div class="tbar">
+    <div class="brand"><span class="mk" aria-hidden="true">x</span>AI 논·서술형 평가 시연 <span class="who">연수 자료 · K-DOT 출제 매뉴얼</span></div>
+    <div class="acts">
+      <button class="nbtn sm" id="kdHome">← 처음 화면</button>
+      <button class="nbtn sm" id="kdTeacher">교사 · 문항 편집</button>
+      <button class="nbtn sm wht" id="kdCmp">채점기준 비교 실습</button>
+    </div>
+  </div>
+  <div class="chead">
+    <div class="chi">
+      <p class="eb">참고자료 · 서울 K-DOT 기반 서·논술형 평가 문항 출제 매뉴얼 (2026. 7. 5.)</p>
+      <h2>인천 시스템 개발 업체가 서울에서 먼저 쓴 출제 틀을 여섯 마당으로 정리했습니다.</h2>
+      <p class="chow">왼쪽에서 차례대로 보세요. <b>사고 수준(K-DOT) → 수학 수행 요소 → 수준 맞히기 → 개발 절차 → 작성 원칙 → 매뉴얼 수학 예시 문항</b></p>
+    </div>
+  </div>
+  <div class="cgrid">
+    <nav class="tcard cnav" id="kdNav" aria-label="K-DOT 안내 목차"></nav>
+    <main class="cmain">
+      <div id="kdMain" aria-live="polite"></div>
+      <div class="cpn"><button class="nbtn" id="kdPrev">← 이전</button><button class="nbtn ind" id="kdNext">다음 →</button></div>
+      <p class="csrc">출처: 서울 ‘K-DOT 기반 서·논술형 평가 문항 출제 매뉴얼’(2026. 7. 5.)과 같은 자료의 수학과 예시 문항. 표와 원칙은 요약해 옮겼고, 인천 기준은 우리 팀의 외부검토 기록과 프레임워크 메모를 따랐습니다.</p>
     </main>
   </div>
 </div>
@@ -904,7 +987,7 @@ body.touring .toast { bottom: auto; top: 16px; }
 </div>
 <!-- ============ 연수 도우미 ============ -->
 <div class="dock" id="guideDock">
-  <button class="dk-guide" id="openGuide" aria-expanded="false" aria-controls="gpanel"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="#fff" stroke-width="2"/><path d="M15.5 8.5l-2 5-5 2 2-5z" fill="#fff"/></svg>연수 가이드 <b id="mCount">0/6</b></button>
+  <button class="dk-guide" id="openGuide" aria-expanded="false" aria-controls="gpanel"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="#fff" stroke-width="2"/><path d="M15.5 8.5l-2 5-5 2 2-5z" fill="#fff"/></svg>연수 가이드 <b id="mCount">0/7</b></button>
   <div class="fs" role="group" aria-label="글자 크기">
     <button id="fsDown" aria-label="글자 작게">가−</button>
     <button id="fsVal" title="기본 크기(100%)로 되돌리기" aria-label="글자 크기 기본으로">100%</button>
@@ -920,7 +1003,7 @@ body.touring .toast { bottom: auto; top: 16px; }
   <p class="gsub">화면을 차례로 짚어 주는 둘러보기와, 직접 해 보면 자동으로 체크되는 연수 활동이 있습니다.</p>
   <h4>화면 둘러보기</h4>
   <div class="tours">
-    <button class="tourbtn" data-tour="home"><b>처음 화면</b><span>3단계</span></button>
+    <button class="tourbtn" data-tour="home"><b>처음 화면</b><span>4단계</span></button>
     <button class="tourbtn" data-tour="student"><b>학생 화면</b><span>10단계</span></button>
     <button class="tourbtn" data-tour="teacher"><b>교사 화면</b><span>9단계</span></button>
   </div>
@@ -1161,6 +1244,7 @@ function show(v){
   $('examView').hidden = v !== 'student';
   $('teacherView').hidden = v !== 'teacher';
   $('cmpView').hidden = v !== 'compare';
+  $('kdView').hidden = v !== 'kdot';
   window.scrollTo(0, 0);
 }
 
@@ -1492,6 +1576,7 @@ $('ttabs').addEventListener('click', function(e){
 $('tPreview').addEventListener('click', function(){ enterStudent({ preview: tSet }); });
 $('tHome').addEventListener('click', function(){ show('home'); });
 $('tCmp').addEventListener('click', function(){ openCompare(); });
+$('tKdot').addEventListener('click', function(){ openKdot(1); });
 
 function F(label, path, val, o){
   o = o || {};
@@ -1554,6 +1639,9 @@ function renderTab(){
       var p = 'items.' + ii;
       h += '<div class="blkcard">' + qhead(it, ii) +
         '<div class="row3">' + F('난이도(예상 성취수준)', p + '.level', it.level, { opts: ['A', 'B', 'C', 'D', 'E'] }) + F('배점', p + '.pts', it.pts, { num: true, min: 1, max: 20 }) + F('평가 요소', p + '.eval', it.eval) + '</div>' +
+        '<div class="row3" style="margin-top:10px">' + F('사고 수준(K-DOT)', p + '.dot', it.dot || '', { opts: [['', '선택하세요']].concat(KD_LEVELS.map(function(l){ return [String(l.n), 'K-DOT' + l.n + ' ' + l.name + ' (' + l.ao + ')']; })), struct: true }) +
+          F('수행 요소', p + '.perf', it.perf || '', { opts: [['', it.dot ? '선택하세요' : '사고 수준을 먼저 고르세요']].concat(it.dot ? KD_LEVELS[+it.dot - 1].perf : []).concat(it.perf && !(it.dot && KD_LEVELS[+it.dot - 1].perf.indexOf(it.perf) >= 0) ? [it.perf] : []), struct: true }) + '</div>' +
+        '<div class="kdot-hint">서울 K-DOT 매뉴얼 기준입니다. 한 문항에 여러 수준이 섞이면 가장 높은 수준을 고릅니다. ' + (it.dot ? '<b>K-DOT' + it.dot + '</b>: ' + esc(KD_LEVELS[+it.dot - 1].desc) + ' ' : '') + '<button type="button" data-kd="1">수준별 설명 보기</button></div>' +
         '<div style="margin-top:10px">' + F('발문', p + '.q', it.q, { area: true, wide: true, rows: 4 }) + '</div>' +
         '<details style="margin-top:10px"' + ((it.picks || []).length ? ' open' : '') + '><summary class="flabel" style="cursor:pointer">선택형 결론 (선택 사항) — 결론은 고르고 근거만 서술하게 할 때</summary><div class="lst" style="margin-top:8px">' +
         (it.picks || []).map(function(pk, pi){
@@ -1592,7 +1680,7 @@ function renderTab(){
     });
   }
   else if (tTab === 'ex') {
-    h += '<div class="tip"><b>예시답안</b>은 부분점수마다 2개 이상, 학생이 실제로 쓸 법한 문장으로 씁니다. ‘~한 경우’처럼 채점기준 문장을 옮겨 적지 않습니다. 0점 칸은 비워 둡니다. 서로 다른 풀이 경로와 서로 다른 오류 유형을 섞어 두면 AI가 다양한 답안을 학습합니다.</div>';
+    h += '<div class="tip"><b>예시답안</b>은 부분점수마다 2개 이상, 학생이 실제로 쓸 법한 문장으로 씁니다. ‘~한 경우’처럼 채점기준 문장을 옮겨 적지 않습니다. 0점 칸은 인천 2차 검토 기준으로 비워 둡니다(서울 K-DOT 매뉴얼은 오답·무응답 예시를 넣음). 서로 다른 풀이 경로와 서로 다른 오류 유형을 섞어 두면 AI가 다양한 답안을 학습합니다.</div>';
     st.items.forEach(function(it, ii){
       var p = 'items.' + ii;
       h += '<div class="blkcard">' + qhead(it, ii) + '<div class="qread">' + fmt(it.q) + '</div>' +
@@ -1650,6 +1738,7 @@ $('tbody').addEventListener('change', function(e){
   renderTab(); afterEdit();
 });
 $('tbody').addEventListener('click', function(e){
+  if (e.target.closest('[data-kd]')) { openKdot(1); return; }
   var b = e.target.closest('[data-act]'); if (!b || b.tagName === 'INPUT') return;
   var st = S(), a = b.dataset.act, d = b.dataset, it = d.i != null ? st.items[+d.i] : null, m = d.m != null ? st.materials[+d.m] : null;
   switch (a) {
@@ -1725,6 +1814,7 @@ function checks(st, si){
   var out = [], add = function(lvl, msg, tab, sub){ out.push({ lvl: lvl, msg: msg, tab: tab, sub: sub }); };
   var tot = setTotal(st), nn = (si != null ? si + 1 : '');
   add(tot >= 10 ? 'ok' : 'err', '세트 배점 합 ' + tot + '점', 'items', tot >= 10 ? '10점 이상' : '양식 기준: 10점 이상');
+  if (tot > 12) add('warn', '세트 배점 합 ' + tot + '점 (12점 초과)', 'items', '서울 K-DOT 문항 카드 기준 2~12점');
   var n = st.items.length;
   add(n >= 2 && n <= 3 ? 'ok' : 'warn', '하위 문항 ' + n + '개', 'items', n >= 2 && n <= 3 ? '권장 2~3개' : '권장: 2~3개');
   var mats = st.materials.length;
@@ -1736,6 +1826,11 @@ function checks(st, si){
     var lab = nn + '-' + (ii + 1);
     if (!String(it.q || '').trim()) add('err', lab + ' 발문이 비어 있습니다', 'items');
     else if (!/시오\.?\s*$/.test(String(it.q).trim())) add('warn', lab + ' 발문이 반응지시어(~하시오)로 끝나지 않습니다', 'items');
+    if (!it.dot) add('warn', lab + ' 사고 수준(K-DOT)이 비어 있습니다', 'items', '서울 K-DOT 문항 정보 양식');
+    else if (!it.perf) add('warn', lab + ' 수행 요소가 비어 있습니다', 'items', 'K-DOT' + it.dot + ' 수행 요소에서 선택');
+    var vague = [];
+    (it.rubric || []).forEach(function(r){ (r.levels || []).forEach(function(l){ var m = String(l.d || '').match(/적절(하게|히|한)|구체적(으로|인)|논리적(으로|인)|충분(히|한)|타당(하게|한)/g); if (m) m.forEach(function(w){ if (vague.indexOf(w) < 0) vague.push(w); }); }); });
+    if (vague.length) add('warn', lab + ' 수행 특성에 추상적 표현: ' + vague.map(function(w){ return '‘' + w + '’'; }).join(', '), 'rubric', 'K-DOT 채점 기준 원칙 3: 판정할 수 있는 말로');
     var conds = (it.cond || []).filter(function(c){ return String(c).trim(); });
     if (conds.length && !/조건/.test(it.q || '')) add('err', lab + ' 조건이 있는데 발문에 ‘조건에 따라’ 지시가 없습니다', 'cond');
     if (conds.some(function(c){ return /\d+\s*자\s*(이상|이내)/.test(c); })) add('warn', lab + ' 분량 조건이 있습니다', 'cond', '평가 요소가 아니면 빼는 것을 검토');
@@ -1795,6 +1890,7 @@ $('goTeacher').addEventListener('click', function(){ openTeacher(tSet, tTab); })
 $('lkGuide').addEventListener('click', function(){ $('intro').scrollIntoView({ behavior: 'smooth' }); });
 $('lkParts').addEventListener('click', function(){ enterStudent({ annot: true }); });
 $('lkCmp').addEventListener('click', function(){ openCompare(); });
+$('lkKdot').addEventListener('click', function(){ openKdot(0); });
 /* =========================================================
    글자 크기
    ========================================================= */
@@ -1838,7 +1934,9 @@ var MISSIONS = [
   { k: 'm5', t: '선택형 결론을 넣고 미리보기', d: '2-3 문항의 ‘선택형 결론’에 앞 문장 ‘행사를’, 선택지 ‘진행 / 취소’, 뒷 문장 ‘하는 것이 더 합리적이다.’를 넣고 학생 미리보기로 확인합니다. 채점이 쉬워지는 대신 무엇을 잃는지 토론해 보세요.',
     done: function(){ return !!mflags.pickprev; }, go: function(){ openTeacher(1, 'items'); } },
   { k: 'm6', t: '기존 채점기준을 AI용으로 바꿔 써 보기', d: '‘채점기준 비교 실습’ 2단계(기존 기준표)에서 ‘직접 해 보기’를 열고, 0번 예제나 2025 서술형 소문항 하나의 기존 기준(⋯[1점])을 점수별 수행 특성·대표 오답·예시답안으로 바꿔 씁니다. 3·4단계에서 AI용과 비교해 보세요.',
-    done: function(){ return !!mflags.cmpdraft; }, go: function(){ openCompare(0, true); } }
+    done: function(){ return !!mflags.cmpdraft; }, go: function(){ openCompare(0, true); } },
+  { k: 'm7', t: 'K-DOT 수준 맞히기 9문항 풀기', d: '‘K-DOT 출제 매뉴얼’ 3마당에서 서울 매뉴얼의 예시 발문과 연수 예제가 각각 K-DOT 몇 수준인지 골라 봅니다. 서술형이라고 수준이 저절로 올라가지 않는다는 점을 확인하세요.',
+    done: function(){ return !!mflags.kdquiz; }, go: function(){ openKdot(2); } }
 ];
 var lastDone = null;
 function missionState(){ return MISSIONS.map(function(m){ try { return !!m.done(); } catch (e) { return false; } }); }
@@ -1873,6 +1971,7 @@ var TOURS = {
   home: { setup: function(){ show('home'); }, steps: [
     { sel: '.entry', t: '학생과 교사, 두 입구', b: '‘학생’은 실제 응시 화면에서 문제를 풀고, ‘교사’는 문항·조건·채점기준표·예시답안을 입력하고 학생 화면으로 미리 봅니다. 두 화면은 같은 문항 데이터를 씁니다.' },
     { sel: '#lkCmp', t: '채점기준 비교 실습', b: '사람이 채점하던 기존 서술형 기준(⋯[1점])을 AI용 채점기준표로 바꾼 모습을 소문항별로 나란히 봅니다. 문항 읽기부터 정리·협의까지 다섯 단계로 차례차례 비교하고, 직접 바꿔 써 보는 실습도 할 수 있습니다.' },
+    { sel: '#lkKdot', t: 'K-DOT 출제 매뉴얼', b: '인천 시스템 개발 업체가 서울에서 먼저 쓴 출제 매뉴얼을 정리했습니다. 사고 수준(K-DOT 5수준), 수학 수행 요소, 개발 절차, 작성 원칙(서울과 인천 기준 비교), 매뉴얼의 수학 예시 문항을 차례로 봅니다.' },
     { sel: '#guideDock', t: '연수 가이드와 글자 크기', b: '언제든 이 버튼으로 둘러보기와 연수 활동을 열 수 있습니다. 프로젝터로 보여 줄 때는 오른쪽 가+ 버튼으로 글자를 키우세요.' }
   ] },
   student: { setup: function(){ gotoItem(0, 2); }, steps: [
@@ -2190,6 +2289,12 @@ var CMP_COMMON = [
   { t: '그림 답안은 따로 생각한다', b: '그리기 입력은 AI 채점의 신뢰도가 낮고, 프레임워크도 그림 안에 정답을 넣는 유형을 권하지 않는다. 교사 직접 채점으로 분리하거나, 직선이 지나는 두 점처럼 글로 쓸 근거를 함께 요구한다.' },
   { t: '예시답안은 점수마다 2개 이상', b: '채점기준 문장을 옮기지 않고 학생이 실제로 쓸 법한 답안으로 쓴다. 0점 칸은 비운다. 같은 점수라도 서로 다른 풀이 경로와 서로 다른 오류를 고른다.' }
 ];
+var CMP_DOT = { '0': [2, '절차적으로 계산하기'], '0-2': [2, '절차적으로 계산하기'], '1-1': [2, '절차적으로 계산하기'], '1-2': [2, '절차적으로 계산하기'], '1-3': [2, '표나 그래프, 식으로 나타내기'],
+  '1-4': [3, '개념, 원리를 연결하여 활용하기'], '2-1': [2, '절차적으로 계산하기'], '2-2': [2, '표나 그래프, 식으로 나타내기'], '3-1': [2, '표나 그래프, 식으로 나타내기'], '3-2': [2, '표나 그래프, 식으로 나타내기'], '3-3': [3, '수학적 표현 변환하기'] };
+CMP_COMMON.push(
+  { t: '추상적인 표현을 쓰지 않는다', b: '서울 K-DOT 매뉴얼의 채점 기준 원칙입니다. ‘적절하게’, ‘구체적으로’, ‘논리적으로’ 대신 무엇이 보이면 그 점수인지 적습니다. 인천 2차 외부검토도 ‘논리적으로’의 조작적 정의를 요구했습니다.' },
+  { t: '0점 칸 예시답안은 학교에서 정한다', b: '서울 K-DOT 매뉴얼은 모든 수준(0점 포함)에 예시를 쓰고 오답·무응답 사례를 넣으라고 합니다. 인천 2차 외부검토는 0점 칸을 공란(－)으로 통일했습니다. 이 실습은 0점 칸 수행 특성에 대표 오답을 적는 방식으로 두 기준을 함께 살렸습니다.' }
+);
 var CMP_KEY = 'aiEssayDemo.cmpDraft', cmpIdx = 0, cmpPractice = false, cmpDraft = lsGet(CMP_KEY) || {}, cmpReveal = {};
 function mfmt(s){
   return esc(s)
@@ -2228,11 +2333,11 @@ function renderCmpNav(){
     ps.forEach(function(p){
       var i = CMP_PARTS.indexOf(p), bad = oldSum(p) !== p.pts;
       h += '<button class="cnb' + (i === cmpIdx ? ' on' : '') + '" data-ci="' + i + '"' + (i === cmpIdx ? ' aria-current="true"' : '') + '><span class="no">' + p.no + '</span><span class="tt">' + mfmt(navq(p)) + '</span><span class="bd">' +
-        (bad ? '<i class="b err">배점</i>' : '') + (p.graph ? '<i class="b gr">그림</i>' : '') + (cmpDraft[p.id] && cmpDraft[p.id].trim() !== cmpTemplate(p).trim() ? '<i class="b ok">초안</i>' : '') + '</span></button>';
+        (CMP_DOT[p.id] ? '<i class="b dot">DOT' + CMP_DOT[p.id][0] + '</i>' : '') + (bad ? '<i class="b err">배점</i>' : '') + (p.graph ? '<i class="b gr">그림</i>' : '') + (cmpDraft[p.id] && cmpDraft[p.id].trim() !== cmpTemplate(p).trim() ? '<i class="b ok">초안</i>' : '') + '</span></button>';
     });
     h += '</div>';
   });
-  h += '<button class="cnb cm' + (cmpIdx === CMP_PARTS.length ? ' on' : '') + '" data-ci="' + CMP_PARTS.length + '"><span class="no">★</span><span class="tt">공통 규칙 6가지</span></button>';
+  h += '<button class="cnb cm' + (cmpIdx === CMP_PARTS.length ? ' on' : '') + '" data-ci="' + CMP_PARTS.length + '"><span class="no">★</span><span class="tt">공통 규칙 ' + CMP_COMMON.length + '가지</span></button>';
   $('cmpNav').innerHTML = h;
 }
 function aiHtml(p, withEx){
@@ -2241,7 +2346,7 @@ function aiHtml(p, withEx){
     for (var s = el.pts; s >= 0; s--) {
       var ex = (el.ex && el.ex[s]) || [];
       h += '<div class="lvl"><span class="sc' + (s === 0 ? ' z' : '') + '">' + s + '점</span><div><p class="ld">' + mfmt(el.lv[s] || '') + '</p>' +
-        (!withEx ? '' : s === 0 ? '<div class="cex none">예시답안 칸은 비워 둡니다(－).</div>' : ex.map(function(t, k){ return '<div class="cex' + (/^\[그림\]/.test(t) ? ' pic' : '') + '"><span class="k">예시 ' + '①②③④'.charAt(k) + '</span>' + mfmt(t.replace(/^\[그림\]\s*/, '')) + '</div>'; }).join('')) + '</div></div>';
+        (!withEx ? '' : s === 0 ? '<div class="cex none">인천 2차 검토 기준: 예시답안 칸은 비워 둡니다(－). 서울 K-DOT 매뉴얼은 여기에 오답·무응답 사례를 넣습니다 — 위의 대표 오답 참고.</div>' : ex.map(function(t, k){ return '<div class="cex' + (/^\[그림\]/.test(t) ? ' pic' : '') + '"><span class="k">예시 ' + '①②③④'.charAt(k) + '</span>' + mfmt(t.replace(/^\[그림\]\s*/, '')) + '</div>'; }).join('')) + '</div></div>';
     }
     return h + '</div>';
   }).join('');
@@ -2271,7 +2376,7 @@ function renderCmp(){
   var m = $('cmpMain');
   if (cmpIdx === CMP_PARTS.length) {
     $('cmpHead').innerHTML = ''; $('cmpStepper').hidden = true;
-    m.innerHTML = '<div class="cguide"><span class="av" aria-hidden="true">★</span><div><p class="eb2">정리</p><h3>AI용 기준표로 바꿀 때 모든 문항에 쓰는 규칙</h3><p>소문항마다 다섯 단계를 거치며 본 내용을 여섯 가지로 묶었습니다. 학교 채점 협의에서 체크리스트로 쓰세요.</p></div></div><div class="crules">' +
+    m.innerHTML = '<div class="cguide"><span class="av" aria-hidden="true">★</span><div><p class="eb2">정리</p><h3>AI용 기준표로 바꿀 때 모든 문항에 쓰는 규칙</h3><p>소문항마다 다섯 단계를 거치며 본 내용과 서울 K-DOT 매뉴얼의 원칙을 ' + CMP_COMMON.length + '가지로 묶었습니다. 학교 채점 협의에서 체크리스트로 쓰세요.</p></div></div><div class="crules">' +
       CMP_COMMON.map(function(c, i){ return '<div class="crule"><span class="n">' + (i + 1) + '</span><div><b>' + esc(c.t) + '</b><p>' + mfmt(c.b) + '</p></div></div>'; }).join('') + '</div>';
     $('cmpPrev').disabled = false; $('cmpPrev').textContent = '← 마지막 소문항'; $('cmpNext').disabled = true; $('cmpNext').textContent = '끝';
     return;
@@ -2291,6 +2396,8 @@ function renderCmp(){
       (p.cond ? '<div class="ccond"><b>〈조건〉</b><ol>' + p.cond.map(function(c){ return '<li>' + mfmt(c) + '</li>'; }).join('') + '</ol></div>' : '') +
       (p.graph ? '<div class="cmeta"><span class="pill warn">그림(그리기 입력) 답안</span></div>' : '') +
       (p.flags || []).filter(function(f){ return f.lvl === 'info'; }).map(function(f){ return '<div class="cflag info">' + mfmt(f.t) + '</div>'; }).join('') + '</div>';
+    var kd = CMP_DOT[p.id];
+    if (kd) h += '<div class="cflag info" style="margin-bottom:14px"><span class="cdot"><span class="kdb l' + kd[0] + '">K-DOT' + kd[0] + '</span><b>' + esc(kd[1]) + '</b></span> 서울 K-DOT 매뉴얼의 수학 수행 요소로 분류하면 이 수준입니다(연수용 제안 분류). ' + (kd[0] <= 2 ? '매뉴얼은 되도록 단순 정답보다 이유 설명·근거 제시·과정 기술을 요구하라고 합니다. 과정을 쓰게 해도 요구하는 사고가 절차적 계산이면 DOT2입니다.' : '그래프·식처럼 서로 다른 표현을 연결해야 풀리는 문항입니다.') + ' <button class="nbtn sm" data-go="kdot" style="margin-left:4px">K-DOT 설명 보기</button></div>';
     h += '<div class="cthink"><h4>잠깐 생각해 보기</h4><ul><li>학생이 쓸 수 있는 풀이 경로는 몇 가지일까요?</li><li>학생들이 가장 많이 할 실수는 무엇일까요?</li><li>그런 답안은 몇 점을 받아야 할까요?</li></ul></div>';
   } else if (cmpStep === 1) {
     h += guide(1, '풀이를 단계로 쪼개고, 단계마다 점수를 줍니다', '선생님들이 지금까지 써 온 방식입니다. 정답 경로를 그대로 따라간 답안은 쉽게 채점됩니다. 하지만 <b>다른 풀이</b>나 <b>중간에 실수가 있는 답안</b>은 채점자가 그때그때 판단합니다. 사람은 그래도 되지만, AI는 기준표에 적힌 것만 근거로 삼습니다.',
@@ -2315,8 +2422,8 @@ function renderCmp(){
     h += '<div class="cvs">' + oldCard(p, true) + '<span class="arrow" aria-hidden="true">→</span><section class="ccol cai" aria-label="AI용 점수 칸"><h3><span class="tag ai">AI용</span>점수별 수행 특성</h3>' + aiHtml(p, false) + '</section></div>';
     h += '<section class="cnew"><h4>AI용에 새로 적은 것 (기존에는 채점자의 머릿속에 있던 것)</h4><ol>' + p.tacit.map(function(t){ return '<li>' + mfmt(t) + '</li>'; }).join('') + '</ol></section>';
   } else if (cmpStep === 3) {
-    h += guide(3, '점수 칸마다 실제 학생 답안을 2개씩 붙입니다', 'AI는 예시답안을 학습 자료로 씁니다. 같은 점수라도 <b>서로 다른 풀이</b>, <b>서로 다른 실수</b>를 고르고, 채점기준 문장을 그대로 옮기지 않습니다. 0점 칸은 비워 둡니다.' + (p.graph ? ' 그림으로 답하는 문항은 예시답안도 그림이어야 하므로, 여기의 [그림] 묘사는 자리 표시일 뿐입니다.' : ''),
-      ['예시답안 ' + nEx + '개', '0점 칸은 비움']);
+    h += guide(3, '점수 칸마다 실제 학생 답안을 2개씩 붙입니다', 'AI는 예시답안을 학습 자료로 씁니다. 같은 점수라도 <b>서로 다른 풀이</b>, <b>서로 다른 실수</b>를 고르고, 채점기준 문장을 그대로 옮기지 않습니다. 0점 칸은 인천 기준으로는 비우고, 서울 K-DOT 매뉴얼은 오답·무응답 예시를 넣습니다.' + (p.graph ? ' 그림으로 답하는 문항은 예시답안도 그림이어야 하므로, 여기의 [그림] 묘사는 자리 표시일 뿐입니다.' : ''),
+      ['예시답안 ' + nEx + '개', '0점 칸: 인천은 공란 · 서울 K-DOT은 오답·무응답 예시']);
     var mine = isDraft(p);
     h += '<div class="ccols' + (mine ? '' : ' one') + '"><section class="ccol cai" aria-label="AI용 채점 기준"><h3><span class="tag ai">AI용</span>점수별 수행 특성과 예시답안</h3>' + aiHtml(p, true) + '</section>' +
       (mine ? '<section class="cmine"><h3><span class="tag ind" style="font-size:.8em;font-weight:800;border-radius:6px;padding:2px 8px;background:var(--navy);color:#fff">내 초안</span> 2단계에서 쓴 것</h3><pre>' + esc(cmpDraft[p.id]) + '</pre></section>' : '') + '</div>';
@@ -2326,7 +2433,7 @@ function renderCmp(){
       p.scoreTable.rows.map(function(r){ return '<tr><td>' + mfmt(r[0]) + '</td><td>' + mfmt(r[1]) + '</td><td><b>' + mfmt(r[2]) + '</b></td></tr>'; }).join('') + '</tbody></table></div></section>';
     h += '<section class="cn dec" style="margin-bottom:14px"><h4>채점 협의로 미리 정할 것</h4><ul>' + p.decide.map(function(t){ return '<li><span class="cbx" aria-hidden="true"></span><span>' + mfmt(t) + '</span></li>'; }).join('') + '</ul></section>';
     var nx = cmpIdx + 1 < CMP_PARTS.length ? CMP_PARTS[cmpIdx + 1] : null;
-    h += '<div class="cdone"><p>이 문항의 비교를 마쳤습니다.</p><button class="nbtn" data-go="draft">2단계로 돌아가 직접 써 보기</button><button class="nbtn ind" data-go="next">' + (nx ? '다음 문항: ' + esc(CMP_GROUPS.filter(function(x){ return x.no === nx.g; })[0].title) + ' ' + esc(nx.no) + ' →' : '공통 규칙 6가지 보기 →') + '</button></div>';
+    h += '<div class="cdone"><p>이 문항의 비교를 마쳤습니다.</p><button class="nbtn" data-go="draft">2단계로 돌아가 직접 써 보기</button><button class="nbtn ind" data-go="next">' + (nx ? '다음 문항: ' + esc(CMP_GROUPS.filter(function(x){ return x.no === nx.g; })[0].title) + ' ' + esc(nx.no) + ' →' : '공통 규칙 ' + CMP_COMMON.length + '가지 보기 →') + '</button></div>';
   }
   m.innerHTML = h;
   $('cmpPrev').disabled = cmpStep === 0 && cmpIdx === 0;
@@ -2356,6 +2463,7 @@ $('cmpNext').addEventListener('click', function(){
 });
 $('cmpHome').addEventListener('click', function(){ show('home'); });
 $('cmpTeacher').addEventListener('click', function(){ openTeacher(0, 'rubric'); });
+$('cmpKdot').addEventListener('click', function(){ openKdot(0); });
 $('cmpMain').addEventListener('input', function(e){
   if (e.target.id !== 'cmpTa') return;
   var p = CMP_PARTS[cmpIdx]; cmpDraft[p.id] = e.target.value; lsSet(CMP_KEY, cmpDraft);
@@ -2370,7 +2478,223 @@ $('cmpMain').addEventListener('click', function(e){
   else if (b.dataset.rv) { cmpOldRv[b.dataset.rv] = true; renderCmp(); }
   else if (b.dataset.go === 'draft') { cmpPractice = true; cmpGo(cmpIdx, 1); }
   else if (b.dataset.go === 'next') { cmpPractice = false; cmpGo(cmpIdx + 1, 0); }
+  else if (b.dataset.go === 'kdot') { openKdot(1); }
 });
+
+/* =========================================================
+   K-DOT 출제 매뉴얼 (서울) 안내
+   ========================================================= */
+var KD_LEVELS = [
+  { n: 1, name: '회상·재인·단순 확인', ao: 'AO1', bloom: '지식', brt: '기억하다', dok: 'DOK1',
+    desc: '문제에서 요구하는 수학 용어, 기호, 공식을 말할 수 있다. 절차 없이 바로 답이 나오는 계산을 할 수 있다.',
+    perf: ['기호(용어)로 표현하기', '계산하기/어림하기'],
+    verbs: ['(용어·개념의 의미를) 쓰시오.', '(도표에서 해당하는 정보를 찾아) 기술하시오.'], ex: [] },
+  { n: 2, name: '이해·구분·요약', ao: 'AO1', bloom: '이해', brt: '이해하다', dok: 'DOK1~2',
+    desc: '수학 개념과 원리를 이해하고 해당 사례를 찾거나 말할 수 있다. 절차적 계산을 할 수 있다. 자료와 관계를 표·그래프·식으로 나타낼 수 있다. 귀납, 유추 등으로 규칙을 파악할 수 있다.',
+    perf: ['수의 크기를 비교하기', '개념에 따라 사례 분류하기', '절차적으로 계산하기', '표나 그래프, 식으로 나타내기', '규칙 찾기'],
+    verbs: ['(자료들을) 비교하시오.', '(개념·원리에 해당하는 사례를 제시하며) 설명하시오.'], ex: ['방정식 2x−3=5x−7을 푸시오. (절차적으로 계산하기)'] },
+  { n: 3, name: '해석·재구성·관계 분석', ao: 'AO2', bloom: '분석', brt: '분석하다', dok: 'DOK2~3',
+    desc: '수학 개념·원리·절차를 설명하고 서로 연결하여 활용할 수 있다. 식·표·그래프·도형 등의 표현을 다른 표현으로 바꾸고 의미를 해석할 수 있다. 원리를 적용해 상황을 모델링하고, 규칙을 일반화·예측하고, 개념 사이의 관계로 해결 전략을 세울 수 있다.',
+    perf: ['개념, 원리, 절차 설명하기', '개념, 원리를 연결하여 활용하기', '수학적 표현 변환하기', '모델링하기/일반화하기', '문제해결 방법 제안하기', '전략적으로 계산하기'],
+    verbs: ['(사건들 간의 관계를) 설명하시오.', '(정보·자료를 조건에 맞추어) 재구성하시오.', '(구성 요소들 간 작동 원리를) 분석하시오.'],
+    ex: ['항등식에서는 왜 해를 구하지 않는지 설명하시오. (중)', '이차함수의 그래프를 이용하여 이차부등식을 푸시오. (고)'] },
+  { n: 4, name: '추론·판단·정당화', ao: 'AO2', bloom: '평가', brt: '평가하다', dok: 'DOK3',
+    desc: '수학적 근거를 바탕으로 설명이나 주장, 제안을 할 수 있다. 수학적 사실을 정당화할 수 있다. 문제해결 결과를 상황에 맞게 해석할 수 있다.',
+    perf: ['오류 수정하기', '증명하기', '문제를 해결하고 그 결과를 해석하기', '수학적 근거로 상황에 대해 판단/평가하고 설명하기'],
+    verbs: ['(자료·정보를 종합하여) 결론을 도출하시오.', '(근거를 제시하여 정당성을) 입증하시오.', '(자료·정보에 근거하여) 평가하시오.'],
+    ex: ['삼각형의 세 각의 이등분선이 만나는 점은 세 변까지 이르는 거리가 같다. 그 이유를 서술하시오. (중)'] },
+  { n: 5, name: '문제 해결·종합·창안', ao: 'AO3', bloom: '종합/평가', brt: '창안하다', dok: 'DOK4',
+    desc: '수학적 모델링으로 문제를 해결할 수 있다. 문제해결을 통해 새로운 문제를 제안할 수 있다. 통계적 문제해결 과정을 수행할 수 있다. 복합적인 전략이 필요한 수학 내적 문제를 해결할 수 있다.',
+    perf: ['수학적 모델링을 통한 문제 해결하기', '문제해결 결과를 재해석하여 새로운 문제 제안하기', '통계적 문제해결(설계, 수행, 분석, 결론)하기', '복합적인 전략을 활용하는 수학 내적 문제 해결하기'],
+    verbs: ['(개념·이론을) 적용하여 (해결 방안을) 제시하시오.', '(자료를 분석/평가하고 대안을) 제시하시오.'],
+    ex: ['(고등 예시) 감속 센서 위치는 그대로 두고, 안전 문제가 생기지 않도록 카트 속도가 초당 몇 m/s 이상 줄어야 하는지 제시하고 이유를 설명하시오.'] }
+];
+var KD_QUIZ = [
+  { q: '방정식 2x−3=5x−7을 푸시오.', a: 2, why: '매뉴얼의 중학교 DOT2 예시입니다. 정해진 절차대로 계산하면 답이 나오는 ‘절차적으로 계산하기’입니다.' },
+  { q: '일차방정식 0.2(x−2)=1의 해를 구하는 과정을 서술하시오. (비교 실습 예1)', a: 2, why: '과정을 쓰게 했어도 요구하는 사고는 절차적 계산입니다. 매뉴얼 기준을 적용하면 DOT2입니다. 서술형이라고 자동으로 수준이 올라가지 않습니다.' },
+  { q: '1반 학생 독서량의 중앙값과 최빈값을 각각 구하고, 그 과정을 서술하시오.', a: 2, why: '매뉴얼 중1 예시 문항 1입니다. DOT2 ‘절차적으로 계산하기’로 분류되어 있습니다.' },
+  { q: '항등식에서는 왜 해를 구하지 않는지 설명하시오.', a: 3, why: '매뉴얼의 중학교 DOT3 예시입니다. 개념(항등식)과 절차(해 구하기)의 관계를 설명하는 ‘개념, 원리, 절차 설명하기’입니다.' },
+  { q: '이차함수의 그래프를 이용하여 이차부등식을 푸시오.', a: 3, why: '매뉴얼의 고등학교 DOT3 예시입니다. 그래프와 부등식이라는 두 표현을 연결하는 ‘개념, 원리를 연결하여 활용하기’입니다. 2025 서술형 1⑷(그래프로 연립방정식의 해 구하기)도 같은 구조입니다.' },
+  { q: '위치 함수를 이용하여 카트가 감속 센서 지점까지 가는 시간과 그 순간의 속도를 구하시오.', a: 3, why: '매뉴얼 고등 예시 문항 1입니다. 위치와 도함수(속도)의 관계를 연결해 쓰는 DOT3로 분류되어 있습니다.' },
+  { q: '삼각형의 세 각의 이등분선이 만나는 점은 세 변까지 이르는 거리가 같다. 그 이유를 서술하시오.', a: 4, why: '매뉴얼의 중학교 DOT4 예시입니다. 수학적 사실을 정당화하는 ‘증명하기’입니다.' },
+  { q: '최빈값과 중앙값 중 하나를 골라, 평균이 높으니 상품을 받아야 한다는 1반 회장의 주장을 조건에 맞게 반박하시오.', a: 4, why: '매뉴얼 중1 예시 문항 2입니다. 수학적 근거로 상황을 판단하고 설명하는 DOT4입니다.' },
+  { q: '안전 문제가 생기지 않도록 카트의 속도가 초당 몇 m/s 이상 줄어들어야 하는지 제시하고, 그 이유를 설명하시오.', a: 5, why: '매뉴얼 고등 예시 문항 3입니다. 상황을 식으로 세우고(모델링) 조건을 만족하는 값을 찾는 ‘수학적 모델링을 통한 문제 해결하기’입니다.' }
+];
+var KD_PROC = [
+  ['성취기준·교과 내용·평가 요소 분석', '학년 수준 적합성과 실제 수행 맥락을 검토해 평가할 핵심 능력을 뽑습니다.', '핵심 평가 영역, 핵심 능력 목록, 평가 목표 초안'],
+  ['K-DOT 수준 결정', '성취기준이 요구하는 사고 수준을 정하고, 그 수준에서 학생이 보여야 할 능력을 문장으로 씁니다.', 'K-DOT 능력 진술문, 수준 분류표'],
+  ['출제 계획 수립', '개발 일정과 출제 역할을 나눕니다.', '문항 개발 일정표, 출제 계획서'],
+  ['문항 정보 작성', '성취기준, 평가 요소, 관련 교과 내용, 출제 맥락, 출제 의도를 구체화합니다.', '문항 정보'],
+  ['제시자료·문항·채점 기준·예시답안·피드백 작성', '문항 정보와 출제 계획에 맞춰 실제 문항과 채점 자료를 만듭니다.', '제시자료, 문항, 채점기준표, 예시답안, 피드백'],
+  ['문항 검토', '내용 타당성, K-DOT 적절성, 학년 적합성을 점검합니다.', '검토 체크리스트']
+];
+var KD_INFO = [
+  ['성취기준', '코드와 내용을 함께 쓰고, 여러 개를 쓸 수 있지만 최대 5개까지입니다.'],
+  ['문항 유형', '같은 자료를 쓰는 연결 문항이 있으면 ‘연결 문항 있음’에 표시합니다.'],
+  ['배점·시간', '문항 카드 배점은 2~12점, 평가 시간은 세트 기준으로 학교급별 1차시 이내입니다.'],
+  ['사고 수준', '문항별로 기록합니다. 한 문항에 여러 수준이 섞이면 가장 높은 수준을 고릅니다. 예: “두 입장을 비교하고[DOT2] 정당성을 입증하시오[DOT4]” → DOT4'],
+  ['수행 요소', '여러 개면 발문에 나오는 순서대로 적습니다.'],
+  ['평가 요소', '성취기준과 교과 내용에서 뽑고, 채점기준표의 평가 요소와 표현을 맞춥니다.'],
+  ['출제 의도', '피드백에 그대로 쓰일 수 있으니 핵심만 간결하게 씁니다.'],
+  ['자료 출처', '직접 만든 자료는 ‘자체 제작’, 원문을 고쳤으면 출처 끝에 ‘재구성’을 표기합니다.']
+];
+var KD_PRIN = [
+  { t: '제시자료', items: ['성취기준과 직접 연결될 것', '문항 해결에 실질적 역할을 할 것', '분량과 난이도를 고려할 것', '학년 수준에 맞을 것', '자료만 보고 정답이 드러나지 않을 것', '과도한 배경지식을 요구하지 않을 것', '텍스트·표·이미지·대화형 이미지를 섞은 혼합 자료도 가능', '특정 문항에만 쓰는 자료는 「보기」로 제시 가능'] },
+  { t: '문항', items: ['학생이 무엇을 보여야 하는지 목표를 분명히 한다', '되도록 단순 정답보다 이유 설명, 근거 제시, 과정 기술을 요구한다', '글자 수, 근거 수, 사용 자료, 표현 형식 같은 조건은 필요할 때만 제시한다', '학년 수준에 맞게 문장 구조, 추론 단계, 자료 수, 응답 자율성을 조절한다', '중고등은 발문 ‘~하시오’, 조건 ‘~할 것’ (양식 메모에는 조건을 최소화하고 ‘~해야 함’이 더 적절하다고도 적혀 있음)'] },
+  { t: '채점 기준', items: ['학생의 실제 응답에서 포착할 수 있는 특징으로 기술한다', '분량보다 사고의 깊이, 근거의 질, 자료 활용 수준, 논리성 같은 질적 차이로 구분한다', '“적절하게”, “구체적으로” 같은 추상적인 표현을 피하고 구체적으로 쓴다', '채점자끼리 같은 판단을 할 수 있게 쓴다'] },
+  { t: '예시답안', items: ['모든 수행 수준(0점 포함)에 대해 예시답안을 쓴다', '채점 요소가 분명히 드러나게 쓴다', '수준 사이의 차이가 분명하게 쓴다', '오답과 무응답 사례를 포함한다 — 학생들이 자주 하는 오개념, 키워드 누락, 불완전한 문장을 사실적으로'] }
+];
+var KD_VS = [
+  ['사고 수준 체계', 'K-DOT 5수준 + 교과별 수행 요소', 'K-AO 3수준(반응지시어 중심)', '매뉴얼 표 3 기준 대응: DOT1·2 ≈ AO1, DOT3·4 ≈ AO2, DOT5 ≈ AO3'],
+  ['0점 예시답안', '모든 수준에 작성, 오답·무응답 사례 포함', '2차 외부검토: 0점 칸은 공란(－)으로 통일', '시스템 입력 방식을 확인해 학교에서 하나로 정하기'],
+  ['점수 구조', '3·2·1·0점처럼 등급 분할이 드러나는 계층 구조', '프레임워크 메모: 감점형 채점 기준 지양', '두 자료 모두 ‘수준을 문장으로 기술’하는 쪽'],
+  ['조건 쓰기', '필요할 때만, 최소화. 어미는 ‘~할 것’ 또는 ‘~해야 함’', '발문에 ‘조건에 따라’ 필수. 평가 요소가 아닌 조건(‘100자 이상’) 삭제', '조건 = 채점 요소의 체크리스트라는 점은 같음'],
+  ['추상적 표현', '“적절하게”, “구체적으로” 지양', '2차 검토: ‘논리적으로’에 조작적 정의 필요', '같은 방향 — 판정 가능한 말로'],
+  ['예시답안 개수', '수행 수준마다(양식 예시는 A·B 두 개)', '부분점수별 2개 이상', '같은 방향'],
+  ['배점·시간', '문항 카드 2~12점, 세트 1차시 이내', '세트 배점 10점 이상(우리 양식 점검 기준)', '두 기준을 함께 만족하려면 10~12점']
+];
+var KD_TABS = [
+  { t: 'K-DOT 한눈에', s: '5수준과 기존 모형' },
+  { t: '수학 교과 K-DOT', s: '수준별 수행 요소' },
+  { t: '수준 맞히기', s: '실습 9문항' },
+  { t: '문항 개발 6단계', s: '절차와 문항 정보' },
+  { t: '작성 원칙', s: '서울 매뉴얼 vs 인천 기준' },
+  { t: '수학 예시 문항', s: '중1 대푯값(9점)' }
+];
+var KD_SAMPLE_STEPS = ['문항 보기', '문항 1 채점기준·예시', '문항 2 채점기준·예시', '눈여겨볼 점'];
+var kdIdx = 0, kdLv = 2, kdSub = 0, kdAns = lsGet('aiEssayDemo.kdQuiz') || {};
+function kdDot(n){ return '<span class="kdb l' + n + '">DOT' + n + '</span>'; }
+function renderKdNav(){
+  var nq = Object.keys(kdAns).length;
+  $('kdNav').innerHTML = KD_TABS.map(function(t, i){
+    return '<button class="cnb' + (i === kdIdx ? ' on' : '') + '" data-ki="' + i + '"' + (i === kdIdx ? ' aria-current="true"' : '') + '><span class="no">' + (i + 1) + '</span><span class="tt"><b>' + esc(t.t) + '</b><br><span style="color:var(--ink-3)">' + esc(t.s) + (i === 2 && nq ? ' · ' + nq + '/' + KD_QUIZ.length : '') + '</span></span></button>';
+  }).join('');
+}
+function kdGuide(title, body){ return '<div class="cguide"><span class="av" aria-hidden="true">' + (kdIdx + 1) + '</span><div><p class="eb2">서울 K-DOT 기반 서·논술형 평가 문항 출제 매뉴얼 (2026. 7.)</p><h3>' + esc(title) + '</h3><p>' + body + '</p></div></div>'; }
+function renderKd(){
+  renderKdNav();
+  var h = '';
+  if (kdIdx === 0) {
+    h += kdGuide('K-DOT는 ‘한국형 사고의 깊이(Korea Depth of Thought)’입니다', '문항이 <b>요구하는</b> 사고 수준과 학생 답안에 <b>실제로 나타난</b> 사고 수준을 같은 잣대로 보려고 만든 5수준 체계입니다. 문항 개발, 반응지시어 선정, 채점기준표 작성에 모두 씁니다. 인천 시스템을 만든 업체가 서울에서 먼저 쓴 틀이라, 인천의 K-AO(AO1~AO3)와 함께 알아 두면 좋습니다.');
+    h += '<div class="kladder">' + KD_LEVELS.slice().reverse().map(function(l){
+      return '<button class="krung l' + l.n + '" data-lv="' + l.n + '" style="--w:' + (52 + l.n * 9.6) + '%"><span class="kn">DOT' + l.n + '</span><span class="kt">' + esc(l.name) + '</span><span class="ka">' + l.ao + '</span></button>';
+    }).join('') + '</div><p class="kcap">막대를 누르면 수학 교과의 해당 수준 설명으로 이동합니다. 오른쪽 끝은 인천 K-AO와의 대응입니다.</p>';
+    h += '<section class="cst"><h4>기존 모형과 비교 (매뉴얼 표 3 — 이해를 돕기 위한 대략적 대응)</h4><div class="cstw"><table><thead><tr><th>K-DOT</th><th>핵심 사고</th><th>Bloom</th><th>BRT</th><th>Webb DOK</th><th>AO</th></tr></thead><tbody>' +
+      KD_LEVELS.map(function(l){ return '<tr><td>' + kdDot(l.n) + '</td><td>' + esc(l.name) + '</td><td>' + esc(l.bloom) + '</td><td>' + esc(l.brt) + '</td><td>' + l.dok + '</td><td><b>' + l.ao + '</b></td></tr>'; }).join('') +
+      '</tbody></table></div><p>AO1은 저차 사고(이해·해석), AO2는 고차 사고(분석·평가), AO3은 최고차 사고(창출·논증)입니다. DOK 수준은 문항에 쓴 동사만으로 정해지지 않습니다. 같은 ‘설명하시오’라도 연결해야 하는 개념의 수와 추론의 깊이에 따라 수준이 달라집니다.</p></section>';
+  } else if (kdIdx === 1) {
+    var L = KD_LEVELS[kdLv - 1];
+    h += kdGuide('수학 교과 K-DOT: 수준마다 무엇을 하는가', '수준을 고르면 그 수준의 설명, 수학 관련 사고 기능(수행 요소), 반응지시어, 매뉴얼의 문제 예시가 나옵니다. 교사 편집 화면의 ‘사고 수준·수행 요소’ 선택지도 이 표를 그대로 씁니다.');
+    h += '<div class="ktabs" role="tablist">' + KD_LEVELS.map(function(l){ return '<button role="tab" aria-selected="' + (l.n === kdLv) + '" class="l' + l.n + (l.n === kdLv ? ' on' : '') + '" data-lv="' + l.n + '">DOT' + l.n + '<small>' + esc(l.name) + '</small></button>'; }).join('') + '</div>';
+    h += '<div class="kdet l' + L.n + '"><div class="kdh">' + kdDot(L.n) + '<b>' + esc(L.name) + '</b><span class="pill mute">' + L.ao + ' · ' + L.dok + '</span></div><p class="kdd">' + esc(L.desc) + '</p>' +
+      '<div class="kcols"><div><h5>수행 요소(관련 사고 기능)</h5><ol>' + L.perf.map(function(p){ return '<li>' + esc(p) + '</li>'; }).join('') + '</ol></div><div><h5>반응지시어 예</h5><ul>' + L.verbs.map(function(p){ return '<li>' + esc(p) + '</li>'; }).join('') + '</ul></div></div>' +
+      (L.ex.length ? '<h5>매뉴얼의 문제 예시</h5>' + L.ex.map(function(x){ return '<div class="cex"><span class="k">예</span>' + mfmt(x) + '</div>'; }).join('') : '') + '</div>';
+    h += '<div class="cthink"><h4>생각해 보기</h4><ul><li>서술형으로 ‘과정을 쓰시오’를 붙이면 수준이 올라갈까요? (수준 맞히기에서 확인)</li><li>매뉴얼은 되도록 단순 정답보다 이유 설명, 근거 제시, 과정 기술을 요구하라고 합니다. 우리 문항은 어느 수준을 겨냥하나요?</li></ul></div>';
+  } else if (kdIdx === 2) {
+    var done = KD_QUIZ.filter(function(_, i){ return kdAns[i] != null; }).length, right = KD_QUIZ.filter(function(q, i){ return kdAns[i] === q.a; }).length;
+    h += kdGuide('이 발문은 K-DOT 몇 수준일까요?', '매뉴얼에 실린 예시와 연수 예제를 섞었습니다. 수준을 고르면 매뉴얼 기준의 답과 이유가 나옵니다. <b>' + done + '/' + KD_QUIZ.length + '</b>문항 풀었고 <b>' + right + '</b>개 맞혔습니다.');
+    h += '<div class="kquiz">' + KD_QUIZ.map(function(q, i){
+      var a = kdAns[i];
+      return '<div class="kq' + (a != null ? (a === q.a ? ' ok' : ' no') : '') + '"><p class="kqq"><b>' + (i + 1) + '</b> ' + mfmt(q.q) + '</p><div class="kqb">' + [1, 2, 3, 4, 5].map(function(n){
+        return '<button data-kq="' + i + '" data-v="' + n + '" class="l' + n + (a === n ? ' pick' : '') + (a != null && n === q.a ? ' ans' : '') + '"' + (a != null ? ' disabled' : '') + '>DOT' + n + '</button>';
+      }).join('') + '</div>' + (a != null ? '<p class="kqw"><b>' + (a === q.a ? '맞았습니다.' : '매뉴얼 기준은 DOT' + q.a + '입니다.') + '</b> ' + mfmt(q.why) + '</p>' : '') + '</div>';
+    }).join('') + '</div><div style="text-align:right;margin-top:10px"><button class="nbtn sm" id="kdReset">다시 풀기</button></div>';
+  } else if (kdIdx === 3) {
+    h += kdGuide('문항은 6단계로 만듭니다', '수준을 먼저 정하고(2단계) 문항 정보를 쓴 뒤(4단계) 문항과 채점기준을 만듭니다. 채점기준표는 5단계에서 문항과 <b>함께</b> 만들고, 6단계 검토에서 K-DOT 수준이 실제 문항과 맞는지 다시 봅니다.');
+    h += '<ol class="kproc">' + KD_PROC.map(function(p, i){ return '<li><span class="kpn">' + (i + 1) + '</span><div><b>' + esc(p[0]) + '</b><p>' + esc(p[1]) + '</p><span class="kpo">산출물: ' + esc(p[2]) + '</span></div></li>'; }).join('') + '</ol>';
+    h += '<section class="cnew"><h4>문항 정보 양식에서 지킬 것</h4><div class="kinfo">' + KD_INFO.map(function(r){ return '<div><b>' + esc(r[0]) + '</b><span>' + esc(r[1]) + '</span></div>'; }).join('') + '</div></section>';
+  } else if (kdIdx === 4) {
+    h += kdGuide('작성 원칙, 그리고 인천 기준과 다른 점', '서울 매뉴얼의 원칙은 대부분 우리 팀이 외부검토에서 받은 지적과 같은 방향입니다. 다만 <b>0점 예시답안</b>처럼 서로 다른 부분이 있으니, 아래 비교표의 마지막 열을 연수에서 함께 정해 보세요.');
+    h += '<div class="crules">' + KD_PRIN.map(function(g){ return '<div class="crule" style="display:block"><b>' + esc(g.t) + ' 원칙</b><ol style="margin:6px 0 0;padding-left:1.3em;font-size:.88em;line-height:1.65;color:var(--ink-2)">' + g.items.map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') + '</ol></div>'; }).join('') + '</div>';
+    h += '<section class="cst" style="margin-top:14px"><h4>서울 K-DOT 매뉴얼과 인천(우리 팀 검토 기록) 비교</h4><div class="cstw"><table class="kvs"><thead><tr><th>항목</th><th>서울 K-DOT 매뉴얼</th><th>인천</th><th>연수에서</th></tr></thead><tbody>' +
+      KD_VS.map(function(r){ return '<tr><td><b>' + esc(r[0]) + '</b></td><td>' + esc(r[1]) + '</td><td>' + esc(r[2]) + '</td><td>' + esc(r[3]) + '</td></tr>'; }).join('') + '</tbody></table></div></section>';
+  } else {
+    h += renderKdSample();
+  }
+  $('kdMain').innerHTML = h;
+  $('kdPrev').disabled = kdIdx === 0 && kdSub === 0;
+  var last = kdIdx === KD_TABS.length - 1;
+  $('kdNext').textContent = last ? (kdSub < KD_SAMPLE_STEPS.length - 1 ? '다음: ' + KD_SAMPLE_STEPS[kdSub + 1] + ' →' : '비교 실습으로 →') : '다음: ' + KD_TABS[kdIdx + 1].t + ' →';
+}
+function renderKdSample(){
+  var h = '<ol class="cstep" style="grid-template-columns:repeat(4,minmax(0,1fr))">' + KD_SAMPLE_STEPS.map(function(s, i){ return '<li><button data-ks="' + i + '" class="' + (i === kdSub ? 'on' : i < kdSub ? 'done' : '') + '"><span class="n">' + (i < kdSub ? '✓' : i + 1) + '</span><span class="lb">' + esc(s) + '</span></button></li>'; }).join('') + '</ol>';
+  var tb = function(rows, head){ return '<div class="cstw"><table><thead><tr>' + head.map(function(x){ return '<th>' + esc(x) + '</th>'; }).join('') + '</tr></thead><tbody>' + rows.map(function(r){ return '<tr>' + r.map(function(c){ return '<td>' + c + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>'; };
+  var lvRow = function(s, d, ex){ return '<div class="lvl"><span class="sc' + (s === 0 ? ' z' : '') + '">' + s + '점</span><div><p class="ld">' + mfmt(d) + '</p>' + ex.map(function(t, k){ return '<div class="cex' + (s === 0 ? ' zero' : '') + '"><span class="k">예시 ' + 'AB'.charAt(k) + '</span>' + mfmt(t) + '</div>'; }).join('') + '</div></div>'; };
+  if (kdSub === 0) {
+    h += kdGuide('매뉴얼의 중학교 수학 예시 문항', '중1 ‘자료의 정리와 해석’ 단원, 배점 9점(문항 1: 4점, 문항 2: 5점), 예상 평가 시간 20분입니다. 문항 1은 <b>DOT2</b>(절차적으로 계산하기), 문항 2는 <b>DOT4</b>(수학적 근거로 상황에 대해 판단/평가하고 설명하기)로 분류되어 있습니다. 성취기준은 [9수04-01]입니다.');
+    h += '<div class="cq"><div class="cqh"><span class="pill mute">지시문</span><span class="stem">※ [1~2] 다음 자료를 읽고 물음에 답하시오.</span></div>' +
+      '<p class="qq" style="font-size:.95em">[표 1]은 채움중학교 1학년 1~3반 학생이 1년 동안 읽은 독서량이고, [표 2]는 각 반 독서량의 평균, 중앙값, 최빈값입니다.</p>' +
+      tb([['0, 0, 0, 0, 1, 1, 2, 3, 3, 3, 4, 4, 5, 6, 7, 0, 0, 0, 0, 120', '1, 1, 1, 1, 2, 3, 3, 4, 4, 4, 6, 6, 6, 6, 8, 9, 10, 12, 14, 15', '17, 10, 7, 15, 15, 3, 1, 7, 2, 4, 18, 0, 0, 5, 2, 3, 18, 2, 2, 5']], ['1반 (20명)', '2반 (20명)', '3반 (20명)']) +
+      '<p class="kcap">[표 1] 각 반 학생별 1년간 독서량 (단위: 권)</p>' +
+      tb([['평균', '7.95', '5.8', '6.8'], ['중앙값', '①', '5', '4.5'], ['최빈값', '②', '1, 6', '2']], ['대푯값', '1반', '2반', '3반']) +
+      '<p class="kcap">[표 2] 각 반의 대푯값 (단위: 권) · 출처: 자체 제작</p>' +
+      '<p class="qq"><b>1</b> [표 2]에서 1반 학생이 1년 동안 읽은 독서량의 중앙값(①)과 최빈값(②)을 각각 구하고, 그 과정을 서술하시오. <span class="pt">[4점]</span> ' + kdDot(2) + '</p>' +
+      '<p class="qq"><b>2</b> &lt;보기&gt;의 1반 회장의 주장을 받아들일 수 없다고 2반 회장이 말하려 한다. 독서량의 최빈값과 중앙값 중 하나를 선택하여 1반 회장의 주장을 &lt;조건&gt;에 맞게 반박하시오. <span class="pt">[5점]</span> ' + kdDot(4) + '</p>' +
+      '<div class="ccond"><b>〈보기〉</b> “1반이 2반과 3반보다 1년간 독서량의 평균이 높아. 1년간 책을 많이 읽은 학급에 국어 선생님께서 학급 상품을 주시기로 했었지? 그러니까 1반이 학급 상품을 받아가야겠어.”</div>' +
+      '<div class="ccond"><b>〈조건〉</b><ul style="margin:4px 0 0;padding-left:1.2em"><li>반박에는 대푯값을 기반으로 1반 학생의 독서량을 해석하는 내용이 포함되어야 함</li><li>반박하는 이유를 제시할 때, [표 1]의 1반의 변량을 이용해야 함</li></ul></div></div>';
+    h += '<div class="cthink"><h4>먼저 생각해 보기</h4><ul><li>1반의 중앙값과 최빈값은? (변량 20개를 크기순으로 놓아 보세요)</li><li>문항 2의 조건 두 개는 채점기준표의 어떤 칸과 이어질까요?</li></ul></div>';
+  } else if (kdSub === 1) {
+    h += kdGuide('문항 1: 세부 채점 요소 두 개, 각 2·1·0점', '‘중앙값 구하기’와 ‘최빈값 구하기’를 나누고, 칸마다 수행 특성과 예시답안을 붙였습니다. 1점 칸에는 <b>답만 맞음</b>과 <b>과정은 맞고 답이 틀림</b> 두 경우가 함께 있고, 예시도 경우마다 하나씩 있습니다. 0점 칸에도 오답 예시가 있다는 점이 인천 방식과 다릅니다.');
+    h += '<div class="ccond" style="background:var(--ok-soft)"><b>표 위에 적힌 규칙</b> *단위를 쓰지 않아도 감점하지 않는다.</div>';
+    h += '<section class="ccol cai" style="margin-bottom:14px"><h3><span class="tag ai">채점기준표</span>평가 요소: 중앙값과 최빈값 구하기</h3>' +
+      '<div class="cel"><div class="celh"><span>채점 요소</span><b>중앙값 구하기</b><span class="pill mute">2점</span></div>' +
+      lvRow(2, '중앙값 1.5권을 구하고, 그 과정을 정확히 설명한 경우', ['변량을 크기순으로 나열했을 때 10번째, 11번째 변량의 평균이 중앙값이므로 중앙값은 (1+2)/2=1.5(권)이다.', '크기가 가운데 있는 변량은 1권과 2권이므로 중앙값은 두 값의 평균인 1.5(권)이다.']) +
+      lvRow(1, '· 중앙값 1.5권을 구하였으나, 과정 설명이 부족하거나 없는 경우\n· 중앙값을 구하는 과정(크기순으로 나열했을 때 가운데 두 값을 비교)을 정확히 설명했으나, 중앙값을 틀리게 구한 경우', ['중앙값은 1.5(권)이다. 왜냐하면 가운데 있는 수를 고르면 되기 때문이다.', '중앙값은 1(권)이다. 변량을 크기순으로 나열했을 때 10번째, 11번째 변량의 평균이 중앙값이기 때문이다.']) +
+      lvRow(0, '· 중앙값과 그 풀이과정이 모두 틀린 경우\n· 무응답', ['자료에서 10번째 있는 수가 3이므로 중앙값은 3(권)이다.']) + '</div>' +
+      '<div class="cel"><div class="celh"><span>채점 요소</span><b>최빈값 구하기</b><span class="pill mute">2점</span></div>' +
+      lvRow(2, '최빈값 0권을 구하고, 그 과정(가장 많이 있는 변량)을 정확히 설명한 경우', ['변량 중 가장 많이 나타난 것이 0이므로 최빈값은 0(권)이다.', '변량 중 0이 8번으로 제일 많이 나타났으므로 최빈값은 0(권)이다.']) +
+      lvRow(1, '· 최빈값 0권을 구하였으나, 과정 설명이 부족하거나 없는 경우\n· 최빈값(가장 많이 있는 변량)을 정확히 설명했으나, 최빈값을 틀리게 구한 경우', ['최빈값은 0(권)이다.', '가장 많이 나타난 변량이 최빈값이므로 최빈값은 1(권)이다.']) +
+      lvRow(0, '· 최빈값과 그 과정이 모두 틀린 경우\n· 무응답', ['최빈값은 0(권), 1(권)으로 두 가지이다.']) + '</div></section>';
+    h += '<section class="cnew"><h4>우리 비교 실습과 이어 보기</h4><ol><li>‘과정이 부족함’과 ‘답이 틀림’을 같은 1점에 두었습니다. 연립방정식 예2의 ‘해를 하나만 구함 / 실수로 해가 틀림 = 2점’과 같은 설계입니다.</li><li>‘단위 감점 없음’처럼 채점자 머릿속 규칙을 표 위에 글로 꺼내 두었습니다.</li><li>0점 칸에 오답 예시가 1개씩 있습니다. 인천 2차 검토 기준(0점 칸 공란)과 다릅니다.</li></ol></section>';
+  } else if (kdSub === 2) {
+    h += kdGuide('문항 2: 한 요소를 5~0점 여섯 칸으로', '선생님이 처음에 말씀하신 ‘5점 풀이, 4점 풀이 …’ 형태의 실제 사례입니다. 칸을 가르는 기준은 세 가지입니다: <b>대푯값 용어</b>를 바르게 썼는가, [표 1]의 <b>구체적 수치</b>(120권 또는 0권)를 근거로 들었는가, 1반 독서량을 <b>해석</b>했는가. 조합이 폭발하지 않도록 ‘무엇이 빠졌는가’ 순서로 칸을 내려갑니다.');
+    h += '<div class="ccond" style="background:var(--ok-soft)"><b>표 위에 적힌 규칙</b> *단위를 쓰지 않아도 감점하지 않는다. *1번에서 대푯값을 잘못 구했더라도, 반박 과정의 논리가 유사하면 점수를 모두 부여한다.</div>';
+    h += '<section class="ccol cai" style="margin-bottom:14px"><h3><span class="tag ai">채점기준표</span>평가 요소: 대푯값의 유용성 · 채점 요소: 대푯값 선택 이유 설정하기 (5점)</h3>' +
+      lvRow(5, '대푯값 용어를 정확히 제시 + 선택한 대푯값에 따라 [표 1]의 구체적 수치(중앙값: 극단적인 값 120권 / 최빈값: 0권)를 근거로 반박 + 1반 독서량을 해석하는 부분(1반은 한 명만 독서를 많이 했다, 1반 대부분은 한 권도 읽지 않았다)이 포함된 경우', ['(중앙값) 1반 회장아, 1반의 평균이 높은 건 맞지만, 1반은 120권이라는 아주 많이 책을 읽은 한 명이 평균을 높인 거잖아. 그러니까 평균 말고 중앙값을 생각하면 2반이 상품을 받아야 해.', '(최빈값) 1반 회장아, 1반의 평균이 높은 건 맞지만, 최빈값을 살펴보면 1반은 0권이야. 그 말은 1반 대부분의 친구들은 책을 한 권도 읽지 않았다는 말이니까 상품은 1반이 아닌 2반이 받아야 해.']) +
+      lvRow(4, '용어와 구체적 수치로 반박했으나, 독서량을 해석하지 않고 극단적인 값이나 가장 많은 값만 언급한 경우', ['(중앙값) 1반은 극단적인 값 120권이 있으므로 중앙값으로 생각해야 해. 그러면 2반이 상품을 받아야 해.', '(최빈값) 평균은 1반이 높지만, 1반의 최빈값은 0권이니까, 최빈값이 더 높은 2반이나 3반이 상품을 받아야 해.']) +
+      lvRow(3, '대푯값 용어를 제시해 주장이 잘못된 이유를 설명했으나, 구체적인 수치 없이 “극단적인 값이 있기 때문” 같은 암기식 표현으로만 쓴 경우', ['(중앙값) 중앙값을 사용해서 생각해야 해. 1반이 평균은 높지만 극단적인 값을 가지기 때문에 2반이 더 책을 많이 읽었어.', '(최빈값) 최빈값을 사용해서 생각해야 해. 1반이 평균은 높지만 반복되는 값이 낮기 때문에 1반이 더 책을 많이 읽었어.']) +
+      lvRow(2, '대푯값 용어를 쓰지 않았거나 잘못 썼으나, [표 1]의 구체적 수치로 주장이 잘못됨을 정확히 설명한 경우', ['1반이 평균은 높지만, 1반에 극단적인 값을 가지는 120권인 학생이 있어서 그런 거야. 그러니까 2반이 상품을 받아야 해.', '1반이 평균은 높지만, 1반에 0권을 읽은 학생이 많아서 2반이 상품을 받아야 해.']) +
+      lvRow(1, '대푯값 용어는 맞게 썼으나 이유가 잘못 설명된 경우', ['(중앙값) 중앙값을 사용해서 생각해야 해. 너네 반에 한 권도 안 읽은 아이가 너무 많기 때문이야.', '(최빈값) 최빈값을 사용해서 생각해야 해. 너네 반에 극단적인 값을 가지는 학생이 있기 때문이야.']) +
+      lvRow(0, '대푯값 용어를 사용하지 않았거나 문항 의도와 무관한 서술, 무응답', ['평균이 높으니까 너의 말이 맞아.']) + '</section>';
+    h += '<p class="csrc" style="margin-top:0">수행 특성은 매뉴얼 원문을 줄여 옮겼고, 예시답안은 원문 그대로입니다(앞부분 호칭 일부 생략).</p>';
+  } else {
+    h += kdGuide('눈여겨볼 점과 토론거리', '매뉴얼 예시는 잘 만든 본보기이면서, 그대로 가져다 쓰기 전에 함께 짚어 볼 곳도 있습니다.');
+    h += '<section class="cnew"><h4>본받을 점</h4><ol>' +
+      '<li><b>판정 규칙을 글로 꺼냈다.</b> 단위 감점 없음, 1번 오류의 이월 인정을 표 위에 적었습니다. 기존 채점에서 채점자 머릿속에 있던 규칙입니다.</li>' +
+      '<li><b>조건 = 채점 칸.</b> 문항 2의 조건 두 개(대푯값으로 해석, 1반 변량 이용)가 5점과 4·3점을 가르는 기준(해석 / 구체적 수치)과 그대로 이어집니다.</li>' +
+      '<li><b>칸을 ‘빠진 것’ 순서로 내려간다.</b> 5점에서 해석이 빠지면 4점, 수치가 빠지면 3점처럼 내려가서 6칸으로 끝납니다. 조합마다 풀이를 따로 쓰지 않습니다.</li>' +
+      '<li><b>예시답안이 실제 학생 말투다.</b> “1반 회장아, …” 같은 문장으로, 채점기준 문장을 옮기지 않았습니다.</li></ol></section>';
+    h += '<div class="cthink"><h4>함께 짚어 볼 곳 (토론거리)</h4><ul>' +
+      '<li>문항 2의 3점 수행 특성에 “<b>2반</b> 회장의 주장이 잘못된 이유”라고 되어 있습니다. 문맥상 1반 회장의 주장으로 보입니다.</li>' +
+      '<li>3점 예시 B는 결론이 “<b>1반</b>이 더 책을 많이 읽었어”로, 반박의 결론과 반대입니다. 이 답안을 3점으로 볼 수 있을까요?</li>' +
+      '<li>2점(용어는 틀렸지만 수치로 바르게 설명)과 1점(용어는 맞지만 설명이 틀림): 용어보다 근거에 무게를 둔 설계입니다. 우리 학교 협의에서도 같은 순서에 동의하나요?</li>' +
+      '<li>최빈값을 고른 학생은 2반의 최빈값이 1과 6 두 개라 비교 기준이 흔들립니다. 예시 답안도 “2반이나 3반”으로 흐려집니다.</li>' +
+      '<li>세 기준(용어, 수치, 해석)을 1·2·2점짜리 요소 세 개로 나누면(분석적 채점) 어떻게 달라질까요? 비교 실습의 연립방정식 예2처럼 나눠 보세요.</li>' +
+      '<li>0점 칸 예시답안: 매뉴얼은 넣고, 인천 2차 검토는 비웁니다. 우리 시스템에는 어느 쪽으로 입력할까요?</li></ul></div>';
+  }
+  return h;
+}
+function openKdot(i){ if (i != null) { kdIdx = i; kdSub = 0; } show('kdot'); renderKd(); }
+$('kdNav').addEventListener('click', function(e){ var b = e.target.closest('.cnb'); if (!b) return; kdIdx = +b.dataset.ki; kdSub = 0; renderKd(); $('kdMain').scrollIntoView({ block: 'nearest' }); });
+$('kdMain').addEventListener('click', function(e){
+  var b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.lv) { kdLv = +b.dataset.lv; kdIdx = 1; renderKd(); }
+  else if (b.dataset.kq != null) { kdAns[+b.dataset.kq] = +b.dataset.v; lsSet('aiEssayDemo.kdQuiz', kdAns); if (Object.keys(kdAns).length >= KD_QUIZ.length) flag('kdquiz'); renderKd(); }
+  else if (b.id === 'kdReset') { kdAns = {}; lsSet('aiEssayDemo.kdQuiz', kdAns); renderKd(); }
+  else if (b.dataset.ks != null) { kdSub = +b.dataset.ks; renderKd(); }
+});
+$('kdPrev').addEventListener('click', function(){
+  if (kdIdx === KD_TABS.length - 1 && kdSub > 0) kdSub--; else if (kdIdx > 0) { kdIdx--; kdSub = kdIdx === KD_TABS.length - 1 ? 0 : 0; }
+  renderKd(); window.scrollTo(0, 0);
+});
+$('kdNext').addEventListener('click', function(){
+  if (kdIdx === KD_TABS.length - 1) { if (kdSub < KD_SAMPLE_STEPS.length - 1) kdSub++; else return openCompare(0); }
+  else { kdIdx++; kdSub = 0; }
+  renderKd(); window.scrollTo(0, 0);
+});
+$('kdHome').addEventListener('click', function(){ show('home'); });
+$('kdCmp').addEventListener('click', function(){ openCompare(); });
+$('kdTeacher').addEventListener('click', function(){ openTeacher(tSet, 'items'); });
 
 applyScale();
 refreshMissions();
@@ -2379,6 +2703,7 @@ if (location.hash === '#student') enterStudent();
 else if (location.hash === '#teacher') openTeacher(0, 'items');
 else if (location.hash === '#guide') openGuide();
 else if (location.hash === '#compare') openCompare();
+else if (location.hash === '#kdot') openKdot(0);
 })();
 </script>
 
