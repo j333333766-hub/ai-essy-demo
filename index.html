@@ -554,12 +554,71 @@ body.touring .toast { bottom: auto; top: 16px; }
 @media (max-width: 820px) {
   .cgrid { grid-template-columns: minmax(0, 1fr); }
   .cnav { position: static; flex-direction: row; overflow-x: auto; gap: 12px; padding: 10px; }
-  .cgrp { flex: 0 0 auto; min-width: 200px; }
+  .cgrp { flex: 0 0 230px; width: 230px; }
+  .cnav { align-items: flex-start; }
+  .cguide { grid-template-columns: minmax(0, 1fr); }
+  .cguide .av { display: none; }
   .cnb.cm { flex: 0 0 160px; border-top: 0; align-self: stretch; }
   .cnotes, .crules { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 560px) {
   .csum { grid-template-columns: 1fr 1fr; }
+}
+/* 단계별 비교 */
+.chow { margin: 0; font-size: .88em; color: var(--ink-2); line-height: 1.6; }
+.chow b { color: var(--indigo); }
+.chead .chi h2 { margin-bottom: 6px; }
+.chd { background: #fff; border: 1px solid #dfe2f3; border-radius: 14px; padding: 10px 14px; margin-bottom: 12px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.chd .pill { flex: 0 0 auto; }
+.chd .qline { flex: 1 1 300px; min-width: 0; line-height: 1.7; }
+.chd .qline b { color: var(--indigo); margin-right: 4px; }
+.cstep { list-style: none; margin: 0 0 14px; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; counter-reset: cs; }
+.cstep button { width: 100%; height: 100%; border: 1px solid #dfe2f3; background: #fff; border-radius: 12px; padding: 8px 10px; display: flex; align-items: center; gap: 8px; text-align: left; color: var(--ink-2); font-size: .84em; line-height: 1.3; }
+.cstep .n { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: #eef0f6; color: var(--ink-2); font-weight: 800; font-size: .9em; }
+.cstep button.done .n { background: var(--ok-soft); color: var(--ok); }
+.cstep button.on { background: var(--indigo); border-color: var(--indigo); color: #fff; font-weight: 700; box-shadow: 0 6px 16px rgba(75,79,214,.25); }
+.cstep button.on .n { background: #fff; color: var(--indigo); }
+.cguide { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; background: linear-gradient(120deg, #f2f3ff, #fbfbff); border: 1px solid var(--lav-2); border-radius: 16px; padding: 14px 16px; margin-bottom: 14px; }
+.cguide .av { width: 40px; height: 40px; border-radius: 12px; background: var(--indigo); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: .82em; }
+.cguide .eb2 { margin: 0 0 2px; font-size: .78em; font-weight: 800; color: var(--indigo); letter-spacing: .03em; }
+.cguide h3 { margin: 0 0 6px; font-size: 1.05em; color: var(--navy); }
+.cguide p { margin: 0; line-height: 1.75; font-size: .93em; color: var(--ink); }
+.cguide .look { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+.cguide .look span { background: #fff; border: 1px solid var(--lav-2); border-radius: 999px; padding: 3px 10px; font-size: .82em; color: var(--ink-2); }
+.cthink { background: #fffdf3; border: 1px dashed #e0d59c; border-radius: 14px; padding: 12px 16px; margin-bottom: 14px; }
+.cthink h4 { margin: 0 0 6px; font-size: .9em; color: #6d5d16; }
+.cthink ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; font-size: .9em; line-height: 1.65; color: var(--ink-2); }
+.cans { display: grid; gap: 8px; }
+.cans .ar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; background: #fff; border: 1px solid #ece6c4; border-radius: 10px; padding: 8px 12px; font-size: .9em; line-height: 1.6; }
+.cans .ar .rv { font-size: .86em; color: #7a3810; background: var(--warn-soft); border-radius: 8px; padding: 4px 10px; grid-column: 1 / -1; }
+.cans .ar button { white-space: nowrap; }
+.cchg { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.cchg .ch { background: #fff; border: 1px solid #dfe2f3; border-radius: 12px; padding: 8px 12px; font-size: .86em; display: flex; align-items: center; gap: 8px; }
+.cchg .ch s { color: var(--ink-3); text-decoration: none; }
+.cchg .ch i { font-style: normal; color: var(--indigo); font-weight: 800; }
+.cvs { display: grid; grid-template-columns: minmax(0, .8fr) 36px minmax(0, 1.2fr); gap: 0; align-items: stretch; margin-bottom: 14px; }
+.cvs .arrow { display: grid; place-items: center; color: var(--indigo); font-size: 1.4em; font-weight: 800; }
+.cnew { background: #fff; border: 1px solid var(--lav-2); border-radius: 16px; padding: 12px 16px; margin-bottom: 14px; }
+.cnew h4 { margin: 0 0 8px; font-size: .92em; color: var(--navy); }
+.cnew ol { margin: 0; padding-left: 1.3em; display: grid; gap: 6px; font-size: .9em; line-height: 1.7; }
+.cnew li::marker { color: var(--indigo); font-weight: 800; }
+.cdraftd { background: #fff; border: 2px dashed var(--lav-2); border-radius: 16px; padding: 10px 16px; margin-bottom: 14px; }
+.cdraftd summary { cursor: pointer; font-weight: 700; color: var(--indigo); font-size: .92em; padding: 4px 0; }
+.cdraftd .dh { margin: 6px 0 8px; font-size: .86em; color: var(--ink-2); line-height: 1.6; }
+.cdraftd textarea { width: 100%; min-height: 260px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .92em; line-height: 1.7; resize: vertical; background: #fdfdff; }
+.cdraftd .dacts { display: flex; gap: 6px; justify-content: flex-end; margin-top: 8px; }
+.cmine { background: #fbfbff; border: 2px dashed var(--lav-2); border-radius: 16px; padding: 12px 16px; }
+.cmine h3 { margin: 0 0 8px; font-size: .95em; }
+.cmine pre { margin: 0; white-space: pre-wrap; font-family: var(--font); font-size: .88em; line-height: 1.7; color: var(--ink-2); }
+.cpn .nbtn { min-width: 120px; }
+.cdone { text-align: center; background: #fff; border: 1px solid #dfe2f3; border-radius: 16px; padding: 16px; margin-bottom: 14px; }
+.cdone p { margin: 0 0 10px; color: var(--ink-2); font-size: .92em; }
+.cdone .nbtn + .nbtn { margin-left: 6px; }
+@media (max-width: 1100px) { .cvs { grid-template-columns: minmax(0, 1fr); } .cvs .arrow { transform: rotate(90deg); height: 30px; } }
+@media (max-width: 820px) {
+  .cstep { grid-template-columns: repeat(5, auto); overflow-x: auto; }
+  .cstep button { padding: 6px 8px; }
+  .cstep button:not(.on) .lb { display: none; }
 }
 </style>
 </head>
@@ -769,26 +828,23 @@ body.touring .toast { bottom: auto; top: 16px; }
     <div class="acts">
       <button class="nbtn sm" id="cmpHome">← 처음 화면</button>
       <button class="nbtn sm" id="cmpTeacher">교사 · 문항 편집</button>
-      <button class="nbtn sm wht" id="cmpMode" aria-pressed="false">AI용 칸 가리고 직접 써 보기</button>
     </div>
   </div>
   <div class="chead">
     <div class="chi">
       <p class="eb">기존 서술형 채점기준 → AI용 채점기준표</p>
       <h2>쪼개는 건 그대로, 조각마다 ‘몇 점짜리 답이 어떻게 생겼는지’를 보여 줍니다.</h2>
-      <ol class="ckeys">
-        <li><b>나누는 단위는 유지</b> 소문항, 필요하면 세부 채점 요소로 나눈 기존 구조를 그대로 씁니다.</li>
-        <li><b>점수 칸은 개수로 묶기</b> 1점짜리 세 줄은 ‘세 가지 중 몇 가지’로 3·2·1·0점 칸을 만듭니다. 조합마다 풀이를 따로 쓰지 않습니다.</li>
-        <li><b>머릿속 규칙을 글로</b> 인정 범위, 대표 오답, 이월 오류, 표기 형식을 칸 안에 쓰고 점수마다 학생 답안 예시를 2개씩 붙입니다.</li>
-      </ol>
+      <p class="chow">왼쪽에서 문항을 고르면 <b>문항 읽기 → 기존 기준표 → AI용 점수 칸 → AI용 예시답안 → 정리·협의</b> 다섯 단계로 차례차례 비교합니다.</p>
     </div>
     <div class="csum" id="cmpSum" aria-label="자료에서 찾은 것"></div>
   </div>
   <div class="cgrid">
     <nav class="tcard cnav" id="cmpNav" aria-label="소문항 목록"></nav>
     <main class="cmain">
-      <div id="cmpMain"></div>
-      <div class="cpn"><button class="nbtn" id="cmpPrev">← 이전</button><button class="nbtn ind" id="cmpNext">다음 →</button></div>
+      <div id="cmpHead"></div>
+      <ol class="cstep" id="cmpStepper" aria-label="비교 단계"></ol>
+      <div id="cmpMain" aria-live="polite"></div>
+      <div class="cpn"><button class="nbtn" id="cmpPrev">← 이전 단계</button><button class="nbtn ind" id="cmpNext">다음 단계 →</button></div>
       <p class="csrc">자료: 0번 예제는 연수용으로 만든 문항, 서술형 1~3은 2025학년도 수학과 1학기 서술형 평가 대비(2학년) 문항과 풀이과정. ‘AI용’ 칸은 연수 토론을 위한 제안이며 확정된 채점 기준이 아닙니다.</p>
     </main>
   </div>
@@ -1781,7 +1837,7 @@ var MISSIONS = [
     done: function(){ return !!mflags.sumwarn; }, go: function(){ openTeacher(0, 'rubric'); } },
   { k: 'm5', t: '선택형 결론을 넣고 미리보기', d: '2-3 문항의 ‘선택형 결론’에 앞 문장 ‘행사를’, 선택지 ‘진행 / 취소’, 뒷 문장 ‘하는 것이 더 합리적이다.’를 넣고 학생 미리보기로 확인합니다. 채점이 쉬워지는 대신 무엇을 잃는지 토론해 보세요.',
     done: function(){ return !!mflags.pickprev; }, go: function(){ openTeacher(1, 'items'); } },
-  { k: 'm6', t: '기존 채점기준을 AI용으로 바꿔 써 보기', d: '‘채점기준 비교 실습’에서 AI용 칸을 가리고, 0번 예제나 2025 서술형 소문항 하나의 기존 기준(⋯[1점])을 점수별 수행 특성·대표 오답·예시답안으로 바꿔 씁니다. 다 쓰면 AI용 예시와 비교해 보세요.',
+  { k: 'm6', t: '기존 채점기준을 AI용으로 바꿔 써 보기', d: '‘채점기준 비교 실습’ 2단계(기존 기준표)에서 ‘직접 해 보기’를 열고, 0번 예제나 2025 서술형 소문항 하나의 기존 기준(⋯[1점])을 점수별 수행 특성·대표 오답·예시답안으로 바꿔 씁니다. 3·4단계에서 AI용과 비교해 보세요.',
     done: function(){ return !!mflags.cmpdraft; }, go: function(){ openCompare(0, true); } }
 ];
 var lastDone = null;
@@ -1816,7 +1872,7 @@ $('nudgeGo').addEventListener('click', function(){ $('nudge').hidden = true; lsS
 var TOURS = {
   home: { setup: function(){ show('home'); }, steps: [
     { sel: '.entry', t: '학생과 교사, 두 입구', b: '‘학생’은 실제 응시 화면에서 문제를 풀고, ‘교사’는 문항·조건·채점기준표·예시답안을 입력하고 학생 화면으로 미리 봅니다. 두 화면은 같은 문항 데이터를 씁니다.' },
-    { sel: '#lkCmp', t: '채점기준 비교 실습', b: '사람이 채점하던 기존 서술형 기준(⋯[1점])을 AI용 채점기준표로 바꾼 모습을 소문항별로 나란히 봅니다. AI용 칸을 가리고 직접 바꿔 써 보는 실습도 할 수 있습니다.' },
+    { sel: '#lkCmp', t: '채점기준 비교 실습', b: '사람이 채점하던 기존 서술형 기준(⋯[1점])을 AI용 채점기준표로 바꾼 모습을 소문항별로 나란히 봅니다. 문항 읽기부터 정리·협의까지 다섯 단계로 차례차례 비교하고, 직접 바꿔 써 보는 실습도 할 수 있습니다.' },
     { sel: '#guideDock', t: '연수 가이드와 글자 크기', b: '언제든 이 버튼으로 둘러보기와 연수 활동을 열 수 있습니다. 프로젝터로 보여 줄 때는 오른쪽 가+ 버튼으로 글자를 키우세요.' }
   ] },
   student: { setup: function(){ gotoItem(0, 2); }, steps: [
@@ -2179,65 +2235,125 @@ function renderCmpNav(){
   h += '<button class="cnb cm' + (cmpIdx === CMP_PARTS.length ? ' on' : '') + '" data-ci="' + CMP_PARTS.length + '"><span class="no">★</span><span class="tt">공통 규칙 6가지</span></button>';
   $('cmpNav').innerHTML = h;
 }
-function aiHtml(p){
+function aiHtml(p, withEx){
   return p.ai.map(function(el){
     var h = '<div class="cel"><div class="celh"><span>세부 채점 요소</span><b>' + esc(el.sub) + '</b><span class="pill mute">' + el.pts + '점</span>' + (el.proposal ? '<span class="pill warn">제안 · 협의 필요</span>' : '') + '</div>';
     for (var s = el.pts; s >= 0; s--) {
       var ex = (el.ex && el.ex[s]) || [];
       h += '<div class="lvl"><span class="sc' + (s === 0 ? ' z' : '') + '">' + s + '점</span><div><p class="ld">' + mfmt(el.lv[s] || '') + '</p>' +
-        (s === 0 ? '<div class="cex none">예시답안 칸은 비워 둡니다(－).</div>' : ex.map(function(t, k){ return '<div class="cex' + (/^\[그림\]/.test(t) ? ' pic' : '') + '"><span class="k">예시 ' + '①②③④'.charAt(k) + '</span>' + mfmt(t.replace(/^\[그림\]\s*/, '')) + '</div>'; }).join('')) + '</div></div>';
+        (!withEx ? '' : s === 0 ? '<div class="cex none">예시답안 칸은 비워 둡니다(－).</div>' : ex.map(function(t, k){ return '<div class="cex' + (/^\[그림\]/.test(t) ? ' pic' : '') + '"><span class="k">예시 ' + '①②③④'.charAt(k) + '</span>' + mfmt(t.replace(/^\[그림\]\s*/, '')) + '</div>'; }).join('')) + '</div></div>';
     }
     return h + '</div>';
   }).join('');
 }
+var CMP_STEPS = [
+  { t: '문항 읽기', av: '1' }, { t: '기존 기준표', av: '2' }, { t: 'AI용 ① 점수 칸', av: '3' }, { t: 'AI용 ② 예시답안', av: '4' }, { t: '정리·협의', av: '5' }
+];
+var cmpStep = 0, cmpSeen = {}, cmpOldRv = {};
+function exCount(p){ return p.ai.reduce(function(a, el){ var n = 0; for (var k in (el.ex || {})) n += el.ex[k].length; return a + n; }, 0); }
+function lvCount(p){ return p.ai.reduce(function(a, el){ return a + el.pts + 1; }, 0); }
+function guide(i, title, body, looks){
+  return '<div class="cguide"><span class="av" aria-hidden="true">' + (i + 1) + '단계</span><div><p class="eb2">STEP ' + (i + 1) + ' · ' + esc(CMP_STEPS[i].t) + '</p><h3>' + esc(title) + '</h3><p>' + body + '</p>' +
+    (looks && looks.length ? '<div class="look">' + looks.map(function(l){ return '<span>' + l + '</span>'; }).join('') + '</div>' : '') + '</div></div>';
+}
+function oldCard(p, compact){
+  return '<section class="ccol cold" aria-label="기존 채점 기준"><h3><span class="tag">기존</span>사람이 채점할 때의 기준</h3>' +
+    (p.old.note ? '<p class="onote">' + mfmt(p.old.note) + '</p>' : '') + (p.old.pre ? '<p class="oline">' + mfmt(p.old.pre) + '</p>' : '') +
+    p.old.lines.map(function(l){ return '<p class="oline">' + mfmt(l[0]) + ' <span class="dots">⋯</span> <b>[' + l[1] + '점]</b></p>'; }).join('') +
+    (p.old.post ? '<p class="onote">' + mfmt(p.old.post) + '</p>' : '') +
+    (compact ? '' : '<p class="ofoot">점수 줄 ' + p.old.lines.length + '개 · 예시답안 없음 · 인정 범위와 오답은 채점자의 머릿속에</p>') + '</section>';
+}
+function isDraft(p){ return cmpDraft[p.id] != null && cmpDraft[p.id].trim() !== cmpTemplate(p).trim(); }
 function renderCmp(){
   renderCmpNav();
   var st = cmpStats();
   $('cmpSum').innerHTML = '<div class="cs-k"><b>' + st.mis + '</b><span>배점 불일치</span></div><div class="cs-k"><b>' + st.gr + '</b><span>그림 답안 소문항</span></div><div class="cs-k"><b>' + st.tac + '</b><span>글로 꺼낸 규칙</span></div><div class="cs-k"><b>' + st.dec + '</b><span>협의로 정할 것</span></div>';
-  $('cmpMode').setAttribute('aria-pressed', cmpPractice ? 'true' : 'false');
-  $('cmpMode').textContent = cmpPractice ? '나란히 보기로 돌아가기' : 'AI용 칸 가리고 직접 써 보기';
   var m = $('cmpMain');
   if (cmpIdx === CMP_PARTS.length) {
-    m.innerHTML = '<div class="cq"><div class="cqh"><span class="pill mute">공통</span><b>AI용 기준표로 바꿀 때 모든 소문항에 쓰는 규칙</b></div></div><div class="crules">' +
+    $('cmpHead').innerHTML = ''; $('cmpStepper').hidden = true;
+    m.innerHTML = '<div class="cguide"><span class="av" aria-hidden="true">★</span><div><p class="eb2">정리</p><h3>AI용 기준표로 바꿀 때 모든 문항에 쓰는 규칙</h3><p>소문항마다 다섯 단계를 거치며 본 내용을 여섯 가지로 묶었습니다. 학교 채점 협의에서 체크리스트로 쓰세요.</p></div></div><div class="crules">' +
       CMP_COMMON.map(function(c, i){ return '<div class="crule"><span class="n">' + (i + 1) + '</span><div><b>' + esc(c.t) + '</b><p>' + mfmt(c.b) + '</p></div></div>'; }).join('') + '</div>';
-    $('cmpPrev').disabled = false; $('cmpNext').disabled = true; return;
+    $('cmpPrev').disabled = false; $('cmpPrev').textContent = '← 마지막 소문항'; $('cmpNext').disabled = true; $('cmpNext').textContent = '끝';
+    return;
   }
   var p = CMP_PARTS[cmpIdx], g = CMP_GROUPS.filter(function(x){ return x.no === p.g; })[0], os = oldSum(p);
-  var h = '<div class="cq"><div class="cqh"><span class="pill mute">' + esc(g.title) + '</span><span class="stem">' + mfmt(g.stem) + '</span></div>' +
-    '<p class="qq"><b>' + p.no + '</b> ' + mfmt(p.q) + ' <span class="pt">[' + p.pts + '점]</span></p>' +
-    (p.cond ? '<div class="ccond"><b>〈조건〉</b><ol>' + p.cond.map(function(c){ return '<li>' + mfmt(c) + '</li>'; }).join('') + '</ol></div>' : '') +
-    '<div class="cmeta"><span class="pill ' + (os === p.pts ? 'ok' : 'err') + '">문항 배점 ' + p.pts + '점 · 기존 기준 합 ' + os + '점</span>' + (p.graph ? '<span class="pill warn">그림(그리기 입력) 답안</span>' : '') + '</div>' +
-    (p.flags || []).map(function(f){ return '<div class="cflag ' + f.lvl + '">' + mfmt(f.t) + '</div>'; }).join('') + '</div>';
-  var oldH = '<section class="ccol cold" aria-label="기존 채점 기준"><h3><span class="tag">기존</span>사람이 채점할 때의 풀이과정 기준</h3>' +
-    (p.old.note ? '<p class="onote">' + mfmt(p.old.note) + '</p>' : '') + (p.old.pre ? '<p class="oline">' + mfmt(p.old.pre) + '</p>' : '') +
-    p.old.lines.map(function(l){ return '<p class="oline">' + mfmt(l[0]) + ' <span class="dots">⋯</span> <b>[' + l[1] + '점]</b></p>'; }).join('') +
-    (p.old.post ? '<p class="onote">' + mfmt(p.old.post) + '</p>' : '') +
-    '<p class="ofoot">점수 칸 ' + p.old.lines.length + '줄 · 예시답안 없음 · 인정 범위와 오답은 채점자의 머릿속에</p></section>';
-  var draft = cmpDraft[p.id] != null ? cmpDraft[p.id] : cmpTemplate(p);
-  var draftH = '<section class="ccol cdraft" aria-label="직접 써 보기"><h3><span class="tag ind">실습</span>왼쪽 기준을 AI용으로 바꿔 써 보세요</h3>' +
-    '<p class="dh">점수마다 수행 특성을 쓰고, 학생이 실제로 쓸 법한 예시답안을 2개씩 붙입니다. 0점 칸에는 대표 오답을 적습니다. 이 브라우저에 자동 저장됩니다.</p>' +
-    '<textarea id="cmpTa" aria-label="AI용 채점기준 초안" spellcheck="false">' + esc(draft) + '</textarea>' +
-    '<div class="dacts"><button class="nbtn sm" id="cmpClr">틀로 되돌리기</button>' + (cmpReveal[p.id] ? '' : '<button class="nbtn sm ind" id="cmpShow">AI용 예시와 비교하기</button>') + '</div></section>';
-  var aiH = '<section class="ccol cai" aria-label="AI용 채점 기준"><h3><span class="tag ai">AI용</span>점수별 수행 특성과 예시답안</h3>' + aiHtml(p) + '</section>';
-  if (!cmpPractice) h += '<div class="ccols">' + oldH + aiH + '</div>';
-  else if (!cmpReveal[p.id]) h += '<div class="ccols">' + oldH + draftH + '</div>';
-  else h += '<div class="ccols">' + oldH + aiH + '</div><div class="ccols one">' + draftH + '</div>';
-  if (p.scoreTable && (!cmpPractice || cmpReveal[p.id])) h += '<section class="cst"><h4>같은 답안을 두 기준표로 채점해 보면</h4><div class="cstw"><table><thead><tr>' + p.scoreTable.cols.map(function(c){ return '<th>' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>' +
-    p.scoreTable.rows.map(function(r){ return '<tr><td>' + mfmt(r[0]) + '</td><td>' + mfmt(r[1]) + '</td><td><b>' + mfmt(r[2]) + '</b></td></tr>'; }).join('') + '</tbody></table></div><p>단계별 기준표는 다른 풀이로 풀었거나 중간에 틀린 답안에서 점수가 채점자마다 달라집니다. AI용 기준표는 이런 답안의 판정을 미리 글로 정해 두는 문서입니다.</p></section>';
-  h += '<div class="cnotes"><section class="cn"><h4>AI용으로 바꾸며 글로 꺼낸 것</h4><ul>' + p.tacit.map(function(t){ return '<li>' + mfmt(t) + '</li>'; }).join('') + '</ul></section>' +
-    '<section class="cn dec"><h4>채점 협의로 미리 정할 것</h4><ul>' + p.decide.map(function(t){ return '<li><span class="cbx" aria-hidden="true"></span><span>' + mfmt(t) + '</span></li>'; }).join('') + '</ul></section></div>';
+  cmpSeen[p.id] = Math.max(cmpSeen[p.id] || 0, cmpStep);
+  $('cmpStepper').hidden = false;
+  $('cmpStepper').innerHTML = CMP_STEPS.map(function(s, i){
+    return '<li><button data-step="' + i + '" class="' + (i === cmpStep ? 'on' : (i <= cmpSeen[p.id] ? 'done' : '')) + '"' + (i === cmpStep ? ' aria-current="step"' : '') + '><span class="n">' + (i < cmpStep || (i !== cmpStep && i <= cmpSeen[p.id]) ? '✓' : i + 1) + '</span><span class="lb">' + esc(s.t) + '</span></button></li>';
+  }).join('');
+  $('cmpHead').innerHTML = cmpStep === 0 ? '' : '<div class="chd"><span class="pill mute">' + esc(g.title) + ' ' + esc(p.no) + '</span><span class="qline">' + mfmt(p.q) + ' <span class="pt" style="color:var(--ink-3)">[' + p.pts + '점]</span></span></div>';
+  var h = '', nEl = p.ai.length, nLv = lvCount(p), nEx = exCount(p);
+  if (cmpStep === 0) {
+    h += guide(0, '학생에게 무엇을 요구하는지 먼저 봅니다', '배점 <b>' + p.pts + '점</b>짜리 문항입니다.' + (p.cond ? ' 조건이 ' + p.cond.length + '개 있습니다. 조건은 학생에게 답안의 방향을 알려 주고, AI는 조건을 근거로 충족 여부를 판단합니다.' : '') + ' 다음 단계에서 이 문항을 <b>기존 방식</b>으로 채점해 봅니다.');
+    h += '<div class="cq"><div class="cqh"><span class="pill mute">' + esc(g.title) + '</span><span class="stem">' + mfmt(g.stem) + '</span></div>' +
+      '<p class="qq"><b>' + p.no + '</b> ' + mfmt(p.q) + ' <span class="pt">[' + p.pts + '점]</span></p>' +
+      (p.cond ? '<div class="ccond"><b>〈조건〉</b><ol>' + p.cond.map(function(c){ return '<li>' + mfmt(c) + '</li>'; }).join('') + '</ol></div>' : '') +
+      (p.graph ? '<div class="cmeta"><span class="pill warn">그림(그리기 입력) 답안</span></div>' : '') +
+      (p.flags || []).filter(function(f){ return f.lvl === 'info'; }).map(function(f){ return '<div class="cflag info">' + mfmt(f.t) + '</div>'; }).join('') + '</div>';
+    h += '<div class="cthink"><h4>잠깐 생각해 보기</h4><ul><li>학생이 쓸 수 있는 풀이 경로는 몇 가지일까요?</li><li>학생들이 가장 많이 할 실수는 무엇일까요?</li><li>그런 답안은 몇 점을 받아야 할까요?</li></ul></div>';
+  } else if (cmpStep === 1) {
+    h += guide(1, '풀이를 단계로 쪼개고, 단계마다 점수를 줍니다', '선생님들이 지금까지 써 온 방식입니다. 정답 경로를 그대로 따라간 답안은 쉽게 채점됩니다. 하지만 <b>다른 풀이</b>나 <b>중간에 실수가 있는 답안</b>은 채점자가 그때그때 판단합니다. 사람은 그래도 되지만, AI는 기준표에 적힌 것만 근거로 삼습니다.',
+      ['점수 줄 ' + p.old.lines.length + '개', '예시답안 0개', '인정 범위·오답은 채점자의 머릿속에']);
+    h += oldCard(p, false);
+    h += (p.flags || []).filter(function(f){ return f.lvl !== 'info'; }).map(function(f){ return '<div class="cflag ' + f.lvl + '" style="margin-bottom:14px">' + mfmt(f.t) + '</div>'; }).join('');
+    if (os !== p.pts && !(p.flags || []).length) h += '<div class="cflag err" style="margin-bottom:14px">문항 배점 ' + p.pts + '점과 기존 기준의 합 ' + os + '점이 다릅니다.</div>';
+    if (p.scoreTable) {
+      h += '<div class="cthink"><h4>이 기준표로 아래 답안을 채점해 보세요. 점수가 하나로 정해지나요?</h4><div class="cans">' +
+        p.scoreTable.rows.map(function(r, i){ var k = p.id + ':' + i; return '<div class="ar"><span>' + mfmt(r[0]) + '</span>' + (cmpOldRv[k] ? '' : '<button class="nbtn sm" data-rv="' + k + '">기존 기준으로는?</button>') + (cmpOldRv[k] ? '<span class="rv">' + mfmt(r[1]) + '</span>' : '') + '</div>'; }).join('') + '</div></div>';
+    } else {
+      h += '<div class="cthink"><h4>이 기준표만으로는 답이 정해지지 않는 질문</h4><ul>' + p.decide.map(function(t){ return '<li>' + mfmt(t) + '</li>'; }).join('') + '</ul></div>';
+    }
+    var draft = cmpDraft[p.id] != null ? cmpDraft[p.id] : cmpTemplate(p);
+    h += '<details class="cdraftd"' + (cmpPractice ? ' open' : '') + '><summary>직접 해 보기: 이 기준표를 AI용으로 바꿔 써 보기 (선택)</summary>' +
+      '<p class="dh">점수마다 ‘어디까지 바르게 했는지’를 문장으로 쓰고, 학생이 실제로 쓸 법한 예시답안을 2개씩 붙입니다. 0점 칸에는 대표 오답을 적습니다. 다 쓰면 다음 단계에서 AI용 예시와 비교하세요. 이 브라우저에 자동 저장됩니다.</p>' +
+      '<textarea id="cmpTa" aria-label="AI용 채점기준 초안" spellcheck="false">' + esc(draft) + '</textarea>' +
+      '<div class="dacts"><button class="nbtn sm" id="cmpClr">틀로 되돌리기</button></div></details>';
+  } else if (cmpStep === 2) {
+    h += guide(2, '쪼개는 단위는 그대로, 점수 칸을 문장으로 씁니다', '기존 기준표가 ‘단계 하나 = 1점’이었다면, AI용은 <b>‘이 점수 = 어디까지 바르게 했는가’</b>를 문장으로 씁니다. 1점짜리 여러 줄은 ‘몇 가지가 맞았는지’로 묶어 조합마다 풀이를 따로 쓰지 않습니다. 기존 기준표에 없던 인정 범위·대표 오답·이월 규칙도 칸 안에 적습니다.');
+    h += '<div class="cchg"><span class="ch"><s>점수 줄 ' + p.old.lines.length + '개</s> → <i>세부 채점 요소 ' + nEl + '개 · 점수 칸 ' + nLv + '개</i></span><span class="ch"><s>0점 기준 없음</s> → <i>0점 칸에 대표 오답</i></span></div>';
+    h += '<div class="cvs">' + oldCard(p, true) + '<span class="arrow" aria-hidden="true">→</span><section class="ccol cai" aria-label="AI용 점수 칸"><h3><span class="tag ai">AI용</span>점수별 수행 특성</h3>' + aiHtml(p, false) + '</section></div>';
+    h += '<section class="cnew"><h4>AI용에 새로 적은 것 (기존에는 채점자의 머릿속에 있던 것)</h4><ol>' + p.tacit.map(function(t){ return '<li>' + mfmt(t) + '</li>'; }).join('') + '</ol></section>';
+  } else if (cmpStep === 3) {
+    h += guide(3, '점수 칸마다 실제 학생 답안을 2개씩 붙입니다', 'AI는 예시답안을 학습 자료로 씁니다. 같은 점수라도 <b>서로 다른 풀이</b>, <b>서로 다른 실수</b>를 고르고, 채점기준 문장을 그대로 옮기지 않습니다. 0점 칸은 비워 둡니다.' + (p.graph ? ' 그림으로 답하는 문항은 예시답안도 그림이어야 하므로, 여기의 [그림] 묘사는 자리 표시일 뿐입니다.' : ''),
+      ['예시답안 ' + nEx + '개', '0점 칸은 비움']);
+    var mine = isDraft(p);
+    h += '<div class="ccols' + (mine ? '' : ' one') + '"><section class="ccol cai" aria-label="AI용 채점 기준"><h3><span class="tag ai">AI용</span>점수별 수행 특성과 예시답안</h3>' + aiHtml(p, true) + '</section>' +
+      (mine ? '<section class="cmine"><h3><span class="tag ind" style="font-size:.8em;font-weight:800;border-radius:6px;padding:2px 8px;background:var(--navy);color:#fff">내 초안</span> 2단계에서 쓴 것</h3><pre>' + esc(cmpDraft[p.id]) + '</pre></section>' : '') + '</div>';
+  } else {
+    h += guide(4, p.scoreTable ? '같은 답안을 두 기준표로 다시 채점해 봅니다' : '채점 협의에서 미리 정할 것을 확인합니다', p.scoreTable ? '2단계에서 기존 기준표로는 점수가 갈렸던 답안들입니다. AI용 기준표로는 하나의 점수로 정해집니다. AI용 기준표는 이런 답안의 판정을 <b>미리 글로 정해 두는 문서</b>입니다.' : 'AI용 기준표로 바꾸면서 기존 기준표에서는 드러나지 않던 판단 지점이 보였습니다. 채점 협의에서 아래를 먼저 정한 뒤 기준표에 적어 두세요.');
+    if (p.scoreTable) h += '<section class="cst"><h4>같은 답안, 두 기준표</h4><div class="cstw"><table><thead><tr>' + p.scoreTable.cols.map(function(c){ return '<th>' + esc(c) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      p.scoreTable.rows.map(function(r){ return '<tr><td>' + mfmt(r[0]) + '</td><td>' + mfmt(r[1]) + '</td><td><b>' + mfmt(r[2]) + '</b></td></tr>'; }).join('') + '</tbody></table></div></section>';
+    h += '<section class="cn dec" style="margin-bottom:14px"><h4>채점 협의로 미리 정할 것</h4><ul>' + p.decide.map(function(t){ return '<li><span class="cbx" aria-hidden="true"></span><span>' + mfmt(t) + '</span></li>'; }).join('') + '</ul></section>';
+    var nx = cmpIdx + 1 < CMP_PARTS.length ? CMP_PARTS[cmpIdx + 1] : null;
+    h += '<div class="cdone"><p>이 문항의 비교를 마쳤습니다.</p><button class="nbtn" data-go="draft">2단계로 돌아가 직접 써 보기</button><button class="nbtn ind" data-go="next">' + (nx ? '다음 문항: ' + esc(CMP_GROUPS.filter(function(x){ return x.no === nx.g; })[0].title) + ' ' + esc(nx.no) + ' →' : '공통 규칙 6가지 보기 →') + '</button></div>';
+  }
   m.innerHTML = h;
-  $('cmpPrev').disabled = cmpIdx === 0; $('cmpNext').disabled = false;
+  $('cmpPrev').disabled = cmpStep === 0 && cmpIdx === 0;
+  $('cmpPrev').textContent = cmpStep === 0 ? '← 이전 문항' : '← 이전 단계';
+  $('cmpNext').disabled = false;
+  $('cmpNext').textContent = cmpStep < CMP_STEPS.length - 1 ? '다음: ' + CMP_STEPS[cmpStep + 1].t + ' →' : (cmpIdx + 1 < CMP_PARTS.length ? '다음 문항 →' : '공통 규칙 →');
+}
+function cmpGo(i, step){
+  cmpIdx = i; cmpStep = step || 0; renderCmp();
+  var top = $('cmpStepper').hidden ? $('cmpMain') : $('cmpHead');
+  if (top.getBoundingClientRect().top < 0) top.scrollIntoView({ block: 'start' });
 }
 function openCompare(i, practice){
-  if (i != null) cmpIdx = i;
-  if (practice != null) cmpPractice = practice;
+  if (i != null) { cmpIdx = i; cmpStep = 0; }
+  if (practice != null) { cmpPractice = practice; if (practice) cmpStep = 1; }
   show('compare'); renderCmp();
 }
-$('cmpNav').addEventListener('click', function(e){ var b = e.target.closest('.cnb'); if (!b) return; cmpIdx = +b.dataset.ci; renderCmp(); $('cmpMain').scrollIntoView({ block: 'start' }); });
-$('cmpPrev').addEventListener('click', function(){ if (cmpIdx > 0) { cmpIdx--; renderCmp(); } });
-$('cmpNext').addEventListener('click', function(){ if (cmpIdx < CMP_PARTS.length) { cmpIdx++; renderCmp(); } });
-$('cmpMode').addEventListener('click', function(){ cmpPractice = !cmpPractice; if (cmpIdx === CMP_PARTS.length) cmpIdx = 0; renderCmp(); });
+$('cmpNav').addEventListener('click', function(e){ var b = e.target.closest('.cnb'); if (!b) return; cmpPractice = false; cmpGo(+b.dataset.ci, 0); });
+$('cmpStepper').addEventListener('click', function(e){ var b = e.target.closest('button[data-step]'); if (!b) return; cmpStep = +b.dataset.step; renderCmp(); });
+$('cmpPrev').addEventListener('click', function(){
+  if (cmpIdx === CMP_PARTS.length) return cmpGo(CMP_PARTS.length - 1, CMP_STEPS.length - 1);
+  if (cmpStep > 0) { cmpStep--; cmpGo(cmpIdx, cmpStep); } else if (cmpIdx > 0) cmpGo(cmpIdx - 1, 0);
+});
+$('cmpNext').addEventListener('click', function(){
+  if (cmpIdx === CMP_PARTS.length) return;
+  if (cmpStep < CMP_STEPS.length - 1) { cmpStep++; cmpGo(cmpIdx, cmpStep); } else cmpGo(cmpIdx + 1, 0);
+});
 $('cmpHome').addEventListener('click', function(){ show('home'); });
 $('cmpTeacher').addEventListener('click', function(){ openTeacher(0, 'rubric'); });
 $('cmpMain').addEventListener('input', function(e){
@@ -2246,10 +2362,14 @@ $('cmpMain').addEventListener('input', function(e){
   if (e.target.value.replace(/\s/g, '').length - cmpTemplate(p).replace(/\s/g, '').length >= 30) flag('cmpdraft');
   renderCmpNav();
 });
+$('cmpMain').addEventListener('toggle', function(e){ if (e.target.classList && e.target.classList.contains('cdraftd')) cmpPractice = e.target.open; }, true);
 $('cmpMain').addEventListener('click', function(e){
-  var p = CMP_PARTS[cmpIdx];
-  if (e.target.id === 'cmpShow') { cmpReveal[p.id] = true; renderCmp(); }
-  else if (e.target.id === 'cmpClr') { delete cmpDraft[p.id]; lsSet(CMP_KEY, cmpDraft); renderCmp(); }
+  var p = CMP_PARTS[cmpIdx], b = e.target.closest('button');
+  if (!b) return;
+  if (b.id === 'cmpClr') { delete cmpDraft[p.id]; lsSet(CMP_KEY, cmpDraft); renderCmp(); }
+  else if (b.dataset.rv) { cmpOldRv[b.dataset.rv] = true; renderCmp(); }
+  else if (b.dataset.go === 'draft') { cmpPractice = true; cmpGo(cmpIdx, 1); }
+  else if (b.dataset.go === 'next') { cmpPractice = false; cmpGo(cmpIdx + 1, 0); }
 });
 
 applyScale();
