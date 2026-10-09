@@ -488,6 +488,9 @@ body.touring .toast { bottom: auto; top: 16px; }
 .cflag { margin-top: 8px; border-radius: 10px; padding: 8px 12px; font-size: .88em; line-height: 1.6; }
 .cflag.err { background: var(--err-soft); color: #8c2a19; }
 .cflag.warn { background: var(--warn-soft); color: #7a3810; }
+.cflag.info { background: var(--lav); color: var(--navy); }
+.fr { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; line-height: 1.15; font-size: .9em; margin: 0 1px; }
+.fr > span:first-child { border-bottom: 1px solid currentColor; padding: 0 2px; }
 .ccond { margin: 0 0 10px; background: #f6f7fd; border-radius: 10px; padding: 8px 12px; font-size: .92em; line-height: 1.65; }
 .ccond ol { margin: 4px 0 0; padding-left: 1.4em; }
 .cst { background: #fff; border: 1px solid #dfe2f3; border-radius: 16px; padding: 12px 16px; margin-bottom: 14px; }
@@ -1907,13 +1910,13 @@ document.addEventListener('keydown', function(e){
    채점기준 비교 실습 (기존 사람 채점 기준 → AI용 기준표)
    ========================================================= */
 var CMP_GROUPS = [
-  { no: 0, title: '0번 예제', pts: 4, stem: '단계마다 1점씩 주던 기준을 AI용으로 바꾸는 가장 간단한 예' },
+  { no: 0, title: '0번 예제', pts: null, stem: '단계마다 1점씩 주던 기준을 AI용으로 바꾸는 연수용 예제' },
   { no: 1, title: '서술형 1', pts: 8, stem: '연립방정식 {{x+y−4=0|x−3y=0}} 에 대하여 다음 물음에 답하시오.' },
   { no: 2, title: '서술형 2', pts: 5, stem: '일차함수 y=−½x+2에 대하여 다음 물음에 답하시오.', ptsNote: '문항지에 총점 표기 없음(소문항 합 5점)' },
   { no: 3, title: '서술형 3', pts: 7, stem: '두 점 (−3, 2), (1, −6)을 지나는 일차함수 y=ax+b에 대하여 다음 물음에 답하시오.' }
 ];
 var CMP_PARTS = [
-  { id: '0', g: 0, no: '예제', pts: 4, q: '일차방정식 0.2(x−2)=1의 해를 구하는 과정을 조건에 따라 서술하시오.',
+  { id: '0', g: 0, no: '예1', pts: 4, q: '일차방정식 0.2(x−2)=1의 해를 구하는 과정을 조건에 따라 서술하시오.',
     cond: [ '등식의 성질이나 이항을 이용하여 식을 바꾼 과정을 한 줄에 하나씩 쓸 것', '해는 x=(값)의 꼴로 쓸 것' ],
     old: { lines: [ ['① 소수를 정수로: 양변에 10을 곱하여 2(x−2)=10', 1], ['② 괄호 풀기: 2x−4=10', 1], ['③ 이항하여 정리: 2x=14', 1], ['④ 해 구하기: x=7', 1] ],
       post: '※ 과정 없이 답만 쓴 경우 1점' },
@@ -1939,6 +1942,47 @@ var CMP_PARTS = [
     decide: [ '2(x−2)=1에서 시작해 이후를 바르게 계산한 답안: 0점인가, 이월로 보아 점수를 주는가 (0점과 3점의 경계)',
               '과정 없이 x=7만 쓴 답안을 1점으로 둘지',
               '조건 ①(한 줄에 하나씩)을 지키지 않고 여러 단계를 한 줄에 쓴 답안을 감점하지 않는지 확인' ] },
+
+  { id: '0-2', g: 0, no: '예2', pts: 5, q: '연립방정식 {{0.3x+0.2y=1.3|[[x|2]]−[[y|4]]=1}} 의 해를 구하는 과정을 조건에 따라 서술하시오.',
+    cond: [ '대입법 또는 가감법 중 하나를 골라 한 미지수를 없애는 과정을 쓸 것', '해는 x=(값), y=(값)의 꼴로 쓸 것' ],
+    flags: [ { lvl: 'info', t: '문항 설계: 소수 계수 식(×10 → 3x+2y=13)과 분수 계수 식(×4 → 2x−y=4)을 하나씩 넣었습니다. 2x−y=4에서 y=2x−4로 바로 대입법을 쓸 수 있고, y의 계수가 2와 −1이라 2를 곱해 더하는 가감법도 자연스럽습니다. 해는 x=3, y=2입니다.' } ],
+    old: { lines: [ ['① 소수 계수를 정수로: 0.3x+0.2y=1.3의 양변에 10을 곱하여 3x+2y=13', 1],
+                    ['② 분수 계수를 정수로: [[x|2]]−[[y|4]]=1의 양변에 4를 곱하여 2x−y=4', 1],
+                    ['③ 한 미지수 소거: 7x=21 (가감법) 또는 3x+2(2x−4)=13 (대입법)', 1],
+                    ['④ x=3', 1], ['⑤ y=2', 1] ],
+      post: '※ 대입법, 가감법 모두 인정\n※ 과정 없이 답만 쓴 경우 1점' },
+    ai: [ { sub: '소수·분수가 있는 방정식 정리하기', pts: 2,
+        lv: { 2: '두 방정식을 모두 바르게 정리한 경우 (양변에 10, 4를 곱해 3x+2y=13, 2x−y=4로 고침. 20, 8 등 다른 수를 곱해도 인정하고, 소수·분수를 남긴 채 바르게 계산에 써도 인정)',
+              1: '두 방정식 중 하나만 바르게 정리한 경우',
+              0: '2점, 1점 기준을 모두 만족하지 못한 경우 (대표 오답: 3x+2y=1.3처럼 상수항에 10을 곱하지 않은 경우, 2x−y=1처럼 우변에 4를 곱하지 않은 경우, 정리 과정이 답안에 없는 경우)' },
+        ex: { 2: [ '0.3x+0.2y=1.3의 양변에 10을 곱하면 3x+2y=13\nx/2−y/4=1의 양변에 4를 곱하면 2x−y=4',
+                   '둘째 식에 4를 곱하면 2x−y=4이므로 y=2x−4\n이것을 첫째 식에 대입하면 0.3x+0.2(2x−4)=1.3 (소수를 남긴 채 풀이)' ],
+              1: [ '첫째 식×10: 3x+2y=13\n둘째 식×4: 2x−y=1', '3x+2y=1.3\n2x−y=4' ] } },
+      { sub: '연립방정식의 해 구하기', pts: 3,
+        lv: { 3: '대입법 또는 가감법으로 한 미지수를 없애는 과정을 쓰고 x=3, y=2를 모두 바르게 구한 경우 (앞 요소에서 잘못 정리한 식으로 바르게 풀어 구한 해도 인정: 이월)',
+              2: '한 미지수를 없애는 과정은 갖추었으나 실수가 1번 있어 해가 틀린 경우(실수한 뒤의 풀이가 그 값으로 옳으면 인정), 또는 x, y 중 하나만 구한 경우',
+              1: '한 미지수를 없앤 식(7x=21, 0.7x=2.1, 3x+2(2x−4)=13 등)까지만 바르게 쓴 경우, 또는 과정 없이 x=3, y=2만 쓴 경우',
+              0: '3점, 2점, 1점 기준을 모두 만족하지 못한 경우 (대표 오답: 두 식을 그대로 더해 5x+y=17처럼 어느 미지수도 없애지 못한 경우)' },
+        ex: { 3: [ '2x−y=4의 양변에 2를 곱하면 4x−2y=8\n3x+2y=13과 더하면 7x=21, x=3\nx=3을 2x−y=4에 대입하면 6−y=4, y=2',
+                   '2x−y=4에서 y=2x−4\n3x+2y=13에 대입하면 3x+2(2x−4)=13\n7x−8=13, 7x=21, x=3\ny=2×3−4=2' ],
+              2: [ '4x−2y=8과 3x+2y=13을 더하면 7x=21이므로 x=3',
+                   'y=2x−4를 대입하면 3x+2(2x−4)=13\n7x=13−8=5, x=5/7\ny=2×5/7−4=−18/7' ],
+              1: [ '2x−y=4에 2를 곱해 4x−2y=8, 3x+2y=13과 더하면 7x=21', 'x=3, y=2' ] } } ],
+    scoreTable: { cols: ['학생 답안', '기존 (단계별)', 'AI용 (정리 + 풀기)'], rows: [
+      [ '소수를 그대로 두고 0.3x+0.2(2x−4)=1.3으로 대입해 x=3, y=2', '① 단계가 답안에 없음 → 4점 또는 별해로 보아 5점', '2 + 3 = 5점' ],
+      [ '둘째 식을 2x−y=1로 잘못 정리한 뒤 그 식으로 바르게 풀어 x=15/7, y=23/7', '②는 0점, 이후를 이월로 보면 4점, 아니면 1점', '1 + 3 = 4점' ],
+      [ '가감법으로 x=3까지만 구함', '①②③④ → 4점', '2 + 2 = 4점' ],
+      [ '대입 후 7x=13−8로 이항 실수 → x=5/7, y=−18/7', '④는 0점, ⑤를 이월로 보면 4점, 아니면 3점', '2 + 2 = 4점' ],
+      [ 'x=3, y=2만 씀', '※ 규칙으로 1점', '0 + 1 = 1점' ] ] },
+    tacit: [ '세부 채점 요소를 ‘정리하기 2점 + 풀기 3점’으로 나누었다. 앞 요소에서 생긴 오류는 앞 요소에서 한 번만 반영하고, 뒤 요소는 그 식으로 바르게 풀었는지(이월)만 보면 된다.',
+             '소수·분수를 정수로 고치지 않고 그대로 풀어도 인정한다. 단계별 기준표의 ①은 이 풀이를 예상하지 못한다.',
+             '곱하는 수는 10과 4가 아니어도 된다(20, 8 등). 결과 식이 같은 해를 가지면 인정한다.',
+             '대입법과 가감법을 모두 인정한다고 적는 것만으로는 부족하다. 두 방법 각각의 예시답안을 3점 칸에 하나씩 둔다.',
+             '‘해를 하나만 구함’과 ‘실수로 해가 틀림’을 같은 2점 칸에 묶었다. 서로 다른 경우이므로 예시답안도 하나씩 둔다.' ],
+    decide: [ '예1(일차방정식)에서는 첫 변형의 등식의 성질 오류(2(x−2)=1)를 0점으로 봤다. 여기서는 정리 요소에서만 깎고 풀이는 이월로 인정한다. 두 예제의 기준을 어떻게 맞출지',
+              '조건 ②와 다르게 (3, 2)로 쓴 답을 인정할지',
+              '소수·분수를 남긴 채 푼 답에서 ‘정리하기’ 2점을 주는 근거를 무엇으로 볼지(바르게 계산에 쓴 식)',
+              '검산(구한 해를 처음 식에 대입해 확인)을 요구할지' ] },
 
   { id: '1-1', g: 1, no: '⑴', pts: 2, q: '미지수가 2개인 일차방정식 x+y−4=0을 만족하는 정수해를 순서쌍 형태로 2개 구하시오.',
     old: { note: '대입을 이용하여 해를 구하는 과정 포함되어야 점수 인정', lines: [
@@ -2094,11 +2138,12 @@ var CMP_KEY = 'aiEssayDemo.cmpDraft', cmpIdx = 0, cmpPractice = false, cmpDraft 
 function mfmt(s){
   return esc(s)
     .replace(/\{\{(.+?)\|(.+?)\}\}/g, function(_, a, b){ return '<span class="sys"><span>' + a + '</span><span>' + b + '</span></span>'; })
+    .replace(/\[\[(.+?)\|(.+?)\]\]/g, '<span class="fr"><span>$1</span><span>$2</span></span>')
     .replace(/(^|[^A-Za-z])ax(?![A-Za-z])/g, '$1<i class="v">a</i><i class="v">x</i>')
     .replace(/(^|[^A-Za-z])([xyab])(?![A-Za-z])/g, '$1<i class="v">$2</i>')
     .replace(/\n/g, '<br>');
 }
-function navq(p){ var t = p.q.replace(/\s*\{\{.+?\}\}\s*/g, '').replace(/\s+/g, ' '); return t.length > 24 ? t.slice(0, 24) + '…' : t; }
+function navq(p){ var t = p.q.replace(/\s*\{\{.+?\}\}\s*/g, '').replace(/\[\[(.+?)\|(.+?)\]\]/g, '$1/$2').replace(/\s+/g, ' '); return t.length > 24 ? t.slice(0, 24) + '…' : t; }
 function oldSum(p){ return p.old.lines.reduce(function(a, l){ return a + l[1]; }, 0); }
 function cmpTemplate(p){
   var out = [];
@@ -2123,7 +2168,7 @@ function renderCmpNav(){
   CMP_GROUPS.forEach(function(g){
     var ps = CMP_PARTS.filter(function(p){ return p.g === g.no; });
     var os = ps.reduce(function(a, p){ return a + oldSum(p); }, 0);
-    h += '<div class="cgrp"><div class="cgh"><b>' + esc(g.title) + '</b><span>' + g.pts + '점' + (os !== g.pts ? ' · <em>기준 합 ' + os + '점</em>' : '') + '</span></div>';
+    h += '<div class="cgrp"><div class="cgh"><b>' + esc(g.title) + '</b><span>' + (g.pts == null ? '연수용' : g.pts + '점' + (os !== g.pts ? ' · <em>기준 합 ' + os + '점</em>' : '')) + '</span></div>';
     ps.forEach(function(p){
       var i = CMP_PARTS.indexOf(p), bad = oldSum(p) !== p.pts;
       h += '<button class="cnb' + (i === cmpIdx ? ' on' : '') + '" data-ci="' + i + '"' + (i === cmpIdx ? ' aria-current="true"' : '') + '><span class="no">' + p.no + '</span><span class="tt">' + mfmt(navq(p)) + '</span><span class="bd">' +
