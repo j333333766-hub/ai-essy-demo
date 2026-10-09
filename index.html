@@ -448,6 +448,106 @@ body.touring .toast { bottom: auto; top: 16px; }
   .tours { grid-template-columns: minmax(0, 1fr); }
   #tourCard .tc-acts .hint { display: none; }
 }
+/* ===== 채점기준 비교 실습 ===== */
+.chead { max-width: 1400px; margin: 16px auto 0; padding-inline: 16px; display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 16px; align-items: stretch; }
+.chi { background: #fff; border: 1px solid #dfe2f3; border-radius: 16px; padding: 16px 18px; }
+.chi .eb { margin: 0 0 4px; color: var(--indigo); font-weight: 800; font-size: .82em; letter-spacing: .02em; }
+.chi h2 { margin: 0 0 10px; font-size: 1.12em; color: var(--navy); line-height: 1.5; }
+.ckeys { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; font-size: .9em; line-height: 1.6; color: var(--ink-2); }
+.ckeys b { color: var(--ink); margin-right: 6px; }
+.csum { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.cs-k { background: #fff; border: 1px solid #dfe2f3; border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; justify-content: center; }
+.cs-k b { font-size: 1.6em; color: var(--navy); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.cs-k:first-child b { color: var(--err); }
+.cs-k span { font-size: .8em; color: var(--ink-2); }
+.cgrid { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 16px; padding: 16px 16px 40px; max-width: 1400px; margin: 0 auto; align-items: start; }
+.cnav { position: sticky; top: 12px; display: flex; flex-direction: column; gap: 10px; }
+.cgh { display: flex; justify-content: space-between; align-items: baseline; font-size: .86em; margin: 0 2px 4px; }
+.cgh span { color: var(--ink-3); font-size: .92em; }
+.cgh em { color: var(--err); font-style: normal; font-weight: 700; }
+.cnb { width: 100%; display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 2px 6px; text-align: left; border: 1px solid transparent; background: transparent; border-radius: 10px; padding: 7px 8px; color: var(--ink); font-size: .84em; line-height: 1.45; }
+.cnb:hover { background: #f5f6ff; }
+.cnb.on { background: var(--lav); border-color: var(--lav-2); }
+.cnb .no { font-weight: 800; color: var(--indigo); }
+.cnb .bd { grid-column: 2; display: flex; gap: 4px; flex-wrap: wrap; }
+.cnb .bd:empty { display: none; }
+.cnb .b { font-style: normal; font-size: .82em; font-weight: 700; border-radius: 999px; padding: 0 7px; }
+.cnb .b.err { background: var(--err-soft); color: var(--err); }
+.cnb .b.gr { background: var(--warn-soft); color: var(--warn); }
+.cnb .b.ok { background: var(--ok-soft); color: var(--ok); }
+.cnb.cm { border-top: 1px dashed var(--line); border-radius: 0 0 10px 10px; padding-top: 10px; }
+.cnb.cm.on { border-radius: 10px; }
+.cmain { min-width: 0; }
+.cq { background: #fff; border: 1px solid #dfe2f3; border-radius: 16px; padding: 14px 16px; margin-bottom: 14px; }
+.cqh { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: .88em; color: var(--ink-2); }
+.cqh .stem { line-height: 1.7; }
+.qq { margin: 10px 0 8px; font-size: 1.06em; line-height: 1.7; }
+.qq b { color: var(--indigo); margin-right: 4px; }
+.qq .pt { color: var(--ink-3); font-size: .9em; }
+.cmeta { display: flex; gap: 6px; flex-wrap: wrap; }
+.cflag { margin-top: 8px; border-radius: 10px; padding: 8px 12px; font-size: .88em; line-height: 1.6; }
+.cflag.err { background: var(--err-soft); color: #8c2a19; }
+.cflag.warn { background: var(--warn-soft); color: #7a3810; }
+.sys { display: inline-flex; flex-direction: column; vertical-align: middle; border-left: 2px solid currentColor; border-radius: 8px 0 0 8px; padding: 0 4px 0 7px; line-height: 1.35; margin: 0 2px; }
+.ccols { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: 14px; margin-bottom: 14px; align-items: start; }
+.ccols.one { grid-template-columns: minmax(0, 1fr); }
+.ccol { border-radius: 16px; padding: 14px 16px; min-width: 0; }
+.ccol h3 { margin: 0 0 10px; font-size: .95em; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ccol .tag { font-size: .8em; font-weight: 800; border-radius: 6px; padding: 2px 8px; background: #e9e6da; color: #5b5541; }
+.ccol .tag.ai { background: var(--indigo); color: #fff; }
+.ccol .tag.ind { background: var(--navy); color: #fff; }
+.cold { background: var(--paper); border: 1px solid #e6e1c8; font-family: "Noto Serif KR", "Batang", serif; }
+.cold h3 { font-family: var(--font); }
+.onote { margin: 0 0 8px; font-size: .9em; color: #6d6447; line-height: 1.6; }
+.oline { margin: 0 0 8px; line-height: 1.75; }
+.oline .dots { color: var(--ink-3); }
+.ofoot { margin: 12px 0 0; padding-top: 8px; border-top: 1px dashed #d9d2b4; font-family: var(--font); font-size: .8em; color: var(--ink-3); }
+.cai { background: #fff; border: 1px solid var(--lav-2); box-shadow: 0 6px 18px rgba(75,79,214,.08); }
+.cel + .cel { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); }
+.celh { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: .9em; }
+.celh > span:first-child { color: var(--ink-3); font-size: .9em; }
+.cai .lvl { grid-template-columns: 52px minmax(0, 1fr); }
+.cai .lvl .sc { font-size: .88em; }
+.ld { margin: 6px 0 6px; line-height: 1.65; font-size: .93em; }
+.cex { background: #f6f7fd; border-left: 3px solid #b9bff2; border-radius: 0 8px 8px 0; padding: 6px 10px; margin-top: 5px; font-size: .9em; line-height: 1.65; }
+.cex .k { display: inline-block; font-size: .8em; font-weight: 800; color: var(--indigo); margin-right: 8px; }
+.cex.pic { border-left-color: #f0b07a; background: #fff8f1; }
+.cex.pic .k::after { content: " 그림"; color: var(--warn); }
+.cex.none { background: transparent; border-left-color: var(--line); color: var(--ink-3); }
+.cdraft { background: #fff; border: 2px dashed var(--lav-2); }
+.cdraft .dh { margin: 0 0 8px; font-size: .86em; color: var(--ink-2); line-height: 1.6; }
+.cdraft textarea { width: 100%; min-height: 300px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .92em; line-height: 1.7; resize: vertical; background: #fdfdff; }
+.cdraft .dacts { display: flex; gap: 6px; justify-content: flex-end; margin-top: 8px; }
+.cnotes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.cn { background: #fff; border: 1px solid #dfe2f3; border-radius: 16px; padding: 12px 16px; }
+.cn h4 { margin: 0 0 8px; font-size: .9em; color: var(--navy); }
+.cn ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; font-size: .88em; line-height: 1.65; color: var(--ink-2); }
+.cn.dec { background: #fffdf3; border-color: #eee4b8; }
+.cn.dec ul { list-style: none; padding-left: 0; }
+.cn.dec li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 6px; }
+.cbx { width: 14px; height: 14px; border: 1.5px solid #b9a95a; border-radius: 3px; margin-top: 4px; }
+.crules { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.crule { background: #fff; border: 1px solid #dfe2f3; border-radius: 14px; padding: 12px 14px; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 8px; }
+.crule .n { width: 26px; height: 26px; border-radius: 8px; background: var(--lav); color: var(--indigo); font-weight: 800; display: grid; place-items: center; }
+.crule b { display: block; margin-bottom: 4px; }
+.crule p { margin: 0; font-size: .88em; line-height: 1.65; color: var(--ink-2); }
+.cpn { display: flex; justify-content: space-between; margin-top: 16px; }
+.csrc { font-size: .78em; color: var(--ink-3); line-height: 1.6; margin: 14px 2px 0; }
+@media (max-width: 1100px) {
+  .chead { grid-template-columns: minmax(0, 1fr); }
+  .csum { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .ccols { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 820px) {
+  .cgrid { grid-template-columns: minmax(0, 1fr); }
+  .cnav { position: static; flex-direction: row; overflow-x: auto; gap: 12px; padding: 10px; }
+  .cgrp { flex: 0 0 auto; min-width: 200px; }
+  .cnb.cm { flex: 0 0 160px; border-top: 0; align-self: stretch; }
+  .cnotes, .crules { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .csum { grid-template-columns: 1fr 1fr; }
+}
 </style>
 </head>
 <body>
@@ -490,6 +590,7 @@ body.touring .toast { bottom: auto; top: 16px; }
       <div class="hlinks">
         <button id="lkGuide">연수 안내</button>
         <button id="lkParts">화면 구성 보기</button>
+        <button id="lkCmp">채점기준 비교 실습</button>
       </div>
     </div>
   </section>
@@ -620,6 +721,7 @@ body.touring .toast { bottom: auto; top: 16px; }
     <div class="acts">
       <button class="nbtn sm" id="tHome">← 처음 화면</button>
       <button class="nbtn sm" id="tData">문항 데이터 복사·붙여넣기</button>
+      <button class="nbtn sm" id="tCmp">채점기준 비교 실습</button>
       <button class="nbtn sm wht" id="tPreview">학생 화면 미리보기</button>
     </div>
   </div>
@@ -644,6 +746,38 @@ body.touring .toast { bottom: auto; top: 16px; }
       <div class="chk" id="chkList"></div>
       <p class="savehint">외부검토에서 반복된 지적(배점 합, 0점 진술, 예시답안 개수·형태, 조건 지시 등)을 기계적으로 확인합니다. 내용의 타당성은 협의로 판단하세요.</p>
     </aside>
+  </div>
+</div>
+
+<!-- ============ 채점기준 비교 실습 ============ -->
+<div class="tview cview" id="cmpView" hidden>
+  <div class="tbar">
+    <div class="brand"><span class="mk" aria-hidden="true">x</span>AI 논·서술형 평가 시연 <span class="who">연수 실습 · 채점기준 비교</span></div>
+    <div class="acts">
+      <button class="nbtn sm" id="cmpHome">← 처음 화면</button>
+      <button class="nbtn sm" id="cmpTeacher">교사 · 문항 편집</button>
+      <button class="nbtn sm wht" id="cmpMode" aria-pressed="false">AI용 칸 가리고 직접 써 보기</button>
+    </div>
+  </div>
+  <div class="chead">
+    <div class="chi">
+      <p class="eb">기존 서술형 채점기준 → AI용 채점기준표</p>
+      <h2>쪼개는 건 그대로, 조각마다 ‘몇 점짜리 답이 어떻게 생겼는지’를 보여 줍니다.</h2>
+      <ol class="ckeys">
+        <li><b>나누는 단위는 유지</b> 소문항, 필요하면 세부 채점 요소로 나눈 기존 구조를 그대로 씁니다.</li>
+        <li><b>점수 칸은 개수로 묶기</b> 1점짜리 세 줄은 ‘세 가지 중 몇 가지’로 3·2·1·0점 칸을 만듭니다. 조합마다 풀이를 따로 쓰지 않습니다.</li>
+        <li><b>머릿속 규칙을 글로</b> 인정 범위, 대표 오답, 이월 오류, 표기 형식을 칸 안에 쓰고 점수마다 학생 답안 예시를 2개씩 붙입니다.</li>
+      </ol>
+    </div>
+    <div class="csum" id="cmpSum" aria-label="자료에서 찾은 것"></div>
+  </div>
+  <div class="cgrid">
+    <nav class="tcard cnav" id="cmpNav" aria-label="소문항 목록"></nav>
+    <main class="cmain">
+      <div id="cmpMain"></div>
+      <div class="cpn"><button class="nbtn" id="cmpPrev">← 이전</button><button class="nbtn ind" id="cmpNext">다음 →</button></div>
+      <p class="csrc">자료: 2025학년도 수학과 1학기 서술형 평가 대비(2학년) 문항과 풀이과정. ‘AI용’ 칸은 연수 토론을 위한 제안이며 확정된 채점 기준이 아닙니다.</p>
+    </main>
   </div>
 </div>
 
@@ -701,7 +835,7 @@ body.touring .toast { bottom: auto; top: 16px; }
 </div>
 <!-- ============ 연수 도우미 ============ -->
 <div class="dock" id="guideDock">
-  <button class="dk-guide" id="openGuide" aria-expanded="false" aria-controls="gpanel"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="#fff" stroke-width="2"/><path d="M15.5 8.5l-2 5-5 2 2-5z" fill="#fff"/></svg>연수 가이드 <b id="mCount">0/5</b></button>
+  <button class="dk-guide" id="openGuide" aria-expanded="false" aria-controls="gpanel"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="#fff" stroke-width="2"/><path d="M15.5 8.5l-2 5-5 2 2-5z" fill="#fff"/></svg>연수 가이드 <b id="mCount">0/6</b></button>
   <div class="fs" role="group" aria-label="글자 크기">
     <button id="fsDown" aria-label="글자 작게">가−</button>
     <button id="fsVal" title="기본 크기(100%)로 되돌리기" aria-label="글자 크기 기본으로">100%</button>
@@ -717,7 +851,7 @@ body.touring .toast { bottom: auto; top: 16px; }
   <p class="gsub">화면을 차례로 짚어 주는 둘러보기와, 직접 해 보면 자동으로 체크되는 연수 활동이 있습니다.</p>
   <h4>화면 둘러보기</h4>
   <div class="tours">
-    <button class="tourbtn" data-tour="home"><b>처음 화면</b><span>2단계</span></button>
+    <button class="tourbtn" data-tour="home"><b>처음 화면</b><span>3단계</span></button>
     <button class="tourbtn" data-tour="student"><b>학생 화면</b><span>10단계</span></button>
     <button class="tourbtn" data-tour="teacher"><b>교사 화면</b><span>9단계</span></button>
   </div>
@@ -957,6 +1091,7 @@ function show(v){
   $('homeView').hidden = v !== 'home';
   $('examView').hidden = v !== 'student';
   $('teacherView').hidden = v !== 'teacher';
+  $('cmpView').hidden = v !== 'compare';
   window.scrollTo(0, 0);
 }
 
@@ -1287,6 +1422,7 @@ $('ttabs').addEventListener('click', function(e){
 });
 $('tPreview').addEventListener('click', function(){ enterStudent({ preview: tSet }); });
 $('tHome').addEventListener('click', function(){ show('home'); });
+$('tCmp').addEventListener('click', function(){ openCompare(); });
 
 function F(label, path, val, o){
   o = o || {};
@@ -1589,6 +1725,7 @@ $('goStudent').addEventListener('click', function(){ enterStudent(); });
 $('goTeacher').addEventListener('click', function(){ openTeacher(tSet, tTab); });
 $('lkGuide').addEventListener('click', function(){ $('intro').scrollIntoView({ behavior: 'smooth' }); });
 $('lkParts').addEventListener('click', function(){ enterStudent({ annot: true }); });
+$('lkCmp').addEventListener('click', function(){ openCompare(); });
 /* =========================================================
    글자 크기
    ========================================================= */
@@ -1630,7 +1767,9 @@ var MISSIONS = [
   { k: 'm4', t: '배점을 바꿔 경고 확인하기', d: '채점기준표에서 세부 채점 요소의 배점을 하나 바꿔 ‘배점 ≠ 채점기준 합’ 경고가 뜨는지 보고, 원래대로 되돌립니다.',
     done: function(){ return !!mflags.sumwarn; }, go: function(){ openTeacher(0, 'rubric'); } },
   { k: 'm5', t: '선택형 결론을 넣고 미리보기', d: '2-3 문항의 ‘선택형 결론’에 앞 문장 ‘행사를’, 선택지 ‘진행 / 취소’, 뒷 문장 ‘하는 것이 더 합리적이다.’를 넣고 학생 미리보기로 확인합니다. 채점이 쉬워지는 대신 무엇을 잃는지 토론해 보세요.',
-    done: function(){ return !!mflags.pickprev; }, go: function(){ openTeacher(1, 'items'); } }
+    done: function(){ return !!mflags.pickprev; }, go: function(){ openTeacher(1, 'items'); } },
+  { k: 'm6', t: '기존 채점기준을 AI용으로 바꿔 써 보기', d: '‘채점기준 비교 실습’에서 AI용 칸을 가리고, 2025 서술형 소문항 하나의 기존 기준(⋯[1점])을 점수별 수행 특성·대표 오답·예시답안으로 바꿔 씁니다. 다 쓰면 AI용 예시와 비교해 보세요.',
+    done: function(){ return !!mflags.cmpdraft; }, go: function(){ openCompare(0, true); } }
 ];
 var lastDone = null;
 function missionState(){ return MISSIONS.map(function(m){ try { return !!m.done(); } catch (e) { return false; } }); }
@@ -1664,6 +1803,7 @@ $('nudgeGo').addEventListener('click', function(){ $('nudge').hidden = true; lsS
 var TOURS = {
   home: { setup: function(){ show('home'); }, steps: [
     { sel: '.entry', t: '학생과 교사, 두 입구', b: '‘학생’은 실제 응시 화면에서 문제를 풀고, ‘교사’는 문항·조건·채점기준표·예시답안을 입력하고 학생 화면으로 미리 봅니다. 두 화면은 같은 문항 데이터를 씁니다.' },
+    { sel: '#lkCmp', t: '채점기준 비교 실습', b: '사람이 채점하던 기존 서술형 기준(⋯[1점])을 AI용 채점기준표로 바꾼 모습을 소문항별로 나란히 봅니다. AI용 칸을 가리고 직접 바꿔 써 보는 실습도 할 수 있습니다.' },
     { sel: '#guideDock', t: '연수 가이드와 글자 크기', b: '언제든 이 버튼으로 둘러보기와 연수 활동을 열 수 있습니다. 프로젝터로 보여 줄 때는 오른쪽 가+ 버튼으로 글자를 키우세요.' }
   ] },
   student: { setup: function(){ gotoItem(0, 2); }, steps: [
@@ -1753,12 +1893,285 @@ document.addEventListener('keydown', function(e){
   else if (e.key === 'ArrowLeft' && !e.altKey) { e.preventDefault(); $('tourPrev').click(); }
 });
 
+/* =========================================================
+   채점기준 비교 실습 (기존 사람 채점 기준 → AI용 기준표)
+   ========================================================= */
+var CMP_GROUPS = [
+  { no: 1, title: '서술형 1', pts: 8, stem: '연립방정식 {{x+y−4=0|x−3y=0}} 에 대하여 다음 물음에 답하시오.' },
+  { no: 2, title: '서술형 2', pts: 5, stem: '일차함수 y=−½x+2에 대하여 다음 물음에 답하시오.', ptsNote: '문항지에 총점 표기 없음(소문항 합 5점)' },
+  { no: 3, title: '서술형 3', pts: 7, stem: '두 점 (−3, 2), (1, −6)을 지나는 일차함수 y=ax+b에 대하여 다음 물음에 답하시오.' }
+];
+var CMP_PARTS = [
+  { id: '1-1', g: 1, no: '⑴', pts: 2, q: '미지수가 2개인 일차방정식 x+y−4=0을 만족하는 정수해를 순서쌍 형태로 2개 구하시오.',
+    old: { note: '대입을 이용하여 해를 구하는 과정 포함되어야 점수 인정', lines: [
+      ['ⅰ) x=0일 때, y−4=0, y=4이므로 (0, 4)를 해로 갖는다.', 1],
+      ['ⅱ) x=4일 때, 4+y−4=0, y=0이므로 (4, 0)을 해로 갖는다.', 1] ] },
+    ai: [ { sub: '정수해 구하기', pts: 2,
+      lv: { 2: 'x 또는 y에 정수를 대입하여 나머지 값을 구하는 과정을 쓰고, 서로 다른 정수해 2개를 순서쌍으로 바르게 구한 경우 (모든 정수해 인정: (0, 4), (4, 0), (1, 3), (2, 2), (3, 1), (−1, 5) 등)',
+            1: '대입 과정과 함께 정수해를 1개만 바르게 구한 경우, 또는 2개를 썼으나 그중 1개만 식을 만족하는 경우',
+            0: '2점, 1점 기준을 모두 만족하지 못한 경우 (대표 오답: 대입 과정 없이 순서쌍만 쓴 경우, (0.5, 3.5)처럼 정수가 아닌 해, 같은 해를 두 번 쓴 경우, 식을 만족하지 않는 순서쌍)' },
+      ex: { 2: [ 'x=0을 대입하면 0+y−4=0, y=4이므로 (0, 4)\nx=4를 대입하면 4+y−4=0, y=0이므로 (4, 0)',
+                 'x=1일 때 1+y−4=0이므로 y=3, 해는 (1, 3)이다. x=2일 때 2+y−4=0이므로 y=2, 해는 (2, 2)이다.' ],
+            1: [ 'x=0일 때 y−4=0, y=4이므로 (0, 4)이다. x=1일 때 1+y−4=0, y=2이므로 (1, 2)이다.',
+                 'y=0일 때 x−4=0, x=4이므로 해는 (4, 0)' ] } } ],
+    tacit: [ '정수해는 무수히 많다. 기존 풀이는 (0, 4), (4, 0) 한 가지 경로만 보여 주므로, AI용에는 ‘모든 정수해 인정’과 대표 예를 적는다.',
+             '‘대입 과정’의 범위: x(또는 y)에 값을 넣은 식이 한 줄이라도 보이면 인정한다.',
+             '기존의 ⅰ)·ⅱ) 각 1점이 AI용에서는 ‘2개 맞음 = 2점, 1개 맞음 = 1점’ 칸이 된다.' ],
+    decide: [ 'x=0, y=4처럼 순서쌍이 아닌 형태로 쓴 답을 인정할지 (발문은 ‘순서쌍 형태로’)',
+              '과정 없이 맞는 해 2개만 쓴 답: 기존대로 0점인가, 1점인가' ] },
+
+  { id: '1-2', g: 1, no: '⑵', pts: 2, q: '미지수가 2개인 일차방정식 x−3y=0을 만족하는 정수해를 순서쌍 형태로 2개 구하시오.',
+    old: { note: '대입을 이용하여 해를 구하는 과정 포함되어야 점수 인정', lines: [
+      ['ⅰ) x=0일 때, −3y=0, y=0이므로 (0, 0)을 해로 갖는다.', 1],
+      ['ⅱ) y=1일 때, x−3=0, x=3이므로 (3, 1)을 해로 갖는다.', 1] ] },
+    ai: [ { sub: '정수해 구하기', pts: 2,
+      lv: { 2: 'x 또는 y에 정수를 대입하여 나머지 값을 구하는 과정을 쓰고, 서로 다른 정수해 2개를 순서쌍으로 바르게 구한 경우 (모든 정수해 인정: (0, 0), (3, 1), (6, 2), (−3, −1) 등 x가 y의 3배인 정수 순서쌍)',
+            1: '대입 과정과 함께 정수해를 1개만 바르게 구한 경우, 또는 2개를 썼으나 그중 1개만 식을 만족하는 경우',
+            0: '2점, 1점 기준을 모두 만족하지 못한 경우 (대표 오답: (1, 3)처럼 x와 y를 바꿔 쓴 경우, x=1을 넣어 (1, 1/3)을 쓴 경우, 대입 과정 없이 순서쌍만 쓴 경우)' },
+      ex: { 2: [ 'x=0일 때 0−3y=0, y=0이므로 (0, 0)\ny=1일 때 x−3=0, x=3이므로 (3, 1)',
+                 'y=2를 대입하면 x−6=0, x=6이므로 (6, 2)이고, y=−1을 대입하면 x+3=0, x=−3이므로 (−3, −1)이다.' ],
+            1: [ 'y=1일 때 x−3=0, x=3이므로 (3, 1)이고, x=1일 때 1−3y=0, y=1/3이므로 (1, 1/3)이다.',
+                 'x=3을 대입하면 3−3y=0, y=1이므로 (1, 3), x=0을 대입하면 y=0이므로 (0, 0)' ] } } ],
+    tacit: [ 'x에 아무 정수나 넣으면 y가 분수가 된다. ‘정수가 아닌 해는 인정하지 않음’을 0점 칸에 적는다.',
+             '순서쌍 (x, y)의 순서를 바꾸면 오답이다. 가장 흔한 실수이므로 대표 오답으로 이름을 붙여 둔다.' ],
+    decide: [ 'y에 값을 넣는 방법(기존 ⅱ)과 x에 넣는 방법을 똑같이 인정하는지 확인' ] },
+
+  { id: '1-3', g: 1, no: '⑶', pts: 2, graph: true, q: '⑴, ⑵에서 구한 해를 이용하여 x+y−4=0, x−3y=0의 그래프를 각각 좌표평면 위에 직선으로 나타내시오.',
+    old: { note: '⑴, ⑵에서 구한 정수해를 좌표평면 위에 바르게 표시하고, 직선으로 바르게 연결해야 한다.', lines: [
+      ['⑴의 그래프를 바르게 나타내면', 1], ['⑵의 그래프를 바르게 나타내면', 1] ] },
+    ai: [ { sub: '두 일차방정식의 그래프 그리기', pts: 2,
+      lv: { 2: '두 일차방정식의 그래프를 모두 바르게 그린 경우 (각 직선이 ⑴, ⑵에서 구한 두 점을 지나고, 어느 식의 그래프인지 구별되게 표시)',
+            1: '두 그래프 중 하나만 바르게 그린 경우',
+            0: '2점, 1점 기준을 모두 만족하지 못한 경우 (대표 오답: 점만 찍고 잇지 않은 경우, 두 직선을 서로 바꿔 표시한 경우)' },
+      ex: { 2: [ '[그림] (0, 4)와 (4, 0)을 지나는 직선, (0, 0)과 (3, 1)을 지나는 직선을 그리고 각각 ①, ②라고 표시',
+                 '[그림] 두 직선을 좌표평면 끝까지 긋고 옆에 식 x+y−4=0, x−3y=0을 적음' ],
+            1: [ '[그림] x+y−4=0의 직선은 바르게 그렸으나 x−3y=0은 (0, 0)과 (1, 3)을 이어 그림',
+                 '[그림] x−3y=0의 직선만 그리고 x+y−4=0은 점만 찍음' ] } } ],
+    tacit: [ '‘바르게 나타내면’의 뜻: 점의 위치가 정확해야 하고, 직선으로 끝까지 그어야 하는가, 두 점 사이 선분이면 되는가?',
+             '두 직선 중 어느 것이 어느 식인지 표시해야 하는가?',
+             '⑴, ⑵에서 틀린 점으로 그린 경우(이월 오류)는 어떻게 하는가?',
+             '그림 답안의 예시답안은 그림으로 올려야 한다. 문장으로 묘사한 예시는 AI 학습 자료가 되기 어렵다.' ],
+    decide: [ '선분으로만 이은 답을 인정할지', '식 표시가 없는 답을 인정할지', '⑴, ⑵의 틀린 점을 바르게 찍어 이은 경우 이월 인정 여부', '그리기 문항을 AI 채점에 둘지, 교사 직접 채점으로 분리할지' ] },
+
+  { id: '1-4', g: 1, no: '⑷', pts: 2, q: '⑶의 그래프를 이용하여 연립방정식 {{x+y−4=0|x−3y=0}} 의 해를 구하시오.',
+    old: { lines: [ ['연립방정식의 해는 (3, 1)이다.', 1] ] },
+    flags: [ { lvl: 'err', t: '배점 불일치: 문항은 [2점]인데 기존 기준의 합은 1점입니다. 이대로면 서술형 1의 총점이 8점이 아니라 7점이 됩니다.' } ],
+    ai: [ { sub: '그래프로 연립방정식의 해 구하기', pts: 2, proposal: true,
+      lv: { 2: '두 그래프의 교점을 근거로 들어 연립방정식의 해 (3, 1)을 구한 경우 (x=3, y=1 표현 인정)',
+            1: '근거 없이 해 (3, 1) 또는 x=3, y=1만 쓴 경우, 또는 교점을 근거로 들었으나 좌표를 잘못 읽은 경우',
+            0: '2점, 1점 기준을 모두 만족하지 못한 경우 (대표 오답: 교점이 아닌 점(두 직선의 y절편 등)을 해로 쓴 경우)' },
+      ex: { 2: [ '두 직선이 만나는 점이 (3, 1)이므로 연립방정식의 해는 x=3, y=1이다.',
+                 '그래프에서 두 직선의 교점의 좌표가 (3, 1)이다. 따라서 해는 (3, 1)' ],
+            1: [ '해는 (3, 1)',
+                 '두 그래프가 만나는 점은 (1, 3)이므로 해는 x=1, y=3이다.' ] } } ],
+    tacit: [ '‘그래프를 이용하여’를 무엇으로 확인하는가? 사람은 그림을 보고 알지만, AI에게는 ‘교점’이라는 근거 문장이 필요하다.',
+             'x=3, y=1과 (3, 1)을 모두 인정한다(동치 표현).' ],
+    decide: [ '2점을 ‘근거 + 해’로 나눌지, 아니면 기존처럼 1점으로 두고 문항 배점을 [1점]으로 고칠지',
+              '그래프 대신 대입법·가감법으로 풀어 해를 구한 답의 점수 (발문은 ‘그래프를 이용하여’)' ] },
+
+  { id: '2-1', g: 2, no: '⑴', pts: 2, q: 'x절편, y절편을 구하시오.',
+    old: { note: '※ 순서쌍 형태로 쓴 건 인정하지 않는다.', lines: [ ['x절편: 4 (풀이과정 포함)', 1], ['y절편: 2', 1] ] },
+    flags: [ { lvl: 'warn', t: '발문에 없는 요구(x절편의 풀이 과정, 순서쌍 불인정)로 점수가 갈립니다. 학생이 알 수 없는 규칙은 AI도 근거로 삼기 어렵습니다.' } ],
+    ai: [ { sub: 'x절편 구하기', pts: 1,
+        lv: { 1: 'y=0을 대입하여 x의 값을 구하는 과정을 쓰고 x절편 4를 구한 경우',
+              0: '1점 기준을 만족하지 못한 경우 (대표 오답: 과정 없이 4만 쓴 경우, (4, 0)처럼 순서쌍으로 쓴 경우, −4, 기울기 −½을 x절편으로 쓴 경우)' },
+        ex: { 1: [ 'y=0을 대입하면 0=−½x+2, ½x=2, x=4이므로 x절편은 4이다.', '0=−½x+2에서 x=4, 따라서 x절편: 4' ] } },
+      { sub: 'y절편 구하기', pts: 1,
+        lv: { 1: 'y절편 2를 구한 경우 (풀이 과정은 요구하지 않음)',
+              0: '1점 기준을 만족하지 못한 경우 (대표 오답: (0, 2)처럼 순서쌍으로 쓴 경우, −½을 y절편으로 쓴 경우)' },
+        ex: { 1: [ 'y절편은 2이다.', 'x=0일 때 y=2이므로 y절편: 2' ] } } ],
+    tacit: [ 'x절편에만 풀이 과정을 요구한다. 그런데 발문에는 ‘과정’이라는 말이 없다.',
+             '순서쌍으로 쓰면 0점이라는 규칙도 학생에게 알리지 않은 감점 규칙이다.',
+             '이 소문항은 1점짜리 두 요소로 그대로 둔다. AI용이라고 반드시 하나로 묶을 필요는 없다.' ],
+    decide: [ 'x절편 과정 요구를 유지한다면 발문이나 조건에 ‘구하는 과정을 쓰시오’를 넣기',
+              'y절편에도 과정을 요구할지 (두 절편의 기준 통일)',
+              '순서쌍 불인정을 유지할지, 유지한다면 조건으로 알릴지' ] },
+
+  { id: '2-2', g: 2, no: '⑵', pts: 3, graph: true, q: 'x절편, y절편을 이용하여 일차함수의 그래프를 그리시오.',
+    old: { lines: [ ['(4, 0)을 바르게 나타낸 경우', 1], ['(0, 2)를 바르게 나타낸 경우', 1], ['그래프를 바르게 나타낸 경우', 1] ] },
+    ai: [ { sub: '절편을 이용하여 그래프 그리기', pts: 3,
+      lv: { 3: '세 요소(x절편을 나타내는 점 (4, 0), y절편을 나타내는 점 (0, 2), 두 점을 지나는 직선)를 모두 바르게 나타낸 경우',
+            2: '세 요소 중 두 가지만 바르게 나타낸 경우',
+            1: '세 요소 중 한 가지만 바르게 나타낸 경우',
+            0: '3점, 2점, 1점 기준을 모두 만족하지 못한 경우 (대표 오답: (−4, 0), (0, −2)처럼 부호를 바꿔 찍은 경우, (0, 4), (2, 0)처럼 x, y를 바꿔 찍은 경우)' },
+      ex: { 3: [ '[그림] (4, 0)과 (0, 2)에 점을 찍고 두 점을 지나는 직선을 좌표평면 끝까지 그림', '[그림] 두 점 옆에 (4, 0), (0, 2)라고 쓰고 직선을 그림' ],
+            2: [ '[그림] (4, 0), (0, 2)에 점만 찍고 직선을 긋지 않음', '[그림] (4, 0), (0, 2)를 찍고 두 점 사이만 선분으로 이음 (선분 불인정으로 협의한 경우)' ],
+            1: [ '[그림] (4, 0)만 바르게 찍고 (0, −2)를 찍은 뒤 직선은 긋지 않음', '[그림] (0, 2)에만 점을 찍음' ] } } ],
+    tacit: [ '1점짜리 세 줄을 ‘세 요소 중 몇 가지’로 묶으면 칸이 3·2·1·0점 네 개로 끝난다. 어느 요소가 맞았는지의 조합을 일일이 쓰지 않는다.',
+             '점 하나를 잘못 찍었지만 자기가 찍은 두 점을 지나는 직선을 그은 경우, ‘직선’ 요소를 인정하는가?',
+             '⑴에서 절편을 잘못 구한 학생이 그 값으로 바르게 그린 경우(이월 오류)는?' ],
+    decide: [ '틀린 점을 지나는 직선의 ‘직선’ 요소 인정 여부', '⑴에서 이어진 오류의 이월 인정 여부', '선분 인정 여부 (서술형 1⑶과 같은 기준으로)' ] },
+
+  { id: '3-1', g: 3, no: '⑴', pts: 3, graph: true, q: '두 점 (−3, 2), (1, −6)을 좌표평면 위에 나타내고, 두 점을 동시에 지나는 직선을 그리시오.',
+    old: { lines: [ ['(−3, 2)를 바르게 나타낸 경우', 1], ['(1, −6)을 바르게 나타낸 경우', 1], ['그래프를 바르게 나타낸 경우', 1] ] },
+    ai: [ { sub: '두 점을 지나는 직선 그리기', pts: 3,
+      lv: { 3: '세 요소(점 (−3, 2), 점 (1, −6), 두 점을 지나는 직선)를 모두 바르게 나타낸 경우',
+            2: '세 요소 중 두 가지만 바르게 나타낸 경우',
+            1: '세 요소 중 한 가지만 바르게 나타낸 경우',
+            0: '3점, 2점, 1점 기준을 모두 만족하지 못한 경우 (대표 오답: (2, −3), (−6, 1)처럼 x, y를 바꿔 찍은 경우, (3, 2)처럼 부호를 빠뜨린 경우)' },
+      ex: { 3: [ '[그림] (−3, 2)와 (1, −6)에 점을 찍고 두 점을 지나는 직선을 끝까지 그림', '[그림] 두 점에 좌표를 적고 직선을 그음' ],
+            2: [ '[그림] 두 점만 바르게 찍고 직선은 긋지 않음', '[그림] (−3, 2)와 (1, −6)을 찍고 두 점 사이만 선분으로 이음 (선분 불인정으로 협의한 경우)' ],
+            1: [ '[그림] (−3, 2)에만 바르게 점을 찍음', '[그림] (−3, 2)는 바르게 찍고, 다른 한 점은 (−6, 1)에 찍은 뒤 두 점을 이은 직선을 그음' ] } } ],
+    tacit: [ '서술형 2⑵와 구조가 같다. 같은 구조는 같은 문장 틀로 쓴다(세트 간 일관성).',
+             '음수 좌표의 부호 실수가 가장 흔하다. 대표 오답으로 적어 둔다.' ],
+    decide: [ '서술형 2⑵와 같은 기준(선분·이월)을 적용하는지 확인' ] },
+
+  { id: '3-2', g: 3, no: '⑵', pts: 3, q: '⑴의 그래프에서 x절편, y절편, 기울기를 찾아 쓰시오.',
+    old: { lines: [ ['x절편: −2', 1], ['y절편: −4', 1], ['기울기: −2', 1] ] },
+    ai: [ { sub: '절편과 기울기 찾기', pts: 3,
+      lv: { 3: 'x절편 −2, y절편 −4, 기울기 −2를 모두 바르게 쓴 경우',
+            2: '세 값 중 두 가지만 바르게 쓴 경우',
+            1: '세 값 중 한 가지만 바르게 쓴 경우',
+            0: '3점, 2점, 1점 기준을 모두 만족하지 못한 경우 (대표 오답: x절편과 y절편을 바꿔 쓴 경우, 기울기 2 또는 −½)' },
+      ex: { 3: [ 'x절편: −2, y절편: −4, 기울기: −2',
+                 '그래프가 x축과 (−2, 0)에서 만나므로 x절편은 −2, y축과 (0, −4)에서 만나므로 y절편은 −4이다. x가 4 증가할 때 y가 8 감소하므로 기울기는 −2이다.' ],
+            2: [ 'x절편: −2, y절편: −4, 기울기: 2', 'x절편: −2, y절편: −4, 기울기: −½' ],
+            1: [ 'x절편: −4, y절편: −2, 기울기: −2', 'x절편 2, y절편 −4, 기울기 8/4' ] } } ],
+    tacit: [ '1점짜리 세 줄을 ‘세 값 중 몇 개’로 묶었다. 예시답안은 서로 다른 조합(기울기만 틀림, 절편을 바꿔 씀 등)으로 고른다.',
+             '⑴의 그래프가 틀렸을 때 그 그래프에서 바르게 읽은 값을 인정하는가(이월)?',
+             '서술형 2⑴에서는 순서쌍을 인정하지 않았다. 여기서 x절편을 (−2, 0)으로 쓰면?' ],
+    decide: [ '−8/4처럼 약분하지 않은 기울기 인정 여부', '순서쌍으로 쓴 절편: 서술형 2⑴과 같은 기준 적용', '⑴ 그래프 오류의 이월 인정 여부' ] },
+
+  { id: '3-3', g: 3, no: '⑶', pts: 1, q: '일차함수식 y=ax+b를 구하시오.',
+    old: { pre: '일차함수 식은 y=−2x−4이다.', lines: [ ['일차함수 식을 y=ax+b 형태로 기술 & 기울기(a)를 바르게 나타낸 경우', 1], ['y절편(b)를 바르게 나타낸 경우', 1] ] },
+    flags: [ { lvl: 'err', t: '배점 불일치: 문항은 [1점]인데 기존 기준의 합은 2점입니다. 이대로면 서술형 3의 총점이 7점이 아니라 8점이 됩니다.' } ],
+    ai: [ { sub: '일차함수의 식 구하기', pts: 1, proposal: true,
+      lv: { 1: 'y=−2x−4를 구한 경우 (y=−4−2x 등 같은 식 인정)',
+            0: '1점 기준을 만족하지 못한 경우 (대표 오답: y=−2x+4, y=2x−4, a=−2, b=−4만 쓰고 식으로 나타내지 않은 경우)' },
+      ex: { 1: [ 'y=−2x−4', '기울기가 −2이고 y절편이 −4이므로 y=−2x−4이다.' ] } } ],
+    tacit: [ 'a=−2, b=−4처럼 값만 쓴 답은 ‘식’인가? 기존 기준의 ‘y=ax+b 형태로 기술’이 이 판단이었다.',
+             '⑵에서 틀린 값을 그대로 넣어 식을 쓴 경우(이월)는?' ],
+    decide: [ '문항 배점 1점에 맞춰 위처럼 한 칸으로 쓸지, 문항을 [2점]으로 바꾸고 ‘2점 = 기울기와 y절편이 모두 맞는 식, 1점 = 둘 중 하나만 맞는 식(예: y=−2x+4)’으로 쓸지',
+              '⑵ 오류의 이월 인정 여부' ] }
+];
+var CMP_COMMON = [
+  { t: '동치 표현을 미리 적는다', b: '(3, 1)과 x=3, y=1 / y=−2x−4와 y=−4−2x / −½, −1/2, −0.5. 사람은 보고 바로 인정하지만, 기준표에 없으면 AI와 채점교사 사이에 판단이 갈린다.' },
+  { t: '이월 오류를 칸마다 밝힌다', b: '서술형 1⑶·⑷, 2⑵, 3⑵·⑶은 모두 앞 소문항의 결과를 쓴다. 앞에서 틀린 값을 바르게 사용한 경우 다시 감점하지 않는지, 해당 칸 안에 적는다.' },
+  { t: '감점 규칙은 학생도 알게 한다', b: '‘순서쌍 불인정’, ‘x절편은 과정 포함’처럼 기존 기준표에만 있던 규칙은 발문이나 조건으로 옮긴다. AI는 조건을 근거로 충족 여부를 판단한다.' },
+  { t: '점수 칸은 ‘몇 개 맞았는지’로 묶는다', b: '1점짜리 요소 세 개를 하나로 묶으면 3·2·1·0점 네 칸이면 된다. ‘5점 풀이, 4점 풀이…’를 조합마다 따로 쓰지 않고, 예시답안에서 서로 다른 조합을 보여 준다.' },
+  { t: '그림 답안은 따로 생각한다', b: '그리기 입력은 AI 채점의 신뢰도가 낮고, 프레임워크도 그림 안에 정답을 넣는 유형을 권하지 않는다. 교사 직접 채점으로 분리하거나, 직선이 지나는 두 점처럼 글로 쓸 근거를 함께 요구한다.' },
+  { t: '예시답안은 점수마다 2개 이상', b: '채점기준 문장을 옮기지 않고 학생이 실제로 쓸 법한 답안으로 쓴다. 0점 칸은 비운다. 같은 점수라도 서로 다른 풀이 경로와 서로 다른 오류를 고른다.' }
+];
+var CMP_KEY = 'aiEssayDemo.cmpDraft', cmpIdx = 0, cmpPractice = false, cmpDraft = lsGet(CMP_KEY) || {}, cmpReveal = {};
+function mfmt(s){
+  return esc(s)
+    .replace(/\{\{(.+?)\|(.+?)\}\}/g, function(_, a, b){ return '<span class="sys"><span>' + a + '</span><span>' + b + '</span></span>'; })
+    .replace(/(^|[^A-Za-z])ax(?![A-Za-z])/g, '$1<i class="v">a</i><i class="v">x</i>')
+    .replace(/(^|[^A-Za-z])([xyab])(?![A-Za-z])/g, '$1<i class="v">$2</i>')
+    .replace(/\n/g, '<br>');
+}
+function navq(p){ var t = p.q.replace(/\s*\{\{.+?\}\}\s*/g, '').replace(/\s+/g, ' '); return t.length > 24 ? t.slice(0, 24) + '…' : t; }
+function oldSum(p){ return p.old.lines.reduce(function(a, l){ return a + l[1]; }, 0); }
+function cmpTemplate(p){
+  var out = [];
+  (p.ai.length > 1 ? p.ai : [{ sub: '', pts: p.pts }]).forEach(function(el){
+    if (el.sub) out.push('[' + el.sub + ' · ' + el.pts + '점]');
+    for (var s = el.pts; s >= 0; s--) {
+      out.push(s + '점: ' + (s === 0 ? '(위의 모든 점수 기준을 만족하지 못한 경우) 대표 오답:' : ''));
+      if (s > 0) out.push('  예시답안 ①: ', '  예시답안 ②: ');
+    }
+  });
+  return out.join('\n');
+}
+function cmpStats(){
+  var mis = CMP_PARTS.filter(function(p){ return oldSum(p) !== p.pts; }).length;
+  var gr = CMP_PARTS.filter(function(p){ return p.graph; }).length;
+  var dec = CMP_PARTS.reduce(function(a, p){ return a + p.decide.length; }, 0);
+  var tac = CMP_PARTS.reduce(function(a, p){ return a + p.tacit.length; }, 0);
+  return { mis: mis, gr: gr, dec: dec, tac: tac };
+}
+function renderCmpNav(){
+  var h = '';
+  CMP_GROUPS.forEach(function(g){
+    var ps = CMP_PARTS.filter(function(p){ return p.g === g.no; });
+    var os = ps.reduce(function(a, p){ return a + oldSum(p); }, 0);
+    h += '<div class="cgrp"><div class="cgh"><b>' + esc(g.title) + '</b><span>' + g.pts + '점' + (os !== g.pts ? ' · <em>기준 합 ' + os + '점</em>' : '') + '</span></div>';
+    ps.forEach(function(p){
+      var i = CMP_PARTS.indexOf(p), bad = oldSum(p) !== p.pts;
+      h += '<button class="cnb' + (i === cmpIdx ? ' on' : '') + '" data-ci="' + i + '"' + (i === cmpIdx ? ' aria-current="true"' : '') + '><span class="no">' + p.no + '</span><span class="tt">' + mfmt(navq(p)) + '</span><span class="bd">' +
+        (bad ? '<i class="b err">배점</i>' : '') + (p.graph ? '<i class="b gr">그림</i>' : '') + (cmpDraft[p.id] && cmpDraft[p.id].trim() !== cmpTemplate(p).trim() ? '<i class="b ok">초안</i>' : '') + '</span></button>';
+    });
+    h += '</div>';
+  });
+  h += '<button class="cnb cm' + (cmpIdx === CMP_PARTS.length ? ' on' : '') + '" data-ci="' + CMP_PARTS.length + '"><span class="no">★</span><span class="tt">공통 규칙 6가지</span></button>';
+  $('cmpNav').innerHTML = h;
+}
+function aiHtml(p){
+  return p.ai.map(function(el){
+    var h = '<div class="cel"><div class="celh"><span>세부 채점 요소</span><b>' + esc(el.sub) + '</b><span class="pill mute">' + el.pts + '점</span>' + (el.proposal ? '<span class="pill warn">제안 · 협의 필요</span>' : '') + '</div>';
+    for (var s = el.pts; s >= 0; s--) {
+      var ex = (el.ex && el.ex[s]) || [];
+      h += '<div class="lvl"><span class="sc' + (s === 0 ? ' z' : '') + '">' + s + '점</span><div><p class="ld">' + mfmt(el.lv[s] || '') + '</p>' +
+        (s === 0 ? '<div class="cex none">예시답안 칸은 비워 둡니다(－).</div>' : ex.map(function(t, k){ return '<div class="cex' + (/^\[그림\]/.test(t) ? ' pic' : '') + '"><span class="k">예시 ' + '①②③④'.charAt(k) + '</span>' + mfmt(t.replace(/^\[그림\]\s*/, '')) + '</div>'; }).join('')) + '</div></div>';
+    }
+    return h + '</div>';
+  }).join('');
+}
+function renderCmp(){
+  renderCmpNav();
+  var st = cmpStats();
+  $('cmpSum').innerHTML = '<div class="cs-k"><b>' + st.mis + '</b><span>배점 불일치</span></div><div class="cs-k"><b>' + st.gr + '</b><span>그림 답안 소문항</span></div><div class="cs-k"><b>' + st.tac + '</b><span>글로 꺼낸 규칙</span></div><div class="cs-k"><b>' + st.dec + '</b><span>협의로 정할 것</span></div>';
+  $('cmpMode').setAttribute('aria-pressed', cmpPractice ? 'true' : 'false');
+  $('cmpMode').textContent = cmpPractice ? '나란히 보기로 돌아가기' : 'AI용 칸 가리고 직접 써 보기';
+  var m = $('cmpMain');
+  if (cmpIdx === CMP_PARTS.length) {
+    m.innerHTML = '<div class="cq"><div class="cqh"><span class="pill mute">공통</span><b>AI용 기준표로 바꿀 때 모든 소문항에 쓰는 규칙</b></div></div><div class="crules">' +
+      CMP_COMMON.map(function(c, i){ return '<div class="crule"><span class="n">' + (i + 1) + '</span><div><b>' + esc(c.t) + '</b><p>' + mfmt(c.b) + '</p></div></div>'; }).join('') + '</div>';
+    $('cmpPrev').disabled = false; $('cmpNext').disabled = true; return;
+  }
+  var p = CMP_PARTS[cmpIdx], g = CMP_GROUPS[p.g - 1], os = oldSum(p);
+  var h = '<div class="cq"><div class="cqh"><span class="pill mute">' + esc(g.title) + '</span><span class="stem">' + mfmt(g.stem) + '</span></div>' +
+    '<p class="qq"><b>' + p.no + '</b> ' + mfmt(p.q) + ' <span class="pt">[' + p.pts + '점]</span></p>' +
+    '<div class="cmeta"><span class="pill ' + (os === p.pts ? 'ok' : 'err') + '">문항 배점 ' + p.pts + '점 · 기존 기준 합 ' + os + '점</span>' + (p.graph ? '<span class="pill warn">그림(그리기 입력) 답안</span>' : '') + '</div>' +
+    (p.flags || []).map(function(f){ return '<div class="cflag ' + f.lvl + '">' + mfmt(f.t) + '</div>'; }).join('') + '</div>';
+  var oldH = '<section class="ccol cold" aria-label="기존 채점 기준"><h3><span class="tag">기존</span>사람이 채점할 때의 풀이과정 기준</h3>' +
+    (p.old.note ? '<p class="onote">' + mfmt(p.old.note) + '</p>' : '') + (p.old.pre ? '<p class="oline">' + mfmt(p.old.pre) + '</p>' : '') +
+    p.old.lines.map(function(l){ return '<p class="oline">' + mfmt(l[0]) + ' <span class="dots">⋯</span> <b>[' + l[1] + '점]</b></p>'; }).join('') +
+    '<p class="ofoot">점수 칸 ' + p.old.lines.length + '줄 · 예시답안 없음 · 인정 범위와 오답은 채점자의 머릿속에</p></section>';
+  var draft = cmpDraft[p.id] != null ? cmpDraft[p.id] : cmpTemplate(p);
+  var draftH = '<section class="ccol cdraft" aria-label="직접 써 보기"><h3><span class="tag ind">실습</span>왼쪽 기준을 AI용으로 바꿔 써 보세요</h3>' +
+    '<p class="dh">점수마다 수행 특성을 쓰고, 학생이 실제로 쓸 법한 예시답안을 2개씩 붙입니다. 0점 칸에는 대표 오답을 적습니다. 이 브라우저에 자동 저장됩니다.</p>' +
+    '<textarea id="cmpTa" aria-label="AI용 채점기준 초안" spellcheck="false">' + esc(draft) + '</textarea>' +
+    '<div class="dacts"><button class="nbtn sm" id="cmpClr">틀로 되돌리기</button>' + (cmpReveal[p.id] ? '' : '<button class="nbtn sm ind" id="cmpShow">AI용 예시와 비교하기</button>') + '</div></section>';
+  var aiH = '<section class="ccol cai" aria-label="AI용 채점 기준"><h3><span class="tag ai">AI용</span>점수별 수행 특성과 예시답안</h3>' + aiHtml(p) + '</section>';
+  if (!cmpPractice) h += '<div class="ccols">' + oldH + aiH + '</div>';
+  else if (!cmpReveal[p.id]) h += '<div class="ccols">' + oldH + draftH + '</div>';
+  else h += '<div class="ccols">' + oldH + aiH + '</div><div class="ccols one">' + draftH + '</div>';
+  h += '<div class="cnotes"><section class="cn"><h4>AI용으로 바꾸며 글로 꺼낸 것</h4><ul>' + p.tacit.map(function(t){ return '<li>' + mfmt(t) + '</li>'; }).join('') + '</ul></section>' +
+    '<section class="cn dec"><h4>채점 협의로 미리 정할 것</h4><ul>' + p.decide.map(function(t){ return '<li><span class="cbx" aria-hidden="true"></span><span>' + mfmt(t) + '</span></li>'; }).join('') + '</ul></section></div>';
+  m.innerHTML = h;
+  $('cmpPrev').disabled = cmpIdx === 0; $('cmpNext').disabled = false;
+}
+function openCompare(i, practice){
+  if (i != null) cmpIdx = i;
+  if (practice != null) cmpPractice = practice;
+  show('compare'); renderCmp();
+}
+$('cmpNav').addEventListener('click', function(e){ var b = e.target.closest('.cnb'); if (!b) return; cmpIdx = +b.dataset.ci; renderCmp(); $('cmpMain').scrollIntoView({ block: 'start' }); });
+$('cmpPrev').addEventListener('click', function(){ if (cmpIdx > 0) { cmpIdx--; renderCmp(); } });
+$('cmpNext').addEventListener('click', function(){ if (cmpIdx < CMP_PARTS.length) { cmpIdx++; renderCmp(); } });
+$('cmpMode').addEventListener('click', function(){ cmpPractice = !cmpPractice; if (cmpIdx === CMP_PARTS.length) cmpIdx = 0; renderCmp(); });
+$('cmpHome').addEventListener('click', function(){ show('home'); });
+$('cmpTeacher').addEventListener('click', function(){ openTeacher(0, 'rubric'); });
+$('cmpMain').addEventListener('input', function(e){
+  if (e.target.id !== 'cmpTa') return;
+  var p = CMP_PARTS[cmpIdx]; cmpDraft[p.id] = e.target.value; lsSet(CMP_KEY, cmpDraft);
+  if (e.target.value.replace(/\s/g, '').length - cmpTemplate(p).replace(/\s/g, '').length >= 30) flag('cmpdraft');
+  renderCmpNav();
+});
+$('cmpMain').addEventListener('click', function(e){
+  var p = CMP_PARTS[cmpIdx];
+  if (e.target.id === 'cmpShow') { cmpReveal[p.id] = true; renderCmp(); }
+  else if (e.target.id === 'cmpClr') { delete cmpDraft[p.id]; lsSet(CMP_KEY, cmpDraft); renderCmp(); }
+});
+
 applyScale();
 refreshMissions();
 if (!lsGet('aiEssayDemo.seenGuide')) $('nudge').hidden = false;
 if (location.hash === '#student') enterStudent();
 else if (location.hash === '#teacher') openTeacher(0, 'items');
 else if (location.hash === '#guide') openGuide();
+else if (location.hash === '#compare') openCompare();
 })();
 </script>
 
