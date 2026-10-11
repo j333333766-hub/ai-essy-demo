@@ -58,6 +58,36 @@ i.v { font-family: "Times New Roman", serif; font-size: 1.08em; }
 .sheet { background: #fff; border-radius: 14px; width: min(560px, 100%); max-height: 86vh; overflow: auto; padding: 18px; box-shadow: 0 20px 50px rgba(0,0,0,.3); }
 .sheet h3 { margin: 0 0 12px; font-size: 1.05em; color: var(--navy); }
 .sheet .acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+/* ===== AI 채점(제출·결과) ===== */
+.subwho { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.subwho label { display: grid; gap: 4px; font-size: .82em; font-weight: 700; color: var(--ink-2); }
+.subwho input { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font-size: 1.1em; min-width: 0; }
+.subwho input:focus { border-color: var(--indigo); outline: none; box-shadow: 0 0 0 3px rgba(75,79,214,.15); }
+.subnote { margin: 10px 0 0; font-size: .8em; color: var(--ink-2); line-height: 1.6; }
+.sheet.grade { width: min(860px, 100%); }
+.gnotice { margin: 0 0 12px; padding: 8px 12px; border-radius: 10px; background: var(--warn-soft); color: var(--warn); font-size: .82em; font-weight: 700; line-height: 1.6; }
+.gwait { display: grid; justify-items: center; gap: 14px; padding: 34px 10px; text-align: center; line-height: 1.7; }
+.gspin { width: 44px; height: 44px; border-radius: 50%; border: 5px solid var(--lav-2); border-top-color: var(--indigo); animation: gspin 1s linear infinite; }
+@keyframes gspin { to { transform: rotate(360deg); } }
+.gtotal { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 0 0 12px; }
+.gtotal b { font-size: 1.9em; color: var(--indigo); font-variant-numeric: tabular-nums; }
+.gtotal span { color: var(--ink-2); font-size: .88em; }
+.gitem { border: 1px solid #dfe2f3; border-radius: 12px; padding: 12px; margin-top: 10px; }
+.gitem > h4 { margin: 0 0 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 1em; color: var(--navy); }
+.gitem > h4 .sc { margin-left: auto; font-size: 1.1em; color: var(--indigo); font-variant-numeric: tabular-nums; }
+.gel { width: 100%; border-collapse: collapse; font-size: .88em; }
+.gel th, .gel td { border-top: 1px solid #e6e8f4; padding: 7px 8px; text-align: left; vertical-align: top; line-height: 1.6; }
+.gel th { font-weight: 700; width: 30%; }
+.gel td.n { width: 64px; text-align: center; white-space: nowrap; font-weight: 800; color: var(--indigo); font-variant-numeric: tabular-nums; }
+.gel td.n.zero { color: var(--err); }
+.gel td.amb { background: var(--warn-soft); }
+.gfb { margin: 8px 0 0; padding: 8px 12px; border-radius: 10px; background: var(--lav); font-size: .88em; line-height: 1.7; }
+.gfb b { color: var(--indigo); margin-right: 6px; }
+.gans { margin-top: 8px; font-size: .84em; }
+.gans summary { cursor: pointer; font-weight: 700; color: var(--ink-2); }
+.gans pre { margin: 6px 0 0; white-space: pre-wrap; word-break: break-word; font-family: inherit; background: #f6f7fb; border-radius: 8px; padding: 8px 10px; line-height: 1.6; }
+.gans img { max-width: 100%; border: 1px solid var(--line); border-radius: 8px; margin-top: 6px; background: #fff; }
+@media (max-width: 560px) { .subwho { grid-template-columns: 1fr; } .gel th { width: 34%; } }
 .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: var(--navy); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: .88em; z-index: 60; box-shadow: 0 8px 20px rgba(0,0,0,.25); max-width: calc(100% - 32px); }
 .toast[hidden] { display: none; }
 
@@ -1065,7 +1095,20 @@ body.touring .toast { bottom: auto; top: 16px; }
     <h3 id="subTitle">답안 제출 확인</h3>
     <p id="subMsg" style="margin:0 0 10px;line-height:1.7"></p>
     <div class="qlist" id="subList"></div>
-    <div class="acts"><button class="nbtn" id="subBack">돌아가기</button><button class="nbtn pri" id="subOk">제출(시연)</button></div>
+    <div class="subwho">
+      <label>별명 (실명 대신) <input id="subNick" maxlength="20" autocomplete="off" placeholder="예: 3모둠 파랑"></label>
+      <label>접속 코드 <input id="subCode" maxlength="20" autocomplete="off" inputmode="numeric" placeholder="진행자가 알려 준 코드"></label>
+    </div>
+    <p class="subnote">제출하면 AI(Gemini)가 채점기준표에 따라 채점하고 결과를 바로 보여 줍니다. 별명·답안·채점 결과는 연수 진행자의 기록 시트에 쌓입니다. 실명이나 개인정보는 쓰지 마세요.</p>
+    <div class="acts"><button class="nbtn" id="subLast" hidden>지난 채점 결과</button><button class="nbtn" id="subBack">돌아가기</button><button class="nbtn pri" id="subOk">제출하고 AI 채점 받기</button></div>
+  </div>
+</div>
+<div class="ov" id="ovGrade" hidden>
+  <div class="sheet grade" role="dialog" aria-modal="true" aria-labelledby="grTitle">
+    <h3 id="grTitle">AI 채점 결과</h3>
+    <p class="gnotice">연수 시연용 AI 채점입니다. 실제 인천 AI 논·서술형 평가지원시스템의 채점 결과가 아니며, AI의 판단은 틀릴 수 있습니다.</p>
+    <div id="grBody" aria-live="polite"></div>
+    <div class="acts"><button class="nbtn" id="grRetry" hidden>다시 제출</button><button class="nbtn pri" id="grClose">닫기</button></div>
   </div>
 </div>
 <div class="ov" id="ovConfirm" hidden>
@@ -1445,7 +1488,7 @@ function render(){
   updateCount();
   $('frac').hidden = true;
   $('bPrev').disabled = cur === 0;
-  $('bNext').textContent = cur === Q.length - 1 ? (preview ? '미리보기 끝' : '답안 제출') : '다음 문제 >';
+  $('bNext').textContent = cur === Q.length - 1 ? (preview ? 'AI 채점 해 보기' : '답안 제출') : '다음 문제 >';
   refreshTabs();
 }
 function go(i){ saveDraw(); cur = Math.max(0, Math.min(Q.length - 1, i)); if (!Q[cur].practice && !preview) startTimer(); render(); closeOv(); }
@@ -1513,11 +1556,10 @@ window.addEventListener('resize', function(){ if (view === 'student' && !$('draw
 $('bPrev').addEventListener('click', function(){ go(cur - 1); });
 $('bNext').addEventListener('click', function(){
   if (cur < Q.length - 1) return go(cur + 1);
-  if (preview) { backToEditor(); return; }
   openSubmit();
 });
 document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') { closeOv(); $('frac').hidden = true; $('ovConfirm').hidden = true; $('ovData').hidden = true; }
+  if (e.key === 'Escape') { closeOv(); if (!grading) $('ovGrade').hidden = true; $('frac').hidden = true; $('ovConfirm').hidden = true; $('ovData').hidden = true; }
   if (view !== 'student') return;
   if (e.altKey && e.key === 'ArrowRight') { e.preventDefault(); if (cur < Q.length - 1) go(cur + 1); }
   if (e.altKey && e.key === 'ArrowLeft') { e.preventDefault(); if (cur > 0) go(cur - 1); }
@@ -1550,13 +1592,147 @@ function openSubmit(){
   var real = Q.filter(function(q){ return !q.practice; });
   var n = real.filter(hasAnswer).length;
   $('subMsg').textContent = '전체 ' + real.length + '문제 중 ' + n + '문제에 답안을 작성했습니다.' + (n < real.length ? ' 미작성 문제를 눌러 돌아갈 수 있습니다.' : '');
-  $('subList').innerHTML = rowsHTML(); $('ovSubmit').hidden = false; $('subBack').focus();
+  var who = lsGet(KEY_WHO) || {};
+  if (!$('subNick').value) $('subNick').value = who.nick || '';
+  if (!$('subCode').value) $('subCode').value = who.code || '';
+  $('subLast').hidden = !lastGrade || !!preview;
+  $('subList').innerHTML = rowsHTML(); $('ovSubmit').hidden = false; ($('subNick').value ? $('subOk') : $('subNick')).focus();
 }
 function closeOv(){ $('ovAll').hidden = true; $('ovSubmit').hidden = true; }
 $('btnAll').addEventListener('click', openAll);
 $('closeAll').addEventListener('click', closeOv);
 $('subBack').addEventListener('click', closeOv);
-$('subOk').addEventListener('click', function(){ closeOv(); persistAns(); toast('시연 화면이므로 답안은 제출되지 않습니다. 실제 시스템에서는 이 단계에서 AI 채점이 시작됩니다.'); });
+$('subOk').addEventListener('click', submitGrade);
+$('subLast').addEventListener('click', function(){ closeOv(); showGrade(lastGrade); });
+$('grClose').addEventListener('click', function(){ $('ovGrade').hidden = true; });
+$('grRetry').addEventListener('click', function(){ $('ovGrade').hidden = true; openSubmit(); });
+
+/* ===== AI 채점: 답안 + 채점기준표를 채점 서버(Apps Script)로 보내고 결과를 보여 준다 ===== */
+var GRADE_URL = 'https://script.google.com/macros/s/AKfycbwI2R8ynn-b2-pmgperAPoBDiXDzm_SDPCJ5dhhU01PboBGl7_mZUjT4-gN-6qZkPAe2w/exec';
+var KEY_WHO = 'aiEssayDemo.who', KEY_GRADE = 'aiEssayDemo.grade.v1';
+var lastGrade = lsGet(KEY_GRADE), grading = false;
+function matText(m){
+  var t = [m.label, m.title].filter(Boolean).join(' ');
+  if (m.type === 'text') t += '\n' + (m.body || '');
+  else if (m.type === 'table') t += '\n' + (m.rows || []).map(function(r){ return r.join(' | '); }).join('\n');
+  else if (m.type === 'dialogue') t += '\n' + (m.intro ? m.intro + '\n' : '') + (m.lines || []).map(function(l){ return l.who + ': ' + l.text; }).join('\n');
+  return t.trim();
+}
+function pickText(it, a){
+  return (it.picks || []).map(function(p, k){
+    var opts = String(p.opts || '').split('/').map(function(o){ return o.trim(); }).filter(Boolean), v = (a.picks || {})[k];
+    if (!opts.length || v == null || v === '') return '';
+    return (p.pre || '') + ' [' + (opts[+v] || '') + '] ' + (p.post || '');
+  }).filter(Boolean).join(' / ');
+}
+function isCustom(st, ii){
+  var d = null; DEFAULT_SETS.forEach(function(s){ if (s.id === st.id) d = s; });
+  var pick = function(it){ return it ? JSON.stringify([it.q, it.cond, it.pts, it.rubric, it.rubricNote]) : ''; };
+  return !d || pick(d.items[ii]) !== pick(st.items[ii]);
+}
+/* 그림 답안은 배경이 투명한 PNG라서, 흰 바탕의 JPEG로 바꿔 보낸다 */
+function drawForSend(url){
+  return new Promise(function(res){
+    if (!url) return res(null);
+    var im = new Image();
+    im.onload = function(){
+      try {
+        var k = Math.min(1, 1400 / Math.max(im.width, im.height)), c = document.createElement('canvas');
+        c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+        var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height);
+        res(c.toDataURL('image/jpeg', 0.8));
+      } catch (e) { res(null); }
+    };
+    im.onerror = function(){ res(null); };
+    im.src = url;
+  });
+}
+function gradePayload(){
+  var bySet = {}, order = [], jobs = [];
+  Q.forEach(function(q){
+    if (q.practice) return;
+    var st = sets[q.set], it = st.items[q.idx], a = ans(q);
+    if (!bySet[q.set]) {
+      bySet[q.set] = { title: (q.set + 1) + '번 ' + (st.info.nick || st.info.area || ''), grade: (st.info.school || '') + ' ' + (st.info.grade || '') + ' ' + (st.info.subject || ''),
+        context: [st.directive].concat(st.materials.filter(function(m){ return !m.place || m.place === 'common'; }).map(matText)).filter(Boolean).join('\n\n'), items: [] };
+      order.push(q.set);
+    }
+    var own = st.materials.filter(function(m){ return m.place === 'item:' + q.idx; }).map(matText).join('\n\n');
+    var row = { label: qLabel(q), q: it.q + (own ? '\n\n[이 문항의 제시자료]\n' + own : ''), cond: it.cond || [], pts: +it.pts || 0, rubric: it.rubric || [], rubricNote: it.rubricNote || '',
+      custom: isCustom(st, q.idx), answer: { text: a.text || '', picks: pickText(it, a), draw: null } };
+    bySet[q.set].items.push(row);
+    jobs.push(drawForSend(a.draw).then(function(d){ row.answer.draw = d; }));
+  });
+  return Promise.all(jobs).then(function(){ return order.map(function(si){ return bySet[si]; }); });
+}
+function gradeWait(msg){
+  $('grBody').innerHTML = '<div class="gwait"><div class="gspin" aria-hidden="true"></div><div><b>' + esc(msg) + '</b><br>보통 10~30초쯤 걸립니다. 창을 닫지 말고 기다려 주세요.</div></div>';
+  $('grRetry').hidden = true; $('grClose').disabled = true; $('ovGrade').hidden = false;
+}
+function gradeFail(msg){
+  $('grBody').innerHTML = '<div class="gwait"><div><b>채점 결과를 받지 못했습니다.</b><br>' + esc(msg) + '</div></div>';
+  $('grRetry').hidden = false; $('grClose').disabled = false;
+}
+function submitGrade(){
+  if (grading) return;
+  saveDraw();
+  var nick = $('subNick').value.trim(), code = $('subCode').value.trim();
+  if (!nick) { toast('별명을 적어 주세요. (실명 대신)'); $('subNick').focus(); return; }
+  if (!Q.some(function(q){ return !q.practice && hasAnswer(q); })) { toast('작성한 답안이 없습니다. 답안을 쓴 뒤 제출하세요.'); return; }
+  lsSet(KEY_WHO, { nick: nick, code: code });
+  closeOv(); persistAns();
+  grading = true; gradeWait('AI가 채점기준표에 따라 채점하고 있습니다…');
+  var sent, tm, isPrev = !!preview;
+  gradePayload().then(function(data){
+    sent = data;
+    /* text/plain으로 보내야 브라우저가 사전 확인 요청(preflight)을 하지 않아 Apps Script가 받는다 */
+    var ac = window.AbortController ? new AbortController() : null;
+    tm = setTimeout(function(){ if (ac) ac.abort(); }, 90000);
+    var body = JSON.stringify({ action: 'grade', code: code, nick: nick, preview: isPrev, sets: data }), again = false;
+    /* 구글 쪽에서 가끔 채점 결과 대신 오류 페이지를 돌려준다. 그때는 한 번만 다시 보낸다 */
+    var post = function(){
+      return fetch(GRADE_URL, { method: 'POST', signal: ac ? ac.signal : undefined, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body })
+        .then(function(r){ return r.text(); })
+        .then(function(t){ try { return JSON.parse(t); } catch (e) { if (again) throw e; again = true; return post(); } });
+    };
+    return post();
+  }).then(function(res){
+    grading = false; clearTimeout(tm);
+    if (!res.ok) { gradeFail(res.msg || '알 수 없는 오류입니다.'); return; }
+    var k = 0, g = { nick: nick, at: Date.now(), sec: res.sec, preview: isPrev, items: [] };
+    sent.forEach(function(st){ st.items.forEach(function(it){
+      var r = res.results[k++] || {};
+      g.items.push({ set: st.title, label: it.label, pts: it.pts, custom: it.custom, text: it.answer.text, picks: it.answer.picks, hasDraw: !!it.answer.draw,
+        score: r.score || 0, elements: r.elements || [], feedback: r.feedback || '', status: r.status || 'error' });
+    }); });
+    if (!isPrev) { lastGrade = g; lsSet(KEY_GRADE, g); }
+    flag('graded');
+    showGrade(g);
+  }).catch(function(e){
+    grading = false; clearTimeout(tm);
+    gradeFail(e && e.name === 'AbortError' ? '채점 서버의 응답이 90초 넘게 오지 않았습니다. 잠시 뒤 다시 제출해 보세요. 답안은 이 화면에 그대로 남아 있습니다.'
+      : '인터넷 연결을 확인한 뒤 다시 제출해 보세요. 답안은 이 화면에 그대로 남아 있습니다.');
+  });
+}
+function showGrade(g){
+  if (!g) return;
+  var got = 0, tot = 0, bad = 0;
+  g.items.forEach(function(it){ tot += it.pts; if (it.status === 'error') bad++; else got += it.score; });
+  var h = '<div class="gtotal"><b>' + got + ' / ' + tot + '점</b><span>' + esc(g.nick) + ' · ' + g.items.length + '문항' + (g.sec ? ' · 채점 ' + g.sec + '초' : '') + (g.preview ? ' · 교사 미리보기' : '') + '</span></div>';
+  if (bad) h += '<p class="gnotice">' + bad + '개 문항은 채점에 실패해 점수에서 빠졌습니다. ‘다시 제출’을 눌러 보세요.</p>';
+  h += g.items.map(function(it){
+    var s = '<div class="gitem"><h4><span class="qbadge">' + esc(it.label) + '</span>' + esc(it.set) + (it.custom ? ' <span class="pill warn">교사 편집 기준표</span>' : '') +
+      '<span class="sc">' + (it.status === 'error' ? '채점 실패' : it.score + ' / ' + it.pts + '점') + '</span></h4>';
+    if (it.status === 'ok' && it.elements.length) s += '<table class="gel"><tbody>' + it.elements.map(function(el){
+      return '<tr><th>' + esc(el.sub) + '</th><td class="n' + (el.score ? '' : ' zero') + '">' + el.score + ' / ' + el.pts + '</td><td' + (/기준표가 모호함/.test(el.reason) ? ' class="amb"' : '') + '>' + fmt(el.reason) + '</td></tr>';
+    }).join('') + '</tbody></table>';
+    if (it.feedback) s += '<p class="gfb"><b>' + (it.status === 'ok' ? '피드백' : '안내') + '</b>' + fmt(it.feedback) + '</p>';
+    if (it.status !== 'empty') s += '<details class="gans"><summary>내가 낸 답안 보기</summary><pre>' + esc((it.picks ? '[선택] ' + it.picks + '\n' : '') + (it.text || '(글 답안 없음)') + (it.hasDraw ? '\n(그림 답안도 함께 제출함)' : '')) + '</pre></details>';
+    return s + '</div>';
+  }).join('');
+  $('grBody').innerHTML = h;
+  $('grRetry').hidden = !bad; $('grClose').disabled = false; $('ovGrade').hidden = false; $('grClose').focus({ preventScroll: true }); $('grBody').parentNode.scrollTop = 0;
+}
 ['qlist', 'subList'].forEach(function(id){ $(id).addEventListener('click', function(e){ var b = e.target.closest('.qrow'); if (b) go(+b.dataset.i); }); });
 [$('ovAll'), $('ovSubmit')].forEach(function(o){ o.addEventListener('click', function(e){ if (e.target === o) closeOv(); }); });
 $('bSave').addEventListener('click', function(){
@@ -1610,7 +1786,7 @@ function enterStudent(opts){
   $('btnHome').hidden = !!preview;
   $('memo').hidden = true; $('tMemo').setAttribute('aria-pressed', 'false');
   if (preview) {
-    $('prevMsg').textContent = '교사 미리보기 · ' + setTitle(sets[preview.set], preview.set) + ' — 학생에게 보이는 그대로입니다. 답안은 저장되지 않습니다.';
+    $('prevMsg').textContent = '교사 미리보기 · ' + setTitle(sets[preview.set], preview.set) + ' — 학생에게 보이는 그대로입니다. 마지막 문제에서 ‘AI 채점 해 보기’를 누르면 지금 편집한 기준표로 채점합니다.';
     cur = 0; stopTimer(); remain = (+sets[preview.set].info.time || 0) * 60; drawClock();
     if (sets[preview.set].items.some(function(it){ return (it.picks || []).some(function(p){ return String(p.opts || '').trim(); }); })) flag('pickprev');
     Object.keys(answers).forEach(function(k){ if (k.indexOf('pv:') === 0) delete answers[k]; });
