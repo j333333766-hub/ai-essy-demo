@@ -87,6 +87,31 @@ i.v { font-family: "Times New Roman", serif; font-size: 1.08em; }
 .gans summary { cursor: pointer; font-weight: 700; color: var(--ink-2); }
 .gans pre { margin: 6px 0 0; white-space: pre-wrap; word-break: break-word; font-family: inherit; background: #f6f7fb; border-radius: 8px; padding: 8px 10px; line-height: 1.6; }
 .gans img { max-width: 100%; border: 1px solid var(--line); border-radius: 8px; margin-top: 6px; background: #fff; }
+.grub { margin: 8px 0 0; }
+.gbtn { border: 1px solid #cfd2f7; background: #fff; color: var(--indigo); border-radius: 8px; padding: 5px 12px; font-size: .84em; font-weight: 700; cursor: pointer; }
+.gbtn:hover, .gbtn[aria-pressed="true"] { background: var(--lav); }
+/* 채점기준표 비교 창: 결과 창 옆에 떠서 나란히 본다 */
+.rubwin { position: fixed; z-index: 55; right: 16px; top: 7vh; width: min(460px, calc(100% - 32px)); max-height: 86vh; display: flex; flex-direction: column; background: #fff; border: 1px solid #cfd2f7; border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
+.rubwin[hidden] { display: none; }
+.rubhead { display: flex; align-items: center; gap: 8px; padding: 10px 12px 10px 16px; border-bottom: 1px solid #e6e8f4; cursor: move; user-select: none; touch-action: none; }
+.rubhead b { color: var(--navy); margin-right: auto; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.rubbody { overflow: auto; padding: 12px 16px 16px; }
+.rubhint { margin: 0 0 10px; font-size: .8em; color: var(--ink-2); line-height: 1.6; }
+.rubel { margin-top: 12px; }
+.rubel h5 { margin: 0 0 4px; font-size: .92em; color: var(--navy); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.rubel h5 .pt { color: var(--ink-2); font-weight: 700; font-size: .9em; }
+.rubel h5 .pill { margin-left: auto; }
+.gel.rub td.n { color: var(--ink-2); }
+.gel.rub tr.on td { background: var(--lav); }
+.gel.rub tr.on td.n { color: var(--indigo); }
+.rubai { margin-top: 6px; padding: 6px 10px; border-radius: 8px; background: #fff; border: 1px solid #cfd2f7; }
+.rubai b { color: var(--indigo); margin-right: 6px; }
+.rubex { margin-top: 6px; }
+.rubex summary { cursor: pointer; font-weight: 700; color: var(--ink-2); }
+.rubex ol { margin: 4px 0 0; padding-left: 20px; }
+.rubnote { margin: 12px 0 0; font-size: .84em; color: var(--ink-2); line-height: 1.6; }
+@media (min-width: 1180px) { .ov.withrub { justify-items: start; } .ov.withrub .sheet.grade { width: min(860px, calc(100% - 476px)); } }
+@media (max-width: 1179px) { .ov.withrub { align-items: start; } .ov.withrub .sheet.grade { max-height: calc(44vh - 24px); } .rubwin { top: auto; bottom: 0; left: 0; right: 0; width: auto; max-height: 56vh; border-radius: 14px 14px 0 0; } .rubhead { cursor: default; } }
 @media (max-width: 560px) { .subwho { grid-template-columns: 1fr; } .gel th { width: 34%; } }
 .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: var(--navy); color: #fff; padding: 10px 16px; border-radius: 10px; font-size: .88em; z-index: 60; box-shadow: 0 8px 20px rgba(0,0,0,.25); max-width: calc(100% - 32px); }
 .toast[hidden] { display: none; }
@@ -1112,6 +1137,10 @@ body.touring .toast { bottom: auto; top: 16px; }
     <div class="acts"><button class="nbtn" id="grRetry" hidden>다시 제출</button><button class="nbtn pri" id="grClose">닫기</button></div>
   </div>
 </div>
+<div class="rubwin" id="rubWin" role="dialog" aria-labelledby="rubTitle" hidden>
+  <div class="rubhead" id="rubHead"><b id="rubTitle">채점기준표</b><button class="nbtn" id="rubClose">닫기</button></div>
+  <div class="rubbody" id="rubBody"></div>
+</div>
 <div class="ov" id="ovConfirm" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="cfTitle">
     <h3 id="cfTitle">확인</h3>
@@ -1561,7 +1590,7 @@ $('bNext').addEventListener('click', function(){
   openSubmit();
 });
 document.addEventListener('keydown', function(e){
-  if (e.key === 'Escape') { closeOv(); if (!grading) $('ovGrade').hidden = true; $('frac').hidden = true; $('ovConfirm').hidden = true; $('ovData').hidden = true; }
+  if (e.key === 'Escape') { closeOv(); if (!grading) { $('ovGrade').hidden = true; closeRub(); } $('frac').hidden = true; $('ovConfirm').hidden = true; $('ovData').hidden = true; }
   if (view !== 'student') return;
   if (e.altKey && e.key === 'ArrowRight') { e.preventDefault(); if (cur < Q.length - 1) go(cur + 1); }
   if (e.altKey && e.key === 'ArrowLeft') { e.preventDefault(); if (cur > 0) go(cur - 1); }
@@ -1614,8 +1643,8 @@ $('closeAll').addEventListener('click', closeOv);
 $('subBack').addEventListener('click', closeOv);
 $('subOk').addEventListener('click', submitGrade);
 $('subLast').addEventListener('click', function(){ closeOv(); showGrade(lastGrade); });
-$('grClose').addEventListener('click', function(){ $('ovGrade').hidden = true; });
-$('grRetry').addEventListener('click', function(){ $('ovGrade').hidden = true; openSubmit(gradeOnly); });
+$('grClose').addEventListener('click', function(){ $('ovGrade').hidden = true; closeRub(); });
+$('grRetry').addEventListener('click', function(){ $('ovGrade').hidden = true; closeRub(); openSubmit(gradeOnly); });
 $('bGrade').addEventListener('click', function(){
   saveDraw();
   if (Q[cur].practice) return;
@@ -1688,7 +1717,7 @@ function gradePayload(only){
 }
 function gradeWait(msg){
   $('grBody').innerHTML = '<div class="gwait"><div class="gspin" aria-hidden="true"></div><div><b>' + esc(msg) + '</b><br>보통 10~30초쯤 걸립니다. 창을 닫지 말고 기다려 주세요.</div></div>';
-  $('grRetry').hidden = true; $('grClose').disabled = true; $('ovGrade').hidden = false;
+  $('grRetry').hidden = true; $('grClose').disabled = true; $('ovGrade').hidden = false; closeRub();
 }
 function gradeFail(msg){
   $('grBody').innerHTML = '<div class="gwait"><div><b>채점 결과를 받지 못했습니다.</b><br>' + esc(msg) + '</div></div>';
@@ -1725,7 +1754,7 @@ function submitGrade(){
     sent.forEach(function(st){ st.items.forEach(function(it){
       if (it.skip) return;
       var r = res.results[k++] || {};
-      g.items.push({ set: st.title, label: it.label, pts: it.pts, custom: it.custom, text: it.answer.text, picks: it.answer.picks, hasDraw: !!it.answer.draw,
+      g.items.push({ set: st.title, label: it.label, pts: it.pts, custom: it.custom, rubric: it.rubric, rubricNote: it.rubricNote, text: it.answer.text, picks: it.answer.picks, hasDraw: !!it.answer.draw,
         score: r.score || 0, elements: r.elements || [], feedback: r.feedback || '', status: r.status || 'error' });
     }); });
     if (!isPrev && only == null) { lastGrade = g; lsSet(KEY_GRADE, g); }
@@ -1737,18 +1766,62 @@ function submitGrade(){
       : '인터넷 연결을 확인한 뒤 다시 제출해 보세요. 답안은 이 화면에 그대로 남아 있습니다.');
   });
 }
+var shownGrade = null;
+function closeRub(){
+  $('rubWin').hidden = true; $('ovGrade').classList.remove('withrub');
+  Array.prototype.forEach.call(document.querySelectorAll('#grBody .gbtn'), function(b){ b.setAttribute('aria-pressed', 'false'); });
+}
+/* 채점에 실제로 쓴 채점기준표를 결과 창 옆에 띄운다. AI가 준 점수에 해당하는 줄을 색으로 표시한다 */
+function showRubric(i){
+  var it = shownGrade && shownGrade.items[i]; if (!it || !it.rubric || !it.rubric.length) return;
+  var els = it.status === 'ok' && it.elements.length === it.rubric.length ? it.elements : null;
+  var h = '<p class="rubhint">AI가 채점할 때 받은 채점기준표입니다. 색이 칠해진 줄이 AI가 준 점수입니다. 내 판단과 같은지 견주어 보세요.</p>';
+  h += it.rubric.map(function(r, k){
+    var el = els ? els[k] : null, ex = r.ex || {};
+    return '<div class="rubel"><h5>' + esc(r.sub || '채점 요소 ' + (k + 1)) + '<span class="pt">' + (+r.pts || 0) + '점</span>' +
+      (el ? '<span class="pill ' + (el.score >= el.pts ? 'ok' : 'warn') + '">AI 채점 ' + el.score + ' / ' + el.pts + '</span>' : '') + '</h5><table class="gel rub"><tbody>' +
+      (r.levels || []).map(function(lv){
+        var on = el && +lv.s === +el.score, list = Array.isArray(ex[lv.s]) ? ex[lv.s].filter(Boolean) : [];
+        return '<tr' + (on ? ' class="on"' : '') + '><td class="n">' + esc(lv.s) + '점</td><td>' + fmt(lv.d) +
+          (on && el.reason ? '<div class="rubai"><b>AI의 채점 근거</b>' + fmt(el.reason) + '</div>' : '') +
+          (list.length ? '<details class="rubex"><summary>예시답안 ' + list.length + '개</summary><ol>' + list.map(function(x){ return '<li>' + fmt(x) + '</li>'; }).join('') + '</ol></details>' : '') + '</td></tr>';
+      }).join('') + '</tbody></table></div>';
+  }).join('');
+  if (it.rubricNote) h += '<p class="rubnote">' + fmt(it.rubricNote) + '</p>';
+  $('rubTitle').innerHTML = '<span class="qbadge">' + esc(it.label) + '</span>채점기준표' + (it.custom ? ' <span class="pill warn">교사 편집</span>' : '');
+  $('rubBody').innerHTML = h; $('rubBody').scrollTop = 0;
+  Array.prototype.forEach.call(document.querySelectorAll('#grBody .gbtn'), function(b){ b.setAttribute('aria-pressed', String(+b.dataset.rub === i)); });
+  $('rubWin').hidden = false; $('ovGrade').classList.add('withrub');
+}
+$('grBody').addEventListener('click', function(e){
+  var b = e.target.closest('.gbtn'); if (!b) return;
+  if (b.getAttribute('aria-pressed') === 'true') closeRub(); else showRubric(+b.dataset.rub);
+});
+$('rubClose').addEventListener('click', closeRub);
+/* 넓은 화면에서는 제목 줄을 끌어 창을 옮길 수 있다 */
+$('rubHead').addEventListener('pointerdown', function(e){
+  if (e.target.closest('button') || !window.matchMedia('(min-width: 1180px)').matches) return;
+  var w = $('rubWin'), r = w.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+  var move = function(ev){
+    w.style.left = Math.max(0, Math.min(window.innerWidth - 80, ev.clientX - dx)) + 'px'; w.style.top = Math.max(0, Math.min(window.innerHeight - 50, ev.clientY - dy)) + 'px'; w.style.right = 'auto';
+  };
+  var up = function(){ document.removeEventListener('pointermove', move); document.removeEventListener('pointerup', up); };
+  document.addEventListener('pointermove', move); document.addEventListener('pointerup', up); e.preventDefault();
+});
 function showGrade(g){
   if (!g) return;
+  shownGrade = g; closeRub();
   var got = 0, tot = 0, bad = 0;
   g.items.forEach(function(it){ tot += it.pts; if (it.status === 'error') bad++; else got += it.score; });
   var h = '<div class="gtotal"><b>' + got + ' / ' + tot + '점</b><span>' + esc(g.nick) + ' · ' + g.items.length + '문항' + (g.sec ? ' · 채점 ' + g.sec + '초' : '') + (g.preview ? ' · 교사 미리보기' : '') + '</span></div>';
   if (bad) h += '<p class="gnotice">' + bad + '개 문항은 채점에 실패해 점수에서 빠졌습니다. ‘다시 제출’을 눌러 보세요.</p>';
-  h += g.items.map(function(it){
+  h += g.items.map(function(it, gi){
     var s = '<div class="gitem"><h4><span class="qbadge">' + esc(it.label) + '</span>' + esc(it.set) + (it.custom ? ' <span class="pill warn">교사 편집 기준표</span>' : '') +
       '<span class="sc">' + (it.status === 'error' ? '채점 실패' : it.score + ' / ' + it.pts + '점') + '</span></h4>';
     if (it.status === 'ok' && it.elements.length) s += '<table class="gel"><tbody>' + it.elements.map(function(el){
       return '<tr><th>' + esc(el.sub) + '</th><td class="n' + (el.score ? '' : ' zero') + '">' + el.score + ' / ' + el.pts + '</td><td' + (/기준표가 모호함/.test(el.reason) ? ' class="amb"' : '') + '>' + fmt(el.reason) + '</td></tr>';
     }).join('') + '</tbody></table>';
+    if (it.rubric && it.rubric.length) s += '<p class="grub"><button type="button" class="gbtn" data-rub="' + gi + '" aria-pressed="false">채점기준표와 견주어 보기</button></p>';
     if (it.feedback) s += '<p class="gfb"><b>' + (it.status === 'ok' ? '피드백' : '안내') + '</b>' + fmt(it.feedback) + '</p>';
     if (it.status !== 'empty') s += '<details class="gans"><summary>내가 낸 답안 보기</summary><pre>' + esc((it.picks ? '[선택] ' + it.picks + '\n' : '') + (it.text || '(글 답안 없음)') + (it.hasDraw ? '\n(그림 답안도 함께 제출함)' : '')) + '</pre></details>';
     return s + '</div>';
