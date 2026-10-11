@@ -93,6 +93,39 @@ i.v { font-family: "Times New Roman", serif; font-size: 1.08em; }
 .gagain h5 { margin: 0 0 4px; font-size: .9em; color: var(--navy); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .gagain h5 .sc { color: var(--indigo); font-variant-numeric: tabular-nums; }
 .gel tr.diff th, .gel tr.diff td { background: var(--warn-soft); }
+.gcmp { margin-top: 10px; padding-top: 8px; border-top: 1px dashed #cfd2f7; }
+.gcmp h5 { margin: 0 0 6px; font-size: .92em; color: var(--navy); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.gcmp h5 .sc { margin-left: auto; color: var(--indigo); font-variant-numeric: tabular-nums; }
+.gel.cmp thead th { width: auto; font-size: .9em; color: var(--ink-2); background: #f6f7fb; border-top: 0; }
+.gel.cmp th:first-child { width: 22%; }
+.gel.cmp td { width: 39%; }
+.gel.cmp td b { display: inline-block; margin-right: 6px; color: var(--indigo); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gel.cmp td b.zero { color: var(--err); }
+.gel.cmp tr.diff th, .gel.cmp tr.diff td { background: var(--lav); }
+.gcmp .lg { margin: 6px 0 0; font-size: .8em; color: var(--ink-2); }
+.gcmp .lg i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin: 0 4px 0 10px; }
+.gcmp .lg i:first-child { margin-left: 0; }
+.gchg { margin-top: 8px; font-size: .86em; }
+.gchg summary { cursor: pointer; font-weight: 700; color: var(--ink-2); }
+.gchg .one { margin-top: 6px; padding: 8px 10px; border-radius: 8px; background: #f6f7fb; line-height: 1.6; }
+.gchg .one > b { color: var(--navy); }
+.gchg p { margin: 4px 0 0; }
+.gchg p span { display: inline-block; min-width: 64px; font-weight: 700; color: var(--ink-2); }
+.gchg p.af span { color: var(--indigo); }
+/* 채점 기준 바꿔 보기 안내 */
+.rtwrap { max-width: 1000px; margin: 0 auto; padding: 16px 16px 40px; display: grid; gap: 14px; }
+.rtwrap .pcard h4 { font-size: 1em; }
+.rtwrap .pcard p { margin: 0 0 8px; font-size: .92em; line-height: 1.7; }
+.rtacts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.rtex { display: grid; gap: 10px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.rtex > div { border: 1px solid #dfe2f3; border-radius: 12px; padding: 10px 12px; font-size: .88em; line-height: 1.65; min-width: 0; }
+.rtex h5 { margin: 0 0 6px; font-size: 1em; color: var(--indigo); }
+.rtex dl { margin: 0; display: grid; gap: 6px; }
+.rtex dt { font-weight: 700; color: var(--ink-2); font-size: .92em; }
+.rtex dd { margin: 0; }
+.rtex pre { margin: 0; white-space: pre-wrap; word-break: break-word; font-family: inherit; background: #f6f7fb; border-radius: 8px; padding: 6px 8px; }
+.rtex .res { background: var(--lav); border-radius: 8px; padding: 6px 8px; }
+@media (max-width: 860px) { .rtex { grid-template-columns: minmax(0, 1fr); } .gel.cmp th:first-child { width: 26%; } }
 .gagain-note { margin: 8px 0 0; font-size: .82em; color: var(--warn); font-weight: 700; line-height: 1.6; }
 .gbtn { border: 1px solid #cfd2f7; background: #fff; color: var(--indigo); border-radius: 8px; padding: 5px 12px; font-size: .84em; font-weight: 700; cursor: pointer; }
 .gbtn:hover, .gbtn[aria-pressed="true"] { background: var(--lav); }
@@ -850,6 +883,7 @@ body.touring .toast { bottom: auto; top: 16px; }
         <button id="lkParts">화면 구성 보기</button>
         <button id="lkProto">출제 프로토콜</button>
         <button id="lkCmp">채점기준 비교 실습</button>
+        <button id="lkRt">채점 기준 바꿔 보기</button>
         <button id="lkKdot">K-DOT 출제 매뉴얼</button>
       </div>
     </div>
@@ -985,6 +1019,7 @@ body.touring .toast { bottom: auto; top: 16px; }
       <button class="nbtn sm" id="tProto">출제 프로토콜</button>
       <button class="nbtn sm" id="tKdot">K-DOT 안내</button>
       <button class="nbtn sm" id="tCmp">채점기준 비교 실습</button>
+      <button class="nbtn sm" id="tRt">채점 기준 바꿔 보기 안내</button>
       <button class="nbtn sm wht" id="tPreview">학생 화면 미리보기</button>
     </div>
   </div>
@@ -1070,6 +1105,95 @@ body.touring .toast { bottom: auto; top: 16px; }
 </div>
 
 <!-- ============ 출제 프로토콜 ============ -->
+<div class="tview cview" id="rtView" hidden>
+  <div class="tbar">
+    <div class="brand"><span class="mk" aria-hidden="true">x</span>AI 논·서술형 평가 시연 <span class="who">연수 실습 · 채점 기준 바꿔 보기</span></div>
+    <div class="acts">
+      <button class="nbtn sm" id="rtHome">← 처음 화면</button>
+      <button class="nbtn sm" id="rtCmp">채점기준 비교 실습</button>
+      <button class="nbtn sm wht" id="rtTeacher">교사 · 채점기준표 편집</button>
+    </div>
+  </div>
+  <div class="chead" style="grid-template-columns:minmax(0,1fr);max-width:1000px">
+    <div class="chi">
+      <p class="eb">채점 기준 바꿔 보기</p>
+      <h2>채점기준표 문장을 바꾸면 AI 채점이 어떻게 달라지는지 직접 확인합니다</h2>
+      <p class="chow">AI는 채점할 때마다 <b>그 순간의 채점기준표</b>를 받아 그 문장대로 채점합니다. 그래서 문장 하나를 넣거나 빼면 같은 답안의 점수가 달라집니다. 교사 화면에서 기준표를 고치고, 미리보기에서 채점해, <b>고치기 전·후 결과를 나란히</b> 볼 수 있습니다.</p>
+    </div>
+  </div>
+  <div class="rtwrap">
+    <section class="pcard">
+      <h4>하는 순서</h4>
+      <ol>
+        <li><b>교사 화면 → 채점기준표 탭</b>에서 바꿔 보고 싶은 점수 칸의 문장을 고칩니다. (고친 내용은 자동 저장됩니다.)</li>
+        <li>위쪽의 <b>학생 화면 미리보기</b>를 누릅니다.</li>
+        <li>고친 문항으로 가서 답안을 적고 <b>이 문항 AI 채점</b>을 누릅니다. 처음 한 번만 별명과 접속 코드를 적습니다.</li>
+        <li>결과 창에서 문항 이름 옆에 <b>교사 편집 기준표</b> 표시가 붙었는지 확인합니다. 고친 기준표로 채점했다는 뜻입니다.</li>
+        <li><b>고치기 전(기본) 기준표로도 채점해 나란히 보기</b>를 누릅니다. 같은 답안을 처음 기준표로 한 번 더 채점해, 두 결과를 한 표에 나란히 보여 줍니다. 점수가 달라진 채점 요소는 색으로 표시되고, 표 아래에 <b>달라진 기준표 문장</b>이 고치기 전·후로 나옵니다.</li>
+        <li>더 바꿔 보려면 <b>편집으로 돌아가기</b>를 눌러 문장을 다시 고치고 3번부터 되풀이합니다. 미리보기는 답안을 저장하지 않으니, 답안을 다시 적어야 합니다.</li>
+      </ol>
+      <div class="rtacts"><button class="nbtn ind" id="rtGo1">1번 세트 채점기준표 열기</button><button class="nbtn" id="rtGo2">2번 세트 채점기준표 열기</button></div>
+    </section>
+    <section class="pcard">
+      <h4>해 볼 만한 실험 3가지 <small>(연수용 제안 · 2026. 10. 11.에 실제로 채점해 본 결과)</small></h4>
+      <div class="rtex">
+        <div>
+          <h5>실험 1 · 과정이 없어도 인정할까</h5>
+          <dl>
+            <dt>고칠 곳</dt><dd>1번 세트 1-1, <b>(나) 업체의 식 나타내기</b> 1점 칸 끝에 덧붙이기</dd>
+            <dt>덧붙일 문장</dt><dd><pre>최종 식이 정확하면 과정 설명이 없어도 인정.</pre></dd>
+            <dt>1-1에 적을 답안</dt><dd><pre>(가) 24x
+(나) 25x
+(다) 30x-60000</pre></dd>
+            <dt>결과</dt><dd class="res">(나)가 <b>0점 → 1점</b>. 고치기 전에는 “최종 식은 맞았지만 풀이 과정을 쓰지 않아”였던 근거가 “기준표에 따라 과정 설명이 없어도 인정”으로 바뀝니다. 고치지 않은 (가)는 그대로 0점입니다.</dd>
+          </dl>
+        </div>
+        <div>
+          <h5>실험 2 · 금액만 써도 인정할까</h5>
+          <dl>
+            <dt>고칠 곳</dt><dd>1번 세트 1-2, <b>세 업체의 지불 금액 구하기</b> 3점 칸 끝에 덧붙이기</dd>
+            <dt>덧붙일 문장</dt><dd><pre>대입 계산식 없이 세 금액만 정확히 써도 인정.</pre></dd>
+            <dt>1-2에 적을 답안</dt><dd><pre>(가) 360000원
+(나) 375000원
+(다) 390000원
+(가)가 제일 싸다.</pre></dd>
+            <dt>결과</dt><dd class="res">금액 구하기가 <b>0점 → 3점</b>(문항 1점 → 4점). 한 문장으로 3점이 움직입니다.</dd>
+          </dl>
+        </div>
+        <div>
+          <h5>실험 3 · 기준표에 안 적힌 것을 정해 주기</h5>
+          <dl>
+            <dt>고칠 곳</dt><dd>2번 세트 2-2, <b>확률 계산하기</b> 2점 칸 끝에 덧붙이기</dd>
+            <dt>덧붙일 문장</dt><dd><pre>단, 계산식이 드러나야 하며 값만 쓴 경우는 인정하지 않음.</pre></dd>
+            <dt>2-2에 적을 답안</dt><dd><pre>0.18, 0.82
+0.82가 더 크다.</pre></dd>
+            <dt>결과</dt><dd class="res">확률 계산하기가 <b>0점</b>으로 고정됩니다. 고치기 전 기준표에는 계산식이 필요한지 적혀 있지 않아, AI가 “기준표가 모호함”이라며 대부분 2점을 주지만 가끔 0점을 주기도 했습니다(18번 중 2번).</dd>
+          </dl>
+        </div>
+      </div>
+      <p style="margin-top:10px">AI 채점은 같은 답안이라도 매번 조금씩 다를 수 있습니다. 위 결과는 각각 4번 채점해 4번 모두 같았던 것입니다.</p>
+    </section>
+    <section class="pcard">
+      <h4>결과 창에서 눈여겨볼 것</h4>
+      <ul>
+        <li><b>교사 편집 기준표</b> 표시: 기본 기준표가 아니라 고친 기준표로 채점했다는 뜻입니다.</li>
+        <li><b>채점기준표와 견주어 보기</b>: AI가 실제로 받은 기준표가 옆 창에 뜨고, AI가 준 점수 줄에 색이 칠해집니다.</li>
+        <li><b>색이 칠해진 채점 근거</b>: AI가 “기준표가 모호함”이라고 밝힌 곳입니다. 문장을 더 분명히 써야 할 후보입니다.</li>
+        <li><b>같은 답안 다시 채점</b>: 기준표는 그대로 두고 한 번 더 채점합니다. 점수가 흔들리면 그 문장이 그 답안에 대해 분명하지 않다는 신호입니다.</li>
+      </ul>
+    </section>
+    <section class="pcard">
+      <h4>알아 둘 점</h4>
+      <ul>
+        <li>고친 기준표는 <b>이 브라우저에만</b> 저장되고, 이 브라우저의 학생 화면에도 그대로 쓰입니다. 다른 사람의 화면에는 영향이 없습니다.</li>
+        <li>원래대로 돌리려면 문장을 되돌리거나, 교사 화면 왼쪽의 <b>처음 상태로 되돌리기</b>를 누릅니다.</li>
+        <li>‘고치기 전’은 <b>처음에 들어 있던 기본 기준표</b>를 말합니다. 새로 만든 문항 세트에는 기본 기준표가 없어 나란히 보기 버튼이 나오지 않습니다.</li>
+        <li>미리보기에서 채점한 답안과 결과도 연수 진행자의 기록 시트에 ‘교사 미리보기’로 쌓입니다.</li>
+        <li>연수 시연용 채점입니다. 실제 인천 AI 논·서술형 평가지원시스템이 같은 문장에 같은 방식으로 반응한다는 뜻은 아닙니다.</li>
+      </ul>
+    </section>
+  </div>
+</div>
 <div class="tview cview" id="prView" hidden>
   <div class="tbar">
     <div class="brand"><span class="mk" aria-hidden="true">x</span>AI 논·서술형 평가 시연 <span class="who">연수 자료 · 문항 출제 프로토콜</span></div>
@@ -1427,6 +1551,7 @@ function show(v){
   $('cmpView').hidden = v !== 'compare';
   $('kdView').hidden = v !== 'kdot';
   $('prView').hidden = v !== 'proto';
+  $('rtView').hidden = v !== 'rubtry';
   window.scrollTo(0, 0);
 }
 
@@ -1716,6 +1841,7 @@ function gradePayload(only){
     var own = st.materials.filter(function(m){ return m.place === 'item:' + q.idx; }).map(matText).join('\n\n');
     var row = { label: qLabel(q), q: it.q + (own ? '\n\n[이 문항의 제시자료]\n' + own : ''), cond: it.cond || [], pts: +it.pts || 0, rubric: it.rubric || [], rubricNote: it.rubricNote || '',
       custom: isCustom(st, q.idx), answer: { text: a.text || '', picks: pickText(it, a), draw: null } };
+    Object.defineProperty(row, 'at', { value: { si: q.set, ii: q.idx }, enumerable: false });
     /* 한 문항만 채점할 때, 앞 문항은 채점하지 않고 답안만 참고용으로 보낸다(이월 오류 판단용) */
     if (one && q.idx < one.idx) { row = { label: row.label, skip: true, answer: { text: row.answer.text, picks: row.answer.picks, draw: null } }; bySet[q.set].items.push(row); return; }
     bySet[q.set].items.push(row);
@@ -1811,6 +1937,7 @@ function showRubric(i){
 $('grBody').addEventListener('click', function(e){
   var b = e.target.closest('.gbtn'); if (!b || b.disabled) return;
   if (b.dataset.again != null) return regrade(+b.dataset.again, b);
+  if (b.dataset.base != null) return regrade(+b.dataset.base, b, true);
   if (b.getAttribute('aria-pressed') === 'true') closeRub(); else showRubric(+b.dataset.rub);
 });
 $('rubClose').addEventListener('click', closeRub);
@@ -1834,7 +1961,8 @@ function exampleGrade(){
 function gradeItemHtml(g, it, gi){
   var s = '<div class="gitem" data-gi="' + gi + '"><h4><span class="qbadge">' + esc(it.label) + '</span>' + esc(it.set) + (it.custom ? ' <span class="pill warn">교사 편집 기준표</span>' : '') +
     '<span class="sc">' + (it.status === 'error' ? '채점 실패' : it.score + ' / ' + it.pts + '점') + '</span></h4>';
-  if (it.status === 'ok' && it.elements.length) s += '<table class="gel"><tbody>' + it.elements.map(function(el){
+  var base = it.base, side = base && base.elements.length === it.elements.length;
+  if (it.status === 'ok' && it.elements.length && !side) s += '<table class="gel"><tbody>' + it.elements.map(function(el){
     return '<tr><th>' + esc(el.sub) + '</th><td class="n' + (el.score ? '' : ' zero') + '">' + el.score + ' / ' + el.pts + '</td><td' + (/기준표가 모호함/.test(el.reason) ? ' class="amb"' : '') + '>' + fmt(el.reason) + '</td></tr>';
   }).join('') + '</tbody></table>';
   var again = it.again || [], moved = false;
@@ -1846,29 +1974,69 @@ function gradeItemHtml(g, it, gi){
         return '<tr' + (isDiff(el, k) ? ' class="diff"' : '') + '><th>' + esc(el.sub) + '</th><td class="n' + (el.score ? '' : ' zero') + '">' + el.score + ' / ' + el.pts + '</td><td>' + fmt(el.reason) + '</td></tr>';
       }).join('') + '</tbody></table></div>';
   });
+  if (base) s += baseHtml(it, side);
   if (moved) s += '<p class="gagain-note">같은 답안, 같은 채점기준표인데 점수가 달라졌습니다. 색이 칠해진 요소의 기준표 문장이 이 답안에 대해 분명한지 살펴보세요.</p>';
   var btns = '';
   if (it.rubric && it.rubric.length) btns += '<button type="button" class="gbtn" data-rub="' + gi + '" aria-pressed="false">채점기준표와 견주어 보기</button>';
   if (it.status === 'ok' && g.sent && g.sent[gi]) btns += again.length < 3 ? '<button type="button" class="gbtn" data-again="' + gi + '">같은 답안 다시 채점</button>' : '<button type="button" class="gbtn" disabled>다시 채점은 3회까지</button>';
+  if (g.preview && it.custom && it.status === 'ok' && !base && g.sent && g.sent[gi] && baseRow(g.sent[gi])) btns += '<button type="button" class="gbtn" data-base="' + gi + '">고치기 전(기본) 기준표로도 채점해 나란히 보기</button>';
   if (btns) s += '<p class="grub">' + btns + '</p>';
   if (it.feedback) s += '<p class="gfb"><b>' + (it.status === 'ok' ? '피드백' : '안내') + '</b>' + fmt(it.feedback) + '</p>';
   if (it.status !== 'empty') s += '<details class="gans"' + (g.example ? ' open' : '') + '><summary>' + (g.example ? '예시 답안' : '내가 낸 답안 보기') + '</summary><pre>' + esc((it.picks ? '[선택] ' + it.picks + '\n' : '') + (it.text || '(글 답안 없음)') + (it.hasDraw ? '\n(그림 답안도 함께 제출함)' : '')) + '</pre></details>';
   return s + '</div>';
 }
+/* 교사가 고치기 전의 기본 문항·기준표로 바꾼 전송 줄(답안은 그대로) */
+function baseRow(sv){
+  var at = sv.row.at, st = at && sets[at.si], d = null;
+  if (!st) return null;
+  DEFAULT_SETS.forEach(function(x){ if (x.id === st.id) d = x; });
+  var it = d && d.items[at.ii]; if (!it) return null;
+  var own = d.materials.filter(function(m){ return m.place === 'item:' + at.ii; }).map(matText).join('\n\n');
+  return { label: sv.row.label, q: it.q + (own ? '\n\n[이 문항의 제시자료]\n' + own : ''), cond: it.cond || [], pts: +it.pts || 0, rubric: it.rubric || [], rubricNote: it.rubricNote || '', custom: false, answer: sv.row.answer };
+}
+/* 고친 기준표 결과와 기본 기준표 결과를 나란히 */
+function baseHtml(it, side){
+  var b = it.base, cell = function(el){ return '<b' + (el.score ? '' : ' class="zero"') + '>' + el.score + ' / ' + el.pts + '</b>' + fmt(el.reason); };
+  var s = '<div class="gcmp"><h5>고치기 전·후 나란히 보기<span class="sc">고친 기준표 ' + it.score + ' / ' + it.pts + '점 · 기본 기준표 ' + b.score + ' / ' + b.pts + '점</span></h5>';
+  if (side) s += '<table class="gel cmp"><thead><tr><th>채점 요소</th><th>고친 기준표 (지금)</th><th>기본 기준표 (고치기 전)</th></tr></thead><tbody>' + it.elements.map(function(el, k){
+    var o = b.elements[k];
+    return '<tr' + (el.score !== o.score ? ' class="diff"' : '') + '><th>' + esc(el.sub) + '</th><td' + (/기준표가 모호함/.test(el.reason) ? ' class="amb"' : '') + '>' + cell(el) + '</td><td' + (/기준표가 모호함/.test(o.reason) ? ' class="amb"' : '') + '>' + cell(o) + '</td></tr>';
+  }).join('') + '</tbody></table><p class="lg"><i style="background:var(--lav)"></i>점수가 달라진 채점 요소<i style="background:var(--warn-soft)"></i>AI가 기준표가 모호하다고 밝힌 칸</p>';
+  else s += '<p class="rubhint">채점 요소의 개수가 달라 나란히 놓지 못했습니다. 아래는 기본 기준표로 채점한 결과입니다.</p><table class="gel"><tbody>' + b.elements.map(function(el){
+    return '<tr><th>' + esc(el.sub) + '</th><td class="n' + (el.score ? '' : ' zero') + '">' + el.score + ' / ' + el.pts + '</td><td>' + fmt(el.reason) + '</td></tr>';
+  }).join('') + '</tbody></table>';
+  var ch = [];
+  (it.rubric || []).forEach(function(r, k){
+    var o = (b.rubric || [])[k];
+    if (!o) { ch.push({ t: (r.sub || '채점 요소 ' + (k + 1)), before: '(없던 채점 요소)', after: (r.levels || []).map(function(l){ return l.s + '점: ' + l.d; }).join('\n') }); return; }
+    (r.levels || []).forEach(function(lv){
+      var ol = (o.levels || []).filter(function(x){ return +x.s === +lv.s; })[0];
+      if (!ol || ol.d !== lv.d) ch.push({ t: (r.sub || '채점 요소 ' + (k + 1)) + ' · ' + lv.s + '점 칸', before: ol ? ol.d : '(없던 점수 칸)', after: lv.d });
+    });
+  });
+  if ((it.rubricNote || '') !== (b.rubricNote || '')) ch.push({ t: '채점기준표 아래 안내', before: b.rubricNote || '(없음)', after: it.rubricNote || '(없음)' });
+  if (ch.length) s += '<details class="gchg" open><summary>달라진 기준표 문장 ' + ch.length + '곳</summary>' + ch.map(function(c){
+    return '<div class="one"><b>' + esc(c.t) + '</b><p class="bf"><span>고치기 전</span>' + fmt(c.before) + '</p><p class="af"><span>고친 뒤</span>' + fmt(c.after) + '</p></div>';
+  }).join('') + '</details>';
+  else s += '<p class="rubhint">채점기준표의 점수 칸 문장은 같고, 발문·조건·배점 가운데 달라진 것이 있습니다.</p>';
+  return s + '</div>';
+}
 /* 같은 답안·같은 기준표로 한 번 더 채점해, 처음 결과와 나란히 보여 준다 */
 var regrading = false;
-function regrade(gi, btn){
+function regrade(gi, btn, useBase){
   var g = shownGrade, it = g && g.items[gi], sv = g && g.sent && g.sent[gi];
   if (!it || !sv || regrading || grading) return;
+  var row = useBase ? baseRow(sv) : sv.row; if (!row) return;
   var who = lsGet(KEY_WHO) || {}, ac = window.AbortController ? new AbortController() : null, tm = setTimeout(function(){ if (ac) ac.abort(); }, 90000);
   var redraw = function(){ if (shownGrade !== g) return; var n = document.querySelector('#grBody .gitem[data-gi="' + gi + '"]'); if (n) n.outerHTML = gradeItemHtml(g, it, gi); if (!$('rubWin').hidden) closeRub(); };
   var fail = function(msg){ regrading = false; clearTimeout(tm); toast(msg || '다시 채점하지 못했습니다. 잠시 뒤 다시 눌러 보세요.'); redraw(); };
-  regrading = true; btn.disabled = true; btn.textContent = '다시 채점하는 중…';
-  gradePost({ action: 'grade', code: who.code || '', nick: g.nick, preview: !!g.preview, sets: [{ title: sv.set.title, grade: sv.set.grade, context: sv.set.context, items: sv.prev.concat([sv.row]) }] }, ac).then(function(res){
+  regrading = true; btn.disabled = true; btn.textContent = useBase ? '기본 기준표로 채점하는 중…' : '다시 채점하는 중…';
+  gradePost({ action: 'grade', code: who.code || '', nick: g.nick, preview: !!g.preview, sets: [{ title: sv.set.title, grade: sv.set.grade, context: sv.set.context, items: sv.prev.concat([row]) }] }, ac).then(function(res){
     var r = res.ok && res.results && res.results[0];
     if (!r || r.status !== 'ok') return fail(res.ok ? '' : res.msg);
     regrading = false; clearTimeout(tm);
-    (it.again = it.again || []).push({ score: r.score || 0, elements: r.elements || [] });
+    if (useBase) { it.base = { score: r.score || 0, pts: row.pts, elements: r.elements || [], rubric: row.rubric, rubricNote: row.rubricNote }; flag('rubcompared'); }
+    else (it.again = it.again || []).push({ score: r.score || 0, elements: r.elements || [] });
     flag('regraded'); redraw();
   }).catch(function(){ fail(''); });
 }
@@ -2323,6 +2491,15 @@ $('lkParts').addEventListener('click', function(){ enterStudent({ annot: true })
 $('lkCmp').addEventListener('click', function(){ openCompare(); });
 $('lkKdot').addEventListener('click', function(){ openKdot(0); });
 $('lkProto').addEventListener('click', function(){ openProto(); });
+/* 채점 기준 바꿔 보기 안내 */
+function openRubtry(){ show('rubtry'); }
+$('lkRt').addEventListener('click', openRubtry);
+$('tRt').addEventListener('click', openRubtry);
+$('rtHome').addEventListener('click', function(){ show('home'); });
+$('rtCmp').addEventListener('click', function(){ openCompare(); });
+$('rtTeacher').addEventListener('click', function(){ openTeacher(tSet, 'rubric'); });
+$('rtGo1').addEventListener('click', function(){ openTeacher(0, 'rubric'); });
+$('rtGo2').addEventListener('click', function(){ openTeacher(1, 'rubric'); });
 /* =========================================================
    글자 크기
    ========================================================= */
@@ -3337,6 +3514,7 @@ else if (location.hash === '#guide') openGuide();
 else if (location.hash === '#compare') openCompare();
 else if (location.hash === '#kdot') openKdot(0);
 else if (location.hash === '#proto') openProto();
+else if (location.hash === '#rubtry') openRubtry();
 })();
 </script>
 
