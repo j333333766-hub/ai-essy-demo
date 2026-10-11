@@ -87,7 +87,13 @@ i.v { font-family: "Times New Roman", serif; font-size: 1.08em; }
 .gans summary { cursor: pointer; font-weight: 700; color: var(--ink-2); }
 .gans pre { margin: 6px 0 0; white-space: pre-wrap; word-break: break-word; font-family: inherit; background: #f6f7fb; border-radius: 8px; padding: 8px 10px; line-height: 1.6; }
 .gans img { max-width: 100%; border: 1px solid var(--line); border-radius: 8px; margin-top: 6px; background: #fff; }
-.grub { margin: 8px 0 0; }
+.grub { margin: 8px 0 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.gbtn:disabled { opacity: .6; cursor: default; }
+.gagain { margin-top: 10px; padding-top: 8px; border-top: 1px dashed #cfd2f7; }
+.gagain h5 { margin: 0 0 4px; font-size: .9em; color: var(--navy); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.gagain h5 .sc { color: var(--indigo); font-variant-numeric: tabular-nums; }
+.gel tr.diff th, .gel tr.diff td { background: var(--warn-soft); }
+.gagain-note { margin: 8px 0 0; font-size: .82em; color: var(--warn); font-weight: 700; line-height: 1.6; }
 .gbtn { border: 1px solid #cfd2f7; background: #fff; color: var(--indigo); border-radius: 8px; padding: 5px 12px; font-size: .84em; font-weight: 700; cursor: pointer; }
 .gbtn:hover, .gbtn[aria-pressed="true"] { background: var(--lav); }
 /* 채점기준표 비교 창: 결과 창 옆에 떠서 나란히 본다 */
@@ -1126,7 +1132,7 @@ body.touring .toast { bottom: auto; top: 16px; }
       <label>접속 코드 <input id="subCode" maxlength="20" autocomplete="off" inputmode="numeric" placeholder="진행자가 알려 준 코드"></label>
     </div>
     <p class="subnote">제출하면 AI(Gemini)가 채점기준표에 따라 채점하고 결과를 바로 보여 줍니다. 별명·답안·채점 결과는 연수 진행자의 기록 시트에 쌓입니다. 실명이나 개인정보는 쓰지 마세요.</p>
-    <div class="acts"><button class="nbtn" id="subLast" hidden>지난 채점 결과</button><button class="nbtn" id="subBack">돌아가기</button><button class="nbtn pri" id="subOk">제출하고 AI 채점 받기</button></div>
+    <div class="acts"><button class="nbtn" id="subEx">예시 채점 결과</button><button class="nbtn" id="subLast" hidden>지난 채점 결과</button><button class="nbtn" id="subBack">돌아가기</button><button class="nbtn pri" id="subOk">제출하고 AI 채점 받기</button></div>
   </div>
 </div>
 <div class="ov" id="ovGrade" hidden>
@@ -1134,7 +1140,7 @@ body.touring .toast { bottom: auto; top: 16px; }
     <h3 id="grTitle">AI 채점 결과</h3>
     <p class="gnotice">연수 시연용 AI 채점입니다. 실제 인천 AI 논·서술형 평가지원시스템의 채점 결과가 아니며, AI의 판단은 틀릴 수 있습니다.</p>
     <div id="grBody" aria-live="polite"></div>
-    <div class="acts"><button class="nbtn" id="grRetry" hidden>다시 제출</button><button class="nbtn pri" id="grClose">닫기</button></div>
+    <div class="acts"><button class="nbtn" id="grEx" hidden>예시 채점 결과 보기</button><button class="nbtn" id="grRetry" hidden>다시 제출</button><button class="nbtn pri" id="grClose">닫기</button></div>
   </div>
 </div>
 <div class="rubwin" id="rubWin" role="dialog" aria-labelledby="rubTitle" hidden>
@@ -1643,6 +1649,8 @@ $('closeAll').addEventListener('click', closeOv);
 $('subBack').addEventListener('click', closeOv);
 $('subOk').addEventListener('click', submitGrade);
 $('subLast').addEventListener('click', function(){ closeOv(); showGrade(lastGrade); });
+$('subEx').addEventListener('click', function(){ closeOv(); showGrade(exampleGrade()); });
+$('grEx').addEventListener('click', function(){ showGrade(exampleGrade()); });
 $('grClose').addEventListener('click', function(){ $('ovGrade').hidden = true; closeRub(); });
 $('grRetry').addEventListener('click', function(){ $('ovGrade').hidden = true; closeRub(); openSubmit(gradeOnly); });
 $('bGrade').addEventListener('click', function(){
@@ -1717,11 +1725,21 @@ function gradePayload(only){
 }
 function gradeWait(msg){
   $('grBody').innerHTML = '<div class="gwait"><div class="gspin" aria-hidden="true"></div><div><b>' + esc(msg) + '</b><br>보통 10~30초쯤 걸립니다. 창을 닫지 말고 기다려 주세요.</div></div>';
-  $('grRetry').hidden = true; $('grClose').disabled = true; $('ovGrade').hidden = false; closeRub();
+  $('grRetry').hidden = true; $('grEx').hidden = true; $('grClose').disabled = true; $('ovGrade').hidden = false; closeRub();
 }
 function gradeFail(msg){
-  $('grBody').innerHTML = '<div class="gwait"><div><b>채점 결과를 받지 못했습니다.</b><br>' + esc(msg) + '</div></div>';
-  $('grRetry').hidden = false; $('grClose').disabled = false;
+  $('grBody').innerHTML = '<div class="gwait"><div><b>채점 결과를 받지 못했습니다.</b><br>' + esc(msg) + '<br>아래 ‘예시 채점 결과 보기’를 누르면, 미리 받아 둔 예시 답안의 채점 결과로 화면을 살펴볼 수 있습니다.</div></div>';
+  $('grRetry').hidden = false; $('grEx').hidden = false; $('grClose').disabled = false;
+}
+function gradePost(obj, ac){
+  var body = JSON.stringify(obj), again = false;
+  /* 구글 쪽에서 가끔 채점 결과 대신 오류 페이지를 돌려준다. 그때는 한 번만 다시 보낸다 */
+  var post = function(){
+    return fetch(GRADE_URL, { method: 'POST', signal: ac ? ac.signal : undefined, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body })
+      .then(function(r){ return r.text(); })
+      .then(function(t){ try { return JSON.parse(t); } catch (e) { if (again) throw e; again = true; return post(); } });
+  };
+  return post();
 }
 function submitGrade(){
   if (grading) return;
@@ -1739,24 +1757,21 @@ function submitGrade(){
     /* text/plain으로 보내야 브라우저가 사전 확인 요청(preflight)을 하지 않아 Apps Script가 받는다 */
     var ac = window.AbortController ? new AbortController() : null;
     tm = setTimeout(function(){ if (ac) ac.abort(); }, 90000);
-    var body = JSON.stringify({ action: 'grade', code: code, nick: nick, preview: isPrev, sets: data }), again = false;
-    /* 구글 쪽에서 가끔 채점 결과 대신 오류 페이지를 돌려준다. 그때는 한 번만 다시 보낸다 */
-    var post = function(){
-      return fetch(GRADE_URL, { method: 'POST', signal: ac ? ac.signal : undefined, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body })
-        .then(function(r){ return r.text(); })
-        .then(function(t){ try { return JSON.parse(t); } catch (e) { if (again) throw e; again = true; return post(); } });
-    };
-    return post();
+    return gradePost({ action: 'grade', code: code, nick: nick, preview: isPrev, sets: data }, ac);
   }).then(function(res){
     grading = false; clearTimeout(tm);
     if (!res.ok) { gradeFail(res.msg || '알 수 없는 오류입니다.'); return; }
-    var k = 0, g = { nick: nick, at: Date.now(), sec: res.sec, preview: isPrev, items: [] };
-    sent.forEach(function(st){ st.items.forEach(function(it){
-      if (it.skip) return;
+    var k = 0, g = { nick: nick, at: Date.now(), sec: res.sec, preview: isPrev, items: [] }, keep = [];
+    sent.forEach(function(st){ var prev = []; st.items.forEach(function(it){
+      var asPrev = { label: it.label, skip: true, answer: { text: it.answer.text, picks: it.answer.picks, draw: null } };
+      if (it.skip) { prev.push(asPrev); return; }
       var r = res.results[k++] || {};
+      keep.push({ set: st, prev: prev.slice(), row: it }); prev.push(asPrev);
       g.items.push({ set: st.title, label: it.label, pts: it.pts, custom: it.custom, rubric: it.rubric, rubricNote: it.rubricNote, text: it.answer.text, picks: it.answer.picks, hasDraw: !!it.answer.draw,
         score: r.score || 0, elements: r.elements || [], feedback: r.feedback || '', status: r.status || 'error' });
     }); });
+    /* 같은 답안을 다시 채점할 때 쓰려고 보낸 내용을 기억해 둔다(저장은 하지 않음) */
+    Object.defineProperty(g, 'sent', { value: keep, enumerable: false });
     if (!isPrev && only == null) { lastGrade = g; lsSet(KEY_GRADE, g); }
     flag('graded');
     showGrade(g);
@@ -1794,7 +1809,8 @@ function showRubric(i){
   $('rubWin').hidden = false; $('ovGrade').classList.add('withrub');
 }
 $('grBody').addEventListener('click', function(e){
-  var b = e.target.closest('.gbtn'); if (!b) return;
+  var b = e.target.closest('.gbtn'); if (!b || b.disabled) return;
+  if (b.dataset.again != null) return regrade(+b.dataset.again, b);
   if (b.getAttribute('aria-pressed') === 'true') closeRub(); else showRubric(+b.dataset.rub);
 });
 $('rubClose').addEventListener('click', closeRub);
@@ -1808,26 +1824,65 @@ $('rubHead').addEventListener('pointerdown', function(e){
   var up = function(){ document.removeEventListener('pointermove', move); document.removeEventListener('pointerup', up); };
   document.addEventListener('pointermove', move); document.addEventListener('pointerup', up); e.preventDefault();
 });
+/* 서버가 안 될 때 보여 줄 예시: 예시 답안을 실제 채점 서버로 미리 채점해 둔 결과(2026-10-11, 기본 채점기준표) */
+var EXAMPLE_GRADE = {"nick":"예시 답안","example":true,"items":[{"si":0,"ii":0,"set":"1번 반티 업체 고르기","label":"1-1","pts":3,"custom":false,"text":"(가) 24x\n(나) 25x\n(다) 30x-60000","picks":"","hasDraw":false,"score":1,"elements":[{"sub":"(가) 업체의 식 나타내기","pts":1,"score":0,"reason":"최종 식 24x는 맞았지만, 기준표가 요구하는 풀이 과정을 쓰지 않아 점수를 받지 못했습니다."},{"sub":"(나) 업체의 식 나타내기","pts":1,"score":0,"reason":"최종 식 25x는 맞았지만, 기준표가 요구하는 풀이 과정을 쓰지 않아 점수를 받지 못했습니다."},{"sub":"(다) 업체의 식 나타내기","pts":1,"score":1,"reason":"(다) 업체의 지불 금액을 30x-60000으로 정확하게 나타냈으므로 1점 기준을 충족합니다."}],"feedback":"세 업체의 최종 지불 금액에 대한 식은 모두 정확하게 잘 찾았습니다. 다만 (가)와 (나) 업체의 경우 답은 맞았으나 식을 유도하는 풀이 과정을 전혀 쓰지 않아 점수를 받지 못했습니다. 다음에는 할인율이나 묶음 계산 방식을 어떻게 적용했는지 과정 설명을 함께 적어 보세요.","status":"ok"},{"si":0,"ii":1,"set":"1번 반티 업체 고르기","label":"1-2","pts":4,"custom":false,"text":"(가) 24×15000=360000원\n(나) 25×15000=375000원\n(다) 30×15000-60000=380000원\n(가) 업체가 가장 싸다.","picks":"","hasDraw":false,"score":3,"elements":[{"sub":"세 업체의 지불 금액 구하기","pts":3,"score":2,"reason":"(가)와 (나) 업체의 지불 금액은 정확히 계산하였으나, (다) 업체의 금액 계산에서 450000-60000을 380000원으로 잘못 계산하여 2업체만 정확하므로 2점에 해당합니다."},{"sub":"가장 저렴한 업체 판단하기","pts":1,"score":1,"reason":"계산한 금액을 바탕으로 (가) 업체가 가장 저렴하다고 올바르게 판단하였으므로 1점 기준을 충족합니다."}],"feedback":"각 업체의 할인 방식을 고려하여 식을 세우고 가장 저렴한 업체를 바르게 찾아낸 점이 훌륭합니다. 다만 (다) 업체의 금액을 뺄셈하는 과정에서 계산 실수가 발생했으니, 덧셈과 뺄셈 등 마지막 연산 과정을 다시 한번 꼼꼼하게 검토해 보세요.","status":"ok"},{"si":0,"ii":2,"set":"1번 반티 업체 고르기","label":"1-3","pts":5,"custom":false,"text":"24x=30x-60000, 6x=60000, x=10000\n정가가 8000원이면 (가)는 192000원, (다)는 180000원이라 (다)가 더 싸다. 그래서 서연이 말이 맞다.","picks":"","hasDraw":false,"score":3,"elements":[{"sub":"일차방정식 세우기","pts":1,"score":1,"reason":"지불 금액이 같아지는 식 24x=30x-60000을 정확하게 세웠습니다."},{"sub":"일차방정식 풀기","pts":1,"score":1,"reason":"일차방정식을 바르게 풀어 정가 x=10000을 정확히 구했습니다."},{"sub":"두 주장의 타당성을 예를 통해 판단하기","pts":2,"score":1,"reason":"10000원보다 싼 경우(8000원)에 대해서는 구체적인 금액을 비교하여 서연의 주장이 맞음을 설명했으나, 10000원보다 비싼 경우를 예로 들어 지호의 주장을 설명하는 부분이 빠져 점수를 일부 받지 못했습니다."},{"sub":"결론을 도출하여 주장하기","pts":1,"score":0,"reason":"두 사람의 주장이 무조건 옳은 것은 아니라는 결론이나 조건부로 타당하다는 종합적인 주장을 쓰지 않아 점수를 받지 못했습니다."}],"feedback":"방정식을 세워 기준이 되는 정가(10000원)를 잘 구하고, 8000원일 때 서연의 주장이 타당함을 구체적인 금액 계산을 통해 잘 밝혔습니다. 다만 10000원보다 비싼 경우의 예시도 들어 지호의 주장에 대해 설명하고, 이를 바탕으로 '두 사람의 주장이 모두 무조건 옳지는 않다'는 최종 결론까지 정리해 주는 연습을 해 보세요.","status":"ok"},{"si":1,"ii":0,"set":"2번 주말 야외 행사 결정","label":"2-1","pts":3,"custom":false,"text":"토요일에 비가 오고 일요일에 안 올 확률 0.4×0.3=0.12\n토요일에 안 오고 일요일에 올 확률 0.4×0.7=0.28\n0.12+0.28=0.4","picks":"","hasDraw":false,"score":1,"elements":[{"sub":"확률 계산하기","pts":3,"score":1,"reason":"토요일에만 비가 내릴 확률(0.12)은 옳게 구했으나, 토요일에 비가 내리지 않을 확률(0.6) 대신 0.4를 사용하여 일요일에만 비가 내릴 확률과 최종 확률을 옳게 구하지 못했습니다."}],"feedback":"토요일에만 비가 내릴 확률을 곱의 법칙을 이용하여 정확하게 잘 계산했습니다. 다만 토요일에 비가 오지 않을 확률은 전체 확률 1에서 비가 올 확률을 뺀 값으로 구해야 한다는 점에 유의하여 다시 계산해 보세요.","status":"ok"},{"si":1,"ii":1,"set":"2번 주말 야외 행사 결정","label":"2-2","pts":3,"custom":false,"text":"이틀 모두 비가 안 올 확률 0.6×0.3=0.18\n적어도 하루 비가 올 확률 1-0.18=0.82\n0.82>0.18이므로 적어도 하루 비가 올 확률이 더 크다.","picks":"","hasDraw":false,"score":3,"elements":[{"sub":"확률 계산하기","pts":2,"score":2,"reason":"이틀 모두 비가 내리지 않을 확률(0.18)과 적어도 하루 비가 내릴 확률(0.82)을 계산 식과 함께 모두 정확하게 구했습니다."},{"sub":"확률 비교하기","pts":1,"score":1,"reason":"구한 두 확률의 크기를 부등호와 문장을 사용하여 올바르게 비교했습니다."}],"feedback":"여사건의 확률 개념을 바르게 적용하여 두 가지 확률을 정확하게 계산하고, 크기 비교까지 완벽하게 서술했습니다. 앞으로도 확률 문제를 풀 때 여사건을 활용하면 복잡한 계산을 효율적으로 해결할 수 있으니 이러한 풀이 방식을 잘 유지하기 바랍니다.","status":"ok"},{"si":1,"ii":2,"set":"2번 주말 야외 행사 결정","label":"2-3","pts":4,"custom":false,"text":"적어도 하루 비가 올 확률 0.82가 이틀 모두 비가 안 올 확률 0.18보다 훨씬 높다. 그러므로 취소해야 한다.","picks":"","hasDraw":false,"score":3,"elements":[{"sub":"합리적 의사결정하기","pts":3,"score":2,"reason":"앞선 문항에서 구한 강수 확률(0.82, 0.18)은 바르게 인용하여 비교했으나, [제시자료1]에 제시된 이익과 손실에 관한 조건을 언급하지 않아 2점을 부여합니다."},{"sub":"정답 도출하기","pts":1,"score":1,"reason":"행사를 '취소해야 한다'고 합리적인 결정을 명확하게 도출하여 1점 기준을 충족했습니다."}],"feedback":"앞선 문항에서 구한 확률 값을 올바르게 비교하여 취소 결정을 도출한 점은 매우 좋습니다. 다만 조건에 제시된 행사의 이익과 손실에 대한 내용을 확률과 연결하여 설명하지 못했으므로, 다음에는 문제의 조건(이익·손실)을 함께 고려하여 서술해 보세요.","status":"ok"}]};
+function exampleGrade(){
+  var g = clone(EXAMPLE_GRADE);
+  g.items.forEach(function(it){ var d = DEFAULT_SETS[it.si] && DEFAULT_SETS[it.si].items[it.ii]; if (d) { it.rubric = clone(d.rubric); it.rubricNote = d.rubricNote || ''; } });
+  return g;
+}
+function gradeItemHtml(g, it, gi){
+  var s = '<div class="gitem" data-gi="' + gi + '"><h4><span class="qbadge">' + esc(it.label) + '</span>' + esc(it.set) + (it.custom ? ' <span class="pill warn">교사 편집 기준표</span>' : '') +
+    '<span class="sc">' + (it.status === 'error' ? '채점 실패' : it.score + ' / ' + it.pts + '점') + '</span></h4>';
+  if (it.status === 'ok' && it.elements.length) s += '<table class="gel"><tbody>' + it.elements.map(function(el){
+    return '<tr><th>' + esc(el.sub) + '</th><td class="n' + (el.score ? '' : ' zero') + '">' + el.score + ' / ' + el.pts + '</td><td' + (/기준표가 모호함/.test(el.reason) ? ' class="amb"' : '') + '>' + fmt(el.reason) + '</td></tr>';
+  }).join('') + '</tbody></table>';
+  var again = it.again || [], moved = false;
+  again.forEach(function(r, n){
+    var isDiff = function(el, k){ return !it.elements[k] || el.score !== it.elements[k].score; }, diff = r.elements.filter(isDiff).length;
+    if (diff) moved = true;
+    s += '<div class="gagain"><h5>다시 채점 ' + (n + 1) + '회<span class="sc">' + r.score + ' / ' + it.pts + '점</span>' +
+      (diff ? '<span class="pill warn">점수가 달라진 요소 ' + diff + '개</span>' : '<span class="pill ok">처음과 같은 점수</span>') + '</h5><table class="gel"><tbody>' + r.elements.map(function(el, k){
+        return '<tr' + (isDiff(el, k) ? ' class="diff"' : '') + '><th>' + esc(el.sub) + '</th><td class="n' + (el.score ? '' : ' zero') + '">' + el.score + ' / ' + el.pts + '</td><td>' + fmt(el.reason) + '</td></tr>';
+      }).join('') + '</tbody></table></div>';
+  });
+  if (moved) s += '<p class="gagain-note">같은 답안, 같은 채점기준표인데 점수가 달라졌습니다. 색이 칠해진 요소의 기준표 문장이 이 답안에 대해 분명한지 살펴보세요.</p>';
+  var btns = '';
+  if (it.rubric && it.rubric.length) btns += '<button type="button" class="gbtn" data-rub="' + gi + '" aria-pressed="false">채점기준표와 견주어 보기</button>';
+  if (it.status === 'ok' && g.sent && g.sent[gi]) btns += again.length < 3 ? '<button type="button" class="gbtn" data-again="' + gi + '">같은 답안 다시 채점</button>' : '<button type="button" class="gbtn" disabled>다시 채점은 3회까지</button>';
+  if (btns) s += '<p class="grub">' + btns + '</p>';
+  if (it.feedback) s += '<p class="gfb"><b>' + (it.status === 'ok' ? '피드백' : '안내') + '</b>' + fmt(it.feedback) + '</p>';
+  if (it.status !== 'empty') s += '<details class="gans"' + (g.example ? ' open' : '') + '><summary>' + (g.example ? '예시 답안' : '내가 낸 답안 보기') + '</summary><pre>' + esc((it.picks ? '[선택] ' + it.picks + '\n' : '') + (it.text || '(글 답안 없음)') + (it.hasDraw ? '\n(그림 답안도 함께 제출함)' : '')) + '</pre></details>';
+  return s + '</div>';
+}
+/* 같은 답안·같은 기준표로 한 번 더 채점해, 처음 결과와 나란히 보여 준다 */
+var regrading = false;
+function regrade(gi, btn){
+  var g = shownGrade, it = g && g.items[gi], sv = g && g.sent && g.sent[gi];
+  if (!it || !sv || regrading || grading) return;
+  var who = lsGet(KEY_WHO) || {}, ac = window.AbortController ? new AbortController() : null, tm = setTimeout(function(){ if (ac) ac.abort(); }, 90000);
+  var redraw = function(){ if (shownGrade !== g) return; var n = document.querySelector('#grBody .gitem[data-gi="' + gi + '"]'); if (n) n.outerHTML = gradeItemHtml(g, it, gi); if (!$('rubWin').hidden) closeRub(); };
+  var fail = function(msg){ regrading = false; clearTimeout(tm); toast(msg || '다시 채점하지 못했습니다. 잠시 뒤 다시 눌러 보세요.'); redraw(); };
+  regrading = true; btn.disabled = true; btn.textContent = '다시 채점하는 중…';
+  gradePost({ action: 'grade', code: who.code || '', nick: g.nick, preview: !!g.preview, sets: [{ title: sv.set.title, grade: sv.set.grade, context: sv.set.context, items: sv.prev.concat([sv.row]) }] }, ac).then(function(res){
+    var r = res.ok && res.results && res.results[0];
+    if (!r || r.status !== 'ok') return fail(res.ok ? '' : res.msg);
+    regrading = false; clearTimeout(tm);
+    (it.again = it.again || []).push({ score: r.score || 0, elements: r.elements || [] });
+    flag('regraded'); redraw();
+  }).catch(function(){ fail(''); });
+}
 function showGrade(g){
   if (!g) return;
   shownGrade = g; closeRub();
   var got = 0, tot = 0, bad = 0;
   g.items.forEach(function(it){ tot += it.pts; if (it.status === 'error') bad++; else got += it.score; });
   var h = '<div class="gtotal"><b>' + got + ' / ' + tot + '점</b><span>' + esc(g.nick) + ' · ' + g.items.length + '문항' + (g.sec ? ' · 채점 ' + g.sec + '초' : '') + (g.preview ? ' · 교사 미리보기' : '') + '</span></div>';
+  if (g.example) h += '<p class="gnotice">미리 받아 둔 예시입니다. 아래 답안은 내가 쓴 답안이 아니라 연수용 예시 답안이고, 채점은 같은 AI 채점 서버가 기본 채점기준표로 실제로 한 결과입니다.</p>';
   if (bad) h += '<p class="gnotice">' + bad + '개 문항은 채점에 실패해 점수에서 빠졌습니다. ‘다시 제출’을 눌러 보세요.</p>';
-  h += g.items.map(function(it, gi){
-    var s = '<div class="gitem"><h4><span class="qbadge">' + esc(it.label) + '</span>' + esc(it.set) + (it.custom ? ' <span class="pill warn">교사 편집 기준표</span>' : '') +
-      '<span class="sc">' + (it.status === 'error' ? '채점 실패' : it.score + ' / ' + it.pts + '점') + '</span></h4>';
-    if (it.status === 'ok' && it.elements.length) s += '<table class="gel"><tbody>' + it.elements.map(function(el){
-      return '<tr><th>' + esc(el.sub) + '</th><td class="n' + (el.score ? '' : ' zero') + '">' + el.score + ' / ' + el.pts + '</td><td' + (/기준표가 모호함/.test(el.reason) ? ' class="amb"' : '') + '>' + fmt(el.reason) + '</td></tr>';
-    }).join('') + '</tbody></table>';
-    if (it.rubric && it.rubric.length) s += '<p class="grub"><button type="button" class="gbtn" data-rub="' + gi + '" aria-pressed="false">채점기준표와 견주어 보기</button></p>';
-    if (it.feedback) s += '<p class="gfb"><b>' + (it.status === 'ok' ? '피드백' : '안내') + '</b>' + fmt(it.feedback) + '</p>';
-    if (it.status !== 'empty') s += '<details class="gans"><summary>내가 낸 답안 보기</summary><pre>' + esc((it.picks ? '[선택] ' + it.picks + '\n' : '') + (it.text || '(글 답안 없음)') + (it.hasDraw ? '\n(그림 답안도 함께 제출함)' : '')) + '</pre></details>';
-    return s + '</div>';
-  }).join('');
+  h += g.items.map(function(it, gi){ return gradeItemHtml(g, it, gi); }).join('');
   $('grBody').innerHTML = h;
-  $('grRetry').hidden = !bad; $('grClose').disabled = false; $('ovGrade').hidden = false; $('grClose').focus({ preventScroll: true }); $('grBody').parentNode.scrollTop = 0;
+  $('grRetry').hidden = !bad; $('grEx').hidden = true; $('grClose').disabled = false; $('ovGrade').hidden = false; $('grClose').focus({ preventScroll: true }); $('grBody').parentNode.scrollTop = 0;
 }
 ['qlist', 'subList'].forEach(function(id){ $(id).addEventListener('click', function(e){ var b = e.target.closest('.qrow'); if (b) go(+b.dataset.i); }); });
 [$('ovAll'), $('ovSubmit')].forEach(function(o){ o.addEventListener('click', function(e){ if (e.target === o) closeOv(); }); });
