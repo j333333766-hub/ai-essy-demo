@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>연수 사이트 설명서</title>
+<meta name="description" content="AI 논·서술형 평가 연수 시연 사이트를 처음 보는 사람을 위한 설명서">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<style>
+:root {
+  --navy: #1c2657; --indigo: #4b4fd6; --blue: #2c4bb5; --lav: #eef0ff; --lav-2: #dfe3ff;
+  --ink: #1d2233; --ink-2: #4a5168; --ink-3: #7a8196; --line: #d5dbe8; --page: #f4f5fb;
+  --ok: #1f8a5b; --ok-soft: #e3f5ec; --warn: #b5541c; --warn-soft: #fff1e4;
+  --font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--font); line-height: 1.75; font-size: 16px; }
+a { color: var(--indigo); }
+.hero { background: linear-gradient(140deg, #2fb8a3 0%, #2486b0 28%, #1f4fc0 60%, #17209a 100%); color: #fff; padding: 36px 16px 30px; }
+.hero .in, .wrap { max-width: 1040px; margin: 0 auto; }
+.hero .eb { font-weight: 800; font-size: 14px; opacity: .9; margin: 0 0 6px; }
+.hero h1 { margin: 0 0 10px; font-size: clamp(24px, 4vw, 34px); line-height: 1.35; }
+.hero p { margin: 0; max-width: 760px; opacity: .95; }
+.hero .btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; background: #fff; color: var(--indigo); border-radius: 10px; padding: 9px 16px; font-weight: 800; text-decoration: none; font-size: 15px; }
+.btn.ghost { background: rgba(255,255,255,.14); color: #fff; border: 1px solid rgba(255,255,255,.5); }
+.wrap { padding: 0 16px 60px; }
+.notice { margin: -16px auto 0; position: relative; background: #fff; border: 2px solid #f3c58a; border-radius: 14px; padding: 14px 18px; max-width: 1040px; }
+.notice b { color: var(--warn); }
+nav.toc { display: flex; flex-wrap: wrap; gap: 6px; margin: 22px 0 6px; }
+nav.toc a { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 14px; text-decoration: none; color: var(--navy); font-weight: 700; }
+h2 { color: var(--navy); font-size: 22px; margin: 40px 0 6px; padding-top: 6px; }
+h2 small { display: block; font-size: 14px; color: var(--ink-3); font-weight: 500; }
+h3 { color: var(--navy); margin: 0 0 4px; font-size: 18px; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-top: 12px; }
+.card { background: #fff; border: 1px solid #dfe2f3; border-radius: 16px; padding: 16px 18px; min-width: 0; }
+.card ol, .card ul { margin: 6px 0 0; padding-left: 1.3em; }
+.card li { margin: 3px 0; }
+.tag { display: inline-block; font-size: 12.5px; font-weight: 800; border-radius: 6px; padding: 1px 8px; margin-right: 4px; vertical-align: 2px; }
+.tag.s { background: var(--lav-2); color: var(--navy); } .tag.t { background: var(--ok-soft); color: var(--ok); } .tag.n { background: var(--warn-soft); color: var(--warn); }
+.screen { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 18px; align-items: start; background: #fff; border: 1px solid #dfe2f3; border-radius: 18px; padding: 16px; margin-top: 14px; }
+.screen img { width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); display: block; }
+.screen .k { font-size: 13px; color: var(--ink-3); font-weight: 700; margin: 0 0 2px; }
+.screen p { margin: 6px 0; font-size: 15px; }
+.screen .open { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+.screen .open a { font-size: 14px; font-weight: 800; text-decoration: none; background: var(--lav); border: 1px solid var(--lav-2); border-radius: 8px; padding: 5px 10px; }
+.screen .open code { font-size: 13px; background: #f4f5fb; border-radius: 6px; padding: 5px 8px; color: var(--ink-2); }
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; font-size: 15px; }
+th, td { border-bottom: 1px solid #e6e9f2; padding: 9px 10px; text-align: left; vertical-align: top; }
+th { background: #f7f8fc; color: var(--ink-2); font-size: 14px; }
+td.t { white-space: nowrap; font-weight: 800; color: var(--indigo); }
+.tablewrap { overflow-x: auto; border: 1px solid #dfe2f3; border-radius: 12px; margin-top: 12px; }
+details { background: #fff; border: 1px solid #dfe2f3; border-radius: 12px; padding: 10px 14px; margin-top: 8px; }
+details summary { cursor: pointer; font-weight: 800; color: var(--navy); }
+details p { margin: 8px 0 2px; }
+.qr { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 16px; align-items: center; }
+.qr img { width: 160px; height: 160px; background: #fff; border-radius: 10px; border: 1px solid var(--line); padding: 6px; }
+footer { text-align: center; font-size: 13px; color: var(--ink-3); padding: 30px 16px 40px; border-top: 1px solid var(--line); }
+@media (max-width: 760px) {
+  .screen { grid-template-columns: minmax(0, 1fr); }
+  .qr { grid-template-columns: minmax(0, 1fr); justify-items: start; }
+  body { font-size: 15px; }
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="in">
+    <p class="eb">AI 논·서술형 평가 연수 시연 사이트 · 설명서</p>
+    <h1>처음 오신 분을 위한<br>사이트 한눈에 보기</h1>
+    <p>중등 수학 논·서술형 문항을 <b>학생처럼 풀고, AI 채점을 받고, 채점기준표를 고쳐 보고, 모둠이 함께 채점해 보는</b> 연수용 사이트입니다. 이 설명서는 어떤 화면이 있는지, 언제 무엇을 누르면 되는지를 정리했습니다.</p>
+    <div class="btns">
+      <a class="btn" href="./">사이트 열기 →</a>
+      <a class="btn ghost" href="./#today">오늘의 연수 화면</a>
+      <a class="btn ghost" href="./#cross">예시답안 교차 채점</a>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="notice"><b>먼저 알아 두세요.</b> 이 사이트는 실제 인천 AI 논·서술형 평가지원시스템(AIEP)의 화면이 <b>아닙니다</b>. 실제 시스템의 흐름(문항 등록 → 학생 응시 → AI 채점)을 연수에서 직접 경험해 보도록 만든 <b>연수용 모형</b>이며, 화면 모양은 실제 시스템과 다릅니다. AI 채점만은 실제 AI(Google Gemini)가 채점기준표를 읽고 채점합니다. 로그인과 개인정보 입력은 없습니다.</div>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#quick">3분 사용법</a><a href="#flow">오늘의 흐름</a><a href="#screens">화면 안내</a><a href="#hash">바로가기 주소</a><a href="#faq">자주 묻는 질문</a><a href="#host">진행자용</a>
+  </nav>
+
+  <h2 id="quick">3분 사용법<small>역할에 맞는 쪽만 읽으면 됩니다</small></h2>
+  <div class="cols">
+    <div class="card">
+      <h3><span class="tag s">연수생</span>처음 들어왔다면</h3>
+      <ol>
+        <li>첫 화면에서 <b>학생</b>을 눌러 반티 문항을 직접 풀어 봅니다. 글로 써도 되고, <b>그리기 입력</b>으로 손글씨를 써도 됩니다.</li>
+        <li>답을 쓴 문항에서 <b>이 문항 AI 채점</b>을 누릅니다. 처음 한 번 별명과 <b>접속 코드</b>(진행자가 알려 줌)를 적으면 10~30초 뒤 결과가 나옵니다.</li>
+        <li>결과 창의 <b>채점기준표와 견주어 보기</b>로 AI가 어느 기준을 근거로 몇 점을 줬는지 확인합니다.</li>
+        <li>모둠 활동 시간에는 <b>예시답안 교차 채점</b>에서 모둠 점수를 입력하고 저장합니다.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3><span class="tag t">교사 화면</span>문항·기준표를 고쳐 보려면</h3>
+      <ol>
+        <li>첫 화면에서 <b>교사</b>를 누르면 문항·조건·채점기준표·예시답안을 고칠 수 있습니다. 고친 내용은 내 브라우저에만 저장됩니다.</li>
+        <li>오른쪽 <b>자동 점검</b>이 배점 합, 0점 진술, 예시답안 개수 같은 흔한 실수를 짚어 줍니다.</li>
+        <li><b>학생 화면 미리보기</b>에서 답을 쓰고 <b>AI 채점</b>을 누르면, 방금 고친 기준표로 채점합니다. 기준표를 고친 문항은 <b>고치기 전·후</b> 결과를 나란히 볼 수 있습니다.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3><span class="tag n">진행자</span>연수를 이끈다면</h3>
+      <ol>
+        <li><b>오늘의 연수</b> 화면에서 시간대별로 열 화면을 한 번에 엽니다. 접속 QR도 이 화면에 있습니다.</li>
+        <li>모둠이 채점을 저장하면 <b>모둠 채점 현황판</b>에 모입니다. ‘협의할 곳 먼저 보기’가 판단이 갈린 요소를 맨 위로 올려 줍니다.</li>
+        <li>협의가 끝나면 현황판의 <b>해설 함께 보기</b>로 예상 점수와 쟁점을 띄웁니다.</li>
+      </ol>
+    </div>
+  </div>
+
+  <h2 id="flow">오늘의 흐름 · 10. 17.(토) 13:00~17:00<small>팀 협의(10. 15.)를 바탕으로 한 제안 시간표입니다. 현장 상황에 따라 달라질 수 있습니다.</small></h2>
+  <div class="tablewrap"><table>
+    <tr><th>시간</th><th>활동</th><th>여는 화면</th></tr>
+    <tr><td class="t">13:00</td><td><b>① AIEP 소개와 문항 의도</b><br>실제 시스템에 탑재된 모습은 진행자 계정으로 보여 주고, 반티 문항의 출제 의도와 채점기준표 구조를 설명합니다.</td><td><a href="./#student">학생 화면</a> · <a href="./#teacher">교사 화면</a> · <a href="./#proto">출제 프로토콜</a> · <a href="./#compare">채점기준 비교</a></td></tr>
+    <tr><td class="t">14:00</td><td><b>② 자료집으로 예시답안 종이 채점</b><br>학생 A·B·C 답안(문항 1·3)을 각자 채점하고 모둠에서 점수를 맞춘 뒤 입력·저장합니다.</td><td><a href="./#cross">예시답안 교차 채점</a> · <a href="./#board">현황판</a></td></tr>
+    <tr><td class="t">15:00</td><td><b>③ 학생처럼 풀고 AI 채점 받기</b><br>직접 풀어 AI 채점을 받고, 기준표 문장을 바꾸면 점수가 어떻게 달라지는지 확인합니다.</td><td><a href="./#student">학생 화면</a> · <a href="./#rubtry">채점 기준 바꿔 보기</a></td></tr>
+    <tr><td class="t">16:00</td><td><b>④ 채점 결과로 협의하기</b><br>모둠 판단이 갈린 요소, AI와 다른 요소, 학생 C의 쟁점 세 가지를 중심으로 채점기준 보완을 이야기합니다.</td><td><a href="./#board">현황판(해설 함께 보기)</a> · <a href="./#cross">학생 C 쟁점</a></td></tr>
+    <tr><td class="t">16:50</td><td><b>마무리</b> — 실습용 자료집은 반드시 회수(모둠별 수량 확인), 만족도 조사 안내, 멀티탭 정리</td><td>—</td></tr>
+  </table></div>
+
+  <h2 id="screens">화면 안내<small>그림을 누르면 크게 볼 수 있습니다</small></h2>
+
+  <div class="screen">
+    <a href="guide/home.jpg" target="_blank" rel="noopener"><img src="guide/home.jpg" alt="첫 화면" loading="lazy"></a>
+    <div><p class="k">첫 화면 · 모든 연수생</p><h3>학생 / 교사로 들어가기</h3>
+      <p><b>학생</b>은 문제를 풀고, <b>교사</b>는 문항과 채점기준표를 고칩니다. 아래쪽 링크로 연수 안내, 출제 프로토콜, 비교 실습, K-DOT, 그리고 새로 추가된 <b>오늘의 연수·교차 채점·현황판</b>으로 갈 수 있습니다.</p>
+      <p>왼쪽 아래 <b>연수 가이드</b>는 화면 둘러보기와 미션 8개를, <b>가−/가+</b>는 글자 크기를 바꿉니다.</p>
+      <div class="open"><a href="./">열기</a></div></div>
+  </div>
+
+  <div class="screen">
+    <a href="guide/student.jpg" target="_blank" rel="noopener"><img src="guide/student.jpg" alt="학생 응시 화면" loading="lazy"></a>
+    <div><p class="k">학생 응시 화면 · 연수생</p><h3>왼쪽 제시자료, 오른쪽 발문·답안</h3>
+      <p>문항 2세트(1번 중1 반티 업체, 2번 중2 주말 야외 행사)가 들어 있습니다. 답안은 <b>글 입력</b>(수식 기호 버튼, 분수 입력 포함) 또는 <b>그리기 입력</b>(펜·지우개·되돌리기)으로 씁니다.</p>
+      <p>밑줄·형광펜·메모장, 남은 시간 표시가 있고, <b>이 문항 AI 채점</b>은 지금 문항만, 마지막 문제의 제출은 전체를 채점합니다. 답안은 이 기기의 브라우저에 저장됩니다.</p>
+      <div class="open"><a href="./#student">열기</a><code>…/#student</code></div></div>
+  </div>
+
+  <div class="screen">
+    <a href="guide/grade.jpg" target="_blank" rel="noopener"><img src="guide/grade.jpg" alt="AI 채점 결과 창" loading="lazy"></a>
+    <div><p class="k">AI 채점 결과 · 연수생</p><h3>채점 요소별 점수와 근거, 피드백</h3>
+      <p>AI는 채점할 때마다 그 문항의 <b>채점기준표와 예시답안</b>을 받아, 채점 요소마다 점수와 근거를 씁니다. 기준표 문장이 모호하면 근거에 “기준표가 모호함”이라고 표시합니다.</p>
+      <p><b>채점기준표와 견주어 보기</b>로 기준표를 옆에 띄우고, <b>같은 답안 다시 채점</b>으로 결과가 흔들리는지 확인할 수 있습니다(문항당 3회). 서버가 응답하지 않을 때는 <b>예시 채점 결과</b>로 화면을 살펴볼 수 있습니다.</p></div>
+  </div>
+
+  <div class="screen">
+    <a href="guide/teacher.jpg" target="_blank" rel="noopener"><img src="guide/teacher.jpg" alt="교사 편집 화면" loading="lazy"></a>
+    <div><p class="k">교사 편집 화면 · 연수생</p><h3>문항·조건·채점기준표·예시답안 고치기</h3>
+      <p>왼쪽은 세트 목록, 가운데는 편집 탭(기본 정보·문항·조건·채점기준표·예시답안 등), 오른쪽은 <b>자동 점검</b>입니다. 새 세트를 만들거나 기본 문항으로 되돌릴 수 있습니다.</p>
+      <p>위쪽 버튼으로 출제 프로토콜, K-DOT 안내, 채점기준 비교 실습으로 바로 갈 수 있습니다.</p>
+      <div class="open"><a href="./#teacher">열기</a><code>…/#teacher</code></div></div>
+  </div>
+
+  <div class="screen">
+    <a href="guide/today.jpg" target="_blank" rel="noopener"><img src="guide/today.jpg" alt="오늘의 연수 화면" loading="lazy"></a>
+    <div><p class="k">오늘의 연수 · 진행자 <span class="tag n">새로 추가</span></p><h3>네 시간의 흐름과 바로가기, 접속 QR</h3>
+      <p>시간대마다 할 일과 열 화면 버튼을 모았습니다. 오른쪽 QR을 프로젝터에 띄우면 연수생이 휴대폰·노트북으로 바로 들어옵니다.</p>
+      <div class="open"><a href="./#today">열기</a><code>…/#today</code></div></div>
+  </div>
+
+  <div class="screen">
+    <a href="guide/cross.jpg" target="_blank" rel="noopener"><img src="guide/cross.jpg" alt="예시답안 교차 채점 화면" loading="lazy"></a>
+    <div><p class="k">예시답안 교차 채점 · 모둠 <span class="tag n">새로 추가</span></p><h3>자료집의 학생 A·B·C 답안을 모둠이 채점</h3>
+      <p>종이 자료집과 <b>같은 답안</b>(중1 반티 문항 1·3)이 나옵니다. 모둠을 고르고, 채점 요소마다 점수 버튼을 누르고, 판단 근거를 한 줄 적은 뒤 <b>모둠 채점 저장</b>을 누릅니다. 학생 C는 판단이 갈리는 <b>쟁점 세 가지</b>에 모둠 판단도 고릅니다.</p>
+      <p>‘채점기준 보기’를 누르면 그 요소의 점수별 기준 문장이 펼쳐집니다. 리허설은 모둠을 <b>시험</b>으로 고르면 현황판에 섞이지 않습니다.</p>
+      <div class="open"><a href="./#cross">열기</a><code>…/#cross</code></div></div>
+  </div>
+
+  <div class="screen">
+    <a href="guide/cross_ai.jpg" target="_blank" rel="noopener"><img src="guide/cross_ai.jpg" alt="모둠·AI·해설 견주어 보기" loading="lazy"></a>
+    <div><p class="k">견주어 보기 · 모둠</p><h3>우리 모둠 점수 · AI 점수 · 해설</h3>
+      <p><b>AI 채점 결과 보기</b>를 누르면 연수 전에 같은 채점 서버로 3번 채점해 둔 결과가 나옵니다(세 번 모두 같았는지 함께 표시). 모둠 점수와 다른 칸은 주황색입니다. <b>지금 AI로 다시 채점하기</b>로 현장에서 새로 받아 볼 수도 있습니다.</p>
+      <p><b>해설·예상 점수 보기</b>는 출제 선생님의 예상 점수, 판단 근거, 쟁점별 ‘인정/불인정’ 논리, 채점 협의 포인트를 보여 줍니다. 모둠 채점을 마친 뒤 진행자 안내에 따라 엽니다.</p></div>
+  </div>
+
+  <div class="screen">
+    <a href="guide/board.jpg" target="_blank" rel="noopener"><img src="guide/board.jpg" alt="모둠 채점 현황판" loading="lazy"></a>
+    <div><p class="k">모둠 채점 현황판 · 진행자 <span class="tag n">새로 추가</span></p><h3>모든 모둠의 채점을 한 화면에</h3>
+      <p>채점 요소마다 모둠 점수 분포(점수에 마우스를 올리면 모둠 이름), <b>일치 비율</b>, AI 점수를 보여 줍니다. 모둠 판단이 갈린 줄은 주황, 모둠 다수 의견이 AI와 다른 줄은 빨강 표시이고, 맨 위 <b>협의할 곳 먼저 보기</b>가 그 줄들을 모아 줍니다.</p>
+      <p>학생 C 쟁점의 인정/불인정 비율과 AI의 판단, 모둠별 합계, 모둠이 적은 판단 근거도 모입니다. <b>CSV 내려받기</b>로 구글 시트에 붙여 넣을 수 있습니다.</p>
+      <div class="open"><a href="./#board">열기</a><code>…/#board</code></div></div>
+  </div>
+
+  <div class="screen">
+    <a href="guide/compare.jpg" target="_blank" rel="noopener"><img src="guide/compare.jpg" alt="채점기준 비교 실습" loading="lazy"></a>
+    <div><p class="k">채점기준 비교 실습 · 연수생</p><h3>교사용 채점기준표 → AI용 채점기준표</h3>
+      <p>2025년 실제 서술형 문항의 교사용 기준표를, AI가 판단할 수 있는 문장형 기준표로 바꿔 보는 5단계 실습입니다. 예제 하나를 같이 본 뒤 직접 고쳐 쓰고, 제안 답안과 비교합니다.</p>
+      <div class="open"><a href="./#compare">열기</a><code>…/#compare</code></div></div>
+  </div>
+
+  <div class="screen">
+    <a href="guide/rubtry.jpg" target="_blank" rel="noopener"><img src="guide/rubtry.jpg" alt="채점 기준 바꿔 보기" loading="lazy"></a>
+    <div><p class="k">채점 기준 바꿔 보기 · 연수생</p><h3>기준표 문장 하나가 점수를 바꾼다</h3>
+      <p>기준표 문장을 넣거나 빼면 같은 답안의 AI 점수가 어떻게 달라지는지, 미리 해 본 실험 세 가지와 직접 해 보는 순서를 안내합니다.</p>
+      <div class="open"><a href="./#rubtry">열기</a><code>…/#rubtry</code></div></div>
+  </div>
+
+  <div class="screen">
+    <a href="guide/proto.jpg" target="_blank" rel="noopener"><img src="guide/proto.jpg" alt="출제 프로토콜" loading="lazy"></a>
+    <div><p class="k">출제 프로토콜 · 연수생</p><h3>문항 출제 5단계 · 소단계 14개</h3>
+      <p>① 성취기준 정하기 → ② 문항 구체화 → ③ 채점기준표 → ④ 예시답안 → ⑤ 시스템 탑재. 단계마다 점검 항목, 흔한 실수, 따라 하기 예시, 메모 칸이 있고 한 장으로 인쇄할 수 있습니다.</p>
+      <div class="open"><a href="./#proto">열기</a><code>…/#proto</code></div></div>
+  </div>
+
+  <div class="screen">
+    <a href="guide/kdot.jpg" target="_blank" rel="noopener"><img src="guide/kdot.jpg" alt="K-DOT 안내" loading="lazy"></a>
+    <div><p class="k">K-DOT 출제 매뉴얼 안내 · 연수생</p><h3>서울 K-DOT 사고 수준과 인천 방식 비교</h3>
+      <p>서울 K-DOT 기반 서·논술형 출제 매뉴얼의 사고 수준(DOT1~5), 출제 절차, 퀴즈 9문항, 중1 대푯값 예시, 서울과 인천 방식의 차이를 정리했습니다. 수준 분류는 <b>제안</b>입니다.</p>
+      <div class="open"><a href="./#kdot">열기</a><code>…/#kdot</code></div></div>
+  </div>
+
+  <h2 id="hash">바로가기 주소<small>사이트 주소 뒤에 붙이면 그 화면이 바로 열립니다</small></h2>
+  <div class="qr card" style="margin-top:12px">
+    <img src="guide/qr.svg" alt="사이트 접속 QR 코드">
+    <div><b>j333333766-hub.github.io/ai-essy-demo/</b>
+      <div class="tablewrap"><table>
+        <tr><th>붙이는 말</th><th>열리는 화면</th></tr>
+        <tr><td><code>#today</code></td><td>오늘의 연수</td></tr>
+        <tr><td><code>#cross</code></td><td>예시답안 교차 채점</td></tr>
+        <tr><td><code>#board</code></td><td>모둠 채점 현황판</td></tr>
+        <tr><td><code>#student</code> · <code>#teacher</code></td><td>학생 응시 · 교사 편집</td></tr>
+        <tr><td><code>#compare</code> · <code>#rubtry</code></td><td>채점기준 비교 실습 · 채점 기준 바꿔 보기</td></tr>
+        <tr><td><code>#proto</code> · <code>#kdot</code> · <code>#guide</code></td><td>출제 프로토콜 · K-DOT 안내 · 연수 가이드</td></tr>
+      </table></div></div>
+  </div>
+
+  <h2 id="faq">자주 묻는 질문</h2>
+  <details open><summary>실제 AIEP와 무엇이 같고 무엇이 다른가요?</summary>
+    <p>같은 점: 문항(시스템용 2차검토본)·조건·채점기준표·예시답안 구성, 학생이 답을 쓰고 AI가 채점기준표에 따라 채점하는 흐름.</p>
+    <p>다른 점: 화면 모양과 메뉴, 계정·학급·과제 배포 기능, 채점 방식의 세부. 이 사이트의 AI는 채점 요소별로 점수를 주는 <b>분석적 채점</b>을 하며, 실제 시스템은 교과 공통으로 총체적 채점 방향이라고 안내받았습니다. 실제 화면 자료를 받으면 겉모양을 실제와 비슷하게 바꿀 예정입니다.</p></details>
+  <details><summary>접속 코드는 왜 필요하고, 어디서 알 수 있나요?</summary><p>AI 채점과 모둠 채점 저장은 비용이 드는 서버를 거치므로, 연수 참여자만 쓰도록 코드로 막아 두었습니다. 코드는 진행자가 현장에서 알려 드립니다.</p></details>
+  <details><summary>제 답안과 고친 기준표는 어디에 저장되나요?</summary><p>지금 쓰는 기기의 브라우저에만 저장됩니다. 다른 기기에서는 보이지 않고, 브라우저 기록을 지우면 사라집니다. AI 채점을 받은 답안과 결과, 모둠 채점 저장 내용은 연수 운영용 구글 시트에 기록됩니다(별명만 쓰고 실명은 적지 마세요).</p></details>
+  <details><summary>같은 답안인데 AI 점수가 달라질 수 있나요?</summary><p>조금 흔들릴 수 있습니다. 결과 창의 ‘같은 답안 다시 채점’으로 직접 확인해 보세요. 연수용 예시답안(학생 A·B·C)은 연수 전에 3번씩 채점했고, 세 번 모두 같은 점수가 나왔습니다. 점수가 흔들리는 문항은 보통 기준표 문장이 모호한 곳이라, 그 자체가 협의 거리입니다.</p></details>
+  <details><summary>휴대폰에서도 되나요?</summary><p>됩니다. 다만 화면이 좁아 제시자료와 답안이 위아래로 나뉩니다. 답안 작성과 모둠 채점 입력은 노트북·태블릿이 편합니다. 아래쪽 버튼이 떠 있는 버튼에 가리면 화면을 끝까지 내려 보세요.</p></details>
+  <details><summary>학생 A·B·C 답안은 실제 학생 답안인가요?</summary><p>아닙니다. 채점 연수를 위해 출제 선생님이 만든 가상 답안입니다(잘된 답안 · 중간 수준 · 채점 판단이 까다로운 답안).</p></details>
+
+  <h2 id="host">진행자용 메모</h2>
+  <div class="cols">
+    <div class="card"><h3>연수 전</h3><ul>
+      <li>현황판에서 <b>리허설 기록 보기</b>를 켜고 모둠 ‘시험’으로 저장해 흐름을 확인합니다.</li>
+      <li>본 연수 직전에 현황판이 비어 있는지 확인합니다. 필요하면 <b>현황판 비우기</b>(지우기 전 내용은 시트의 백업 탭으로 복사됨).</li>
+      <li>프로젝터 화면에 <b>오늘의 연수</b>를 띄워 QR로 접속을 안내합니다.</li>
+    </ul></div>
+    <div class="card"><h3>모둠 채점 중</h3><ul>
+      <li>현황판의 <b>15초마다 자동</b>을 켜 두면 저장되는 대로 모입니다.</li>
+      <li>‘협의할 곳 먼저 보기’의 첫 줄부터 이야기를 시작합니다.</li>
+      <li>해설은 협의 뒤에 <b>해설 함께 보기</b>로 엽니다.</li>
+    </ul></div>
+    <div class="card"><h3>연수 뒤</h3><ul>
+      <li><b>CSV 내려받기</b>로 모둠 채점을 보관합니다.</li>
+      <li>실습용 자료집 회수(16:50부터 모둠별 수량 확인).</li>
+    </ul></div>
+  </div>
+</div>
+<footer>연수 시연용 모형 사이트 설명서 · 2026. 10. 16. 작성<br>문항: 2026 인천 AI 서·논술형 평가 프레임워크 중등 수학(시스템용 2차검토본) · 예시답안: 채점 연수 실습 자료집(중1)</footer>
+</body>
+</html>
