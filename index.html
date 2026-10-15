@@ -929,6 +929,19 @@ body.touring .toast { bottom: auto; top: 16px; }
 @media (max-width: 560px) { .tblk { grid-template-columns: minmax(0, 1fr); } .xtab { min-width: 0; flex: 1 1 30%; } .xsc button { width: 36px; } }
 /* 휴대폰: 화면 아래 떠 있는 ‘연수 가이드’·글자 크기 버튼이 이전/다음 버튼을 가리지 않도록 아래 여백 */
 @media (max-width: 760px) { #examView, .tview { padding-bottom: 104px; } }
+/* 어느 화면에서나 여는 ‘연수 도구’ 메뉴 (실제 AIEP 모양으로 바꿀 때도 기능 입구로 유지) */
+.tmenu-btn { position: fixed; right: 16px; bottom: 18px; z-index: 45; background: var(--navy); color: #fff; border: 0; border-radius: 999px; padding: 10px 16px; font-weight: 800; font-size: 14px; font-family: var(--font); box-shadow: 0 8px 22px rgba(20,26,56,.3); }
+.tmenu { position: fixed; right: 16px; bottom: 66px; z-index: 46; background: #fff; border: 1px solid #dfe2f3; border-radius: 16px; box-shadow: 0 18px 46px rgba(20,26,56,.28); width: min(320px, calc(100vw - 32px)); max-height: min(70vh, 560px); overflow: auto; padding: 10px; }
+.tmenu h5 { margin: 6px 8px 4px; font-size: 12px; color: var(--ink-3); }
+.tmenu button, .tmenu a { display: flex; width: 100%; text-align: left; gap: 8px; align-items: baseline; background: none; border: 0; border-radius: 10px; padding: 8px 10px; font-family: var(--font); font-size: 14.5px; color: var(--ink); font-weight: 700; text-decoration: none; }
+.tmenu button:hover, .tmenu a:hover { background: var(--lav); }
+.tmenu small { color: var(--ink-3); font-weight: 500; font-size: 12px; }
+.tmenu .new { font-size: 10.5px; background: var(--warn-soft); color: var(--warn); border-radius: 5px; padding: 0 5px; font-weight: 800; }
+body.printing-proto .tmenu-btn, body.touring .tmenu-btn { display: none; }
+@media (max-width: 760px) { .tmenu-btn { padding: 9px 13px; font-size: 13px; } }
+/* 학생 응시 화면: 아래 버튼과 겹치지 않도록 오른쪽 가장자리 세로 탭으로 */
+body[data-view="student"] .tmenu-btn { bottom: auto; top: 42%; right: 0; border-radius: 12px 0 0 12px; padding: 12px 7px; writing-mode: vertical-rl; letter-spacing: .08em; font-size: 13px; }
+body[data-view="student"] .tmenu { bottom: auto; top: 18%; right: 40px; }
 </style>
 </head>
 <body>
@@ -1510,6 +1523,26 @@ body.touring .toast { bottom: auto; top: 16px; }
   </div>
 </div>
 
+<!-- ============ 연수 도구 메뉴 (2026. 10. 16. 추가) ============ -->
+<button class="tmenu-btn" id="tmBtn" aria-expanded="false" aria-controls="tmPanel">☰ 연수 도구</button>
+<div class="tmenu" id="tmPanel" hidden role="menu" aria-label="연수 도구">
+  <h5>연수 당일</h5>
+  <button data-tm="today">오늘의 연수 <span class="new">새</span><small>시간표·바로가기·QR</small></button>
+  <button data-tm="cross">예시답안 교차 채점 <span class="new">새</span><small>학생 A·B·C</small></button>
+  <button data-tm="board">모둠 채점 현황판 <span class="new">새</span><small>진행자</small></button>
+  <h5>문제 풀기·편집</h5>
+  <button data-tm="home">처음 화면</button>
+  <button data-tm="student">학생 화면 <small>문제 풀고 AI 채점</small></button>
+  <button data-tm="teacher">교사 화면 <small>문항·채점기준표 편집</small></button>
+  <h5>실습·자료</h5>
+  <button data-tm="compare">채점기준 비교 실습</button>
+  <button data-tm="rubtry">채점 기준 바꿔 보기</button>
+  <button data-tm="proto">출제 프로토콜 5단계</button>
+  <button data-tm="kdot">K-DOT 출제 매뉴얼</button>
+  <button data-tm="guide">연수 가이드 <small>둘러보기·미션</small></button>
+  <a href="guide.html">사이트 설명서 <small>처음 보는 분께</small></a>
+</div>
+
 <div class="toast" id="toast" hidden></div>
 
 <script>
@@ -1728,6 +1761,7 @@ function renderMaterial(m){
 var view = 'home', preview = null;
 function show(v){
   view = v;
+  document.body.setAttribute('data-view', v);
   $('homeView').hidden = v !== 'home';
   $('examView').hidden = v !== 'student';
   $('teacherView').hidden = v !== 'teacher';
@@ -4030,6 +4064,29 @@ $('dUndo').addEventListener('click', function(){
   img.src = d;
 });
 $('clr').addEventListener('click', function(){ drawUndo = []; });
+
+/* ---------- 연수 도구 메뉴 ---------- */
+function tmOpen(on){ $('tmPanel').hidden = !on; $('tmBtn').setAttribute('aria-expanded', on ? 'true' : 'false'); }
+$('tmBtn').addEventListener('click', function(e){ e.stopPropagation(); tmOpen($('tmPanel').hidden); });
+document.addEventListener('click', function(e){ if (!$('tmPanel').hidden && !e.target.closest('#tmPanel')) tmOpen(false); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') tmOpen(false); });
+$('tmPanel').addEventListener('click', function(e){
+  var b = e.target.closest('[data-tm]'); if (!b) return;
+  tmOpen(false);
+  if (view === 'student') saveDraw();
+  var k = b.dataset.tm;
+  if (k === 'today') openToday();
+  else if (k === 'cross') openCross();
+  else if (k === 'board') openBoard();
+  else if (k === 'home') show('home');
+  else if (k === 'student') enterStudent();
+  else if (k === 'teacher') openTeacher(0, 'items');
+  else if (k === 'compare') openCompare();
+  else if (k === 'rubtry') openRubtry();
+  else if (k === 'proto') openProto();
+  else if (k === 'kdot') openKdot(0);
+  else if (k === 'guide') openGuide();
+});
 
 applyScale();
 refreshMissions();
