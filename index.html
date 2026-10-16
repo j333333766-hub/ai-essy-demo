@@ -995,7 +995,10 @@ body.skin-real .brand #rname { max-width: 160px; }
 .vnote, .qsep { display: none; }
 body.qview .vnote { display: block; border: 1.5px dashed #b9c9f2; border-radius: 8px; background: #f5f8ff; color: #39415a; padding: 18px 20px; line-height: 1.8; font-size: .92em; }
 body.qview .vnote b { display: block; color: #2b5ff0; margin-bottom: 4px; }
-body.qview .answer, body.qview #bGrade, body.qview #bSave, body.qview #bSubmit, body.qview #tLater, body.qview #tMemo, body.qview #timer { display: none !important; }
+body.qview #bGrade, body.qview #bSave, body.qview #bSubmit, body.qview #tLater, body.qview #tMemo, body.qview #timer, body.qview .answer .mode, body.qview #symbar, body.qview #frac, body.qview #drawbox { display: none !important; }
+body.qview #ans { display: block !important; cursor: default; }
+.btn-exam { border: 0; border-radius: 6px; background: #f5b400; color: #1d2233; font: inherit; font-weight: 800; font-size: .86em; padding: 7px 16px; cursor: pointer; }
+body.skin-real .btn-exam { background: #fff; color: #1e73e8; height: 38px; padding: 0 18px; font-size: 14px; border-radius: 4px; box-shadow: 0 0 0 2px rgba(255,255,255,.35); }
 body.qview .tab.miss .n { box-shadow: none; }
 /* 실제 미리보기 화면 구성: 왼쪽 <자료 n> 상자, 오른쪽 번호·발문·<조건>·구분선·답안 */
 body.skin-real .left, body.skin-real .right { background-color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='160'%3E%3Ctext x='20' y='110' transform='rotate(-28 110 80)' font-family='sans-serif' font-size='13' fill='%232b5ff0' fill-opacity='.05'%3E연수용 모형 · 외부 공개 금지%3C/text%3E%3C/svg%3E"); }
@@ -1046,6 +1049,7 @@ body.skin-real .tabs { background: #fff; border-bottom: 1px solid #e3e8f2; paddi
 body.skin-real .tgrp.cur .gl { color: var(--wb); font-weight: 700; }
 body.skin-real .tab.on .n { background: var(--wb); }
 body.skin-real .tab.done .n { background: var(--wb-soft); color: var(--wb); }
+body.skin-real .tab.on .n, body.skin-real .tab.on.done .n { background: var(--wb); color: #fff; }
 body.skin-real .navs .nbtn.pri { background: var(--wb); border-color: var(--wb); }
 body.skin-real .navs .nbtn.ind { color: var(--wb); border-color: var(--wb); }
 body.skin-real .tbar .brand { color: #fff; font-size: 20px; font-weight: 700; gap: 10px; align-items: center; }
@@ -1231,7 +1235,7 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
         <button id="lkRt">채점 기준 바꿔 보기</button>
         <button id="lkKdot">K-DOT 출제 매뉴얼</button>
       </div>
-      <div class="hlinks hot"><button id="lkQview">1교시 문항 보기</button><button id="lkToday">오늘의 연수(10. 17.)</button><button id="lkAiep">실제 시스템 안내</button><button id="lkCross">예시답안 교차 채점</button><button id="lkBoard">모둠 채점 현황판</button><a href="guide.html">처음이세요? 사이트 설명서</a></div>
+      <div class="hlinks hot"><button id="lkToday">오늘의 연수(10. 17.)</button><button id="lkAiep">실제 시스템 안내</button><button id="lkCross">예시답안 교차 채점</button><button id="lkBoard">모둠 채점 현황판</button><a href="guide.html">처음이세요? 사이트 설명서</a></div>
     </div>
   </section>
   <section class="intro" id="intro" aria-labelledby="introTitle">
@@ -1273,7 +1277,7 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
         </div>
         <div class="ttl">AI 서·논술형 평가<span class="chip" id="ttlChip">연수 시연</span></div>
         <div class="tright">
-          <div class="pmode" id="pmode" role="group" aria-label="연수 진행 모드"><button type="button" data-pm="view">1교시 · 문항 보기</button><button type="button" data-pm="exam">2교시 · 응시</button></div>
+          <button type="button" class="btn-exam" id="bExam" hidden title="답안 작성·AI 채점 단추가 나타나고 시간이 흐릅니다">응시하기</button>
           <div class="timer idle" id="timer">
             <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8" fill="none" stroke="#fff" stroke-width="2"/><path d="M12 9v4l3 2M9 2h6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
             <span id="clock">00 : 25 : 00</span>
@@ -1297,7 +1301,6 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
           <div class="cond" id="cond" data-part="5"><span class="badge" style="top:-12px;right:-12px">05</span><b>조건</b><ul id="condList"></ul></div>
           <div class="itemres" id="itemres" data-part="6" hidden><span class="badge" style="top:-12px;right:-12px">06</span><div id="itemresBody"></div></div>
           <hr class="qsep" aria-hidden="true">
-          <div class="vnote" id="vnote"><b>1교시 · 문항 보기</b>강사의 설명을 들으며 지시문·제시자료·발문·조건을 살펴보세요.<br>답안은 2교시에 학생이 되어 직접 작성하고 AI 채점을 받습니다.</div>
           <div class="answer" data-part="7">
             <span class="badge" style="bottom:-12px;right:-12px">07</span>
             <div class="picks" id="picks" hidden></div>
@@ -2153,6 +2156,8 @@ function render(){
     $('ansLabel').textContent = '근거';
   } else { $('picks').hidden = true; $('picks').innerHTML = ''; $('ansLabel').textContent = '답안'; }
   $('ans').value = a.text || '';
+  $('ans').readOnly = qview;
+  Array.prototype.forEach.call(document.querySelectorAll('#picks select'), function(x){ x.disabled = qview; });
   setMode(a.mode || 'text', true);
   updateCount();
   $('frac').hidden = true;
@@ -2713,10 +2718,9 @@ function setAnnot(on){
 function enterStudent(opts){
   opts = opts || {};
   preview = opts.preview != null ? { set: opts.preview } : null;
-  qview = !!opts.qview && !preview;
+  qview = !preview && !answers._exam;
   document.body.classList.toggle('qview', qview);
-  Array.prototype.forEach.call(document.querySelectorAll('#pmode button'), function(b){ b.classList.toggle('on', (b.dataset.pm === 'view') === qview); b.setAttribute('aria-pressed', (b.dataset.pm === 'view') === qview); });
-  $('pmode').hidden = !!preview;
+  $('bExam').hidden = !qview;
   var keepKey = !preview && Q[cur] ? Q[cur].key : null;
   buildQ(preview ? preview.set : null);
   if (keepKey) { var ki = Q.findIndex(function(q){ return q.key === keepKey; }); cur = ki >= 0 ? ki : firstReal(); }
@@ -2743,15 +2747,17 @@ function enterStudent(opts){
   else if (!preview && !started) { buildStart(); $('ovStart').hidden = false; $('stGo').focus(); }
   else if (!preview && !Q[cur].practice) startTimer();
 }
-$('pmode').addEventListener('click', function(e){
-  var b = e.target.closest('button'); if (!b) return;
-  var v = b.dataset.pm === 'view'; if (v === qview) return;
-  saveDraw(); persistAns();
-  try { history.replaceState(null, '', v ? '#view' : '#student'); } catch (x) {}
-  enterStudent({ qview: v });
-  toast(v ? '1교시 문항 보기: 답안 칸 없이 문항만 봅니다. 시간도 멈춥니다.' : '2교시 응시: 답안을 작성하고 AI 채점을 받을 수 있습니다.');
-});
-$('lkQview').addEventListener('click', function(){ try { history.replaceState(null, '', '#view'); } catch (x) {} enterStudent({ qview: true }); });
+/* 처음에는 실제 학생 화면처럼 문항만, '응시하기'를 누르면 답안 작성·AI 채점 단추가 나타남 */
+$('bExam').addEventListener('click', function(){ buildStart(); $('ovStart').hidden = false; $('stGo').focus(); });
+function leaveQview(){
+  if (!qview) return;
+  answers._exam = true; persistAns();
+  var k = Q[cur] ? Q[cur].key : null;
+  qview = false; document.body.classList.remove('qview'); $('bExam').hidden = true;
+  buildQ(null); var ki = Q.findIndex(function(q){ return q.key === k; }); cur = ki >= 0 ? ki : firstReal();
+  buildTabs(); shownSet = -2;
+}
+$('ans').addEventListener('mousedown', function(){ if (qview) toast('위쪽 ‘응시하기’를 누르면 답안을 작성할 수 있습니다.'); });
 function buildStart(){
   $('stRows').innerHTML = sets.map(function(st, i){
     return '<tr><td class="n">' + (i + 1) + '-1~' + (i + 1) + '-' + st.items.length + '</td><td>' + esc(st.info.nick || st.info.area) + ' (' + esc(st.info.grade) + ', ' + esc(st.info.area) + ')</td><td class="n">' + (+st.info.time || 0) + '분</td><td class="n">' + setTotal(st) + '점</td></tr>';
@@ -2760,10 +2766,10 @@ function buildStart(){
   $('stResume').hidden = !anyAns;
 }
 function firstReal(){ for (var i = 0; i < Q.length; i++) if (!Q[i].practice) return i; return 0; }
-$('stGo').addEventListener('click', function(){ $('ovStart').hidden = true; started = true; visited = {}; go(firstReal()); });
-$('stPractice').addEventListener('click', function(){ $('ovStart').hidden = true; started = true; go(0); });
+$('stGo').addEventListener('click', function(){ leaveQview(); $('ovStart').hidden = true; started = true; visited = {}; go(firstReal()); });
+$('stPractice').addEventListener('click', function(){ leaveQview(); $('ovStart').hidden = true; started = true; go(0); });
 $('stResume').addEventListener('click', function(){
-  $('ovStart').hidden = true; started = true;
+  leaveQview(); $('ovStart').hidden = true; started = true;
   var j = -1; for (var i = 0; i < Q.length; i++) if (!Q[i].practice && !hasAnswer(Q[i])) { j = i; break; }
   go(j < 0 ? firstReal() : j);
 });
@@ -4652,7 +4658,7 @@ applyScale();
 refreshMissions();
 if (!lsGet('aiEssayDemo.seenGuide')) $('nudge').hidden = false;
 if (location.hash === '#student') enterStudent();
-else if (location.hash === '#view') enterStudent({ qview: true });
+else if (location.hash === '#view') { delete answers._exam; persistAns(); enterStudent(); }
 else if (location.hash === '#teacher') openTeacher(0, 'items');
 else if (location.hash === '#guide') openGuide();
 else if (location.hash === '#compare') openCompare();
