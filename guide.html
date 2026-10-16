@@ -3,6 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script>
+/* 연수 종료(2026-10-17 17:00 KST) 뒤 원래 주소에서는 설명서를 닫는다(옮긴 주소에서는 그대로) */
+(function(){
+  if (!/^\/ai-essy-demo\/guide\.html$/.test(location.pathname) || Date.now() < Date.parse('2026-10-17T17:00:00+09:00')) return;
+  document.documentElement.style.visibility = 'hidden';
+  document.addEventListener('DOMContentLoaded', function(){ document.title = '연수 종료'; document.body.innerHTML = '<p style="font-family:sans-serif;text-align:center;margin-top:30vh;font-size:1.2em">연수가 끝나 사이트를 닫았습니다.</p>'; document.documentElement.style.visibility = ''; });
+})();
+</script>
 <title>연수 사이트 설명서</title>
 <meta name="description" content="AI 논·서술형 평가 연수 시연 사이트를 처음 보는 사람을 위한 설명서">
 <link rel="preconnect" href="https://fonts.googleapis.com">
