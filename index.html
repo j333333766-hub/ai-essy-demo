@@ -1278,6 +1278,30 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
 .ebmgsrc div { font-size: .84em; line-height: 1.6; background: #f6f8fc; border-radius: 8px; padding: 6px 8px; white-space: pre-wrap; }
 .ebf { display: grid; gap: 4px; font-size: .88em; font-weight: 700; color: var(--ink-2); }
 .ebbtns { display: flex; justify-content: flex-end; gap: 8px; }
+
+/* ① 동료 답안 채점하기 */
+.ebtop.peer .lbii, .ebtop.peer #ebItems, .ebtop.peer #ebQline, .ebtop.peer #ebRubBtn { display: none; }
+.ebpeer { display: grid; gap: 12px; }
+#ebPeer { display: grid; gap: 12px; }
+.ebpintro { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: .9em; line-height: 1.7; }
+.ebpintro > div { flex: 1 1 420px; }
+.ebph { display: flex; gap: 8px; align-items: baseline; margin-bottom: 8px; }
+.ebph .q { flex: 1; font-size: .9em; color: var(--ink-2); line-height: 1.6; }
+.ebph .p { font-size: .88em; color: var(--ink-3); white-space: nowrap; }
+.ebpans { white-space: pre-wrap; background: #f6f8fc; border: 1px solid #e1e6f0; border-radius: 10px; padding: 10px 12px; line-height: 1.75; font-size: .93em; margin-bottom: 10px; }
+.ebpt td.ebpsc { white-space: nowrap; }
+.ebpt { table-layout: fixed; }
+.ebpt th:nth-child(1) { width: 28%; } .ebpt th:nth-child(2) { width: 150px; } .ebpt th:nth-child(3) { width: 48px; }
+.ebpsc button { min-width: 34px; height: 30px; border: 1px solid #c9d3e6; background: #fff; border-radius: 6px; margin: 0 3px 0 0; font: inherit; font-weight: 800; cursor: pointer; color: #39415a; }
+.ebpsc button.on { background: #1e73e8; border-color: #1e73e8; color: #fff; }
+.ebpt tr.ok td { background: #f0faf4; }
+.ebpt tr.no td { background: #fff4f1; }
+.ebpt td.rs { font-size: .95em; color: var(--ink-2); }
+.ebpfoot { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; margin-top: 10px; font-size: .92em; }
+.ebpfoot .okc { color: #1f7a45; font-weight: 800; }
+.ebpfoot .noc { color: #b3352a; font-weight: 800; }
+.ebpfb { margin-top: 8px; font-size: .88em; line-height: 1.7; background: #f5f8ff; border-radius: 8px; padding: 8px 10px; }
+.ebpsum { background: #f7fbf9; border-color: #cfe9dc; font-size: .92em; line-height: 1.7; }
 @media (max-width: 720px) { .ebgrid { grid-template-columns: 1fr; } .ebrow .st { margin-left: 0; width: 100%; } }
 </style>
 </head>
@@ -1854,12 +1878,12 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
     <section class="pcard ebtop">
       <div class="ebrow">
         <span class="lb">문항</span><div class="ebseg" id="ebSets"></div>
-        <span class="lb">하위 문항</span><div class="ebseg" id="ebItems"></div>
+        <span class="lb lbii">하위 문항</span><div class="ebseg" id="ebItems"></div>
         <button class="nbtn sm ind" id="ebRubBtn" aria-expanded="false" aria-controls="ebRubPop">채점기준표 보기</button>
       </div>
       <div class="ebqline" id="ebQline"></div>
       <div class="ebrow">
-        <div class="ebtabs" id="ebTabs" role="tablist"><button data-m="ai" role="tab">① AI 채점 결과 모아 보기</button><button data-m="make" role="tab">② 예시답안 함께 만들기</button></div>
+        <div class="ebtabs" id="ebTabs" role="tablist"><button data-m="peer" role="tab">① 동료 답안 채점하기</button><button data-m="ai" role="tab">② AI 채점 결과 모아 보기</button><button data-m="make" role="tab">③ 예시답안 함께 만들기</button></div>
         <label>이름 <input id="ebBy" maxlength="20" placeholder="별명"></label>
         <label>접속 코드 <input id="ebCode" maxlength="20" inputmode="numeric"></label>
         <label><input type="checkbox" id="ebCompact" checked> 답안 짧게 보기</label>
@@ -4764,7 +4788,7 @@ $('tmPanel').addEventListener('click', function(e){
       선생님들이 학생 화면에서 응시해 받은 AI 채점 결과를 점수 칸별로 모은다.
    ② 예시답안 함께 만들기: 점수를 정해 예시답안을 넣고(AI 검토 → 입력), 삭제·되살리기·합치기, AI 표 정리.
    서버는 기록을 덧붙이기만 하고(exAdd/exOp), 화면이 순서대로 적용해 지금 상태를 만든다 → 여러 명이 동시에 써도 충돌 없음. */
-var EB = { si: 0, ii: 0, mode: 'ai', subs: [], ops: [], loaded: false, busy: false, again: false, src: false, showGone: false, sel: {}, org: null,
+var EB = { si: 0, ii: 0, mode: 'peer', peerSig: '', subs: [], ops: [], loaded: false, busy: false, again: false, src: false, showGone: false, sel: {}, org: null,
   draft: { score: '', text: '', review: null, reviewed: '' }, mergeKeys: [], pend: [] };
 /* 방금 보낸 기록이 시트 읽기에 늦게 잡혀도 화면에서 사라지지 않도록 2분 동안 붙여 둔다 */
 function ebPush(o){ EB.ops.push(o); EB.pend.push(o); }
@@ -4861,7 +4885,10 @@ function renderEb(){
   $('ebQline').innerHTML = '<b>' + ebLabel() + '.</b> ' + esc(rLbl(ebItem().q)) + ' [' + ebPts() + '점]';
   $('ebQline').title = rLbl(ebItem().q);
   var m = $('ebMain');
-  if (EB.mode === 'ai') {
+  document.querySelector('.ebtop').classList.toggle('peer', EB.mode === 'peer');
+  if (EB.mode === 'peer') {
+    m.className = 'ebpeer'; m.innerHTML = '<div id="ebPeer"></div>'; renderEbPeer();
+  } else if (EB.mode === 'ai') {
     m.className = 'ebai';
     m.innerHTML = '<section class="pcard"><div class="eblegend"><span><i style="background:#eef7f1;border-color:#a9d8bb"></i>출제팀 예시답안(학생 A·B·C, 사전 AI 채점)</span><span><i style="background:#fff"></i>선생님 응시 답안(학생 화면에서 받은 AI 채점, 같은 분이 여러 번 채점했으면 마지막 결과)</span><span id="ebCnt"></span></div></section><div id="ebGrid"></div>';
   } else {
@@ -4922,6 +4949,70 @@ function renderEbOrg(){
   if (r.gaps.length) h += '<div class="grp"><b>예시답안이 부족한 점수</b><ul>' + r.gaps.map(function(x){ return '<li><b>' + x.score + '점</b>: ' + esc(x.hint) + '</li>'; }).join('') + '</ul></div>';
   box.innerHTML = h + '</section>';
 }
+/* ① 동료 답안 채점하기: 다른 선생님 한 분의 응시 답안을 무작위로 가져와 요소별로 직접 채점하고 AI 채점과 비교.
+   누구 답안인지는 화면에 보이지 않는다. 고른 사람·내 점수는 이 브라우저에만 저장. */
+function ebPeerKey(){ return 'aiEssayDemo.peer' + ($('ebTest').checked ? '.test' : ''); }
+function ebPeerAll(){ return lsGet(ebPeerKey()) || {}; }
+function ebPeerCands(){
+  var me = ebWho().by, seen = {};
+  EB.subs.forEach(function(s){ if (s.si === EB.si && s.nick && s.nick !== me) seen[s.nick] = 1; });
+  return Object.keys(seen);
+}
+function ebPeerPick(silent){
+  var c = ebPeerCands(), all = ebPeerAll(), cur = all[EB.si];
+  if (!c.length) { if (!silent) toast('아직 다른 선생님의 응시 답안이 없습니다.'); renderEbPeer(); return; }
+  /* 이 세트의 하위 문항을 가장 많이 푼 선생님들 가운데에서 고른다 */
+  var cnt = {}; EB.subs.forEach(function(s){ if (s.si === EB.si && c.indexOf(s.nick) >= 0) { cnt[s.nick] = cnt[s.nick] || {}; cnt[s.nick][s.ii] = 1; } });
+  var num = function(n){ return Object.keys(cnt[n] || {}).length; }, top = Math.max.apply(null, c.map(num));
+  var pool = c.filter(function(n){ return num(n) === top; });
+  if (pool.length > 1 && cur) pool = pool.filter(function(n){ return n !== cur.nick; });
+  else if (pool.length === 1 && cur && pool[0] === cur.nick && c.length > 1) pool = c.filter(function(n){ return n !== cur.nick; });
+  all[EB.si] = { nick: pool[Math.floor(Math.random() * pool.length)], no: (cur ? cur.no : 0) + 1, sc: {}, show: {} };
+  lsSet(ebPeerKey(), all); renderEbPeer();
+  if (!silent) toast('다른 선생님 답안을 새로 가져왔습니다.');
+}
+function ebPeerSub(nick, ii){
+  var best = null;
+  EB.subs.forEach(function(s){ if (s.si === EB.si && s.ii === ii && s.nick === nick && (!best || s.at > best.at)) best = s; });
+  return best;
+}
+function renderEbPeer(){
+  var box = $('ebPeer'); if (!box) return;
+  var st = ebSet(), all = ebPeerAll(), cur = all[EB.si], cands = ebPeerCands();
+  var h = '<section class="pcard ebpintro"><div><b>다른 선생님 한 분의 답안을 무작위로 가져왔습니다.</b> 채점기준표를 보며 채점 요소마다 점수를 먼저 매긴 뒤 ‘AI 채점 결과와 비교’를 누르세요. 누구의 답안인지는 보이지 않습니다.</div>' +
+    '<button class="nbtn sm ind" id="ebPeerNew">다른 선생님 답안 뽑기</button><span class="ebhint">' + (EB.loaded ? '답안을 낸 다른 선생님 ' + cands.length + '명' : '') + '</span></section>';
+  if (!EB.loaded) { box.innerHTML = h + '<div class="xlock">' + ($('ebCode').value.trim() ? '선생님 답안을 불러오는 중입니다…' : '접속 코드를 넣고 <b>새로 고침</b>을 누르면 다른 선생님의 답안을 가져옵니다.') + '</div>'; return; }
+  if (!cands.length) { box.innerHTML = h + '<div class="xlock">아직 다른 선생님의 응시 답안이 없습니다. 학생 화면에서 AI 채점을 받은 분이 생기면 여기에 나타납니다(내 이름과 같은 답안은 빼고 고릅니다).</div>'; return; }
+  if (!cur || cands.indexOf(cur.nick) < 0) { ebPeerPick(true); return; }
+  var myT = 0, aiT = 0, ptsT = 0, done = 0, n = 0;
+  h += st.items.map(function(it, ii){
+    var sub = ebPeerSub(cur.nick, ii), pts = +it.pts || 0, rub = it.rubric || [], sc = cur.sc[ii] || [], show = !!cur.show[ii];
+    var head = '<div class="ebph"><b>' + (EB.si + 1) + '-' + (ii + 1) + '.</b> <span class="q">' + esc(rLbl(it.q)) + '</span> <span class="p">[' + pts + '점]</span><button class="nbtn sm" data-prub="' + ii + '">채점기준표</button></div>';
+    if (!sub) return '<section class="pcard ebpcard">' + head + '<div class="ebhint">이 선생님은 이 문항 답안을 AI 채점받지 않았습니다.</div></section>';
+    n++;
+    var all3 = rub.every(function(r, k){ return sc[k] != null; });
+    var mine = sc.reduce(function(s, v){ return s + (+v || 0); }, 0), match = 0;
+    var rows = rub.map(function(r, k){
+      var ai = sub.els[k] || { score: null, reason: '' }, v = sc[k];
+      if (show && v === ai.score) match++;
+      var btns = ''; for (var s = 0; s <= r.pts; s++) btns += '<button class="' + (v === s ? 'on' : '') + '" data-psc="' + ii + ':' + k + ':' + s + '">' + s + '</button>';
+      return '<tr class="' + (show ? (v === ai.score ? 'ok' : 'no') : '') + '"><td><b>' + esc(r.sub) + '</b> <small>(' + r.pts + '점)</small></td><td class="ebpsc">' + btns + '</td>' +
+        '<td class="c">' + (show ? (ai.score == null ? '-' : ai.score) : '?') + '</td><td class="rs">' + (show ? esc(ai.reason || '') : '<span class="ebhint">비교를 누르면 보입니다</span>') + '</td></tr>';
+    }).join('');
+    if (show) { done++; myT += mine; aiT += sub.score; ptsT += pts; }
+    return '<section class="pcard ebpcard">' + head +
+      '<div class="ebpans">' + esc((sub.picks ? '[선택] ' + sub.picks + '\n' : '') + (sub.text || (sub.draw ? '(그림으로 쓴 답안 — 글로 쓴 내용 없음)' : '(내용 없음)'))) + '</div>' +
+      '<div class="tbl-wrap"><table class="ebrt ebpt"><thead><tr><th>채점 요소</th><th>내 점수</th><th>AI</th><th>AI 채점 근거</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+      '<div class="ebpfoot"><span>내 점수 <b>' + (all3 ? mine : '–') + '</b> / ' + pts + '점</span>' +
+      (show ? '<span>AI <b>' + sub.score + '</b> / ' + pts + '점</span><span class="' + (match === rub.length ? 'okc' : 'noc') + '">요소 일치 ' + match + ' / ' + rub.length + '</span>' + '<button class="nbtn sm" data-phide="' + ii + '">다시 채점하기</button>'
+        : '<button class="nbtn sm ind" data-pcmp="' + ii + '"' + (all3 ? '' : ' disabled title="채점 요소마다 점수를 먼저 고르세요"') + '>AI 채점 결과와 비교</button>') + '</div>' +
+      (show && sub.fb ? '<div class="ebpfb"><b>AI가 학생에게 준 피드백</b> ' + esc(sub.fb) + '</div>' : '') + '</section>';
+  }).join('');
+  if (done && done === n) h += '<section class="pcard ebpsum"><b>합계</b> 내 점수 ' + myT + '점 · AI ' + aiT + '점 (' + ptsT + '점 만점) — 점수가 다른 요소는 채점기준표의 어느 문장 때문에 판단이 갈렸는지 모둠에서 이야기해 보세요. 다 보았으면 ‘② AI 채점 결과 모아 보기’로 넘어갑니다.</section>';
+  box.innerHTML = h;
+}
+function ebPeerSet(ii, fn){ var all = ebPeerAll(), cur = all[EB.si]; if (!cur) return; fn(cur); lsSet(ebPeerKey(), all); renderEbPeer(); }
+
 function ebWho(){ return { by: $('ebBy').value.trim(), code: $('ebCode').value.trim() }; }
 function ebSaveWho(){ var w = ebWho(), old = lsGet(KEY_WHO) || {}; lsSet(KEY_WHO, { nick: w.by || old.nick || '', code: w.code || old.code || '' }); }
 function ebReq(obj, needBy){
@@ -4945,6 +5036,8 @@ function ebLoad(quiet){
     var d = new Date(res.at || Date.now()), adds = EB.ops.filter(function(o){ return o.op === 'add'; }).length;
     $('ebSt').textContent = pad2(d.getHours()) + ':' + pad2(d.getMinutes()) + ':' + pad2(d.getSeconds()) + ' 기준 · 응시 답안 ' + EB.subs.length + '개 · 추가 예시답안 ' + adds + '개' + ($('ebTest').checked ? ' (리허설)' : '');
     renderEbGrid(); renderEbOrg();
+    var sig = ebPeerCands().join('|') + '#' + EB.subs.length + '#' + ebWho().by;
+    if (EB.mode === 'peer' && sig !== EB.peerSig) { EB.peerSig = sig; renderEbPeer(); }
     if (EB.again) { EB.again = false; return ebLoad(true); }
   }).catch(function(){ EB.busy = false; $('ebSt').textContent = '불러오지 못했습니다. ‘새로 고침’을 다시 눌러 보세요.'; });
 }
@@ -5001,6 +5094,11 @@ $('ebMain').addEventListener('change', function(e){
 });
 $('ebMain').addEventListener('click', function(e){
   var t = e.target, card = t.closest('.ebc');
+  if (t.id === 'ebPeerNew') return ebPeerPick(false);
+  if (t.hasAttribute('data-psc')) { var q = t.dataset.psc.split(':').map(Number); return ebPeerSet(q[0], function(c){ (c.sc[q[0]] = c.sc[q[0]] || [])[q[1]] = q[2]; }); }
+  if (t.hasAttribute('data-pcmp')) { var i1 = +t.dataset.pcmp; return ebPeerSet(i1, function(c){ c.show[i1] = true; }); }
+  if (t.hasAttribute('data-phide')) { var i2 = +t.dataset.phide; return ebPeerSet(i2, function(c){ c.show[i2] = false; c.sc[i2] = []; }); }
+  if (t.hasAttribute('data-prub')) { EB.ii = +t.dataset.prub; $('ebRub').innerHTML = ebRubHtml(); $('ebRubT').textContent = '채점기준표 · ' + ebLabel() + ' (' + ebPts() + '점)'; return ebRubShow(true); }
   if (t.hasAttribute('data-more')) { card.classList.toggle('open'); t.textContent = card.classList.contains('open') ? '접기' : '더 보기'; return; }
   if (t.hasAttribute('data-del') || t.hasAttribute('data-undel')) { ebOp(t.hasAttribute('data-del') ? 'del' : 'undel', card.dataset.key, t); return; }
   if (t.id === 'ebRv') return ebReview(t);
