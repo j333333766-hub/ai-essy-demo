@@ -1,0 +1,42 @@
+# 연수 종료(2026-10-17 17:00 KST) 뒤 게시 주소 바꾸기
+# - 사이트 파일(index.html, guide.html, guide/)을 새 폴더로 옮기고, 원래 주소에는 '연수 종료' 안내만 남긴다.
+# - 새 주소: https://j333333766-hub.github.io/ai-essy-demo/t1017-6au6utck/
+# - GitHub 예약 실행은 몇 분~수십 분 늦을 수 있다. 화면(index.html)도 17:00이 지나면 원래 주소에서 스스로 닫힌다.
+# - 저장소 Actions 탭에서 'Run workflow'로 바로 실행할 수도 있다(17:00 전에는 아무것도 하지 않음, force를 켜면 즉시 실행).
+name: 연수 종료 후 주소 바꾸기
+on:
+  schedule:
+    - cron: '0 8 17 10 *'   # 08:00 UTC = 17:00 KST
+    - cron: '30 8 17 10 *'  # 늦거나 빠졌을 때 한 번 더
+  workflow_dispatch:
+    inputs:
+      force:
+        description: '17:00 전이라도 지금 옮기기'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  pages: write
+env:
+  SLUG: t1017-6au6utck
+jobs:
+  move:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 시각 확인 후 옮기기
+        run: |
+          set -e
+          now=$(TZ=Asia/Seoul date +%Y%m%d%H%M)
+          if [ "$now" -lt 202610171700 ] && [ "${{ inputs.force }}" != "true" ]; then echo "아직 17:00 전($now) — 그대로 둠"; exit 0; fi
+          if [ -f "$SLUG/index.html" ]; then echo "이미 옮김"; exit 0; fi
+          mkdir -p "$SLUG"
+          git mv index.html guide.html guide "$SLUG"/
+          cp .github/closed.html index.html
+          git add -A
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "연수 종료: 사이트를 새 주소로 옮기고 원래 주소에는 종료 안내만 남김"
+          git push
+          curl -s -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" || true
