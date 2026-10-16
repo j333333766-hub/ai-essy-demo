@@ -1303,6 +1303,11 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
 .ebpfb { margin-top: 8px; font-size: .88em; line-height: 1.7; background: #f5f8ff; border-radius: 8px; padding: 8px 10px; }
 .ebpsum { background: #f7fbf9; border-color: #cfe9dc; font-size: .92em; line-height: 1.7; }
 @media (max-width: 720px) { .ebgrid { grid-template-columns: 1fr; } .ebrow .st { margin-left: 0; width: 100%; } }
+/* 연수 가이드·글자 크기 떠 있는 단추는 처음 화면에서만. 다른 화면에서는 아래 도구를 가리지 않도록 ☰ 연수 도구 안에 둠 */
+body[data-view]:not([data-view="home"]) #guideDock, body[data-view]:not([data-view="home"]) #nudge { display: none !important; }
+.tmfs { display: flex; align-items: center; gap: 4px; padding: 4px 6px 8px; border-bottom: 1px solid #e3e8f2; margin-bottom: 4px; }
+.tmfs span { font-size: .8em; font-weight: 800; color: var(--ink-2); margin-right: auto; }
+.tmfs button { width: auto !important; min-width: 44px; border: 1px solid var(--line) !important; border-radius: 7px !important; background: #fff; padding: 5px 8px !important; font-weight: 800; text-align: center !important; display: inline-block !important; }
 </style>
 </head>
 <body>
@@ -1972,6 +1977,7 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
 <!-- ============ 연수 도구 메뉴 (2026. 10. 16. 추가) ============ -->
 <button class="tmenu-btn" id="tmBtn" aria-expanded="false" aria-controls="tmPanel">☰ 연수 도구</button>
 <div class="tmenu" id="tmPanel" hidden role="menu" aria-label="연수 도구">
+  <div class="tmfs" role="group" aria-label="글자 크기"><span>글자 크기</span><button type="button" data-fs="down" aria-label="글자 작게">가−</button><button type="button" data-fs="reset" id="tmFsVal" aria-label="글자 크기 기본으로">100%</button><button type="button" data-fs="up" aria-label="글자 크게">가+</button></div>
   <h5>연수 당일</h5>
   <button data-tm="today">오늘의 연수 <span class="new">새</span><small>시간표·바로가기·QR</small></button>
   <button data-tm="cross">예시답안 교차 채점 <span class="new">새</span><small>학생 A·B·C</small></button>
@@ -4762,11 +4768,13 @@ $('dUndo').addEventListener('click', function(){
 $('clr').addEventListener('click', function(){ drawUndo = []; });
 
 /* ---------- 연수 도구 메뉴 ---------- */
-function tmOpen(on){ $('tmPanel').hidden = !on; $('tmBtn').setAttribute('aria-expanded', on ? 'true' : 'false'); }
+function tmOpen(on){ if (on) $('tmFsVal').textContent = $('fsVal').textContent; $('tmPanel').hidden = !on; $('tmBtn').setAttribute('aria-expanded', on ? 'true' : 'false'); }
 $('tmBtn').addEventListener('click', function(e){ e.stopPropagation(); tmOpen($('tmPanel').hidden); });
 document.addEventListener('click', function(e){ if (!$('tmPanel').hidden && !e.target.closest('#tmPanel')) tmOpen(false); });
 document.addEventListener('keydown', function(e){ if (e.key === 'Escape') tmOpen(false); });
 $('tmPanel').addEventListener('click', function(e){
+  var f = e.target.closest('[data-fs]');
+  if (f) { $({ down: 'fsDown', reset: 'fsVal', up: 'fsUp' }[f.dataset.fs]).click(); $('tmFsVal').textContent = $('fsVal').textContent; setTimeout(function(){ tmOpen(true); }, 0); return; }
   var b = e.target.closest('[data-tm]'); if (!b) return;
   tmOpen(false);
   if (view === 'student') saveDraw();
