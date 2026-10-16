@@ -1202,7 +1202,14 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
 .ebtabs button.on { color: #1e73e8; border-bottom-color: #1e73e8; }
 .ebrub summary { cursor: pointer; font-weight: 800; color: var(--navy); }
 .ebrub summary small { font-weight: 500; color: var(--ink-3); }
-#ebRub { max-height: 460px; overflow: auto; margin-top: 6px; }
+.ebqline { font-size: .9em; line-height: 1.6; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ebqline b { color: var(--navy); }
+.ebpop { position: fixed; right: 16px; top: 96px; width: min(600px, calc(100vw - 32px)); max-height: calc(100vh - 116px); overflow: auto; background: #fff; border: 1px solid #c9d6ee; border-radius: 14px; box-shadow: 0 18px 50px rgba(20,40,90,.25); z-index: 70; padding: 0 16px 16px; }
+.ebpop[hidden] { display: none; }
+.ebpoph { position: sticky; top: 0; background: #fff; display: flex; align-items: center; gap: 10px; padding: 12px 0 8px; border-bottom: 1px solid #e3e8f2; z-index: 1; }
+.ebpoph b { color: var(--navy); font-size: 1.02em; white-space: nowrap; }
+.ebpoph .ebhint { flex: 1; font-size: .78em; }
+@media (max-width: 720px) { .ebpop { left: 0; right: 0; top: auto; bottom: 0; width: auto; max-height: 70vh; border-radius: 14px 14px 0 0; } .ebpoph .ebhint { display: none; } }
 .ebq { margin: 10px 0 8px; line-height: 1.75; font-size: .93em; }
 .ebq ul { margin: 4px 0 0; padding-left: 1.2em; }
 .ebrt { width: 100%; border-collapse: collapse; font-size: .86em; line-height: 1.6; }
@@ -1847,7 +1854,9 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
       <div class="ebrow">
         <span class="lb">문항</span><div class="ebseg" id="ebSets"></div>
         <span class="lb">하위 문항</span><div class="ebseg" id="ebItems"></div>
+        <button class="nbtn sm ind" id="ebRubBtn" aria-expanded="false" aria-controls="ebRubPop">채점기준표 보기</button>
       </div>
+      <div class="ebqline" id="ebQline"></div>
       <div class="ebrow">
         <div class="ebtabs" id="ebTabs" role="tablist"><button data-m="ai" role="tab">① AI 채점 결과 모아 보기</button><button data-m="make" role="tab">② 예시답안 함께 만들기</button></div>
         <label>이름 <input id="ebBy" maxlength="20" placeholder="별명"></label>
@@ -1858,8 +1867,11 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
         <span class="st" id="ebSt"></span>
       </div>
     </section>
-    <details class="pcard ebrub" id="ebRubBox" open><summary>채점기준표 <small>— 하위 문항·조건·채점 요소별 점수 기준과 요소별 예시답안</small></summary><div id="ebRub"></div></details>
     <div id="ebMain"></div>
+  </div>
+  <div class="ebpop" id="ebRubPop" hidden role="dialog" aria-labelledby="ebRubT">
+    <div class="ebpoph"><b id="ebRubT">채점기준표</b><span class="ebhint">표를 보면서 아래 답안을 그대로 살펴볼 수 있습니다</span><button class="nbtn sm" id="ebRubX">닫기 ✕</button></div>
+    <div id="ebRub"></div>
   </div>
   <div class="ebov" id="ebMerge" hidden role="dialog" aria-modal="true" aria-labelledby="ebMgT">
     <div class="ebdlg">
@@ -4844,6 +4856,9 @@ function renderEb(){
   $('ebItems').innerHTML = ebSet().items.map(function(it, k){ return '<button data-ii="' + k + '" class="' + (k === EB.ii ? 'on' : '') + '">' + (EB.si + 1) + '-' + (k + 1) + ' <small>(' + (+it.pts || 0) + '점)</small></button>'; }).join('');
   Array.prototype.forEach.call(document.querySelectorAll('#ebTabs button'), function(b){ b.classList.toggle('on', b.dataset.m === EB.mode); b.setAttribute('aria-selected', b.dataset.m === EB.mode); });
   $('ebRub').innerHTML = ebRubHtml();
+  $('ebRubT').textContent = '채점기준표 · ' + ebLabel() + ' (' + ebPts() + '점)';
+  $('ebQline').innerHTML = '<b>' + ebLabel() + '.</b> ' + esc(rLbl(ebItem().q)) + ' [' + ebPts() + '점]';
+  $('ebQline').title = rLbl(ebItem().q);
   var m = $('ebMain');
   if (EB.mode === 'ai') {
     m.className = 'ebai';
@@ -4944,6 +4959,10 @@ $('ebSets').addEventListener('click', function(e){ var b = e.target.closest('[da
 $('ebItems').addEventListener('click', function(e){ var b = e.target.closest('[data-ii]'); if (b) ebPick(EB.si, +b.dataset.ii); });
 $('ebTabs').addEventListener('click', function(e){ var b = e.target.closest('[data-m]'); if (b && b.dataset.m !== EB.mode) { EB.mode = b.dataset.m; renderEb(); } });
 $('ebLoad').addEventListener('click', function(){ ebLoad(false); });
+function ebRubShow(on){ $('ebRubPop').hidden = !on; $('ebRubBtn').setAttribute('aria-expanded', on); $('ebRubBtn').textContent = on ? '채점기준표 닫기' : '채점기준표 보기'; }
+$('ebRubBtn').addEventListener('click', function(){ ebRubShow($('ebRubPop').hidden); });
+$('ebRubX').addEventListener('click', function(){ ebRubShow(false); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && view === 'exbank' && !$('ebRubPop').hidden && $('ebMerge').hidden) ebRubShow(false); });
 $('ebCompact').addEventListener('change', renderEbGrid);
 $('ebTest').addEventListener('change', function(){ EB.loaded = false; EB.subs = []; EB.ops = []; EB.pend = []; EB.org = null; renderEb(); ebLoad(false); });
 $('ebHome').addEventListener('click', function(){ show('home'); });
