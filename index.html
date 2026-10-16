@@ -987,6 +987,75 @@ body.skin-real .navs .nbtn.ind { background: #fff; color: var(--rb); border-colo
 body:not(.skin-real) #tLater, body:not(.skin-real) #bSubmit, body:not(.skin-real) .brand .uico, body:not(.skin-real) #rname, body:not(.skin-real) .brand .rf { display: none; }
 body.skin-real .brand > svg:first-child, body.skin-real #subj { display: none; }
 body.skin-real .brand #rname { max-width: 160px; }
+/* 교사 편집 화면 — 실제 시스템 문항 출제 화면 구성(설명자료 3·4쪽) */
+body.skin-real #teacherView { background: var(--rbg); }
+body.skin-real #teacherView .tbar { background: #fff; color: #1d2233; border-bottom: 1px solid #e3e8f2; padding: 10px 20px; }
+body.skin-real #teacherView .tbar .mk { display: none; }
+body.skin-real #teacherView .tbar .brand .ttlx { font-size: 1.08em; font-weight: 800; }
+body.skin-real #teacherView .tbar .who { background: #eef0f5; color: #5b6476; }
+body.skin-real #teacherView .tbar .acts .nbtn { background: #fff; color: #39415a; border-color: #d3d9e6; border-radius: 4px; }
+body.skin-real #teacherView .tbar .acts .nbtn.wht { background: var(--rb); color: #fff; border-color: var(--rb); }
+body.skin-real #teacherView .tcard { border-radius: 6px; border-color: #dde4f1; box-shadow: none; }
+body.skin-real #teacherView .setbtn { border-radius: 6px; }
+body.skin-real #teacherView .setbtn.on { border-color: var(--rb); box-shadow: 0 0 0 1px var(--rb); background: var(--rb-soft); }
+body.skin-real #teacherView .setbtn .sn { color: var(--rb); }
+body.skin-real #teacherView .ttabs { gap: 0; border-bottom: 1px solid #e3e8f2; padding-bottom: 0; }
+body.skin-real #teacherView .ttab { border-radius: 0; padding: 10px 14px; border-bottom: 2px solid transparent; margin-bottom: -1px; color: #6b7386; }
+body.skin-real #teacherView .ttab.on { background: transparent; color: var(--rb); border-bottom-color: var(--rb); }
+body.skin-real #teacherView .ttab.pv { border: 1px solid #d3d9e6; border-radius: 4px; padding: 6px 12px; margin-bottom: 6px; color: var(--rb); }
+body.skin-real #teacherView .tip { border-radius: 6px; background: #f5f7fb; border-color: #e3e8f2; }
+body.skin-real #teacherView .tip b { color: var(--rb); }
+body.skin-real #teacherView .blkcard { border-radius: 6px; background: #fff; border-color: #dde4f1; }
+body.skin-real #teacherView .qbadge { background: var(--rb); }
+body.skin-real #teacherView .f input, body.skin-real #teacherView .f select, body.skin-real #teacherView .f textarea, body.skin-real #teacherView .ed input, body.skin-real #teacherView .ed textarea, body.skin-real #teacherView .ed select { border-radius: 4px; border-color: #d3d9e6; }
+body.skin-real #teacherView .addbtn { border-radius: 4px; border-color: #b9c9f2; color: var(--rb); }
+body.skin-real #teacherView .mtype button { border-radius: 3px; border-color: #d3d9e6; }
+body.skin-real #teacherView .mtype button.on { background: var(--rb); border-color: var(--rb); }
+body.skin-real #teacherView .lvl .sc { border-radius: 4px; background: var(--rb-soft); color: var(--rb); }
+body.skin-real #teacherView .lvl .sc.z { background: #f0f2f6; color: #8a93a8; }
+body.skin-real #teacherView .rrow { border-radius: 6px; border-color: #dde4f1; }
+body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
+.secttl { font-weight: 800; font-size: .92em; margin: 4px 0 8px; color: #1d2233; }
+.frm { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: .9em; }
+.frm th { width: 130px; background: #f5f7fb; text-align: left; font-weight: 700; color: #39415a; padding: 8px 10px; border: 1px solid #e3e8f2; vertical-align: middle; }
+.frm th i { color: #e0452b; font-style: normal; }
+.frm td { padding: 6px 8px; border: 1px solid #e3e8f2; vertical-align: middle; }
+.frm td .f { gap: 0; }
+.chipg { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
+.chipg button { border: 1px solid #d3d9e6; background: #fff; border-radius: 3px; padding: 5px 10px; font-size: .86em; color: #39415a; }
+.chipg button[aria-pressed="true"] { border-color: var(--rb, #2b5ff0); color: var(--rb, #2b5ff0); background: var(--rb-soft, #eaf0ff); font-weight: 700; }
+.chipg.rad button::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid #b8c0d0; margin-right: 5px; vertical-align: -1px; }
+.chipg.rad button[aria-pressed="true"]::before { border: 3.5px solid var(--rb, #2b5ff0); width: 6px; height: 6px; }
+.chipg.rad button { border: 0; background: none; padding: 4px 8px 4px 2px; }
+.stdsel { background: var(--rb-soft, #eaf0ff); border-radius: 6px; padding: 8px 10px; margin-top: 6px; font-size: .86em; }
+.stdsel b { display: block; margin-bottom: 4px; }
+.stdsel div { background: #fff; border: 1px solid #dfe5f2; border-radius: 4px; padding: 5px 8px; margin-top: 4px; line-height: 1.5; }
+.kdbox { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 10px; margin-top: 10px; }
+.kdbox .kin { border: 1px solid #dfe5f2; border-radius: 6px; padding: 10px 12px; background: #fff; }
+.kdbox .kin h6 { margin: 0 0 6px; font-size: .86em; display: flex; align-items: center; gap: 6px; }
+.kdbox .kin h6 .n { width: 18px; height: 18px; border-radius: 50%; background: #2b5ff0; color: #fff; font-size: .78em; display: grid; place-items: center; }
+.kdbox .kin small { display: block; color: #8a93a8; font-size: .78em; margin: 6px 0 4px; }
+.kdbox .ksel { border: 1px solid #dfe5f2; border-radius: 6px; padding: 10px 12px; background: #fff; font-size: .82em; }
+.kdbox .ksel b { display: block; margin-bottom: 6px; }
+.kdbox .ksel dt { color: #6b7386; margin-top: 6px; }
+.kdbox .ksel dd { margin: 2px 0 0; }
+.kdbox .ksel dd span { display: inline-block; background: var(--rb-soft, #eaf0ff); color: #2b5ff0; border-radius: 3px; padding: 1px 7px; font-weight: 700; }
+.edhead { font-size: .82em; font-weight: 700; color: #39415a; margin: 12px 0 4px; }
+.rtabw { overflow-x: auto; }
+.rtab { width: 100%; border-collapse: collapse; font-size: .88em; min-width: 640px; }
+.rtab th { background: #f5f7fb; color: #5b6476; font-weight: 700; padding: 7px; border: 1px solid #e3e8f2; }
+.rtab td { border: 1px solid #e3e8f2; padding: 6px; vertical-align: top; background: #fff; }
+.rtab td.ea { width: 130px; vertical-align: middle; }
+.rtab td.sb { width: 170px; vertical-align: middle; }
+.rtab td.c { width: 48px; text-align: center; vertical-align: middle; font-weight: 800; color: #2b5ff0; font-variant-numeric: tabular-nums; }
+.rtab td.c.z { color: #8a93a8; }
+.rtab textarea { width: 100%; box-sizing: border-box; border: 1px solid #d3d9e6; border-radius: 4px; padding: 6px 8px; font: inherit; font-size: .95em; line-height: 1.55; resize: vertical; min-height: 54px; }
+.rtab td.ea textarea, .rtab td.sb textarea { min-height: 70px; }
+.rtab .sbp { display: flex; align-items: center; gap: 4px; margin-top: 6px; font-size: .86em; color: #5b6476; }
+.rtab .sbp input { width: 56px; border: 1px solid #d3d9e6; border-radius: 4px; padding: 4px 6px; font: inherit; }
+.rtab .sbdel { margin-top: 6px; border: 0; background: none; color: #8a93a8; font-size: .8em; padding: 0; text-decoration: underline; cursor: pointer; }
+.addrow { width: 100%; margin-top: 8px; border: 1px solid #b9c9f2; background: #fff; color: #2b5ff0; border-radius: 4px; padding: 8px; font-weight: 700; font-size: .86em; }
+@media (max-width: 760px) { .kdbox { grid-template-columns: 1fr; } .frm th { width: 92px; } }
 /* 교사 최종 채점(설명자료 8쪽 구성) */
 .gmode { display: flex; gap: 6px; margin: 0 0 10px; flex-wrap: wrap; }
 .gmode button { border: 1px solid #d3d9e6; background: #fff; border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: .86em; color: #39415a; cursor: pointer; }
@@ -1218,7 +1287,7 @@ body.skin-real .brand #rname { max-width: 160px; }
 <!-- ============ 교사 편집 화면 ============ -->
 <div class="tview" id="teacherView" hidden>
   <div class="tbar">
-    <div class="brand"><span class="mk" aria-hidden="true">x</span>AI 논·서술형 평가 시연 <span class="who">교사 · 문항 편집</span></div>
+    <div class="brand"><span class="mk" aria-hidden="true">x</span><span class="ttlx" id="tTtl">AI 논·서술형 평가 시연</span> <span class="who" id="tWho">교사 · 문항 편집</span></div>
     <div class="acts">
       <button class="nbtn sm" id="tHome">← 처음 화면</button>
       <button class="nbtn sm" id="tData">문항 데이터 복사·붙여넣기</button>
@@ -2646,9 +2715,80 @@ function F(label, path, val, o){
 }
 function qhead(it, ii, extra){ return '<div class="blkhead"><h4><span class="qbadge">' + (tSet + 1) + '-' + (ii + 1) + '</span>문항 ' + (ii + 1) + ' <span class="pill mute">' + (+it.pts || 0) + '점 · 난이도 ' + esc(it.level) + '</span>' + (extra || '') + '</h4></div>'; }
 
+/* 실제 시스템 문항 출제 화면처럼(설명자료 3·4쪽): 표 형식 입력, 단추 고르기, K-DOT 메타데이터, 평가기준표 표 */
+function isReal(){ return document.body.classList.contains('skin-real'); }
+function chips(path, val, opts, rad){
+  var list = opts.slice(); if (val && list.indexOf(val) < 0) list.push(val);
+  return '<div class="chipg' + (rad ? ' rad' : '') + '" role="group">' + list.map(function(o){
+    var v = Array.isArray(o) ? o[0] : o, t = Array.isArray(o) ? o[1] : o;
+    return '<button type="button" data-act="setv" data-p="' + path + '" data-v="' + esc(v) + '" aria-pressed="' + (String(v) === String(val)) + '"' + (Array.isArray(o) && o[2] ? ' title="' + esc(o[2]) + '"' : '') + '>' + esc(t) + '</button>';
+  }).join('') + '</div>';
+}
+function FR(label, ctl, req){ return '<tr><th>' + label + (req ? ' <i>*</i>' : '') + '</th><td>' + ctl + '</td></tr>'; }
+function realInfo(st){
+  var i = st.info, stds = String(i.standards || '').split('\n').map(function(x){ return x.trim(); }).filter(Boolean);
+  return '<div class="tip"><b>평가도구 정보</b>는 시스템의 문항 정보와 피드백에 쓰입니다. 실제 시스템의 문항 출제 화면처럼 교육과정 정보 → 출제 의도 → 성취기준 순으로 입력합니다.</div>' +
+    '<div class="secttl">학교급 및 교과/과목</div><table class="frm"><tbody>' +
+    FR('교육과정', chips('info.curr', i.curr || '2022 개정', ['2022 개정', '2015 개정'], true), 1) +
+    FR('학교급', chips('info.school', i.school, ['초등학교', '중학교', '고등학교']), 1) +
+    FR('학년', chips('info.grade', i.grade, ['1학년', '2학년', '3학년']), 1) +
+    FR('교과', F('', 'info.subject', i.subject), 1) +
+    '</tbody></table>' +
+    '<div class="secttl">교과 관련 내용 및 출제 의도 (Set 정보)</div><table class="frm"><tbody>' +
+    FR('세트 이름', F('', 'info.nick', i.nick, { ph: '예: 반티 업체 고르기 (화면 표시용)' })) +
+    FR('출판사 선택', F('', 'info.publisher', i.publisher), 1) +
+    FR('단원', F('', 'info.area', i.area, { ph: '예: 변화와 관계/문자와 식' }), 1) +
+    FR('관련 교과 내용', F('', 'info.related', i.related)) +
+    FR('출제 의도', F('', 'info.intent', i.intent, { area: true, rows: 4 })) +
+    '</tbody></table>' +
+    '<div class="secttl">평가 정보</div><table class="frm"><tbody>' +
+    FR('평가방법', chips('info.method', i.method, ['정기시험', '수행평가']), 1) +
+    FR('평가시간(분)', F('', 'info.time', i.time, { num: true, max: 120 }), 1) +
+    FR('문항 유형', F('', 'info.qtype', i.qtype)) +
+    FR('평가 요소', F('', 'info.evalMain', i.evalMain)) +
+    '</tbody></table>' +
+    '<div class="secttl">성취기준</div><table class="frm"><tbody>' +
+    FR('성취기준', F('', 'info.standards', i.standards, { area: true, rows: 3, ph: '한 줄에 하나씩 입력' }) +
+      '<div class="stdsel"><b>선택된 성취기준 (' + stds.length + '개)</b>' + (stds.length ? stds.map(function(s){ return '<div>' + esc(s) + '</div>'; }).join('') : '<div style="color:#8a93a8">아직 없습니다.</div>') + '</div>', 1) +
+    '</tbody></table>';
+}
+function realItemMeta(it, ii){
+  var p = 'items.' + ii, lv = it.dot ? KD_LEVELS[+it.dot - 1] : null;
+  return '<table class="frm" style="margin-bottom:0"><tbody>' +
+    FR('예상 난이도', chips(p + '.level', it.level, ['A', 'B', 'C', 'D', 'E']) + '<small style="color:#8a93a8;font-size:.78em">예상 성취수준(A~E)</small>', 1) +
+    FR('배점', F('', p + '.pts', it.pts, { num: true, min: 1, max: 20 }), 1) +
+    FR('평가 요소', F('', p + '.eval', it.eval)) +
+    '</tbody></table>' +
+    '<div class="kdbox"><div class="kin"><div class="secttl" style="margin-top:0">K-DOT (Depth Of Thought) 메타데이터 입력</div>' +
+      '<h6><span class="n">1</span>사고 수준</h6>' + chips(p + '.dot', it.dot ? String(it.dot) : '', KD_LEVELS.map(function(l){ return [String(l.n), 'K-DOT ' + l.n, l.name + ' (' + l.ao + ')']; })) +
+      '<h6 style="margin-top:10px"><span class="n">2</span>수행 요소</h6>' + (lv ? chips(p + '.perf', it.perf || '', lv.perf) : '<small>사고 수준을 먼저 고르세요.</small>') +
+      '<div class="kdot-hint">서울 K-DOT 매뉴얼 기준입니다. 한 문항에 여러 수준이 섞이면 가장 높은 수준을 고릅니다. ' + (lv ? '<b>K-DOT' + it.dot + '</b>: ' + esc(lv.desc) + ' ' : '') + '<button type="button" data-kd="1">수준별 설명 보기</button></div></div>' +
+    '<div class="ksel"><b>선택한 메타데이터</b><dl style="margin:0"><dt>사고 수준</dt><dd>' + (lv ? '<span>K-DOT ' + it.dot + '</span> ' + esc(lv.name) : '－') + '</dd><dt>수행 요소</dt><dd>' + (it.perf ? '<span>' + esc(it.perf) + '</span>' : '－') + '</dd></dl></div></div>';
+}
+function realRubric(it, ii){
+  var p = 'items.' + ii, rows = it.rubric || [], total = rows.reduce(function(t, r){ return t + (r.levels || []).length; }, 0);
+  var areaCell = '<td class="ea" rowspan="' + Math.max(1, total) + '"><textarea data-p="' + p + '.area" placeholder="평가 요소를 입력하세요." aria-label="평가 요소">' + esc(it.area) + '</textarea></td>';
+  var h = '<div class="rtabw"><table class="rtab"><thead><tr><th>평가 요소</th><th>세부 채점 요소</th><th>배점</th><th>수행 특성</th></tr></thead><tbody>';
+  if (!total) h += '<tr>' + areaCell + '<td colspan="3" style="color:#8a93a8;vertical-align:middle">세부 채점 요소가 없습니다. 아래 버튼으로 추가하세요.</td></tr>';
+  var first = true;
+  rows.forEach(function(r, ri){
+    var rp = p + '.rubric.' + ri;
+    (r.levels || []).forEach(function(l, li){
+      h += '<tr>' + (first ? areaCell : '');
+      first = false;
+      if (li === 0) h += '<td class="sb" rowspan="' + r.levels.length + '"><textarea data-p="' + rp + '.sub" placeholder="세부 채점 요소" aria-label="세부 채점 요소">' + esc(r.sub) + '</textarea>' +
+        '<div class="sbp">배점 <input type="number" min="1" max="10" data-p="' + rp + '.pts" data-num="1" data-struct="1" value="' + esc(r.pts) + '" aria-label="' + esc(r.sub) + ' 배점">점</div>' +
+        '<button type="button" class="sbdel" data-act="drow" data-i="' + ii + '" data-k="' + ri + '">세부 채점 요소 삭제</button></td>';
+      h += '<td class="c' + (l.s === 0 ? ' z' : '') + '">' + l.s + '</td><td><textarea data-p="' + rp + '.levels.' + li + '.d" rows="' + (l.s === 0 ? 2 : 3) + '" aria-label="' + esc(r.sub) + ' ' + l.s + '점 수행 특성">' + esc(l.d) + '</textarea></td></tr>';
+    });
+  });
+  return h + '</tbody></table></div><button type="button" class="addrow" data-act="arow" data-i="' + ii + '">+ 세부 채점 요소 추가</button>';
+}
+
 function renderTab(){
   var st = S(), h = '';
-  if (tTab === 'info') {
+  if (tTab === 'info' && isReal()) h += realInfo(st);
+  else if (tTab === 'info') {
     h += '<div class="tip"><b>평가도구 정보</b>는 시스템의 문항 정보와 피드백에 쓰입니다. 평가 요소는 채점기준표의 평가 요소와 표현을 맞춰 주세요.</div><div class="fgrid">' +
       F('세트 이름(화면 표시용)', 'info.nick', st.info.nick, { ph: '예: 반티 업체 고르기' }) +
       F('학교급', 'info.school', st.info.school) + F('학년', 'info.grade', st.info.grade) + F('과목명', 'info.subject', st.info.subject) +
@@ -2694,13 +2834,14 @@ function renderTab(){
     h += '<div class="blkcard">' + F('자료 출처·가상 자료 안내', 'note', st.note, { wide: true }) + '</div>';
     st.items.forEach(function(it, ii){
       var p = 'items.' + ii;
-      h += '<div class="blkcard">' + qhead(it, ii) +
+      if (isReal()) h += '<div class="blkcard">' + qhead(it, ii) + realItemMeta(it, ii) + '<div class="edhead">문제(발문) 입력</div>' + F('', p + '.q', it.q, { area: true, wide: true, rows: 4 });
+      else h += '<div class="blkcard">' + qhead(it, ii) +
         '<div class="row3">' + F('난이도(예상 성취수준)', p + '.level', it.level, { opts: ['A', 'B', 'C', 'D', 'E'] }) + F('배점', p + '.pts', it.pts, { num: true, min: 1, max: 20 }) + F('평가 요소', p + '.eval', it.eval) + '</div>' +
         '<div class="row3" style="margin-top:10px">' + F('사고 수준(K-DOT)', p + '.dot', it.dot || '', { opts: [['', '선택하세요']].concat(KD_LEVELS.map(function(l){ return [String(l.n), 'K-DOT' + l.n + ' ' + l.name + ' (' + l.ao + ')']; })), struct: true }) +
           F('수행 요소', p + '.perf', it.perf || '', { opts: [['', it.dot ? '선택하세요' : '사고 수준을 먼저 고르세요']].concat(it.dot ? KD_LEVELS[+it.dot - 1].perf : []).concat(it.perf && !(it.dot && KD_LEVELS[+it.dot - 1].perf.indexOf(it.perf) >= 0) ? [it.perf] : []), struct: true }) + '</div>' +
         '<div class="kdot-hint">서울 K-DOT 매뉴얼 기준입니다. 한 문항에 여러 수준이 섞이면 가장 높은 수준을 고릅니다. ' + (it.dot ? '<b>K-DOT' + it.dot + '</b>: ' + esc(KD_LEVELS[+it.dot - 1].desc) + ' ' : '') + '<button type="button" data-kd="1">수준별 설명 보기</button></div>' +
-        '<div style="margin-top:10px">' + F('발문', p + '.q', it.q, { area: true, wide: true, rows: 4 }) + '</div>' +
-        '<details style="margin-top:10px"' + ((it.picks || []).length ? ' open' : '') + '><summary class="flabel" style="cursor:pointer">선택형 결론 (선택 사항) — 결론은 고르고 근거만 서술하게 할 때</summary><div class="lst" style="margin-top:8px">' +
+        '<div style="margin-top:10px">' + F('발문', p + '.q', it.q, { area: true, wide: true, rows: 4 }) + '</div>';
+      h += '<details style="margin-top:10px"' + ((it.picks || []).length ? ' open' : '') + '><summary class="flabel" style="cursor:pointer">선택형 결론 (선택 사항) — 결론은 고르고 근거만 서술하게 할 때</summary><div class="lst" style="margin-top:8px">' +
         (it.picks || []).map(function(pk, pi){
           return '<div class="li" style="grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) minmax(0,1fr) auto"><input data-p="' + p + '.picks.' + pi + '.pre" value="' + esc(pk.pre) + '" placeholder="앞 문장 (예: 행사를)" aria-label="앞 문장"><input data-p="' + p + '.picks.' + pi + '.opts" value="' + esc(pk.opts) + '" placeholder="선택지를 / 로 구분 (예: 진행 / 취소)" aria-label="선택지"><input data-p="' + p + '.picks.' + pi + '.post" value="' + esc(pk.post) + '" placeholder="뒷 문장" aria-label="뒷 문장"><button class="xbtn" data-act="dpick" data-i="' + ii + '" data-k="' + pi + '" aria-label="선택 항목 삭제">×</button></div>';
         }).join('') + '<button class="addbtn" data-act="apick" data-i="' + ii + '">+ 선택 항목 추가</button></div></details>' +
@@ -2724,8 +2865,12 @@ function renderTab(){
     h += '<div class="tip"><b>채점기준표</b>는 하위 문항마다 1개씩 씁니다. 세부 채점 요소의 배점을 정하면 수행 특성 칸이 배점부터 0점까지 만들어집니다. 감점형보다 수준을 구분하는 방식으로 쓰고, 0점 칸은 위의 모든 배점 기준을 빠짐없이 언급하세요. 인정하는 동치 표현·별해와 대표 오답을 괄호로 적어 두면 AI와 채점교사의 판단이 일치합니다.</div>';
     st.items.forEach(function(it, ii){
       var p = 'items.' + ii, sum = rubricSum(it), okp = sum === +it.pts;
-      h += '<div class="blkcard">' + qhead(it, ii, '<span class="pill ' + (okp ? 'ok' : 'err') + '">채점기준 합 ' + sum + '점' + (okp ? '' : ' ≠ 배점 ' + it.pts + '점') + '</span>') +
-        F('평가 요소', p + '.area', it.area, { wide: true }) + '<div style="height:10px"></div>';
+      h += '<div class="blkcard">' + qhead(it, ii, '<span class="pill ' + (okp ? 'ok' : 'err') + '">채점기준 합 ' + sum + '점' + (okp ? '' : ' ≠ 배점 ' + it.pts + '점') + '</span>');
+      if (isReal()) {
+        h += realRubric(it, ii) + '<div style="margin-top:10px">' + F('평가기준표 아래 안내 (선택)', p + '.rubricNote', it.rubricNote, { wide: true, ph: '예: ※ 이월 오류는 이중으로 감점하지 않음.' }) + '</div></div>';
+        return;
+      }
+      h += F('평가 요소', p + '.area', it.area, { wide: true }) + '<div style="height:10px"></div>';
       (it.rubric || []).forEach(function(r, ri){
         var rp = p + '.rubric.' + ri;
         h += '<div class="rrow"><div class="row2">' + F('세부 채점 요소', rp + '.sub', r.sub) + F('배점', rp + '.pts', r.pts, { num: true, min: 1, max: 10, struct: true }) + '</div>' +
@@ -2799,6 +2944,12 @@ $('tbody').addEventListener('click', function(e){
   var b = e.target.closest('[data-act]'); if (!b || b.tagName === 'INPUT') return;
   var st = S(), a = b.dataset.act, d = b.dataset, it = d.i != null ? st.items[+d.i] : null, m = d.m != null ? st.materials[+d.m] : null;
   switch (a) {
+    case 'setv': var sr = getRef(st, d.p), nv = d.v;
+      if (/\.perf$/.test(d.p) && sr.o[sr.k] === nv) nv = '';
+      sr.o[sr.k] = nv;
+      var dm = d.p.match(/^items\.(\d+)\.dot$/);
+      if (dm) { var di = st.items[+dm[1]]; if (di.perf && KD_LEVELS[+nv - 1].perf.indexOf(di.perf) < 0) di.perf = ''; }
+      break;
     case 'mtype': m.type = d.v; if (d.v === 'table' && !m.rows) m.rows = [['항목', '내용'], ['', '']]; if (d.v === 'dialogue' && !m.lines) m.lines = [{ who: '', text: '' }]; if (d.v === 'text' && m.body == null) m.body = ''; break;
     case 'delmat': confirmDo('‘' + (m.label || '제시자료') + '’를 삭제할까요?', function(){ st.materials.splice(+d.m, 1); renderTab(); afterEdit(); }); return;
     case 'addmat': st.materials.push({ type: 'text', label: '[제시자료' + (st.materials.length + 1) + ']', title: '', place: 'common', body: '' }); break;
@@ -4390,7 +4541,7 @@ $('apToday').addEventListener('click', openToday);
 $('lkAiep').addEventListener('click', openAiep);
 
 /* 실제 시스템 외형: 기본. ?skin=demo 면 예전 외형 */
-if (!/[?&]skin=demo\b/.test(location.search)) { document.body.classList.add('skin-real'); $('ttlChip').textContent = '연수용 모형'; }
+if (!/[?&]skin=demo\b/.test(location.search)) { document.body.classList.add('skin-real'); $('ttlChip').textContent = '연수용 모형'; $('tTtl').textContent = '서·논술형 문항 출제'; $('tWho').textContent = '연수용 모형'; }
 
 applyScale();
 refreshMissions();
