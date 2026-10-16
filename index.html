@@ -1024,6 +1024,44 @@ body.skin-real .answer textarea { border: 1px solid #d3d9e6; border-radius: 8px;
 body.skin-real .cnt { color: #8a93a8; font-size: .8em; }
 body.skin-real .cnt b { color: #2b5ff0; }
 body.skin-real.qview .vnote { margin-left: 22px; }
+/* 교사 평가 관리 화면처럼: 파란 머리줄(80px) + 흰 줄 메뉴(굵은 글씨, 선택 시 파란 밑줄) */
+body.skin-real { --wb: #1e73e8; --wb-soft: #ebf4fd; }
+body.skin-real .topbar, body.skin-real .tbar, html body.skin-real #teacherView .tbar { background: var(--wb); color: #fff; border-bottom: 0; min-height: 80px; padding: 0 36px; box-sizing: border-box; }
+body.skin-real .topbar { display: flex; align-items: center; gap: 14px; }
+body.skin-real .topbar .ttl { order: 0; flex: 1; text-align: left; display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; color: #fff; }
+body.skin-real .topbar .ttl::before, body.skin-real .tbar .brand::before { content: ''; flex: none; width: 30px; height: 30px; border-radius: 7px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M8 9h10M8 14h14M8 19h7' stroke='%231e73e8' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E") center/100% no-repeat; }
+body.skin-real .topbar .ttl .chip { background: rgba(255,255,255,.2); color: #fff; font-size: 12px; font-weight: 700; }
+body.skin-real .topbar .brand { order: 1; color: #fff; font-size: 14px; font-weight: 600; }
+body.skin-real .topbar .brand .uico circle:first-child { fill: rgba(255,255,255,.25); }
+body.skin-real .topbar .brand .rf { color: rgba(255,255,255,.7); }
+body.skin-real .topbar .tright { order: 2; gap: 8px; }
+body.skin-real .timer { color: #fff; background: rgba(0,0,0,.12); border-radius: 4px; padding: 6px 10px; font-size: 1.05em; }
+body.skin-real .timer.low { color: #ffd2c4; }
+body.skin-real .btn-all, body.skin-real .pmode { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.6); border-radius: 4px; color: #fff; }
+body.skin-real .btn-all { height: 38px; padding: 0 14px; font-size: 14px; font-weight: 600; }
+body.skin-real .pmode button { background: transparent; color: #fff; font-size: 13px; font-weight: 600; height: 36px; padding: 0 12px; }
+body.skin-real .pmode button + button { border-left-color: rgba(255,255,255,.45); }
+body.skin-real .pmode button.on { background: #fff; color: var(--wb); }
+body.skin-real .tabs { background: #fff; border-bottom: 1px solid #e3e8f2; padding: 6px 20px 8px; }
+body.skin-real .tgrp.cur .gl { color: var(--wb); font-weight: 700; }
+body.skin-real .tab.on .n { background: var(--wb); }
+body.skin-real .tab.done .n { background: var(--wb-soft); color: var(--wb); }
+body.skin-real .navs .nbtn.pri { background: var(--wb); border-color: var(--wb); }
+body.skin-real .navs .nbtn.ind { color: var(--wb); border-color: var(--wb); }
+body.skin-real .tbar .brand { color: #fff; font-size: 20px; font-weight: 700; gap: 10px; align-items: center; }
+body.skin-real .tbar .brand .mk { display: none; }
+body.skin-real .tbar .brand .ttlx { font-size: 20px; font-weight: 700; }
+body.skin-real .tbar .who, html body.skin-real #teacherView .tbar .who { background: rgba(255,255,255,.18); color: #fff; font-size: 13px; font-weight: 600; border-radius: 4px; }
+body.skin-real .tbar .acts .nbtn, html body.skin-real #teacherView .tbar .acts .nbtn { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.6); border-radius: 4px; height: 38px; padding: 0 14px; font-size: 14px; font-weight: 600; }
+body.skin-real .tbar .acts .nbtn.wht, html body.skin-real #teacherView .tbar .acts .nbtn.wht { background: #fff; color: var(--wb); border-color: #fff; }
+html body.skin-real #teacherView .ttabs { gap: 20px; padding: 0 4px; border-bottom: 1px solid #e3e8f2; }
+html body.skin-real #teacherView .ttab { height: 56px; padding: 0 2px; font-size: 16px; font-weight: 700; color: #222; border-bottom: 4px solid transparent; }
+html body.skin-real #teacherView .ttab.on { color: var(--wb); border-bottom-color: var(--wb); background: transparent; }
+html body.skin-real #teacherView .ttab.pv { height: auto; align-self: center; border: 1px solid var(--wb); color: var(--wb); border-radius: 4px; padding: 6px 12px; font-size: 14px; }
+html body.skin-real #teacherView .setbtn.on { border-color: var(--wb); box-shadow: 0 0 0 1px var(--wb); background: var(--wb-soft); }
+html body.skin-real #teacherView .setbtn .sn, html body.skin-real #teacherView .tip b { color: var(--wb); }
+html body.skin-real #teacherView .qbadge { background: var(--wb); }
+@media (max-width: 720px) { body.skin-real .topbar, body.skin-real .tbar, html body.skin-real #teacherView .tbar { padding: 10px 16px; min-height: 64px; flex-wrap: wrap; } body.skin-real .topbar .ttl { font-size: 17px; } body.skin-real .pmode button { padding: 0 8px; font-size: 12px; white-space: nowrap; } body.skin-real .ttl .chip, body.skin-real .btn-all { white-space: nowrap; } body.skin-real .btn-all { padding: 0 10px; font-size: 12px; } }
 /* 교사 편집 화면 — 실제 시스템 문항 출제 화면 구성(설명자료 3·4쪽) */
 body.skin-real #teacherView { background: var(--rbg); }
 body.skin-real #teacherView .tbar { background: #fff; color: #1d2233; border-bottom: 1px solid #e3e8f2; padding: 10px 20px; }
