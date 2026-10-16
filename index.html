@@ -65,6 +65,7 @@ i.v { font-family: "Times New Roman", serif; font-size: 1.08em; }
 .subwho input:focus { border-color: var(--indigo); outline: none; box-shadow: 0 0 0 3px rgba(75,79,214,.15); }
 .subnote { margin: 10px 0 0; font-size: .8em; color: var(--ink-2); line-height: 1.6; }
 .sheet.grade { width: min(860px, 100%); }
+.sheet.grade.wide { width: min(1240px, 100%); }
 .gnotice { margin: 0 0 12px; padding: 8px 12px; border-radius: 10px; background: var(--warn-soft); color: var(--warn); font-size: .82em; font-weight: 700; line-height: 1.6; }
 .gwait { display: grid; justify-items: center; gap: 14px; padding: 34px 10px; text-align: center; line-height: 1.7; }
 .gspin { width: 44px; height: 44px; border-radius: 50%; border: 5px solid var(--lav-2); border-top-color: var(--indigo); animation: gspin 1s linear infinite; }
@@ -943,6 +944,101 @@ body.printing-proto .tmenu-btn, body.touring .tmenu-btn { display: none; }
 /* 학생 응시 화면: 아래 버튼과 겹치지 않도록 오른쪽 가장자리 세로 탭으로 */
 body[data-view="student"] .tmenu-btn { bottom: auto; top: 42%; right: 0; border-radius: 12px 0 0 12px; padding: 12px 7px; writing-mode: vertical-rl; letter-spacing: .08em; font-size: 13px; }
 body[data-view="student"] .tmenu { bottom: auto; top: 18%; right: 40px; }
+/* ===== 실제 시스템 외형(10. 16. 설명자료 기준) — ?skin=demo 로 예전 외형 ===== */
+body.skin-real { --rb: #2b5ff0; --rb-soft: #eaf0ff; --rb-line: #c7d6f6; --rbg: #eef2f8; }
+body.skin-real .screen { background: var(--rbg); border-color: #d5deef; box-shadow: 0 8px 26px rgba(30,50,110,.10); }
+body.skin-real .topbar { background: #fff; color: #1d2233; border-bottom: 1px solid #e3e8f2; padding: 9px 18px; }
+body.skin-real .brand { font-size: .9em; }
+body.skin-real .brand .uico { width: 22px; height: 22px; flex: none; }
+body.skin-real .brand .rf { color: #8a93a8; font-weight: 400; margin-left: 2px; }
+body.skin-real .ttl { font-size: .98em; color: #1d2233; }
+body.skin-real .ttl .chip { background: #eef0f5; color: #5b6476; font-weight: 600; }
+body.skin-real .timer { color: var(--rb); font-size: 1.12em; letter-spacing: .06em; }
+body.skin-real .timer svg { display: none; }
+body.skin-real .timer.low { color: #e0452b; }
+body.skin-real .timer.idle { opacity: .55; }
+body.skin-real .btn-all { background: #fff; color: #39415a; border: 1px solid #d3d9e6; border-radius: 4px; padding: 4px 9px; font-size: .74em; font-weight: 600; }
+body.skin-real .tabs { background: #fff; padding: 4px 14px 8px; gap: 14px; border-bottom: 1px solid #e3e8f2; }
+body.skin-real .tgrp .gl { color: #9aa3b5; font-size: .66em; padding-left: 2px; }
+body.skin-real .tgrp.cur .gl { color: var(--rb); }
+body.skin-real .trow { gap: 6px; }
+body.skin-real .tab { color: #8a93a8; border: 0; padding: 2px 0; font-size: .78em; }
+body.skin-real .tab .n { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; height: 28px; padding: 0 7px; border-radius: 999px; background: #fff; }
+body.skin-real .tab.done .n { background: var(--rb-soft); color: var(--rb); }
+body.skin-real .tab.done::after { top: -1px; right: -1px; background: #22b07d; }
+body.skin-real .tab.miss .n { box-shadow: 0 0 0 1.5px #ff8a73; border-radius: 999px; }
+body.skin-real .tab.on { color: #fff; border: 0; }
+body.skin-real .tab.on .n { background: var(--rb); color: #fff; padding: 0 7px; border-radius: 999px; }
+body.skin-real .tab.later .n { box-shadow: inset 0 -3px 0 #f5a524; }
+body.skin-real .body { background: var(--rbg); }
+body.skin-real .left { border-right: 1px solid #dde4f1; background: #fff; margin: 10px 0 10px 10px; border-radius: 6px; }
+body.skin-real .right { background: #fff; margin: 10px 10px 10px 8px; border-radius: 6px; }
+body.skin-real .directive, body.skin-real .qcard, body.skin-real .cond, body.skin-real .answer, body.skin-real .passage, body.skin-real .itemres { border: 1.5px solid var(--rb-line); border-radius: 8px; }
+body.skin-real .rng { background: #fff; color: #1d2233; border: 1px solid #bfc6d4; border-radius: 4px; font-weight: 700; }
+body.skin-real .passage { background: #fff; }
+body.skin-real .answer textarea { background-color: #fff; background-image: none; border: 1px solid #e3e8f2; line-height: 1.8; padding: 10px 12px; }
+body.skin-real .cnt { color: var(--rb); text-align: left; }
+body.skin-real .foot { background: #fff; border-top: 1px solid #e3e8f2; padding: 8px 14px; }
+body.skin-real .tool { border: 1px solid #d3d9e6; border-radius: 4px; font-size: .78em; padding: 5px 9px; color: #39415a; }
+body.skin-real .tool[aria-pressed="true"] { background: var(--rb-soft); border-color: var(--rb); color: var(--rb); }
+body.skin-real .navs .nbtn { border-radius: 4px; font-size: .8em; padding: 6px 12px; border-color: #d3d9e6; color: #39415a; }
+body.skin-real .navs .nbtn.pri { background: var(--rb); border-color: var(--rb); color: #fff; }
+body.skin-real .navs .nbtn.ind { background: #fff; color: var(--rb); border-color: var(--rb); }
+body:not(.skin-real) #tLater, body:not(.skin-real) #bSubmit, body:not(.skin-real) .brand .uico, body:not(.skin-real) #rname, body:not(.skin-real) .brand .rf { display: none; }
+body.skin-real .brand > svg:first-child, body.skin-real #subj { display: none; }
+body.skin-real .brand #rname { max-width: 160px; }
+/* 교사 최종 채점(설명자료 8쪽 구성) */
+.gmode { display: flex; gap: 6px; margin: 0 0 10px; flex-wrap: wrap; }
+.gmode button { border: 1px solid #d3d9e6; background: #fff; border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: .86em; color: #39415a; cursor: pointer; }
+.gmode button[aria-pressed="true"] { background: #2b5ff0; border-color: #2b5ff0; color: #fff; }
+.tfwrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; margin-top: 4px; }
+.tfbox { border: 1px solid #dfe5f2; border-radius: 10px; padding: 10px 12px; background: #fff; min-width: 0; }
+.tfbox h5 { margin: 0 0 8px; font-size: .9em; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; color: #1d2233; }
+.tfbox h5 .r { margin-left: auto; display: flex; gap: 4px; flex-wrap: wrap; }
+.tfbox h5 .r button { border: 1px solid #d3d9e6; background: #fff; border-radius: 4px; font-size: .78em; padding: 3px 8px; cursor: pointer; color: #39415a; font-weight: 700; }
+.tfbox h5 .r button[aria-pressed="true"] { background: #2b5ff0; border-color: #2b5ff0; color: #fff; }
+.tft { width: 100%; border-collapse: collapse; font-size: .8em; }
+.tft th, .tft td { border: 1px solid #e6eaf3; padding: 5px 6px; vertical-align: middle; line-height: 1.5; text-align: left; }
+.tft thead th { background: #f5f7fb; font-weight: 700; text-align: center; color: #5b6476; }
+.tft td.c { text-align: center; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tft tr.on td { background: #eaf0ff; }
+.tft td.tfck { color: #2b5ff0; font-weight: 800; text-align: center; width: 28px; }
+.tft input[type=radio] { width: 16px; height: 16px; accent-color: #2b5ff0; }
+.tfsum { text-align: right; font-size: .82em; color: #5b6476; margin-top: 6px; }
+.tfsum b { color: #2b5ff0; }
+.tfexp ul { margin: 0; padding-left: 1.1em; font-size: .84em; line-height: 1.7; }
+.tfexp .tfchk { margin-top: 8px; font-size: .82em; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.tfexp .tfchk span { border-radius: 999px; padding: 2px 9px; font-weight: 700; font-size: .92em; }
+.tfexp .tfchk .same { background: #e3f6ee; color: #12805a; }
+.tfexp .tfchk .diffr { background: #fff1e6; color: #b5560c; }
+.tffb textarea { width: 100%; min-height: 92px; border: 1px solid #dfe5f2; border-radius: 6px; padding: 8px; font: inherit; font-size: .86em; line-height: 1.6; resize: vertical; box-sizing: border-box; }
+.tffb small { display: block; color: #8a93a8; font-size: .76em; margin-top: 4px; }
+.tfmemo { display: flex; gap: 6px; flex-wrap: wrap; }
+.tfmemo label { border: 1px solid #d3d9e6; border-radius: 4px; padding: 4px 9px; font-size: .8em; display: flex; gap: 4px; align-items: center; cursor: pointer; }
+.tfmemo label:has(input:checked) { border-color: #2b5ff0; color: #2b5ff0; background: #eaf0ff; font-weight: 700; }
+.tfnote { font-size: .8em; color: #5b6476; background: #f5f7fb; border-radius: 8px; padding: 8px 10px; line-height: 1.6; margin: 0 0 10px; }
+@media (max-width: 860px) { .tfwrap { grid-template-columns: minmax(0, 1fr); } }
+/* 실제 시스템 안내 화면 */
+.apwrap { max-width: 1080px; margin: 0 auto; padding: 16px 16px 40px; display: grid; gap: 14px; }
+.ap2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.apsys { border-radius: 14px; padding: 14px 16px; border: 1.5px solid; background: #fff; }
+.apsys.a { border-color: #b9cdf6; } .apsys.b { border-color: #a7e0d3; }
+.apsys .no { font-weight: 800; font-size: .8em; border-radius: 999px; padding: 2px 9px; color: #fff; }
+.apsys.a .no { background: #2b5ff0; } .apsys.b { } .apsys.b .no { background: #0f9478; }
+.apsys h4 { margin: 8px 0 4px; font-size: 1.12em; color: #1d2233; }
+.apsys .use { font-weight: 800; margin: 0 0 6px; }
+.apsys.a .use { color: #2b5ff0; } .apsys.b .use { color: #0f9478; }
+.apsys ul { margin: 0; padding-left: 1.1em; font-size: .9em; line-height: 1.8; }
+.apsys .who { display: inline-block; margin-top: 8px; font-size: .82em; font-weight: 700; background: #f1f4f9; border-radius: 999px; padding: 3px 10px; }
+.apflow { display: grid; gap: 8px; }
+.apstep { background: #fff; border: 1px solid #dfe5f2; border-radius: 12px; padding: 10px 14px; display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.apstep .n { width: 34px; height: 34px; border-radius: 50%; background: #eaf0ff; color: #2b5ff0; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.apstep h5 { margin: 0 0 2px; font-size: .98em; }
+.apstep p { margin: 0; font-size: .86em; color: var(--ink-2); line-height: 1.6; }
+.apstep .sys { font-size: .72em; font-weight: 700; border-radius: 999px; padding: 1px 8px; margin-left: 6px; vertical-align: 1px; }
+.apstep .sys.a { background: #eaf0ff; color: #2b5ff0; } .apstep .sys.b { background: #e3f6ee; color: #0f9478; }
+.apstep .go { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+@media (max-width: 760px) { .ap2 { grid-template-columns: 1fr; } .apstep { grid-template-columns: 40px minmax(0, 1fr); } .apstep .go { grid-column: 1 / -1; justify-content: flex-start; } }
 </style>
 </head>
 <body>
@@ -991,7 +1087,7 @@ body[data-view="student"] .tmenu { bottom: auto; top: 18%; right: 40px; }
         <button id="lkRt">채점 기준 바꿔 보기</button>
         <button id="lkKdot">K-DOT 출제 매뉴얼</button>
       </div>
-      <div class="hlinks hot"><button id="lkToday">오늘의 연수(10. 17.)</button><button id="lkCross">예시답안 교차 채점</button><button id="lkBoard">모둠 채점 현황판</button><a href="guide.html">처음이세요? 사이트 설명서</a></div>
+      <div class="hlinks hot"><button id="lkToday">오늘의 연수(10. 17.)</button><button id="lkAiep">실제 시스템 안내</button><button id="lkCross">예시답안 교차 채점</button><button id="lkBoard">모둠 채점 현황판</button><a href="guide.html">처음이세요? 사이트 설명서</a></div>
     </div>
   </section>
   <section class="intro" id="intro" aria-labelledby="introTitle">
@@ -1028,8 +1124,10 @@ body[data-view="student"] .tmenu { bottom: auto; top: 18%; right: 40px; }
         <div class="brand">
           <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="3" fill="#8fb2ff"/><path d="M4 9.5c3 1.2 5.6 1.2 8 0 2.4 1.2 5 1.2 8 0-1.5 4-4.2 6.2-8 6.5-3.8-.3-6.5-2.5-8-6.5z" fill="#8fb2ff"/><path d="M12 16v6" stroke="#8fb2ff" stroke-width="2"/></svg>
           <span id="subj">중학교 수학</span>
+          <svg class="uico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#2b5ff0"/><circle cx="12" cy="9.5" r="3.6" fill="#fff"/><path d="M5.6 18.6c1.3-2.7 3.8-4 6.4-4s5.1 1.3 6.4 4" fill="#fff"/></svg>
+          <span id="rname">응시자</span><span class="rf" aria-hidden="true">↻</span>
         </div>
-        <div class="ttl">AI 논·서술형 평가<span class="chip">연수 시연</span></div>
+        <div class="ttl">AI 서·논술형 평가<span class="chip" id="ttlChip">연수 시연</span></div>
         <div class="tright">
           <div class="timer idle" id="timer">
             <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8" fill="none" stroke="#fff" stroke-width="2"/><path d="M12 9v4l3 2M9 2h6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
@@ -1089,6 +1187,7 @@ body[data-view="student"] .tmenu { bottom: auto; top: 18%; right: 40px; }
       </div>
       <div class="foot">
         <div class="tools">
+          <button class="tool" id="tLater" aria-pressed="false" title="이 문제에 표시해 두고 나중에 다시 풉니다">✓ 나중에 풀기</button>
           <button class="tool" id="tUl" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v7a6 6 0 0 0 12 0V3M4 21h16" stroke="currentColor" stroke-width="2" fill="none"/></svg>내용에 밑줄</button>
           <button class="tool" id="tZoom"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v6h6M20 10V4h-6M4 20l7-7M20 4l-7 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>화면 크기 <span id="zoomv">100%</span></button>
           <button class="tool" id="tHl" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h7M14 4l6 6-8 8H6v-6z" stroke="currentColor" stroke-width="2" fill="#ffe36e"/></svg>형광펜</button>
@@ -1097,6 +1196,7 @@ body[data-view="student"] .tmenu { bottom: auto; top: 18%; right: 40px; }
         <div class="navs">
           <button class="nbtn ind" id="bGrade" title="지금 보고 있는 문항의 답안만 AI가 채점합니다">이 문항 AI 채점</button>
           <button class="nbtn" id="bSave">임시저장</button>
+          <button class="nbtn" id="bSubmit">답안 제출</button>
           <button class="nbtn" id="bPrev">&lt; 이전 문제</button>
           <button class="nbtn pri" id="bNext">다음 문제 &gt;</button>
         </div>
@@ -1526,6 +1626,36 @@ body[data-view="student"] .tmenu { bottom: auto; top: 18%; right: 40px; }
   </div>
 </div>
 
+<!-- ============ 실제 시스템 안내 (2026. 10. 16. 오후 추가) ============ -->
+<div class="tview cview" id="apView" hidden>
+  <div class="tbar">
+    <div class="brand"><span class="mk" aria-hidden="true">x</span>AI 논·서술형 평가 시연 <span class="who">실제 시스템 안내</span></div>
+    <div class="acts">
+      <button class="nbtn sm" id="apHome">← 처음 화면</button>
+      <button class="nbtn sm wht" id="apToday">오늘의 연수</button>
+    </div>
+  </div>
+  <div class="chead" style="grid-template-columns:minmax(0,1fr)">
+    <div class="chi">
+      <p class="eb">10. 16. 교육청 안내 기준</p>
+      <h2>실천교사가 쓰는 시스템은 두 가지이고, 접속 사이트와 용도가 다릅니다</h2>
+      <p class="chow">이 사이트는 실제 시스템이 아니라 <b>연수용 모형</b>입니다. 연수생은 실제 시스템에 들어갈 수 없어서, 실제 화면 구성을 참고해 <b>학생 응시 화면</b>과 <b>교사 최종 채점 화면</b>을 비슷하게 맞추었습니다. 아래 단계마다 이 사이트에서 해 볼 수 있는 화면을 이어 두었습니다.</p>
+    </div>
+  </div>
+  <div class="apwrap">
+    <div class="ap2">
+      <div class="apsys a"><span class="no">01</span><h4>문항출제시스템</h4><p class="use">문항 출제·검수</p>
+        <ul><li>논·서술형 평가 문항 출제</li><li>개발한 문항 검수</li><li>학생에게 문항을 배포하거나 답안을 채점하는 곳은 아님</li></ul>
+        <span class="who">심화과정 선생님 · 이용 권한은 곧 부여 예정</span></div>
+      <div class="apsys b"><span class="no">02</span><h4>인천 AI 평가지원시스템</h4><p class="use">문항 배포·답안 확인·채점</p>
+        <ul><li>교사: 학생에게 문항 배포</li><li>학생: 답안 작성</li><li>교사: 답안 확인 및 채점</li></ul>
+        <span class="who">기본과정 선생님</span></div>
+    </div>
+    <div class="pcard"><h4 style="margin:0 0 4px">한 문항이 학생에게 갔다가 점수로 돌아오기까지</h4><p style="margin:0;font-size:.9em;color:var(--ink-2);line-height:1.7">문항 출제·검수는 <b>문항출제시스템</b>, 학생 대상 평가·채점은 <b>인천 AI 평가지원시스템</b>에서 합니다.</p></div>
+    <div class="apflow" id="apFlow"></div>
+  </div>
+</div>
+
 <!-- ============ 연수 도구 메뉴 (2026. 10. 16. 추가) ============ -->
 <button class="tmenu-btn" id="tmBtn" aria-expanded="false" aria-controls="tmPanel">☰ 연수 도구</button>
 <div class="tmenu" id="tmPanel" hidden role="menu" aria-label="연수 도구">
@@ -1533,6 +1663,8 @@ body[data-view="student"] .tmenu { bottom: auto; top: 18%; right: 40px; }
   <button data-tm="today">오늘의 연수 <span class="new">새</span><small>시간표·바로가기·QR</small></button>
   <button data-tm="cross">예시답안 교차 채점 <span class="new">새</span><small>학생 A·B·C</small></button>
   <button data-tm="board">모둠 채점 현황판 <span class="new">새</span><small>진행자</small></button>
+  <button data-tm="aiep">실제 시스템 안내 <span class="new">새</span><small>두 시스템·흐름</small></button>
+  <button data-tm="tfinal">교사 최종 채점 화면 <span class="new">새</span><small>예시 결과로 보기</small></button>
   <h5>문제 풀기·편집</h5>
   <button data-tm="home">처음 화면</button>
   <button data-tm="student">학생 화면 <small>문제 풀고 AI 채점</small></button>
@@ -1775,6 +1907,7 @@ function show(v){
   $('xView').hidden = v !== 'cross';
   $('bdView').hidden = v !== 'board';
   $('tdView').hidden = v !== 'today';
+  $('apView').hidden = v !== 'aiep';
   window.scrollTo(0, 0);
 }
 
@@ -1824,6 +1957,7 @@ function refreshTabs(){
     b.classList.toggle('on', i === cur);
     b.classList.toggle('done', hasAnswer(q));
     b.classList.toggle('miss', i !== cur && !!visited[q.key] && !q.practice && !hasAnswer(q));
+    b.classList.toggle('later', !!(answers._later || {})[q.key]);
     b.setAttribute('aria-current', i === cur ? 'step' : 'false');
   });
   Array.prototype.forEach.call(document.querySelectorAll('#tabs .tgrp'), function(g){ g.classList.toggle('cur', +g.dataset.set === Q[cur].set); });
@@ -1872,6 +2006,10 @@ function render(){
   updateCount();
   $('frac').hidden = true;
   $('bGrade').hidden = !!q.practice;
+  $('tLater').hidden = !!q.practice;
+  $('tLater').setAttribute('aria-pressed', !!(answers._later || {})[q.key]);
+  $('bSubmit').hidden = !!preview || cur === Q.length - 1;
+  $('rname').textContent = (lsGet('aiEssayDemo.who') || {}).nick || (preview ? '교사 미리보기' : '응시자');
   $('bPrev').disabled = cur === 0;
   $('bNext').textContent = cur === Q.length - 1 ? (preview ? 'AI 채점 해 보기' : '답안 제출') : '다음 문제 >';
   refreshTabs();
@@ -1939,6 +2077,14 @@ $('clr').addEventListener('click', function(){ ans(Q[cur]).draw = null; sizePad(
 window.addEventListener('resize', function(){ if (view === 'student' && !$('drawbox').hidden) { saveDraw(); sizePad(); } });
 
 $('bPrev').addEventListener('click', function(){ go(cur - 1); });
+$('bSubmit').addEventListener('click', function(){ openSubmit(); });
+$('tLater').addEventListener('click', function(){
+  var q = Q[cur]; if (!q || q.practice) return;
+  var L = answers._later = answers._later || {};
+  if (L[q.key]) delete L[q.key]; else L[q.key] = true;
+  persistAns(); render();
+  toast(L[q.key] ? qLabel(q) + '번에 ‘나중에 풀기’ 표시를 했습니다. 문제 번호 아래 주황 줄로 보입니다.' : '‘나중에 풀기’ 표시를 지웠습니다.');
+});
 $('bNext').addEventListener('click', function(){
   if (cur < Q.length - 1) return go(cur + 1);
   openSubmit();
@@ -2271,10 +2417,99 @@ function showGrade(g){
   var h = '<div class="gtotal"><b>' + got + ' / ' + tot + '점</b><span>' + esc(g.nick) + ' · ' + g.items.length + '문항' + (g.sec ? ' · 채점 ' + g.sec + '초' : '') + (g.preview ? ' · 교사 미리보기' : '') + '</span></div>';
   if (g.example) h += '<p class="gnotice">미리 받아 둔 예시입니다. 아래 답안은 내가 쓴 답안이 아니라 연수용 예시 답안이고, 채점은 같은 AI 채점 서버가 기본 채점기준표로 실제로 한 결과입니다.</p>';
   if (bad) h += '<p class="gnotice">' + bad + '개 문항은 채점에 실패해 점수에서 빠졌습니다. ‘다시 제출’을 눌러 보세요.</p>';
-  h += g.items.map(function(it, gi){ return gradeItemHtml(g, it, gi); }).join('');
+  var tm = g.mode === 'teacher';
+  h += '<div class="gmode" role="group" aria-label="결과 보기 방식"><button type="button" data-gmode="student" aria-pressed="' + !tm + '">학생 결과 보기</button><button type="button" data-gmode="teacher" aria-pressed="' + tm + '">교사 최종 채점 화면</button></div>';
+  if (tm) h += '<p class="tfnote">실제 시스템의 <b>교사의 최종 채점</b> 화면 구성(채점 결과 비교 · 최종 확정 채점기준표 · AI 채점 결과 설명 · 학생 피드백 · 채점 특이사항 메모)을 따라 만든 연수용 화면입니다. AI 결과는 참고 자료이고, 최종 점수는 교사가 기준표의 칸을 골라 확정합니다.</p>';
+  h += g.items.map(function(it, gi){ return tm ? tfItemHtml(g, it, gi) : gradeItemHtml(g, it, gi); }).join('');
   $('grBody').innerHTML = h;
+  $('grBody').parentNode.classList.toggle('wide', tm);
   $('grRetry').hidden = !bad; $('grEx').hidden = true; $('grClose').disabled = false; $('ovGrade').hidden = false; $('grClose').focus({ preventScroll: true }); $('grBody').parentNode.scrollTop = 0;
 }
+/* ---------- 교사 최종 채점(실제 시스템 설명자료 8쪽 구성, 10. 16.) ---------- */
+function tfRows(it){
+  return (it.rubric || []).map(function(r, k){
+    return { k: k, sub: r.sub || ('채점 요소 ' + (k + 1)), levels: (r.levels || []).slice().sort(function(a, b){ return b.s - a.s; }) };
+  });
+}
+function tfPick(levels, score){
+  var best = null;
+  levels.forEach(function(l){ if (best == null || Math.abs(+l.s - score) < Math.abs(+best - score)) best = +l.s; });
+  return best;
+}
+function tfSrcEls(it, src){ return src === 'ai' ? it.elements : ((it.again || [])[+src.slice(5)] || {}).elements || []; }
+function tfSrcPicks(it, src){
+  var els = tfSrcEls(it, src), o = {};
+  tfRows(it).forEach(function(r){ var el = els[r.k]; o[r.k] = el ? tfPick(r.levels, +el.score) : null; });
+  return o;
+}
+function tfState(it){
+  if (!it.tf) it.tf = { src: 'ai', sel: tfSrcPicks(it, 'ai'), fb: it.feedback || '', memo: '없음' };
+  return it.tf;
+}
+function tfTotal(it){ var t = 0, s = tfState(it).sel; Object.keys(s).forEach(function(k){ t += +s[k] || 0; }); return t; }
+function tfTable(it, gi, picks, radio){
+  var rows = tfRows(it), n = rows.reduce(function(t, r){ return t + r.levels.length; }, 0), first = true;
+  var s = '<table class="tft"><thead><tr><th>평가 요소</th><th>세부 채점 요소</th><th>배점</th><th>수행 특성</th><th>' + (radio ? '선택' : '') + '</th></tr></thead><tbody>';
+  rows.forEach(function(r){
+    r.levels.forEach(function(l, li){
+      var on = picks[r.k] === +l.s;
+      s += '<tr' + (on ? ' class="on"' : '') + '>' + (first ? '<td rowspan="' + n + '"><b>' + esc(it.label) + '</b><br>' + esc(it.set || '') + '</td>' : '') +
+        (li === 0 ? '<td rowspan="' + r.levels.length + '">' + esc(r.sub) + '</td>' : '') +
+        '<td class="c">' + l.s + '</td><td>' + fmt(l.d) + '</td>' +
+        (radio ? '<td class="c"><input type="radio" name="tf' + gi + '_' + r.k + '" data-tfsel="' + gi + '" data-k="' + r.k + '" value="' + l.s + '"' + (on ? ' checked' : '') + ' aria-label="' + esc(r.sub) + ' ' + l.s + '점"></td>' : '<td class="tfck">' + (on ? '✓' : '') + '</td>') + '</tr>';
+      first = false;
+    });
+  });
+  return s + '</tbody></table>';
+}
+function tfItemHtml(g, it, gi){
+  var s = '<div class="gitem" data-gi="' + gi + '"><h4><span class="qbadge">' + esc(it.label) + '</span>' + esc(it.set) + '<span class="sc">' + (it.status === 'ok' ? '교사 ' + tfTotal(it) + ' · AI ' + it.score + ' / ' + it.pts + '점' : '채점 실패') + '</span></h4>';
+  if (it.status !== 'ok' || !(it.rubric || []).length) return s + '<p class="rubhint">' + (it.status === 'ok' ? '채점기준표 정보가 없어 교사 최종 채점 화면을 만들 수 없습니다.' : '이 문항은 AI 채점 결과가 없습니다.') + '</p></div>';
+  var tf = tfState(it), srcs = [['ai', 'AI 채점']].concat((it.again || []).map(function(r, n){ return ['again' + n, '다시 채점 ' + (n + 1)]; }));
+  if (!srcs.some(function(x){ return x[0] === tf.src; })) tf.src = 'ai';
+  var srcPicks = tfSrcPicks(it, tf.src), srcEls = tfSrcEls(it, tf.src), srcSum = srcEls.reduce(function(t, el){ return t + (+el.score || 0); }, 0);
+  s += '<div class="tfwrap">';
+  s += '<div class="tfbox"><h5>채점 결과 비교<span class="r">' + srcs.map(function(x){ return '<button type="button" data-tfsrc="' + gi + '" data-src="' + x[0] + '" aria-pressed="' + (tf.src === x[0]) + '">' + x[1] + '</button>'; }).join('') + '</span></h5>' +
+    '<p style="margin:0 0 6px"><button type="button" class="gbtn" data-tfapply="' + gi + '">최종 채점 결과에 적용하기</button></p>' + tfTable(it, gi, srcPicks, false) + '<div class="tfsum">합계 <b>' + srcSum + '</b> / ' + it.pts + '점</div></div>';
+  s += '<div class="tfbox"><h5>최종 확정 채점기준표<span class="r" style="font-size:.8em;color:#8a93a8;font-weight:500">기본값: AI 채점</span></h5>' + tfTable(it, gi, tf.sel, true) + '<div class="tfsum">합계 <b>' + tfTotal(it) + '</b> / ' + it.pts + '점</div></div>';
+  var diffs = tfRows(it).filter(function(r){ var el = it.elements[r.k]; return el && tfPick(r.levels, +el.score) !== tf.sel[r.k]; });
+  s += '<div class="tfbox tfexp"><h5>AI 채점 결과 설명</h5><ul>' + it.elements.map(function(el){ return '<li><b>' + esc(el.sub) + '(' + el.score + '점)</b> : ' + fmt(el.reason) + '</li>'; }).join('') + '</ul>' +
+    '<div class="tfchk">' + (diffs.length ? '<span class="diffr">확인 필요</span>교사 채점과 AI 채점이 ' + diffs.length + '개 요소에서 다릅니다: ' + diffs.map(function(r){ return esc(r.sub); }).join(', ') + ' (교사 ' + tfTotal(it) + '점 · AI ' + it.score + '점)'
+      : '<span class="same">일치</span>교사 채점과 AI 채점이 일치합니다. 결과를 확인한 뒤 확정하면 됩니다. (교사 ' + tfTotal(it) + '점 · AI ' + it.score + '점)') + '</div></div>';
+  s += '<div class="tfbox tffb"><h5>학생 피드백<span class="r"><button type="button" data-tffbreset="' + gi + '">초기화</button></span></h5><textarea data-tffb="' + gi + '" aria-label="학생 피드백">' + esc(tf.fb) + '</textarea><small>AI가 만든 피드백 초안입니다. 선생님의 확인·수정이 필요합니다.</small></div>';
+  s += '<div class="tfbox" style="grid-column:1/-1"><h5>채점 특이사항 메모</h5><div class="tfmemo">' + ['없음', '답안 인식 오류', 'AI 채점 오류', '문항/채점기준 보완 필요', '기타'].map(function(m){
+    return '<label><input type="radio" name="tfm' + gi + '" data-tfmemo="' + gi + '" value="' + m + '"' + (tf.memo === m ? ' checked' : '') + '>' + m + '</label>';
+  }).join('') + '</div></div>';
+  s += '</div>';
+  if (it.status !== 'empty') s += '<details class="gans"><summary>' + (g.example ? '예시 답안' : '학생 답안 보기') + '</summary><pre>' + esc((it.picks ? '[선택] ' + it.picks + '\n' : '') + (it.text || '(글 답안 없음)') + (it.hasDraw ? '\n(그림 답안도 함께 제출함)' : '')) + '</pre></details>';
+  return s + '</div>';
+}
+function tfSave(g){ if (g && g === lastGrade) lsSet(KEY_GRADE, lastGrade); }
+function tfRedraw(gi){
+  var g = shownGrade, n = document.querySelector('#grBody .gitem[data-gi="' + gi + '"]');
+  if (g && n) n.outerHTML = tfItemHtml(g, g.items[gi], gi);
+}
+$('grBody').addEventListener('click', function(e){
+  var b = e.target.closest('[data-gmode],[data-tfsrc],[data-tfapply],[data-tffbreset]'), g = shownGrade;
+  if (!b || !g) return;
+  if (b.dataset.gmode) { var y = $('grBody').parentNode.scrollTop; g.mode = b.dataset.gmode; showGrade(g); $('grBody').parentNode.scrollTop = y; if (g.mode === 'teacher') flag('tfinal'); return; }
+  var gi = +(b.dataset.tfsrc || b.dataset.tfapply || b.dataset.tffbreset), it = g.items[gi]; if (!it) return;
+  var tf = tfState(it);
+  if (b.dataset.tfsrc != null) tf.src = b.dataset.src;
+  else if (b.dataset.tfapply != null) { tf.sel = tfSrcPicks(it, tf.src); toast('최종 확정 채점기준표에 ' + (tf.src === 'ai' ? 'AI 채점' : '다시 채점') + ' 결과를 적용했습니다.'); }
+  else if (b.dataset.tffbreset != null) tf.fb = it.feedback || '';
+  tfSave(g); tfRedraw(gi);
+});
+$('grBody').addEventListener('change', function(e){
+  var t = e.target, g = shownGrade; if (!g) return;
+  if (t.dataset.tfsel != null) { var it = g.items[+t.dataset.tfsel]; tfState(it).sel[t.dataset.k] = +t.value; tfSave(g); tfRedraw(+t.dataset.tfsel); }
+  else if (t.dataset.tfmemo != null) { tfState(g.items[+t.dataset.tfmemo]).memo = t.value; tfSave(g); tfRedraw(+t.dataset.tfmemo); }
+});
+$('grBody').addEventListener('input', function(e){
+  var t = e.target, g = shownGrade; if (!g || t.dataset.tffb == null) return;
+  tfState(g.items[+t.dataset.tffb]).fb = t.value; tfSave(g);
+});
+
 ['qlist', 'subList'].forEach(function(id){ $(id).addEventListener('click', function(e){ var b = e.target.closest('.qrow'); if (b) go(+b.dataset.i); }); });
 [$('ovAll'), $('ovSubmit')].forEach(function(o){ o.addEventListener('click', function(e){ if (e.target === o) closeOv(); }); });
 $('bSave').addEventListener('click', function(){
@@ -4033,12 +4268,12 @@ $('bdCross').addEventListener('click', function(){ openCross(); });
 /* ---------- 오늘의 연수 ---------- */
 var TD_QR = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 148 148\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#1c2657\" d=\"M2 2.5h7m1 0h3m1 0h4m2 0h1m2 0h1m2 0h1m1 0h7m-33 1h1m5 0h1m1 0h1m3 0h1m1 0h1m2 0h1m2 0h1m1 0h1m3 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m3 0h5m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m6 0h2m1 0h3m1 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h1m1 0h2m1 0h1m2 0h6m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h1m3 0h1m3 0h2m1 0h2m4 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h1m3 0h3m2 0h1m1 0h1m1 0h1m-22 1h1m4 0h3m2 0h1m1 0h2m2 0h4m2 0h1m1 0h1m5 0h2m-32 1h1m3 0h1m2 0h2m3 0h7m3 0h2m3 0h4m-30 1h2m1 0h4m4 0h5m8 0h1m1 0h1m1 0h2m-32 1h1m2 0h1m1 0h1m6 0h1m9 0h4m1 0h5m-32 1h4m2 0h2m1 0h1m1 0h1m1 0h2m2 0h2m1 0h1m2 0h2m1 0h2m3 0h1m-32 1h1m1 0h2m1 0h1m2 0h1m1 0h2m1 0h1m1 0h2m1 0h3m1 0h3m1 0h2m1 0h4m-33 1h4m2 0h2m1 0h2m2 0h1m3 0h1m2 0h1m4 0h4m1 0h2m-32 1h2m2 0h1m3 0h2m1 0h3m1 0h2m1 0h1m5 0h2m1 0h1m1 0h2m1 0h1m-33 1h4m2 0h1m3 0h2m1 0h1m1 0h1m7 0h1m1 0h1m1 0h2m3 0h1m-29 1h2m1 0h4m1 0h4m1 0h1m1 0h2m1 0h3m1 0h1m2 0h2m1 0h1m-32 1h3m2 0h3m3 0h2m2 0h4m2 0h2m3 0h1m1 0h2m1 0h1m-32 1h1m1 0h2m2 0h2m1 0h1m4 0h2m1 0h1m1 0h1m1 0h5m1 0h5m-32 1h1m1 0h2m1 0h1m2 0h1m1 0h2m2 0h5m2 0h1m1 0h1m2 0h3m1 0h1m-32 1h3m6 0h1m1 0h2m6 0h1m3 0h1m4 0h1m-29 1h1m1 0h3m1 0h3m3 0h1m1 0h1m1 0h1m5 0h1m3 0h3m1 0h2m-32 1h1m1 0h2m4 0h4m1 0h3m4 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m-33 1h2m1 0h2m1 0h3m1 0h2m1 0h2m4 0h2m1 0h7m-21 1h1m2 0h1m1 0h1m2 0h1m2 0h1m1 0h4m3 0h1m1 0h1m1 0h1m-33 1h7m1 0h1m2 0h1m3 0h3m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2m-32 1h1m5 0h1m2 0h2m1 0h1m1 0h2m2 0h2m4 0h1m3 0h3m-31 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m2 0h2m5 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m2 0h2m2 0h3m3 0h2m2 0h1m3 0h4m1 0h1m-33 1h1m1 0h3m1 0h1m4 0h1m1 0h2m2 0h3m3 0h2m2 0h2m1 0h3m-33 1h1m5 0h1m1 0h1m1 0h1m3 0h5m1 0h1m4 0h6m-31 1h7m2 0h3m7 0h2m2 0h5m3 0h1\"/><\/svg>\n";
 var TODAY = [
-  { tm: '13:00', len: '약 60분', t: '① AIEP 소개와 문항 의도', p: '실제 인천 AI 논·서술형 평가지원시스템(AIEP)에 문항이 어떻게 탑재되는지 진행자 계정으로 보여 주고, 반티 문항의 출제 의도와 채점기준표 구조를 설명합니다. 이 사이트에서는 같은 문항을 학생 화면과 교사 화면으로 함께 볼 수 있습니다.',
-    go: [['문항을 학생 화면으로 보기', 'pv0'], ['1번 세트 채점기준표', 'rub0'], ['출제 프로토콜 5단계', 'proto'], ['AI용 채점기준표 비교', 'compare']] },
+  { tm: '13:00', len: '약 60분', t: '① 시스템 소개와 문항 의도', p: '실천교사가 쓰는 두 시스템(문항 출제·검수는 문항출제시스템, 학생 대상 배포·채점은 인천 AI 평가지원시스템)을 구분해 소개하고, 반티 문항의 출제 의도와 채점기준표 구조를 설명합니다. 이 사이트에서는 같은 문항을 학생 화면과 교사 화면으로 함께 볼 수 있습니다.',
+    go: [['실제 시스템 안내', 'aiep'], ['문항을 학생 화면으로 보기', 'pv0'], ['1번 세트 채점기준표', 'rub0'], ['출제 프로토콜 5단계', 'proto'], ['AI용 채점기준표 비교', 'compare']] },
   { tm: '14:00', len: '약 60분', t: '② 자료집으로 예시답안 종이 채점', p: '자료집의 학생 A·B·C 답안(문항 1·3)을 각자 채점한 뒤 모둠에서 점수를 맞춥니다. 모둠 점수와 판단 근거를 교차 채점 화면에 입력해 저장하면 현황판에 모입니다. 시간이 남는 모둠은 중2 주말 야외 행사(문항 2·3) 예시답안도 골라 채점할 수 있습니다.',
     go: [['교차 채점 실습 열기', 'cross'], ['모둠 채점 현황판', 'board'], ['중2 예시답안(선택)', 'cross2']] },
-  { tm: '15:00', len: '약 60분', t: '③ 학생처럼 풀고 AI 채점 받기', p: '선생님이 학생이 되어 반티 문항을 직접 풀고 ‘이 문항 AI 채점’으로 결과를 받아 봅니다. 채점 근거를 채점기준표와 견주어 보고, 기준표 문장을 바꾸면 점수가 어떻게 달라지는지도 확인합니다.',
-    go: [['학생 화면에서 문제 풀기', 'student'], ['예시 채점 결과 보기', 'example'], ['채점 기준 바꿔 보기', 'rubtry']] },
+  { tm: '15:00', len: '약 60분', t: '③ 학생처럼 풀고 AI 채점 받기', p: '선생님이 학생이 되어 반티 문항을 직접 풀고 ‘이 문항 AI 채점’으로 결과를 받아 봅니다. 채점 근거를 채점기준표와 견주어 보고, 결과 창의 ‘교사 최종 채점 화면’에서 교사로서 점수를 확정해 봅니다. 기준표 문장을 바꾸면 점수가 어떻게 달라지는지도 확인합니다.',
+    go: [['학생 화면에서 문제 풀기', 'student'], ['예시 채점 결과 보기', 'example'], ['교사 최종 채점 화면', 'tfinal'], ['채점 기준 바꿔 보기', 'rubtry']] },
   { tm: '16:00', len: '약 50분', t: '④ 채점 결과로 협의하기', p: '현황판에서 모둠 판단이 갈린 채점 요소와 AI와 다른 요소를 먼저 보고, 학생 C의 쟁점 세 가지를 중심으로 채점기준을 어떻게 고치면 좋을지 이야기합니다.',
     go: [['현황판(해설 함께)', 'boardkey'], ['학생 C 쟁점·해설', 'crossC']] },
   { tm: '16:50', len: '10분', t: '마무리', p: '실습용 자료집은 반드시 회수합니다(모둠별로 모아 배부·회수 수량 확인). 만족도 조사 참여를 안내하고 멀티탭을 정리합니다.', note: true, go: [] }
@@ -4066,6 +4301,8 @@ $('tdLine').addEventListener('click', function(e){
   else if (k === 'student') enterStudent();
   else if (k === 'example') showGrade(exampleGrade());
   else if (k === 'rubtry') openRubtry();
+  else if (k === 'aiep') openAiep();
+  else if (k === 'tfinal') openTfinal();
 });
 $('tdHome').addEventListener('click', function(){ show('home'); });
 $('tdCross').addEventListener('click', function(){ openCross(); });
@@ -4111,7 +4348,49 @@ $('tmPanel').addEventListener('click', function(e){
   else if (k === 'proto') openProto();
   else if (k === 'kdot') openKdot(0);
   else if (k === 'guide') openGuide();
+  else if (k === 'aiep') openAiep();
+  else if (k === 'tfinal') openTfinal();
 });
+
+/* ---------- 실제 시스템 안내 ---------- */
+var AP_STEPS = [
+  { s: 'a', t: '문항 설계', p: '학교급·교과·단원, 출제 의도, 예상 난이도·영역·성취기준을 정하고 K-DOT 사고 수준과 사고 기능을 붙입니다.', go: [['출제 프로토콜 1단계', 'proto'], ['K-DOT 안내', 'kdot']] },
+  { s: 'a', t: '문항 등록·평가기준표·예시답안', p: '공통 제시자료, 문제(발문), 조건을 입력하고 평가 요소 → 세부 채점 요소 → 배점 → 수행 특성 순으로 평가기준표를 짠 뒤, 기준표에 맞춰 예시답안을 넣습니다. 동료 교사와 검수합니다.', go: [['교사 화면 · 채점기준표', 'teacher'], ['채점기준 비교 실습', 'compare']] },
+  { s: 'b', t: '검사지 구성·배포', p: '검수한 문항으로 검사지를 만들고, 반별 시험 일정을 정해 학생에게 배포합니다. (이 사이트에는 없는 단계입니다.)', go: [] },
+  { s: 'b', t: '학생 응시', p: '평가 전용 화면에서 지시문·공통 제시자료(왼쪽 고정)·문제 번호·발문·조건·문항별 제시자료·답안 입력기를 보며 답을 씁니다. 나중에 풀기, 형광펜, 메모장, 답안 제출, 이전·다음 문제 버튼이 아래에 있습니다.', go: [['학생 화면에서 풀어 보기', 'student'], ['화면 구성 번호 보기', 'annot']] },
+  { s: 'b', t: 'AI 채점 지원', p: 'AI가 선생님이 만든 평가기준표에 따라 세부 채점 요소별로 판정하고, 채점 근거와 학생 피드백 초안을 만듭니다.', go: [['예시 AI 채점 결과', 'example']] },
+  { s: 'b', t: '교사의 최종 채점', p: 'AI 결과는 참고 자료입니다. 교사가 채점 결과를 비교해 최종 확정 채점기준표에서 칸을 고르고, AI 피드백을 고쳐 확정하며, 답안 인식 오류·AI 채점 오류·문항/채점기준 보완 필요 같은 특이사항을 메모합니다.', go: [['교사 최종 채점 화면', 'tfinal']] },
+  { s: 'x', t: '오늘 연수: 교차 채점과 협의', p: '같은 예시답안을 모둠마다 채점해 서로 다른 판단과 AI 판단을 견주고, 채점기준을 어떻게 다듬을지 협의합니다. (이 사이트의 연수 실습 도구)', go: [['예시답안 교차 채점', 'cross'], ['모둠 채점 현황판', 'board']] }
+];
+function openAiep(){
+  $('apFlow').innerHTML = AP_STEPS.map(function(st, i){
+    var tag = st.s === 'a' ? '<span class="sys a">문항출제시스템</span>' : st.s === 'b' ? '<span class="sys b">인천 AI 평가지원시스템</span>' : '';
+    return '<div class="apstep"><span class="n">' + (i + 1) + '</span><div><h5>' + esc(st.t) + tag + '</h5><p>' + esc(st.p) + '</p></div><div class="go">' +
+      st.go.map(function(g, j){ return '<button class="nbtn sm' + (j ? '' : ' ind') + '" data-ap="' + g[1] + '">' + esc(g[0]) + '</button>'; }).join('') + '</div></div>';
+  }).join('');
+  show('aiep');
+}
+function openTfinal(){ var g = lastGrade || exampleGrade(); g.mode = 'teacher'; showGrade(g); flag('tfinal'); }
+$('apFlow').addEventListener('click', function(e){
+  var b = e.target.closest('[data-ap]'); if (!b) return;
+  var k = b.dataset.ap;
+  if (k === 'proto') openProto(0);
+  else if (k === 'kdot') openKdot(0);
+  else if (k === 'teacher') openTeacher(0, 'rubric');
+  else if (k === 'compare') openCompare();
+  else if (k === 'student') enterStudent();
+  else if (k === 'annot') enterStudent({ annot: true });
+  else if (k === 'example') { var g = exampleGrade(); showGrade(g); }
+  else if (k === 'tfinal') openTfinal();
+  else if (k === 'cross') openCross();
+  else if (k === 'board') openBoard();
+});
+$('apHome').addEventListener('click', function(){ show('home'); });
+$('apToday').addEventListener('click', openToday);
+$('lkAiep').addEventListener('click', openAiep);
+
+/* 실제 시스템 외형: 기본. ?skin=demo 면 예전 외형 */
+if (!/[?&]skin=demo\b/.test(location.search)) { document.body.classList.add('skin-real'); $('ttlChip').textContent = '연수용 모형'; }
 
 applyScale();
 refreshMissions();
@@ -4126,6 +4405,8 @@ else if (location.hash === '#rubtry') openRubtry();
 else if (location.hash === '#cross') openCross();
 else if (location.hash === '#board') openBoard();
 else if (location.hash === '#today') openToday();
+else if (location.hash === '#aiep') openAiep();
+else if (location.hash === '#final') openTfinal();
 })();
 </script>
 
