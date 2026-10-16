@@ -1215,13 +1215,22 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
 .ebrow .lb { font-weight: 800; font-size: .85em; color: var(--ink-2); }
 .ebrow label { font-size: .85em; display: inline-flex; gap: 5px; align-items: center; color: var(--ink-2); font-weight: 700; }
 #ebBy, #ebCode { border: 1px solid var(--line); border-radius: 7px; padding: 5px 8px; width: 110px; font: inherit; font-size: .95em; }
-.ebrow .st { margin-left: auto; font-size: .82em; color: var(--ink-3); }
+
 .ebseg { display: inline-flex; flex-wrap: wrap; gap: 4px; }
 .ebseg button { border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 6px 12px; font: inherit; font-size: .88em; font-weight: 700; color: var(--ink-2); cursor: pointer; }
 .ebseg button.on { background: #1e73e8; border-color: #1e73e8; color: #fff; }
-.ebtabs { display: inline-flex; border-bottom: 1px solid #e3e8f2; gap: 18px; margin-right: 10px; }
-.ebtabs button { border: 0; background: none; font: inherit; font-weight: 800; font-size: .95em; color: #555; padding: 6px 2px; border-bottom: 3px solid transparent; cursor: pointer; }
-.ebtabs button.on { color: #1e73e8; border-bottom-color: #1e73e8; }
+.ebgnb { display: flex; gap: 28px; background: #fff; border-bottom: 1px solid #e3e8f2; padding: 0 36px; overflow-x: auto; }
+.ebgnb button { border: 0; background: none; font: inherit; font-weight: 800; font-size: 16px; color: #222; height: 58px; padding: 0 2px; border-bottom: 4px solid transparent; cursor: pointer; white-space: nowrap; }
+.ebgnb button.on { color: #1e73e8; border-bottom-color: #1e73e8; }
+.ebset summary { cursor: pointer; display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; font-size: .85em; font-weight: 700; color: var(--ink-2); list-style: none; }
+.ebset summary::-webkit-details-marker { display: none; }
+.ebset summary::before { content: '⚙'; color: #8a93a8; }
+.ebset summary .st { margin-left: auto; font-weight: 500; color: var(--ink-3); }
+.ebset[open] summary { margin-bottom: 8px; }
+.ebfs { font-size: .85em; font-weight: 700; color: var(--ink-2); display: inline-flex; gap: 4px; align-items: center; }
+.ebfs button { border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 3px 8px; font: inherit; font-weight: 800; cursor: pointer; }
+body[data-view="exbank"] .tmenu-btn, body[data-view="exbank"] .tmenu { display: none !important; }
+@media (max-width: 720px) { .ebgnb { padding: 0 12px; gap: 16px; } .ebgnb button { font-size: 14px; height: 48px; } }
 .ebrub summary { cursor: pointer; font-weight: 800; color: var(--navy); }
 .ebrub summary small { font-weight: 500; color: var(--ink-3); }
 .ebqline { font-size: .9em; line-height: 1.6; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1893,14 +1902,10 @@ body[data-view]:not([data-view="home"]) #guideDock, body[data-view]:not([data-vi
 <!-- ============ 오늘의 연수 (2026. 10. 16. 추가) ============ -->
 <div class="tview cview" id="ebView" hidden>
   <div class="tbar">
-    <div class="brand"><span class="mk" aria-hidden="true">x</span>AI 논·서술형 평가 시연 <span class="who">연수 실습 · 예시답안 모음</span></div>
-    <div class="acts">
-      <button class="nbtn sm" id="ebHome">← 처음 화면</button>
-      <button class="nbtn sm" id="ebStudent">학생 화면</button>
-      <button class="nbtn sm" id="ebEdit">문항 편집</button>
-      <button class="nbtn sm wht" id="ebLoad">새로 고침</button>
-    </div>
+    <div class="brand"><span class="mk" aria-hidden="true">x</span>교사 · 채점 실습</div>
+    <div class="acts"><button class="nbtn sm" id="ebHome">← 처음 화면</button></div>
   </div>
+  <nav class="ebgnb" id="ebTabs" role="tablist" aria-label="교사 활동"><button data-m="peer" role="tab">① 동료 답안 채점하기</button><button data-m="ai" role="tab">② AI 채점 결과 모아 보기</button><button data-m="make" role="tab">③ 예시답안 함께 만들기</button></nav>
   <div class="xwrap">
     <section class="pcard ebtop">
       <div class="ebrow">
@@ -1909,15 +1914,16 @@ body[data-view]:not([data-view="home"]) #guideDock, body[data-view]:not([data-vi
         <button class="nbtn sm ind" id="ebRubBtn" aria-expanded="false" aria-controls="ebRubPop">채점기준표 보기</button>
       </div>
       <div class="ebqline" id="ebQline"></div>
-      <div class="ebrow">
-        <div class="ebtabs" id="ebTabs" role="tablist"><button data-m="peer" role="tab">① 동료 답안 채점하기</button><button data-m="ai" role="tab">② AI 채점 결과 모아 보기</button><button data-m="make" role="tab">③ 예시답안 함께 만들기</button></div>
-        <label>이름 <input id="ebBy" maxlength="20" placeholder="별명"></label>
-        <label>접속 코드 <input id="ebCode" maxlength="20" inputmode="numeric"></label>
-        <label><input type="checkbox" id="ebCompact" checked> 답안 짧게 보기</label>
-        <label><input type="checkbox" id="ebAuto" checked> 15초마다 새로 고침</label>
-        <label><input type="checkbox" id="ebTest"> 리허설 기록</label>
-        <span class="st" id="ebSt"></span>
-      </div>
+      <details class="ebset" id="ebSetBox"><summary><span id="ebWhoSum">내 이름·접속 코드</span><span class="st" id="ebSt"></span><button class="nbtn sm" id="ebLoad" type="button">새로 고침</button></summary>
+        <div class="ebrow">
+          <label>이름 <input id="ebBy" maxlength="20" placeholder="별명"></label>
+          <label>접속 코드 <input id="ebCode" maxlength="20" inputmode="numeric"></label>
+          <label><input type="checkbox" id="ebCompact" checked> 답안 짧게 보기</label>
+          <label><input type="checkbox" id="ebAuto" checked> 15초마다 새로 고침</label>
+          <label><input type="checkbox" id="ebTest"> 리허설 기록</label>
+          <span class="ebfs" role="group" aria-label="글자 크기">글자 <button type="button" data-fs="down" aria-label="글자 작게">가−</button><button type="button" data-fs="up" aria-label="글자 크게">가+</button></span>
+        </div>
+      </details>
     </section>
     <div id="ebMain"></div>
   </div>
@@ -2010,7 +2016,8 @@ body[data-view]:not([data-view="home"]) #guideDock, body[data-view]:not([data-vi
   <h5>문제 풀기·편집</h5>
   <button data-tm="home">처음 화면</button>
   <button data-tm="student">학생 화면 <small>문제 풀고 AI 채점</small></button>
-  <button data-tm="teacher">교사 화면 <small>문항·채점기준표 편집</small></button>
+  <button data-tm="exbank">교사 화면 <small>동료 채점·모아 보기·예시답안</small></button>
+  <button data-tm="teacher">문항 편집 <small>강사용 · 문항·채점기준표 고치기</small></button>
   <h5>실습·자료</h5>
   <button data-tm="compare">채점기준 비교 실습</button>
   <button data-tm="rubtry">채점 기준 바꿔 보기</button>
@@ -5080,6 +5087,7 @@ function openExbank(si, ii){
   var w = lsGet(KEY_WHO) || {};
   if (!$('ebBy').value) $('ebBy').value = w.nick || '';
   if (!$('ebCode').value) $('ebCode').value = w.code || '';
+  ebWhoSum(); var w2 = ebWho(); $('ebSetBox').open = !(w2.by && w2.code);
   show('exbank'); renderEb(); ebLoad(true);
 }
 function ebPick(si, ii){ EB.si = si; EB.ii = ii; EB.sel = {}; EB.draft = { score: '', text: '', review: null, reviewed: '' }; renderEb(); }
@@ -5116,8 +5124,10 @@ document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && view
 $('ebCompact').addEventListener('change', renderEbGrid);
 $('ebTest').addEventListener('change', function(){ EB.loaded = false; EB.subs = []; EB.ops = []; EB.pend = []; EB.org = null; renderEb(); ebLoad(false); });
 $('ebHome').addEventListener('click', function(){ show('home'); });
-$('ebStudent').addEventListener('click', function(){ enterStudent(); });
-$('ebEdit').addEventListener('click', function(){ openTeacher(tSet, tTab); });
+$('ebSetBox').addEventListener('click', function(e){ var f = e.target.closest('[data-fs]'); if (f) $(f.dataset.fs === 'up' ? 'fsUp' : 'fsDown').click(); });
+$('ebLoad').addEventListener('click', function(e){ e.preventDefault(); });
+function ebWhoSum(){ var w = ebWho(); $('ebWhoSum').textContent = w.by && w.code ? '이름 ' + w.by + ' · 접속 코드 입력됨 (바꾸려면 누르기)' : '이름(별명)과 접속 코드를 먼저 적어 주세요'; }
+$('ebBy').addEventListener('change', ebWhoSum); $('ebCode').addEventListener('change', ebWhoSum);
 $('ebMain').addEventListener('input', function(e){ if (e.target.id === 'ebText') EB.draft.text = e.target.value; });
 $('ebMain').addEventListener('change', function(e){
   var t = e.target;
