@@ -1339,11 +1339,41 @@ body[data-view]:not([data-view="home"]) #guideDock, body[data-view]:not([data-vi
 .tmfs { display: flex; align-items: center; gap: 4px; padding: 4px 6px 8px; border-bottom: 1px solid #e3e8f2; margin-bottom: 4px; }
 .tmfs span { font-size: .8em; font-weight: 800; color: var(--ink-2); margin-right: auto; }
 .tmfs button { width: auto !important; min-width: 44px; border: 1px solid var(--line) !important; border-radius: 7px !important; background: #fff; padding: 5px 8px !important; font-weight: 800; text-align: center !important; display: inline-block !important; }
+/* ===== 연수 도구 메뉴 줄(처음 화면 밖 모든 화면) — 학생 쪽/교사 쪽 페이지를 따로 보여 주고, 둘 사이는 처음 화면으로 오간다 ===== */
+.tmenu-btn, .tmenu { display: none !important; }
+.sitebar { position: sticky; top: 0; z-index: 60; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; background: #13213f; color: #fff; padding: 6px 16px; font-family: var(--font); font-size: 14px; box-shadow: 0 2px 10px rgba(10,20,50,.25); }
+.sitebar[hidden] { display: none; }
+.sitebar button { font: inherit; cursor: pointer; }
+.sb-home { background: #fff; color: #13213f; border: 0; border-radius: 6px; padding: 6px 12px; font-weight: 800; }
+.sb-side { background: #2b3d66; border-radius: 999px; padding: 3px 10px; font-size: 12.5px; font-weight: 800; margin-right: 6px; }
+.sb-menus { display: flex; flex-wrap: wrap; gap: 2px; }
+.sb-grp { position: relative; }
+.sb-grp > button { background: none; border: 0; color: #dfe6f7; padding: 7px 10px; border-radius: 6px; font-weight: 700; white-space: nowrap; }
+.sb-grp > button::after { content: ' \25BE'; font-size: 11px; opacity: .8; }
+.sb-grp > button:hover, .sb-grp.open > button, .sb-grp.cur > button { background: #2b3d66; color: #fff; }
+.sb-grp.cur > button { box-shadow: inset 0 -3px 0 #5aa2ff; }
+.sb-pan { position: absolute; left: 0; top: calc(100% + 4px); background: #fff; color: #1d2233; border-radius: 10px; box-shadow: 0 14px 36px rgba(10,20,50,.28); padding: 6px; min-width: 240px; z-index: 61; }
+.sb-pan[hidden] { display: none; }
+.sb-pan button { display: block; width: 100%; text-align: left; background: none; border: 0; border-radius: 7px; padding: 8px 10px; font-weight: 700; color: #1d2233; }
+.sb-pan button small { display: block; font-weight: 500; color: #6b7386; font-size: 12px; margin-top: 1px; }
+.sb-pan button:hover { background: #eef3fc; }
+.sb-pan button.on { background: #e5efff; color: #1e5fd0; }
+.sb-fs { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; font-size: 12.5px; color: #c6d0e6; }
+.sb-fs button { background: #2b3d66; color: #fff; border: 0; border-radius: 6px; padding: 4px 8px; font-weight: 800; }
+#ebHome, #btnHome, #btnAnnot, #tdView .tbar .acts, #teacherView .tbar #tHome,
+#teacherView .tbar #tExbank, #teacherView .tbar #tProto, #teacherView .tbar #tKdot, #teacherView .tbar #tCmp, #teacherView .tbar #tRt { display: none; }
+@media (max-width: 720px) { .sitebar { padding: 6px 10px; font-size: 13px; } .sb-fs { margin-left: 0; } .sb-pan { position: fixed; left: 10px; right: 10px; top: auto; min-width: 0; } }
 </style>
 </head>
 <body>
 
 <!-- ============ 홈 ============ -->
+<nav class="sitebar" id="siteBar" hidden aria-label="연수 도구 메뉴">
+  <button type="button" class="sb-home" data-sb="home">⌂ 처음 화면</button>
+  <span class="sb-side" id="sbSide">교사</span>
+  <div class="sb-menus" id="sbMenus"></div>
+  <span class="sb-fs" role="group" aria-label="글자 크기">글자 <button type="button" data-fs="down" aria-label="글자 작게">가−</button><button type="button" data-fs="up" aria-label="글자 크게">가+</button></span>
+</nav>
 <div class="home" id="homeView">
   <section class="hero" aria-label="첫 화면">
     <div class="hbrand"><span class="mk" aria-hidden="true">x</span><span>AI 논·서술형 평가 시연<small>중등 수학 · 연수용 모형</small></span></div>
@@ -1921,7 +1951,6 @@ body[data-view]:not([data-view="home"]) #guideDock, body[data-view]:not([data-vi
           <label><input type="checkbox" id="ebCompact" checked> 답안 짧게 보기</label>
           <label><input type="checkbox" id="ebAuto" checked> 15초마다 새로 고침</label>
           <label><input type="checkbox" id="ebTest"> 리허설 기록</label>
-          <span class="ebfs" role="group" aria-label="글자 크기">글자 <button type="button" data-fs="down" aria-label="글자 작게">가−</button><button type="button" data-fs="up" aria-label="글자 크게">가+</button></span>
         </div>
       </details>
     </section>
@@ -2248,6 +2277,7 @@ function renderMaterial(m){
 var view = 'home', preview = null;
 function show(v){
   view = v;
+  sbUpdate(v);
   document.body.setAttribute('data-view', v);
   $('homeView').hidden = v !== 'home';
   $('examView').hidden = v !== 'student';
@@ -3404,9 +3434,9 @@ $('slNext').addEventListener('click', function(){ showSlide(sIdx + 1); runSlides
 $('slPause').addEventListener('click', function(){ sPaused = !sPaused; this.textContent = sPaused ? '▶' : '❚❚'; this.setAttribute('aria-label', sPaused ? '자동 넘김 재생' : '자동 넘김 멈춤'); runSlides(); });
 if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { sPaused = true; $('slPause').textContent = '▶'; }
 runSlides();
-$('goStudent').addEventListener('click', function(){ enterStudent(); });
+$('goStudent').addEventListener('click', function(){ SB_SIDE = 'student'; enterStudent(); });
 $('tExbank').addEventListener('click', function(){ openExbank(); });
-$('goTeacher').addEventListener('click', function(){ openExbank(); });
+$('goTeacher').addEventListener('click', function(){ SB_SIDE = 'teacher'; openExbank(); });
 $('lkGuide').addEventListener('click', function(){ $('intro').scrollIntoView({ behavior: 'smooth' }); });
 $('lkParts').addEventListener('click', function(){ enterStudent({ annot: true }); });
 $('lkCmp').addEventListener('click', function(){ openCompare(); });
@@ -4742,7 +4772,9 @@ var TODAY = [
   { tm: '16:50', len: '10분', t: '마무리', p: '실습용 자료집은 반드시 회수합니다(모둠별로 모아 배부·회수 수량 확인). 만족도 조사 참여를 안내하고 멀티탭을 정리합니다. 이 사이트는 보안을 위해 연수가 끝나면 닫습니다.', note: true, go: [] }
 ];
 function openToday(){
-  $('tdLine').innerHTML = TODAY.map(function(b){
+  var TD_SIDE = { view: 'student', student: 'student', example: 'student', peer: 'teacher', aiv: 'teacher', make: 'teacher', tfinal: 'teacher' };
+  $('tdLine').innerHTML = TODAY.map(function(b0){
+    var b = Object.assign({}, b0, { go: b0.go.filter(function(g){ var sd = TD_SIDE[g[1]]; return !sd || sd === SB_SIDE; }) });
     return '<div class="tblk' + (b.note ? ' note' : '') + '"><div class="tm">' + b.tm + '<small>' + b.len + '</small></div><div><h4>' + esc(b.t) + '</h4><p>' + esc(b.p) + '</p>' +
       (b.go.length ? '<div class="go">' + b.go.map(function(g, i){ return '<button class="nbtn sm' + (i ? '' : ' ind') + '" data-td="' + g[1] + '">' + esc(g[0]) + '</button>'; }).join('') + '</div>' : '') + '</div></div>';
   }).join('');
@@ -5093,7 +5125,7 @@ function openExbank(si, ii){
 function ebPick(si, ii){ EB.si = si; EB.ii = ii; EB.sel = {}; EB.draft = { score: '', text: '', review: null, reviewed: '' }; renderEb(); }
 $('ebSets').addEventListener('click', function(e){ var b = e.target.closest('[data-si]'); if (b) ebPick(+b.dataset.si, 0); });
 $('ebItems').addEventListener('click', function(e){ var b = e.target.closest('[data-ii]'); if (b) ebPick(EB.si, +b.dataset.ii); });
-$('ebTabs').addEventListener('click', function(e){ var b = e.target.closest('[data-m]'); if (b && b.dataset.m !== EB.mode) { EB.mode = b.dataset.m; renderEb(); } });
+$('ebTabs').addEventListener('click', function(e){ var b = e.target.closest('[data-m]'); if (b && b.dataset.m !== EB.mode) { EB.mode = b.dataset.m; renderEb(); sbRender(); } });
 $('ebLoad').addEventListener('click', function(){ ebLoad(false); });
 function ebRubShow(on){ $('ebRubPop').hidden = !on; $('ebRubBtn').setAttribute('aria-expanded', on); $('ebRubBtn').textContent = on ? '채점기준표 닫기' : '채점기준표 보기'; }
 $('ebRubBtn').addEventListener('click', function(){ ebRubShow($('ebRubPop').hidden); });
@@ -5239,6 +5271,72 @@ function ebOrganize(btn){
   }).catch(function(){ btn.disabled = false; EB.org = null; renderEbOrg(); toast('서버에 보내지 못했습니다. 다시 눌러 보세요.'); });
 }
 setInterval(function(){ if (view === 'exbank' && $('ebAuto').checked && !document.hidden && $('ebMerge').hidden && EB.loaded) ebLoad(true); }, 15000);
+
+/* ---------- 연수 도구 메뉴 줄 ---------- */
+var SB_SIDE = 'student';
+var SB_MENU = {
+  student: [
+    { t: '학생 화면', items: [['문항 보기·응시하기', 'student', '1교시 문항 확인, 2교시 응시하기 → AI 채점'], ['내 AI 채점 결과 다시 보기', 'mygrade', '마지막으로 받은 채점 결과'], ['화면 구성 번호 보기', 'annot', '지시문·제시자료·발문·조건·답안 입력기 01~07']] },
+    { t: '안내', items: [['오늘의 연수', 'today', '시간표와 바로가기'], ['실제 시스템 안내', 'aiep', '문항출제시스템과 인천 AI 평가지원시스템'], ['사이트 설명서', 'guide', '처음 보는 분께']] }
+  ],
+  teacher: [
+    { t: '교사 활동', items: [['① 동료 답안 채점하기', 'peer', '다른 선생님 답안을 직접 채점하고 AI와 비교'], ['② AI 채점 결과 모아 보기', 'aiv', '하위 문항·점수 칸별로 답안 모아 보기'], ['③ 예시답안 함께 만들기', 'make', 'AI 검토·입력·합치기·AI로 표 정리']] },
+    { t: '채점 실습', items: [['교사 최종 채점 화면', 'tfinal', 'AI 채점 결과를 교사가 확정해 보기'], ['예시답안 교차 채점', 'cross', '학생 A·B·C 답안을 모둠이 채점'], ['모둠 채점 현황판', 'board', '진행자용 · 모둠 판단 모아 보기'], ['채점기준 비교 실습', 'compare', 'AI가 읽기 좋은 채점기준표'], ['채점 기준 바꿔 보기', 'rubtry', '기준표 문장에 따라 점수가 바뀌는지']] },
+    { t: '출제 자료', items: [['출제 프로토콜 5단계', 'proto', ''], ['K-DOT 출제 매뉴얼', 'kdot', ''], ['문항 편집 (강사용)', 'editor', '문항·조건·채점기준표 고치고 미리보기']] },
+    { t: '안내', items: [['오늘의 연수', 'today', '시간표와 바로가기'], ['실제 시스템 안내', 'aiep', '문항출제시스템과 인천 AI 평가지원시스템'], ['사이트 설명서', 'guide', '처음 보는 분께']] }
+  ]
+};
+var SB_TEACHER_VIEWS = ['exbank', 'teacher', 'cross', 'board', 'compare', 'rubtry', 'proto', 'kdot'];
+function sbCurKey(){
+  if (view === 'exbank') return { peer: 'peer', ai: 'aiv', make: 'make' }[EB.mode];
+  return { student: 'student', teacher: 'editor', today: 'today', aiep: 'aiep', cross: 'cross', board: 'board', compare: 'compare', rubtry: 'rubtry', proto: 'proto', kdot: 'kdot' }[view] || '';
+}
+function sbUpdate(v){
+  var bar = document.getElementById('siteBar'); if (!bar) return;
+  if (v === 'home') { bar.hidden = true; return; }
+  if (v === 'student') SB_SIDE = preview ? 'teacher' : 'student';
+  else if (SB_TEACHER_VIEWS.indexOf(v) >= 0) SB_SIDE = 'teacher';
+  bar.hidden = false;
+  $('sbSide').textContent = SB_SIDE === 'teacher' ? '교사' : '학생';
+  sbRender();
+}
+function sbRender(){
+  var cur = sbCurKey();
+  $('sbMenus').innerHTML = SB_MENU[SB_SIDE].map(function(g, gi){
+    var has = g.items.some(function(it){ return it[1] === cur; });
+    return '<div class="sb-grp' + (has ? ' cur' : '') + '"><button type="button" data-sbg="' + gi + '" aria-expanded="false">' + esc(g.t) + '</button><div class="sb-pan" hidden>' +
+      g.items.map(function(it){ return '<button type="button" data-sb="' + it[1] + '" class="' + (it[1] === cur ? 'on' : '') + '">' + esc(it[0]) + (it[2] ? '<small>' + esc(it[2]) + '</small>' : '') + '</button>'; }).join('') + '</div></div>';
+  }).join('');
+}
+function sbClose(){ Array.prototype.forEach.call(document.querySelectorAll('#sbMenus .sb-grp'), function(g){ g.classList.remove('open'); g.querySelector('.sb-pan').hidden = true; g.firstChild.setAttribute('aria-expanded', 'false'); }); }
+function sbGo(k){
+  sbClose();
+  if (view === 'student') { saveDraw(); persistAns(); }
+  if (k === 'home') show('home');
+  else if (k === 'student') enterStudent();
+  else if (k === 'mygrade') { if (lastGrade) showGrade(lastGrade); else toast('아직 받은 AI 채점 결과가 없습니다. 학생 화면에서 응시한 뒤 AI 채점을 받아 보세요.'); }
+  else if (k === 'annot') { if (view !== 'student' || preview) enterStudent({ annot: true }); else setAnnot(!document.body.classList.contains('annot')); }
+  else if (k === 'today') openToday();
+  else if (k === 'aiep') openAiep();
+  else if (k === 'guide') location.href = 'guide.html';
+  else if (k === 'peer' || k === 'aiv' || k === 'make') { EB.mode = { peer: 'peer', aiv: 'ai', make: 'make' }[k]; if (view === 'exbank') { renderEb(); sbRender(); } else openExbank(); }
+  else if (k === 'tfinal') openTfinal();
+  else if (k === 'cross') openCross();
+  else if (k === 'board') openBoard();
+  else if (k === 'compare') openCompare();
+  else if (k === 'rubtry') openRubtry();
+  else if (k === 'proto') openProto();
+  else if (k === 'kdot') openKdot(0);
+  else if (k === 'editor') openTeacher(tSet, tTab);
+}
+$('siteBar').addEventListener('click', function(e){
+  var f = e.target.closest('[data-fs]'); if (f) { $(f.dataset.fs === 'up' ? 'fsUp' : 'fsDown').click(); return; }
+  var g = e.target.closest('[data-sbg]');
+  if (g) { var grp = g.parentNode, open = !grp.classList.contains('open'); sbClose(); if (open) { grp.classList.add('open'); grp.querySelector('.sb-pan').hidden = false; g.setAttribute('aria-expanded', 'true'); } e.stopPropagation(); return; }
+  var b = e.target.closest('[data-sb]'); if (b) sbGo(b.dataset.sb);
+});
+document.addEventListener('click', function(e){ if (!e.target.closest('#siteBar')) sbClose(); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape') sbClose(); });
 
 /* ---------- 실제 시스템 안내 ---------- */
 var AP_STEPS = [
