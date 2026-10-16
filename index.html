@@ -987,6 +987,43 @@ body.skin-real .navs .nbtn.ind { background: #fff; color: var(--rb); border-colo
 body:not(.skin-real) #tLater, body:not(.skin-real) #bSubmit, body:not(.skin-real) .brand .uico, body:not(.skin-real) #rname, body:not(.skin-real) .brand .rf { display: none; }
 body.skin-real .brand > svg:first-child, body.skin-real #subj { display: none; }
 body.skin-real .brand #rname { max-width: 160px; }
+/* 연수 진행 모드: 1교시 문항 보기(답안 칸 없음) / 2교시 응시 */
+.pmode { display: inline-flex; border: 1px solid #d3d9e6; border-radius: 6px; overflow: hidden; background: #fff; }
+.pmode button { border: 0; background: #fff; color: #5b6476; font: inherit; font-size: .74em; font-weight: 700; padding: 5px 10px; cursor: pointer; }
+.pmode button + button { border-left: 1px solid #d3d9e6; }
+.pmode button.on { background: #2b5ff0; color: #fff; }
+.vnote, .qsep { display: none; }
+body.qview .vnote { display: block; border: 1.5px dashed #b9c9f2; border-radius: 8px; background: #f5f8ff; color: #39415a; padding: 18px 20px; line-height: 1.8; font-size: .92em; }
+body.qview .vnote b { display: block; color: #2b5ff0; margin-bottom: 4px; }
+body.qview .answer, body.qview #bGrade, body.qview #bSave, body.qview #bSubmit, body.qview #tLater, body.qview #tMemo, body.qview #timer { display: none !important; }
+body.qview .tab.miss .n { box-shadow: none; }
+/* 실제 미리보기 화면 구성: 왼쪽 <자료 n> 상자, 오른쪽 번호·발문·<조건>·구분선·답안 */
+body.skin-real .left, body.skin-real .right { background-color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='160'%3E%3Ctext x='20' y='110' transform='rotate(-28 110 80)' font-family='sans-serif' font-size='13' fill='%232b5ff0' fill-opacity='.05'%3E연수용 모형 · 외부 공개 금지%3C/text%3E%3C/svg%3E"); }
+body.skin-real .left { padding: 22px 22px 18px; }
+body.skin-real .right { padding: 22px 24px 18px; }
+body.skin-real .directive { border: 0; padding: 0; font-weight: 400; align-items: flex-start; line-height: 1.7; }
+body.skin-real .rng { border: 1.5px solid #2b5ff0; color: #1d2233; background: #fff; border-radius: 6px; padding: 2px 9px; font-size: 1.02em; letter-spacing: .02em; }
+body.skin-real .passage { border: 0; padding: 0 4px 0 0; background: transparent; }
+body.skin-real .mat.rmat + .mat.rmat { margin-top: 16px; padding-top: 0; border-top: 0; }
+body.skin-real .rmat .rlbl { margin: 0 0 6px; font-size: .95em; color: #1d2233; }
+body.skin-real .rmat .rbox { border: 1px solid #d3d9e6; background: #fff; padding: 14px 16px; }
+body.skin-real .rmat .doc-title { font-weight: 800; margin: 2px 0 12px; }
+body.skin-real .passage .src { font-size: .8em; color: #8a93a8; margin-top: 12px; }
+body.skin-real .qcard { border: 0; padding: 0; gap: 8px; }
+body.skin-real .qno { font-size: 1.05em; }
+body.skin-real .qtext { font-weight: 400; }
+body.skin-real .pts { background: none; color: inherit; padding: 0; margin-left: 4px; font-weight: 400; font-size: 1em; }
+body.skin-real .cond { border: 1px solid #d3d9e6; border-radius: 0; padding: 16px 18px 12px; margin: 10px 0 0 22px; }
+body.skin-real .cond b { position: absolute; top: -.8em; left: 18px; background: #fff; padding: 0 8px; font-weight: 400; color: #39415a; margin: 0; }
+body.skin-real .cond ul { list-style: none; padding-left: 0; }
+body.skin-real .cond li { padding-left: 1em; text-indent: -1em; }
+body.skin-real .cond li::before { content: '• '; }
+body.skin-real .qsep { display: block; border: 0; border-top: 1px solid #e3e8f2; margin: 6px 0 2px 22px; }
+body.skin-real .answer { border: 0; padding: 0 0 0 22px; }
+body.skin-real .answer textarea { border: 1px solid #d3d9e6; border-radius: 8px; min-height: 230px; }
+body.skin-real .cnt { color: #8a93a8; font-size: .8em; }
+body.skin-real .cnt b { color: #2b5ff0; }
+body.skin-real.qview .vnote { margin-left: 22px; }
 /* 교사 편집 화면 — 실제 시스템 문항 출제 화면 구성(설명자료 3·4쪽) */
 body.skin-real #teacherView { background: var(--rbg); }
 body.skin-real #teacherView .tbar { background: #fff; color: #1d2233; border-bottom: 1px solid #e3e8f2; padding: 10px 20px; }
@@ -1156,7 +1193,7 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
         <button id="lkRt">채점 기준 바꿔 보기</button>
         <button id="lkKdot">K-DOT 출제 매뉴얼</button>
       </div>
-      <div class="hlinks hot"><button id="lkToday">오늘의 연수(10. 17.)</button><button id="lkAiep">실제 시스템 안내</button><button id="lkCross">예시답안 교차 채점</button><button id="lkBoard">모둠 채점 현황판</button><a href="guide.html">처음이세요? 사이트 설명서</a></div>
+      <div class="hlinks hot"><button id="lkQview">1교시 문항 보기</button><button id="lkToday">오늘의 연수(10. 17.)</button><button id="lkAiep">실제 시스템 안내</button><button id="lkCross">예시답안 교차 채점</button><button id="lkBoard">모둠 채점 현황판</button><a href="guide.html">처음이세요? 사이트 설명서</a></div>
     </div>
   </section>
   <section class="intro" id="intro" aria-labelledby="introTitle">
@@ -1198,6 +1235,7 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
         </div>
         <div class="ttl">AI 서·논술형 평가<span class="chip" id="ttlChip">연수 시연</span></div>
         <div class="tright">
+          <div class="pmode" id="pmode" role="group" aria-label="연수 진행 모드"><button type="button" data-pm="view">1교시 · 문항 보기</button><button type="button" data-pm="exam">2교시 · 응시</button></div>
           <div class="timer idle" id="timer">
             <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8" fill="none" stroke="#fff" stroke-width="2"/><path d="M12 9v4l3 2M9 2h6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
             <span id="clock">00 : 25 : 00</span>
@@ -1220,6 +1258,8 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
           </div>
           <div class="cond" id="cond" data-part="5"><span class="badge" style="top:-12px;right:-12px">05</span><b>조건</b><ul id="condList"></ul></div>
           <div class="itemres" id="itemres" data-part="6" hidden><span class="badge" style="top:-12px;right:-12px">06</span><div id="itemresBody"></div></div>
+          <hr class="qsep" aria-hidden="true">
+          <div class="vnote" id="vnote"><b>1교시 · 문항 보기</b>강사의 설명을 들으며 지시문·제시자료·발문·조건을 살펴보세요.<br>답안은 2교시에 학생이 되어 직접 작성하고 AI 채점을 받습니다.</div>
           <div class="answer" data-part="7">
             <span class="badge" style="bottom:-12px;right:-12px">07</span>
             <div class="picks" id="picks" hidden></div>
@@ -1934,12 +1974,15 @@ function setTitle(st, i){ return (i + 1) + '번 · ' + (st.info.grade || '') + '
 
 /* ===== 제시자료 렌더링 (학생 화면·미리보기 공용) ===== */
 var WHO_COLORS = ['#2c4bb5', '#c0632a', '#1f8a5b', '#7a3fc4'];
+/* 실제 시스템 표기: [제시자료1] → <자료 1> */
+function rLbl(s){ return isReal() ? String(s == null ? '' : s).replace(/\[제시자료\s*(\d+)\]/g, '<자료 $1>') : s; }
 function renderMaterial(m){
-  var h = '<div class="mat">';
-  if (m.label) h += '<h4>' + esc(m.label) + '</h4>';
+  var real = isReal(), h = real ? '<div class="mat rmat">' : '<div class="mat">';
+  if (real) { if (m.label) h += '<div class="rlbl">' + esc(rLbl(m.label)) + '</div>'; h += '<div class="rbox">'; }
+  else if (m.label) h += '<h4>' + esc(m.label) + '</h4>';
   if (m.title) h += '<div class="doc-title">' + esc(m.title) + '</div>';
   if (m.type === 'text') {
-    h += String(m.body || '').split(/\n+/).filter(function(p){ return p.trim(); }).map(function(p){ return '<p>' + fmt(p) + '</p>'; }).join('');
+    h += String(m.body || '').split(/\n+/).filter(function(p){ return p.trim(); }).map(function(p){ return '<p>' + fmt(rLbl(p)) + '</p>'; }).join('');
   } else if (m.type === 'table') {
     var rows = m.rows || [];
     var wide = rows[0] && rows[0].length > 2;
@@ -1950,15 +1993,15 @@ function renderMaterial(m){
       }).join('') + '</tr>';
     }).join('') + '</tbody></table></div>';
   } else if (m.type === 'dialogue') {
-    if (m.intro) h += '<p class="ni">' + fmt(m.intro) + '</p>';
+    if (m.intro) h += '<p class="ni">' + fmt(rLbl(m.intro)) + '</p>';
     var whos = [];
     h += '<div class="chat">' + (m.lines || []).map(function(l){
       var wi = whos.indexOf(l.who); if (wi < 0) { whos.push(l.who); wi = whos.length - 1; }
-      return '<div class="say' + (wi % 2 ? ' r' : '') + '"><span class="who" style="background:' + WHO_COLORS[wi % WHO_COLORS.length] + '">' + esc(l.who) + '</span><div class="bub">' + fmt(l.text) + '</div></div>';
+      return '<div class="say' + (wi % 2 ? ' r' : '') + '"><span class="who" style="background:' + WHO_COLORS[wi % WHO_COLORS.length] + '">' + esc(l.who) + '</span><div class="bub">' + fmt(rLbl(l.text)) + '</div></div>';
     }).join('') + '</div>';
   }
   if (m.image && /^data:image\//.test(m.image)) h += '<img src="' + m.image + '" alt="' + esc((m.label || '') + ' 그림') + '">' + (m.imageNote ? '<div class="imgnote">' + esc(m.imageNote) + '</div>' : '');
-  return h + '</div>';
+  return h + (real ? '</div>' : '') + '</div>';
 }
 
 /* ===== 화면 전환 ===== */
@@ -1983,7 +2026,7 @@ function show(v){
 /* =========================================================
    학생 응시 화면
    ========================================================= */
-var Q = [], answers = lsGet(KEY_ANS) || {}, visited = {}, cur = 0, started = false, shownSet = -2;
+var Q = [], answers = lsGet(KEY_ANS) || {}, visited = {}, cur = 0, started = false, shownSet = -2, qview = false;
 var PRACTICE = { directive: '입력 방식을 미리 연습해 보세요. 이 문제는 채점하지 않습니다.',
   passage: '<div class="mat"><h4>입력 연습 안내</h4><ul style="margin:0;padding-left:1.2em;line-height:1.8">' +
     '<li><b>글 입력</b>: 답안 칸에 문장과 식을 씁니다. 1000자까지 쓸 수 있습니다.</li>' +
@@ -1997,7 +2040,7 @@ var PRACTICE = { directive: '입력 방식을 미리 연습해 보세요. 이 �
 
 function buildQ(onlySet){
   Q = [];
-  if (onlySet == null) Q.push({ practice: true, set: -1, idx: 0, key: 'practice' });
+  if (onlySet == null && !qview) Q.push({ practice: true, set: -1, idx: 0, key: 'practice' });
   sets.forEach(function(st, si){
     if (onlySet != null && si !== onlySet) return;
     st.items.forEach(function(it, ii){ Q.push({ set: si, idx: ii, key: st.id + ':' + ii }); });
@@ -2041,18 +2084,19 @@ function render(){
     var st = sets[q.set];
     $('subj').textContent = st.info.school + ' ' + st.info.subject + ' ' + st.info.grade;
     if (shownSet !== q.set) {
-      $('rng').textContent = (q.set + 1) + '-1~' + (q.set + 1) + '-' + st.items.length;
-      $('directive').textContent = st.directive;
-      $('passage').innerHTML = st.materials.filter(function(m){ return !m.place || m.place === 'common'; }).map(renderMaterial).join('') + (st.note ? '<div class="src">' + esc(st.note) + '</div>' : '');
+      $('rng').textContent = isReal() ? '01 - ' + pad2(st.items.length) : (q.set + 1) + '-1~' + (q.set + 1) + '-' + st.items.length;
+      $('directive').textContent = rLbl(st.directive);
+      $('passage').innerHTML = st.materials.filter(function(m){ return !m.place || m.place === 'common'; }).map(renderMaterial).join('') + (st.note ? '<div class="src">' + esc(rLbl(st.note)) + '</div>' : '');
       $('passage').scrollTop = 0;
       shownSet = q.set;
     }
   }
-  $('qno').textContent = qLabel(q) + '.';
-  $('qtext').innerHTML = fmt(it.q) + (it.pts ? '<span class="pts">[' + it.pts + '점]</span>' : '');
+  $('qno').textContent = (isReal() && !q.practice ? (q.idx + 1) : qLabel(q)) + '.';
+  $('qtext').innerHTML = fmt(rLbl(it.q)) + (it.pts ? '<span class="pts">[' + it.pts + '점]</span>' : '');
   var conds = (it.cond || []).filter(function(c){ return String(c).trim(); });
   $('cond').hidden = !conds.length;
-  $('condList').innerHTML = conds.map(function(c){ return '<li>' + fmt(c) + '</li>'; }).join('');
+  $('cond').querySelector('b').textContent = isReal() ? '<조건>' : '조건';
+  $('condList').innerHTML = conds.map(function(c){ return '<li>' + fmt(rLbl(c)) + '</li>'; }).join('');
   var annot = document.body.classList.contains('annot');
   var own = q.practice ? [] : sets[q.set].materials.filter(function(m){ return m.place === 'item:' + q.idx; });
   var ir = $('itemres');
@@ -2080,17 +2124,22 @@ function render(){
   $('bSubmit').hidden = !!preview || cur === Q.length - 1;
   $('rname').textContent = (lsGet('aiEssayDemo.who') || {}).nick || (preview ? '교사 미리보기' : '응시자');
   $('bPrev').disabled = cur === 0;
-  $('bNext').textContent = cur === Q.length - 1 ? (preview ? 'AI 채점 해 보기' : '답안 제출') : '다음 문제 >';
+  $('bNext').textContent = cur === Q.length - 1 ? (preview ? 'AI 채점 해 보기' : qview ? '마지막 문제' : '답안 제출') : '다음 문제 >';
+  $('bNext').disabled = qview && cur === Q.length - 1;
   refreshTabs();
 }
-function go(i){ saveDraw(); cur = Math.max(0, Math.min(Q.length - 1, i)); if (!Q[cur].practice && !preview) startTimer(); render(); closeOv(); }
+function go(i){ saveDraw(); cur = Math.max(0, Math.min(Q.length - 1, i)); if (!Q[cur].practice && !preview && !qview) startTimer(); render(); closeOv(); }
 function persistAns(){ if (!preview) lsSet(KEY_ANS, answers); }
 $('picks').addEventListener('change', function(e){
   var s = e.target.closest('select'); if (!s) return;
   var a = ans(Q[cur]); a.picks = a.picks || {}; a.picks[s.dataset.k] = s.value;
   s.classList.toggle('set', s.value !== ''); refreshTabs();
 });
-function updateCount(){ var n = $('ans').value.length; $('cnt').textContent = n + ' / 1000'; $('cnt').classList.toggle('max', n >= 1000); }
+function updateCount(){
+  var n = $('ans').value.length;
+  if (isReal()) $('cnt').innerHTML = '글자 수: <b>' + n + '</b> / 최대 1,000자'; else $('cnt').textContent = n + ' / 1000';
+  $('cnt').classList.toggle('max', n >= 1000);
+}
 $('ans').addEventListener('input', function(){ ans(Q[cur]).text = this.value; updateCount(); refreshTabs(); });
 function insertAtCursor(t){
   var ta = $('ans'); if (ta.hidden) return;
@@ -2156,7 +2205,7 @@ $('tLater').addEventListener('click', function(){
 });
 $('bNext').addEventListener('click', function(){
   if (cur < Q.length - 1) return go(cur + 1);
-  openSubmit();
+  if (!qview) openSubmit();
 });
 document.addEventListener('keydown', function(e){
   if (e.key === 'Escape') { closeOv(); if (!grading) { $('ovGrade').hidden = true; closeRub(); } $('frac').hidden = true; $('ovConfirm').hidden = true; $('ovData').hidden = true; }
@@ -2626,7 +2675,14 @@ function setAnnot(on){
 function enterStudent(opts){
   opts = opts || {};
   preview = opts.preview != null ? { set: opts.preview } : null;
+  qview = !!opts.qview && !preview;
+  document.body.classList.toggle('qview', qview);
+  Array.prototype.forEach.call(document.querySelectorAll('#pmode button'), function(b){ b.classList.toggle('on', (b.dataset.pm === 'view') === qview); b.setAttribute('aria-pressed', (b.dataset.pm === 'view') === qview); });
+  $('pmode').hidden = !!preview;
+  var keepKey = !preview && Q[cur] ? Q[cur].key : null;
   buildQ(preview ? preview.set : null);
+  if (keepKey) { var ki = Q.findIndex(function(q){ return q.key === keepKey; }); cur = ki >= 0 ? ki : firstReal(); }
+  if (qview) stopTimer();
   shownSet = -2; visited = {};
   $('prevbar').hidden = !preview;
   $('btnHome').hidden = !!preview;
@@ -2645,8 +2701,19 @@ function enterStudent(opts){
   show('student');
   render();
   if (opts.annot) setAnnot(true);
+  else if (qview) $('ovStart').hidden = true;
   else if (!preview && !started) { buildStart(); $('ovStart').hidden = false; $('stGo').focus(); }
+  else if (!preview && !Q[cur].practice) startTimer();
 }
+$('pmode').addEventListener('click', function(e){
+  var b = e.target.closest('button'); if (!b) return;
+  var v = b.dataset.pm === 'view'; if (v === qview) return;
+  saveDraw(); persistAns();
+  try { history.replaceState(null, '', v ? '#view' : '#student'); } catch (x) {}
+  enterStudent({ qview: v });
+  toast(v ? '1교시 문항 보기: 답안 칸 없이 문항만 봅니다. 시간도 멈춥니다.' : '2교시 응시: 답안을 작성하고 AI 채점을 받을 수 있습니다.');
+});
+$('lkQview').addEventListener('click', function(){ try { history.replaceState(null, '', '#view'); } catch (x) {} enterStudent({ qview: true }); });
 function buildStart(){
   $('stRows').innerHTML = sets.map(function(st, i){
     return '<tr><td class="n">' + (i + 1) + '-1~' + (i + 1) + '-' + st.items.length + '</td><td>' + esc(st.info.nick || st.info.area) + ' (' + esc(st.info.grade) + ', ' + esc(st.info.area) + ')</td><td class="n">' + (+st.info.time || 0) + '분</td><td class="n">' + setTotal(st) + '점</td></tr>';
@@ -2655,7 +2722,7 @@ function buildStart(){
   $('stResume').hidden = !anyAns;
 }
 function firstReal(){ for (var i = 0; i < Q.length; i++) if (!Q[i].practice) return i; return 0; }
-$('stGo').addEventListener('click', function(){ $('ovStart').hidden = true; started = true; go(firstReal()); });
+$('stGo').addEventListener('click', function(){ $('ovStart').hidden = true; started = true; visited = {}; go(firstReal()); });
 $('stPractice').addEventListener('click', function(){ $('ovStart').hidden = true; started = true; go(0); });
 $('stResume').addEventListener('click', function(){
   $('ovStart').hidden = true; started = true;
@@ -4547,6 +4614,7 @@ applyScale();
 refreshMissions();
 if (!lsGet('aiEssayDemo.seenGuide')) $('nudge').hidden = false;
 if (location.hash === '#student') enterStudent();
+else if (location.hash === '#view') enterStudent({ qview: true });
 else if (location.hash === '#teacher') openTeacher(0, 'items');
 else if (location.hash === '#guide') openGuide();
 else if (location.hash === '#compare') openCompare();
