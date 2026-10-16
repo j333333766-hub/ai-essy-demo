@@ -1187,6 +1187,90 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
 .apstep .sys.a { background: #eaf0ff; color: #2b5ff0; } .apstep .sys.b { background: #e3f6ee; color: #0f9478; }
 .apstep .go { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
 @media (max-width: 760px) { .ap2 { grid-template-columns: 1fr; } .apstep { grid-template-columns: 40px minmax(0, 1fr); } .apstep .go { grid-column: 1 / -1; justify-content: flex-start; } }
+/* ===== 예시답안 모음 (#exbank) ===== */
+.ebtop { display: grid; gap: 10px; }
+.ebrow { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.ebrow .lb { font-weight: 800; font-size: .85em; color: var(--ink-2); }
+.ebrow label { font-size: .85em; display: inline-flex; gap: 5px; align-items: center; color: var(--ink-2); font-weight: 700; }
+#ebBy, #ebCode { border: 1px solid var(--line); border-radius: 7px; padding: 5px 8px; width: 110px; font: inherit; font-size: .95em; }
+.ebrow .st { margin-left: auto; font-size: .82em; color: var(--ink-3); }
+.ebseg { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.ebseg button { border: 1px solid var(--line); background: #fff; border-radius: 6px; padding: 6px 12px; font: inherit; font-size: .88em; font-weight: 700; color: var(--ink-2); cursor: pointer; }
+.ebseg button.on { background: #1e73e8; border-color: #1e73e8; color: #fff; }
+.ebtabs { display: inline-flex; border-bottom: 1px solid #e3e8f2; gap: 18px; margin-right: 10px; }
+.ebtabs button { border: 0; background: none; font: inherit; font-weight: 800; font-size: .95em; color: #555; padding: 6px 2px; border-bottom: 3px solid transparent; cursor: pointer; }
+.ebtabs button.on { color: #1e73e8; border-bottom-color: #1e73e8; }
+.ebrub summary { cursor: pointer; font-weight: 800; color: var(--navy); }
+.ebrub summary small { font-weight: 500; color: var(--ink-3); }
+#ebRub { max-height: 460px; overflow: auto; margin-top: 6px; }
+.ebq { margin: 10px 0 8px; line-height: 1.75; font-size: .93em; }
+.ebq ul { margin: 4px 0 0; padding-left: 1.2em; }
+.ebrt { width: 100%; border-collapse: collapse; font-size: .86em; line-height: 1.6; }
+.ebrt th, .ebrt td { border: 1px solid #dde3ef; padding: 6px 8px; vertical-align: top; text-align: left; }
+.ebrt th { background: #f3f6fc; font-weight: 800; white-space: nowrap; }
+.ebrt td.c { text-align: center; white-space: nowrap; font-weight: 700; }
+.ebrt .ex { color: #2a6a46; font-size: .95em; margin-top: 3px; }
+.ebrt .ex::before { content: '예시) '; font-weight: 700; }
+.eblegend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .84em; color: var(--ink-2); align-items: center; }
+.eblegend i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin-right: 4px; border: 1px solid #ccd; }
+.ebgrid { display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(220px, 1fr)); gap: 10px; overflow-x: auto; padding-bottom: 6px; }
+.ebcol { background: #f6f8fc; border: 1px solid #e1e6f0; border-radius: 12px; padding: 8px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.ebcol h4 { margin: 0; font-size: .95em; display: flex; justify-content: space-between; align-items: baseline; color: var(--navy); padding: 2px 4px; }
+.ebcol h4 small { font-weight: 600; color: var(--ink-3); font-size: .8em; }
+.ebcol .empty { font-size: .82em; color: var(--ink-3); padding: 10px 6px; text-align: center; }
+.ebcol .gap { font-size: .8em; color: #8a5a00; background: #fff6df; border-radius: 8px; padding: 6px 8px; line-height: 1.55; }
+.ebc { background: #fff; border: 1px solid #dfe4ee; border-radius: 10px; padding: 9px 10px; font-size: .86em; line-height: 1.65; position: relative; }
+.ebc .ebt { white-space: pre-wrap; word-break: keep-all; overflow-wrap: anywhere; max-height: 9.9em; overflow: hidden; }
+.eb-compact .ebc .ebt { max-height: 4.95em; }
+.ebc.open .ebt { max-height: none; }
+.ebc .more { border: 0; background: none; color: #1e73e8; font: inherit; font-size: .92em; padding: 0; cursor: pointer; }
+.ebc .ebm { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; margin-top: 6px; font-size: .9em; color: var(--ink-3); }
+.ebc .chip { border-radius: 5px; padding: 0 6px; font-weight: 700; font-size: .92em; background: #eef1f7; color: #4a5268; }
+.ebc .els { font-variant-numeric: tabular-nums; }
+.ebc .rv { border-radius: 5px; padding: 0 6px; font-weight: 700; font-size: .92em; }
+.ebc .rv.ok { background: #e3f5ea; color: #1f7a45; }
+.ebc .rv.no { background: #fdecea; color: #b3352a; }
+.ebc .eba { display: flex; gap: 6px; align-items: center; margin-top: 6px; }
+.ebc .eba label { font-size: .9em; display: inline-flex; gap: 4px; align-items: center; color: var(--ink-2); }
+.ebc .eba button { border: 1px solid #e3c6c1; background: #fff; color: #b3352a; border-radius: 6px; padding: 1px 8px; font: inherit; font-size: .9em; cursor: pointer; }
+.ebc .eba button.rs { border-color: #b9c9f2; color: #1e73e8; }
+.ebc.sel { box-shadow: 0 0 0 2px #1e73e8; }
+.ebc.flag { box-shadow: 0 0 0 2px #f0a020; }
+.ebc.gone { opacity: .55; border-style: dashed; }
+.ebc.dev { background: #eef7f1; border-color: #a9d8bb; }
+.ebc.dev .chip { background: #d4efdf; color: #1f6b40; }
+.eb-src .ebc.sub { background: #eef4ff; border-color: #b8cdf6; }
+.eb-src .ebc.sub .chip { background: #dbe6fd; color: #1e4fb0; }
+.eb-src .ebc.add { background: #fff7e8; border-color: #f0d29a; }
+.eb-src .ebc.add .chip { background: #fde9c2; color: #8a5a00; }
+.ebmk:not(.eb-src) .ebc.dev { background: #fff; border-color: #dfe4ee; }
+.ebmk:not(.eb-src) .ebc .chip { display: none; }
+.ebtools { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.ebtools label { font-size: .86em; display: inline-flex; gap: 5px; align-items: center; font-weight: 700; color: var(--ink-2); }
+.ebadd { display: grid; gap: 8px; }
+.ebadd .r1 { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: .88em; font-weight: 700; color: var(--ink-2); }
+.ebadd select, .ebdlg select { border: 1px solid var(--line); border-radius: 7px; padding: 5px 8px; font: inherit; }
+.ebadd textarea, .ebdlg textarea { width: 100%; box-sizing: border-box; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font: inherit; font-size: .92em; line-height: 1.7; resize: vertical; }
+.ebrvbox { border-radius: 10px; padding: 10px 12px; font-size: .88em; line-height: 1.7; background: #f5f8ff; border: 1px solid #d5e0f7; }
+.ebrvbox.ok { background: #f0faf4; border-color: #bfe3cc; }
+.ebrvbox.no { background: #fff6f2; border-color: #f2d0c4; }
+.ebrvbox table { border-collapse: collapse; margin: 6px 0; font-size: .95em; }
+.ebrvbox td { border-top: 1px solid #e3e8f2; padding: 3px 8px 3px 0; vertical-align: top; }
+.eborg { display: grid; gap: 10px; font-size: .88em; line-height: 1.7; }
+.eborg .grp { border: 1px solid #dfe4ee; border-radius: 10px; padding: 8px 10px; background: #fff; }
+.eborg .grp b { color: var(--navy); }
+.eborg .grp ul { margin: 4px 0; padding-left: 1.2em; color: var(--ink-2); }
+.eborg .rep { white-space: pre-wrap; background: #f6f8fc; border-radius: 8px; padding: 6px 8px; margin: 4px 0; }
+.ebov { position: fixed; inset: 0; background: rgba(20,28,50,.45); display: grid; place-items: center; z-index: 80; padding: 16px; }
+.ebov[hidden] { display: none; }
+.ebdlg { background: #fff; border-radius: 14px; max-width: 640px; width: 100%; max-height: 90vh; overflow: auto; padding: 18px 20px; display: grid; gap: 10px; }
+.ebdlg h3 { margin: 0; }
+.ebhint { margin: 0; font-size: .86em; color: var(--ink-2); line-height: 1.65; }
+.ebmgsrc { display: grid; gap: 6px; max-height: 30vh; overflow: auto; }
+.ebmgsrc div { font-size: .84em; line-height: 1.6; background: #f6f8fc; border-radius: 8px; padding: 6px 8px; white-space: pre-wrap; }
+.ebf { display: grid; gap: 4px; font-size: .88em; font-weight: 700; color: var(--ink-2); }
+.ebbtns { display: flex; justify-content: flex-end; gap: 8px; }
+@media (max-width: 720px) { .ebgrid { grid-template-columns: 1fr; } .ebrow .st { margin-left: 0; width: 100%; } }
 </style>
 </head>
 <body>
@@ -1235,7 +1319,7 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
         <button id="lkRt">채점 기준 바꿔 보기</button>
         <button id="lkKdot">K-DOT 출제 매뉴얼</button>
       </div>
-      <div class="hlinks hot"><button id="lkToday">오늘의 연수(10. 17.)</button><button id="lkAiep">실제 시스템 안내</button><button id="lkCross">예시답안 교차 채점</button><button id="lkBoard">모둠 채점 현황판</button><a href="guide.html">처음이세요? 사이트 설명서</a></div>
+      <div class="hlinks hot"><button id="lkToday">오늘의 연수(10. 17.)</button><button id="lkAiep">실제 시스템 안내</button><button id="lkCross">예시답안 교차 채점</button><button id="lkBoard">모둠 채점 현황판</button><button id="lkExbank">예시답안 모음</button><a href="guide.html">처음이세요? 사이트 설명서</a></div>
     </div>
   </section>
   <section class="intro" id="intro" aria-labelledby="introTitle">
@@ -1747,6 +1831,46 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
 </div>
 
 <!-- ============ 오늘의 연수 (2026. 10. 16. 추가) ============ -->
+<div class="tview cview" id="ebView" hidden>
+  <div class="tbar">
+    <div class="brand"><span class="mk" aria-hidden="true">x</span>AI 논·서술형 평가 시연 <span class="who">연수 실습 · 예시답안 모음</span></div>
+    <div class="acts">
+      <button class="nbtn sm" id="ebHome">← 처음 화면</button>
+      <button class="nbtn sm" id="ebStudent">학생 화면</button>
+      <button class="nbtn sm wht" id="ebLoad">새로 고침</button>
+    </div>
+  </div>
+  <div class="xwrap">
+    <section class="pcard ebtop">
+      <div class="ebrow">
+        <span class="lb">문항</span><div class="ebseg" id="ebSets"></div>
+        <span class="lb">하위 문항</span><div class="ebseg" id="ebItems"></div>
+      </div>
+      <div class="ebrow">
+        <div class="ebtabs" id="ebTabs" role="tablist"><button data-m="ai" role="tab">① AI 채점 결과 모아 보기</button><button data-m="make" role="tab">② 예시답안 함께 만들기</button></div>
+        <label>이름 <input id="ebBy" maxlength="20" placeholder="별명"></label>
+        <label>접속 코드 <input id="ebCode" maxlength="20" inputmode="numeric"></label>
+        <label><input type="checkbox" id="ebCompact" checked> 답안 짧게 보기</label>
+        <label><input type="checkbox" id="ebAuto" checked> 15초마다 새로 고침</label>
+        <label><input type="checkbox" id="ebTest"> 리허설 기록</label>
+        <span class="st" id="ebSt"></span>
+      </div>
+    </section>
+    <details class="pcard ebrub" id="ebRubBox" open><summary>채점기준표 <small>— 하위 문항·조건·채점 요소별 점수 기준과 요소별 예시답안</small></summary><div id="ebRub"></div></details>
+    <div id="ebMain"></div>
+  </div>
+  <div class="ebov" id="ebMerge" hidden role="dialog" aria-modal="true" aria-labelledby="ebMgT">
+    <div class="ebdlg">
+      <h3 id="ebMgT">예시답안 합치기</h3>
+      <p class="ebhint">고른 답안을 하나의 예시답안으로 합칩니다. 원래 답안은 표에서 숨겨지고(‘삭제된 답안 보기’에서 되살릴 수 있음), 합친 답안이 새로 들어갑니다. 출제팀 예시답안은 숨기지 않습니다.</p>
+      <div id="ebMgSrc" class="ebmgsrc"></div>
+      <label class="ebf">점수 <select id="ebMgScore"></select></label>
+      <label class="ebf">합친 예시답안<textarea id="ebMgText" rows="6" maxlength="1500"></textarea></label>
+      <div class="ebbtns"><button class="nbtn" id="ebMgNo">취소</button><button class="nbtn ind" id="ebMgOk">합치기</button></div>
+    </div>
+  </div>
+</div>
+
 <div class="tview cview" id="tdView" hidden>
   <div class="tbar">
     <div class="brand"><span class="mk" aria-hidden="true">x</span>AI 논·서술형 평가 시연 <span class="who">오늘의 연수 · 10. 17.(토) 13:00~17:00</span></div>
@@ -1813,6 +1937,7 @@ body.skin-real #teacherView .ck:hover { background: #f5f7fb; }
   <button data-tm="today">오늘의 연수 <span class="new">새</span><small>시간표·바로가기·QR</small></button>
   <button data-tm="cross">예시답안 교차 채점 <span class="new">새</span><small>학생 A·B·C</small></button>
   <button data-tm="board">모둠 채점 현황판 <span class="new">새</span><small>진행자</small></button>
+  <button data-tm="exbank">예시답안 모음 <span class="new">새</span><small>AI 채점 모아 보기·함께 만들기</small></button>
   <button data-tm="aiep">실제 시스템 안내 <span class="new">새</span><small>두 시스템·흐름</small></button>
   <button data-tm="tfinal">교사 최종 채점 화면 <span class="new">새</span><small>예시 결과로 보기</small></button>
   <h5>문제 풀기·편집</h5>
@@ -2061,6 +2186,7 @@ function show(v){
   $('bdView').hidden = v !== 'board';
   $('tdView').hidden = v !== 'today';
   $('apView').hidden = v !== 'aiep';
+  $('ebView').hidden = v !== 'exbank';
   window.scrollTo(0, 0);
 }
 
@@ -4559,6 +4685,7 @@ $('tdLine').addEventListener('click', function(e){
   else if (k === 'crossC') openCross('C');
   else if (k === 'cross2') openCross('A', 'g2');
   else if (k === 'board') openBoard();
+  else if (k === 'exbank') openExbank();
   else if (k === 'boardkey') { $('bdKey').checked = true; openBoard(); }
   else if (k === 'student') enterStudent();
   else if (k === 'example') showGrade(exampleGrade());
@@ -4571,6 +4698,7 @@ $('tdCross').addEventListener('click', function(){ openCross(); });
 $('lkToday').addEventListener('click', openToday);
 $('lkCross').addEventListener('click', function(){ openCross(); });
 $('lkBoard').addEventListener('click', openBoard);
+$('lkExbank').addEventListener('click', function(){ openExbank(); });
 
 /* ---------- 그리기 답안: 펜·지우개·되돌리기 ---------- */
 var drawUndo = [], drawEraser = false;
@@ -4602,6 +4730,7 @@ $('tmPanel').addEventListener('click', function(e){
   if (k === 'today') openToday();
   else if (k === 'cross') openCross();
   else if (k === 'board') openBoard();
+  else if (k === 'exbank') openExbank();
   else if (k === 'home') show('home');
   else if (k === 'student') enterStudent();
   else if (k === 'teacher') openTeacher(0, 'items');
@@ -4613,6 +4742,315 @@ $('tmPanel').addEventListener('click', function(e){
   else if (k === 'aiep') openAiep();
   else if (k === 'tfinal') openTfinal();
 });
+
+/* ---------- 예시답안 모음 (#exbank) ----------
+   ① AI 채점 결과 모아 보기: 하위 문항별로 출제팀 예시답안(학생 A·B·C, 사전 AI 채점)과
+      선생님들이 학생 화면에서 응시해 받은 AI 채점 결과를 점수 칸별로 모은다.
+   ② 예시답안 함께 만들기: 점수를 정해 예시답안을 넣고(AI 검토 → 입력), 삭제·되살리기·합치기, AI 표 정리.
+   서버는 기록을 덧붙이기만 하고(exAdd/exOp), 화면이 순서대로 적용해 지금 상태를 만든다 → 여러 명이 동시에 써도 충돌 없음. */
+var EB = { si: 0, ii: 0, mode: 'ai', subs: [], ops: [], loaded: false, busy: false, again: false, src: false, showGone: false, sel: {}, org: null,
+  draft: { score: '', text: '', review: null, reviewed: '' }, mergeKeys: [], pend: [] };
+/* 방금 보낸 기록이 시트 읽기에 늦게 잡혀도 화면에서 사라지지 않도록 2분 동안 붙여 둔다 */
+function ebPush(o){ EB.ops.push(o); EB.pend.push(o); }
+var EB_KIT = { 0: 'g1', 1: 'g2' };
+function ebSet(){ return DEFAULT_SETS[EB.si]; }
+function ebItem(){ return ebSet().items[EB.ii]; }
+function ebPts(){ return +ebItem().pts || 0; }
+function ebLabel(){ return (EB.si + 1) + '-' + (EB.ii + 1); }
+function setCtx(st){ return [st.directive].concat(st.materials.filter(function(m){ return !m.place || m.place === 'common'; }).map(matText)).filter(Boolean).join('\n\n'); }
+function ebPayload(){
+  var st = ebSet(), it = ebItem(), own = st.materials.filter(function(m){ return m.place === 'item:' + EB.ii; }).map(matText).join('\n\n');
+  return { set: { title: (EB.si + 1) + '번 ' + (st.info.nick || st.info.area || ''), grade: (st.info.school || '') + ' ' + (st.info.grade || '') + ' ' + (st.info.subject || ''), context: setCtx(st) },
+    item: { label: ebLabel(), q: it.q + (own ? '\n\n[이 문항의 제시자료]\n' + own : ''), cond: it.cond || [], pts: +it.pts || 0, rubric: it.rubric || [], rubricNote: it.rubricNote || '' } };
+}
+function ebShort(s){ s = String(s || ''); var m = s.match(/^\([가-힣A-Za-z0-9]\)/); return m ? m[0] : s.split(/\s+/).slice(0, 2).join(' ').slice(0, 9); }
+/* 출제팀 예시답안: 교차 채점 자료(X_KITS)의 학생 A·B·C 답안과 사전 AI 채점 점수(X_AIS) */
+function ebDev(){
+  var kid = EB_KIT[EB.si], kit = X_KITS[kid], out = [];
+  if (!kit) return out;
+  var xi = kit.items.filter(function(x){ return x.ii === EB.ii; })[0]; if (!xi) return out;
+  kit.samples.forEach(function(sm){
+    var a = sm.ans[xi.q]; if (!a) return;
+    var ai = ((X_AIS[kid] || {})[sm.id] || {})[xi.q], sc = ai ? ai.sc : null;
+    if (!sc) return;
+    out.push({ key: 'dev:' + kid + ':' + sm.id + ':' + xi.q, src: 'dev', who: sm.who, text: a, score: sc.reduce(function(s, n){ return s + n; }, 0),
+      els: sc.map(function(n, k){ return { sub: xi.subs[k], score: n, pts: xi.max[k] }; }) });
+  });
+  return out;
+}
+function ebState(){
+  var adds = {}, hidden = {};
+  EB.ops.slice().sort(function(a, b){ return a.at - b.at; }).forEach(function(o){
+    if (o.op === 'add') { adds['add:' + o.id] = o; (o.from || []).forEach(function(k){ if (k.indexOf('dev:') !== 0) hidden[k] = 'merge'; }); }
+    else if (o.op === 'del') hidden[o.key] = 'del';
+    else if (o.op === 'undel') delete hidden[o.key];
+  });
+  return { adds: adds, hidden: hidden };
+}
+function ebCards(withAdds){
+  var st = ebState(), list = ebDev();
+  EB.subs.forEach(function(s){
+    if (s.si !== EB.si || s.ii !== EB.ii) return;
+    var t = (s.picks ? '[선택] ' + s.picks + '\n' : '') + (s.text || '');
+    if (!t.trim()) t = s.draw ? '(그림으로 쓴 답안 — 글로 쓴 내용 없음)' : '(내용 없음)';
+    list.push({ key: s.key, src: 'sub', who: s.nick, text: t, score: s.score, els: s.els, at: s.at });
+  });
+  if (withAdds) Object.keys(st.adds).forEach(function(k){
+    var o = st.adds[k]; if (o.si !== EB.si || o.ii !== EB.ii) return;
+    list.push({ key: k, src: 'add', who: o.by, text: o.text, score: o.score, review: o.review, merged: (o.from || []).length, at: o.at });
+  });
+  list.forEach(function(c){ c.gone = !!st.hidden[c.key]; });
+  return list;
+}
+function ebSrcName(c){ return c.src === 'dev' ? '출제팀 · ' + c.who : c.src === 'sub' ? '응시 답안' : (c.merged ? '합친 예시답안' : '추가 예시답안'); }
+function ebCardHtml(c, make){
+  var flag = make && EB.org && EB.org.label === ebLabel() && EB.org.res.flags.some(function(f){ return f.key === c.key; });
+  var cls = 'ebc ' + c.src + (c.gone ? ' gone' : '') + (make && EB.sel[c.key] ? ' sel' : '') + (flag ? ' flag' : '');
+  var cmp = $('ebCompact').checked, long = c.text.length > (cmp ? 80 : 180) || (c.text.match(/\n/g) || []).length > (cmp ? 2 : 5);
+  var h = '<div class="' + cls + '" data-key="' + esc(c.key) + '"><div class="ebt">' + esc(c.text) + '</div>' + (long ? '<button class="more" data-more>더 보기</button>' : '');
+  h += '<div class="ebm"><span class="chip">' + esc(ebSrcName(c)) + '</span>';
+  if (c.els && c.els.length) h += '<span class="els">' + c.els.map(function(e){ return esc(ebShort(e.sub)) + ' ' + e.score + '/' + e.pts; }).join(' · ') + '</span>';
+  if (c.review) h += c.review.score === c.score ? '<span class="rv ok">AI 검토 ' + c.review.score + '점 ✓</span>' : '<span class="rv no">AI 검토 ' + c.review.score + '점</span>';
+  if (c.src !== 'dev' && c.who) h += '<span>' + esc(c.who) + '</span>';
+  h += '</div>';
+  if (make) {
+    h += '<div class="eba"><label><input type="checkbox" data-sel' + (EB.sel[c.key] ? ' checked' : '') + '> 선택</label>';
+    if (c.src !== 'dev') h += c.gone ? '<button class="rs" data-undel>되살리기</button>' : '<button data-del>삭제</button>';
+    h += '</div>';
+  }
+  return h + '</div>';
+}
+function ebRubHtml(){
+  var it = ebItem(), conds = (it.cond || []).filter(function(c){ return String(c).trim(); });
+  var h = '<div class="ebq"><b>' + ebLabel() + '.</b> ' + fmt(rLbl(it.q)) + ' [' + ebPts() + '점]' + (conds.length ? '<ul>' + conds.map(function(c){ return '<li>' + fmt(rLbl(c)) + '</li>'; }).join('') + '</ul>' : '') + '</div>';
+  h += '<div class="tbl-wrap"><table class="ebrt"><thead><tr><th>채점 요소</th><th>배점</th><th>점수</th><th>수행 특성 · 요소별 예시답안</th></tr></thead><tbody>';
+  (it.rubric || []).forEach(function(r){
+    var lv = (r.levels || []).slice().sort(function(a, b){ return b.s - a.s; });
+    lv.forEach(function(l, k){
+      var ex = ((r.ex || {})[l.s] || []).filter(function(x){ return String(x).trim(); });
+      h += '<tr>' + (k === 0 ? '<td rowspan="' + lv.length + '"><b>' + esc(r.sub) + '</b></td><td class="c" rowspan="' + lv.length + '">' + r.pts + '점</td>' : '') +
+        '<td class="c">' + l.s + '점</td><td>' + fmt(l.d) + ex.map(function(x){ return '<div class="ex">' + fmt(x) + '</div>'; }).join('') + '</td></tr>';
+    });
+  });
+  h += '</tbody></table></div>';
+  if (it.rubricNote) h += '<p class="ebhint" style="margin-top:8px">채점 유의 사항: ' + fmt(it.rubricNote) + '</p>';
+  return h;
+}
+function renderEb(){
+  $('ebSets').innerHTML = DEFAULT_SETS.map(function(st, i){ return '<button data-si="' + i + '" class="' + (i === EB.si ? 'on' : '') + '">' + (i + 1) + '번 · ' + esc(st.info.grade + ' ' + (st.info.nick || '')) + '</button>'; }).join('');
+  $('ebItems').innerHTML = ebSet().items.map(function(it, k){ return '<button data-ii="' + k + '" class="' + (k === EB.ii ? 'on' : '') + '">' + (EB.si + 1) + '-' + (k + 1) + ' <small>(' + (+it.pts || 0) + '점)</small></button>'; }).join('');
+  Array.prototype.forEach.call(document.querySelectorAll('#ebTabs button'), function(b){ b.classList.toggle('on', b.dataset.m === EB.mode); b.setAttribute('aria-selected', b.dataset.m === EB.mode); });
+  $('ebRub').innerHTML = ebRubHtml();
+  var m = $('ebMain');
+  if (EB.mode === 'ai') {
+    m.className = 'ebai';
+    m.innerHTML = '<section class="pcard"><div class="eblegend"><span><i style="background:#eef7f1;border-color:#a9d8bb"></i>출제팀 예시답안(학생 A·B·C, 사전 AI 채점)</span><span><i style="background:#fff"></i>선생님 응시 답안(학생 화면에서 받은 AI 채점, 같은 분이 여러 번 채점했으면 마지막 결과)</span><span id="ebCnt"></span></div></section><div id="ebGrid"></div>';
+  } else {
+    m.className = 'ebmk' + (EB.src ? ' eb-src' : '');
+    m.innerHTML = '<section class="pcard ebtools"><label><input type="checkbox" id="ebSrc"' + (EB.src ? ' checked' : '') + '> 출처 구분해서 보기</label>' +
+      '<label><input type="checkbox" id="ebGone"' + (EB.showGone ? ' checked' : '') + '> 삭제·합친 답안도 보기</label>' +
+      '<button class="nbtn sm" id="ebMg">선택한 답안 합치기</button><button class="nbtn sm ind" id="ebOrg">AI로 표 정리</button>' +
+      '<span class="eblegend" id="ebLeg"' + (EB.src ? '' : ' hidden') + '><span><i style="background:#eef7f1;border-color:#a9d8bb"></i>출제팀 예시답안</span><span><i style="background:#eef4ff;border-color:#b8cdf6"></i>응시 답안(AI 채점 점수)</span><span><i style="background:#fff7e8;border-color:#f0d29a"></i>추가 예시답안(입력한 점수)</span></span></section>' +
+      '<section class="pcard ebadd"><h4 style="margin:0">예시답안 추가 <small>— 점수를 먼저 정하고 쓰세요. ‘AI 검토’는 조언만 하고, 표에는 ‘입력’을 눌러야 들어갑니다.</small></h4>' +
+      '<div class="r1">' + ebLabel() + ' · <label>점수 <select id="ebScore"><option value="">선택</option>' + ebScoreOpts(EB.draft.score) + '</select></label>' +
+      '<button class="nbtn sm" id="ebRv">AI 검토</button><button class="nbtn sm ind" id="ebAdd">입력</button><span class="ebhint" id="ebAddSt"></span></div>' +
+      '<textarea id="ebText" rows="5" maxlength="1500" placeholder="이 점수에 해당하는 예시답안을 학생이 쓴 것처럼 적어 보세요."></textarea><div id="ebRvBox"></div></section>' +
+      '<div id="ebOrgBox"></div><div id="ebGrid"></div>';
+    $('ebText').value = EB.draft.text;
+    if (EB.draft.review && EB.draft.reviewed === EB.draft.text + '|' + EB.draft.score) $('ebRvBox').innerHTML = ebRvHtml(EB.draft.review);
+    renderEbOrg();
+  }
+  renderEbGrid();
+}
+function ebScoreOpts(sel){ var h = ''; for (var s = ebPts(); s >= 0; s--) h += '<option value="' + s + '"' + (String(sel) === String(s) ? ' selected' : '') + '>' + s + '점</option>'; return h; }
+function renderEbGrid(){
+  var g = $('ebGrid'); if (!g) return;
+  var make = EB.mode === 'make', cards = ebCards(make), pts = ebPts(), cols = [];
+  if (make && !EB.showGone) cards = cards.filter(function(c){ return !c.gone; });
+  if (!make) cards = cards.filter(function(c){ return c.src !== 'add'; });
+  var gaps = make && EB.org && EB.org.label === ebLabel() ? EB.org.res.gaps : [];
+  for (var s = pts; s >= 0; s--) {
+    var cs = cards.filter(function(c){ return c.score === s; }).sort(function(a, b){ return (a.src === 'dev' ? 0 : 1) - (b.src === 'dev' ? 0 : 1) || (a.at || 0) - (b.at || 0); });
+    var gp = gaps.filter(function(x){ return x.score === s; });
+    cols.push('<div class="ebcol"><h4>' + (make ? s + '점 예시답안' : 'AI 채점 ' + s + '점') + ' <small>' + cs.length + '개</small></h4>' +
+      gp.map(function(x){ return '<div class="gap">AI 제안 · 이 점수 예시답안이 부족합니다: ' + esc(x.hint) + '</div>'; }).join('') +
+      (cs.length ? cs.map(function(c){ return ebCardHtml(c, make); }).join('') : '<div class="empty">아직 없습니다</div>') + '</div>');
+  }
+  var note = EB.loaded ? '' : '<div class="xlock" style="margin-bottom:10px">' + ($('ebCode').value.trim() ? '선생님 답안을 불러오는 중입니다…' : '접속 코드를 넣고 <b>새로 고침</b>을 누르면 선생님들의 응시 답안과 추가 예시답안이 함께 모입니다. 지금은 출제팀 예시답안만 보입니다.') + '</div>';
+  if (!ebDev().length && !make) note += '<div class="xlock" style="margin-bottom:10px">이 하위 문항에는 출제팀 예시답안(학생 A·B·C)이 없습니다. 위 채점기준표의 요소별 예시답안을 참고하세요.</div>';
+  g.classList.toggle('eb-compact', $('ebCompact').checked);
+  g.innerHTML = note + '<div class="ebgrid" style="--cols:' + (pts + 1) + '">' + cols.join('') + '</div>';
+  var subN = cards.filter(function(c){ return c.src === 'sub'; }).length;
+  var dist = []; for (var d = pts; d >= 0; d--) dist.push(d + '점 ' + cards.filter(function(c){ return c.src === 'sub' && c.score === d; }).length);
+  if ($('ebCnt')) $('ebCnt').textContent = EB.loaded ? '이 하위 문항 응시 답안 ' + subN + '개 (' + dist.join(' · ') + ')' : '';
+  var mg = $('ebMg'); if (mg) { var n = Object.keys(EB.sel).length; mg.textContent = '선택한 답안 합치기' + (n ? ' (' + n + ')' : ''); mg.disabled = n < 2; }
+}
+function ebRvHtml(r){
+  var ok = r.score === r.target;
+  return '<div class="ebrvbox ' + (ok ? 'ok' : 'no') + '"><b>' + (ok ? '✓ 목표 점수 ' + r.target + '점과 AI 채점 ' + r.score + '점이 같습니다.' : '목표 ' + r.target + '점 · AI는 ' + r.score + '점으로 보았습니다.') + '</b>' +
+    '<table>' + (r.els || []).map(function(e){ return '<tr><td><b>' + esc(e.sub) + '</b></td><td style="white-space:nowrap">' + e.score + '/' + e.pts + '</td><td>' + esc(e.reason || '') + '</td></tr>'; }).join('') + '</table>' +
+    '<div><b>AI 조언</b> ' + esc(r.advice || '') + '</div><div class="ebhint" style="margin-top:4px">AI 검토는 참고용입니다. 그대로 넣으려면 ‘입력’을 누르세요(검토 결과도 함께 저장됩니다).</div></div>';
+}
+function renderEbOrg(){
+  var box = $('ebOrgBox'); if (!box) return;
+  if (!EB.org || EB.org.label !== ebLabel()) { box.innerHTML = ''; return; }
+  if (EB.org.wait) { box.innerHTML = '<section class="pcard"><div class="gwait"><div class="gspin" aria-hidden="true"></div><div><b>AI가 예시답안 표를 살펴보는 중입니다…</b><br>보통 20~40초 걸립니다.</div></div></section>'; return; }
+  var r = EB.org.res, all = {}; ebCards(true).forEach(function(c){ all[c.key] = c; });
+  var ex = function(k){ var c = all[k]; return c ? '[' + ebSrcName(c) + (c.who && c.src !== 'dev' ? ' · ' + c.who : '') + ', ' + c.score + '점] ' + c.text.replace(/\s+/g, ' ').slice(0, 70) + (c.text.length > 70 ? '…' : '') : k; };
+  var h = '<section class="pcard eborg"><h4 style="margin:0">AI 표 정리 제안 <small>— 제안일 뿐 표를 바꾸지 않습니다. 합치려면 묶음마다 ‘이 묶음 합치기’를 누르세요.</small></h4><div>' + esc(r.summary) + '</div>';
+  h += r.groups.length ? r.groups.map(function(gr, i){ return '<div class="grp"><b>' + gr.score + '점 · 비슷한 답안 ' + gr.keys.length + '개</b> — ' + esc(gr.why) + '<ul>' + gr.keys.map(function(k){ return '<li>' + esc(ex(k)) + '</li>'; }).join('') + '</ul><div class="rep">' + esc(gr.text) + '</div><button class="nbtn sm ind" data-gmerge="' + i + '">이 묶음 합치기</button></div>'; }).join('') : '<div class="ebhint">합칠 만큼 비슷한 답안 묶음은 찾지 못했습니다.</div>';
+  if (r.flags.length) h += '<div class="grp"><b>점수를 다시 볼 답안 ' + r.flags.length + '개</b> (표에서 주황 테두리)<ul>' + r.flags.map(function(f){ var c = all[f.key]; return '<li>' + esc(ex(f.key)) + ' → <b>' + f.suggest + '점</b> 제안' + (c ? '' : '') + ': ' + esc(f.why) + '</li>'; }).join('') + '</ul></div>';
+  if (r.gaps.length) h += '<div class="grp"><b>예시답안이 부족한 점수</b><ul>' + r.gaps.map(function(x){ return '<li><b>' + x.score + '점</b>: ' + esc(x.hint) + '</li>'; }).join('') + '</ul></div>';
+  box.innerHTML = h + '</section>';
+}
+function ebWho(){ return { by: $('ebBy').value.trim(), code: $('ebCode').value.trim() }; }
+function ebSaveWho(){ var w = ebWho(), old = lsGet(KEY_WHO) || {}; lsSet(KEY_WHO, { nick: w.by || old.nick || '', code: w.code || old.code || '' }); }
+function ebReq(obj, needBy){
+  var w = ebWho();
+  if (!w.code) { toast('접속 코드를 적어 주세요.'); $('ebCode').focus(); return null; }
+  if (needBy && !w.by) { toast('이름(별명)을 적어 주세요.'); $('ebBy').focus(); return null; }
+  ebSaveWho(); obj.code = w.code; obj.by = w.by; obj.test = $('ebTest').checked;
+  return gradePost(obj);
+}
+function ebLoad(quiet){
+  var w = ebWho();
+  if (!w.code) { if (!quiet) { toast('접속 코드를 적어 주세요.'); $('ebCode').focus(); } renderEbGrid(); return Promise.resolve(); }
+  if (EB.busy) { EB.again = true; return Promise.resolve(); }
+  EB.busy = true; $('ebSt').textContent = '불러오는 중…';
+  return gradePost({ action: 'exList', code: w.code, test: $('ebTest').checked }).then(function(res){
+    EB.busy = false;
+    if (!res.ok) { $('ebSt').textContent = res.msg || '불러오지 못했습니다.'; return; }
+    EB.subs = res.subs || []; EB.ops = res.ops || []; EB.loaded = true;
+    var have = {}; EB.ops.forEach(function(o){ have[o.id] = true; });
+    EB.pend = EB.pend.filter(function(o){ return !have[o.id] && Date.now() - o.at < 120000; }); EB.ops = EB.ops.concat(EB.pend);
+    var d = new Date(res.at || Date.now()), adds = EB.ops.filter(function(o){ return o.op === 'add'; }).length;
+    $('ebSt').textContent = pad2(d.getHours()) + ':' + pad2(d.getMinutes()) + ':' + pad2(d.getSeconds()) + ' 기준 · 응시 답안 ' + EB.subs.length + '개 · 추가 예시답안 ' + adds + '개' + ($('ebTest').checked ? ' (리허설)' : '');
+    renderEbGrid(); renderEbOrg();
+    if (EB.again) { EB.again = false; return ebLoad(true); }
+  }).catch(function(){ EB.busy = false; $('ebSt').textContent = '불러오지 못했습니다. ‘새로 고침’을 다시 눌러 보세요.'; });
+}
+function openExbank(si, ii){
+  if (si != null) { EB.si = si; EB.ii = ii || 0; }
+  var w = lsGet(KEY_WHO) || {};
+  if (!$('ebBy').value) $('ebBy').value = w.nick || '';
+  if (!$('ebCode').value) $('ebCode').value = w.code || '';
+  show('exbank'); renderEb(); ebLoad(true);
+}
+function ebPick(si, ii){ EB.si = si; EB.ii = ii; EB.sel = {}; EB.draft = { score: '', text: '', review: null, reviewed: '' }; renderEb(); }
+$('ebSets').addEventListener('click', function(e){ var b = e.target.closest('[data-si]'); if (b) ebPick(+b.dataset.si, 0); });
+$('ebItems').addEventListener('click', function(e){ var b = e.target.closest('[data-ii]'); if (b) ebPick(EB.si, +b.dataset.ii); });
+$('ebTabs').addEventListener('click', function(e){ var b = e.target.closest('[data-m]'); if (b && b.dataset.m !== EB.mode) { EB.mode = b.dataset.m; renderEb(); } });
+$('ebLoad').addEventListener('click', function(){ ebLoad(false); });
+$('ebCompact').addEventListener('change', renderEbGrid);
+$('ebTest').addEventListener('change', function(){ EB.loaded = false; EB.subs = []; EB.ops = []; EB.pend = []; EB.org = null; renderEb(); ebLoad(false); });
+$('ebHome').addEventListener('click', function(){ show('home'); });
+$('ebStudent').addEventListener('click', function(){ enterStudent(); });
+$('ebMain').addEventListener('input', function(e){ if (e.target.id === 'ebText') EB.draft.text = e.target.value; });
+$('ebMain').addEventListener('change', function(e){
+  var t = e.target;
+  if (t.id === 'ebSrc') { EB.src = t.checked; $('ebMain').classList.toggle('eb-src', EB.src); $('ebLeg').hidden = !EB.src; return; }
+  if (t.id === 'ebGone') { EB.showGone = t.checked; renderEbGrid(); return; }
+  if (t.id === 'ebScore') { EB.draft.score = t.value; return; }
+  if (t.hasAttribute('data-sel')) { var k = t.closest('.ebc').dataset.key; if (t.checked) EB.sel[k] = true; else delete EB.sel[k]; t.closest('.ebc').classList.toggle('sel', t.checked); renderEbGrid(); }
+});
+$('ebMain').addEventListener('click', function(e){
+  var t = e.target, card = t.closest('.ebc');
+  if (t.hasAttribute('data-more')) { card.classList.toggle('open'); t.textContent = card.classList.contains('open') ? '접기' : '더 보기'; return; }
+  if (t.hasAttribute('data-del') || t.hasAttribute('data-undel')) { ebOp(t.hasAttribute('data-del') ? 'del' : 'undel', card.dataset.key, t); return; }
+  if (t.id === 'ebRv') return ebReview(t);
+  if (t.id === 'ebAdd') return ebAdd(t);
+  if (t.id === 'ebMg') return ebOpenMerge(Object.keys(EB.sel));
+  if (t.id === 'ebOrg') return ebOrganize(t);
+  if (t.hasAttribute('data-gmerge')) { var gr = EB.org.res.groups[+t.dataset.gmerge]; return ebOpenMerge(gr.keys, gr); }
+});
+function ebOp(op, key, btn){
+  var p = ebReq({ action: 'exOp', op: op, key: key, si: EB.si, ii: EB.ii }, true); if (!p) return;
+  btn.disabled = true;
+  p.then(function(res){
+    if (!res.ok) { btn.disabled = false; toast(res.msg || '처리하지 못했습니다.'); return; }
+    ebPush({ op: op, id: res.id, key: key, si: EB.si, ii: EB.ii, at: res.at }); delete EB.sel[key];
+    toast(op === 'del' ? '삭제했습니다. ‘삭제·합친 답안도 보기’에서 되살릴 수 있습니다.' : '되살렸습니다.');
+    renderEbGrid(); ebLoad(true);
+  }).catch(function(){ btn.disabled = false; toast('서버에 보내지 못했습니다. 다시 눌러 보세요.'); });
+}
+function ebReview(btn){
+  var text = $('ebText').value.trim(), score = $('ebScore').value;
+  if (score === '') { toast('몇 점짜리 예시답안인지 먼저 고르세요.'); $('ebScore').focus(); return; }
+  if (!text) { toast('예시답안을 적어 주세요.'); $('ebText').focus(); return; }
+  var pl = ebPayload(), p = ebReq({ action: 'exReview', set: pl.set, item: pl.item, score: +score, text: text }, false); if (!p) return;
+  btn.disabled = true; $('ebRvBox').innerHTML = '<div class="ebrvbox"><div class="gwait"><div class="gspin" aria-hidden="true"></div><div><b>AI가 채점기준표로 살펴보는 중입니다…</b><br>보통 10~30초 걸립니다.</div></div></div>';
+  var key = text + '|' + score, lbl = ebLabel();
+  p.then(function(res){
+    btn.disabled = false;
+    if (ebLabel() !== lbl) return;
+    if (!res.ok) { $('ebRvBox').innerHTML = '<div class="ebrvbox no">' + esc(res.msg || 'AI 검토에 실패했습니다.') + '</div>'; return; }
+    EB.draft.review = res; EB.draft.reviewed = key; EB.draft.text = text; EB.draft.score = score;
+    $('ebRvBox').innerHTML = ebRvHtml(res);
+  }).catch(function(){ btn.disabled = false; $('ebRvBox').innerHTML = '<div class="ebrvbox no">서버에 보내지 못했습니다. 다시 눌러 보세요.</div>'; });
+}
+function ebAdd(btn){
+  var text = $('ebText').value.trim(), score = $('ebScore').value;
+  if (score === '') { toast('몇 점짜리 예시답안인지 먼저 고르세요.'); $('ebScore').focus(); return; }
+  if (!text) { toast('예시답안을 적어 주세요.'); $('ebText').focus(); return; }
+  var rv = EB.draft.review && EB.draft.reviewed === text + '|' + score ? { score: EB.draft.review.score, pts: EB.draft.review.pts, advice: EB.draft.review.advice, els: EB.draft.review.els } : null;
+  var p = ebReq({ action: 'exAdd', si: EB.si, ii: EB.ii, score: +score, text: text, review: rv }, true); if (!p) return;
+  btn.disabled = true; $('ebAddSt').textContent = '넣는 중…';
+  p.then(function(res){
+    btn.disabled = false;
+    if (!res.ok) { $('ebAddSt').textContent = ''; toast(res.msg || '넣지 못했습니다.'); return; }
+    ebPush({ op: 'add', id: res.id, si: EB.si, ii: EB.ii, score: +score, text: text, by: ebWho().by, review: rv, from: [], at: res.at });
+    EB.draft = { score: score, text: '', review: null, reviewed: '' }; $('ebText').value = ''; $('ebRvBox').innerHTML = '';
+    $('ebAddSt').textContent = score + '점 칸에 넣었습니다.'; renderEbGrid(); ebLoad(true);
+  }).catch(function(){ btn.disabled = false; $('ebAddSt').textContent = ''; toast('서버에 보내지 못했습니다. 다시 눌러 보세요.'); });
+}
+function ebOpenMerge(keys, gr){
+  var all = {}; ebCards(true).forEach(function(c){ all[c.key] = c; });
+  keys = keys.filter(function(k){ return all[k]; });
+  if (keys.length < 2) { toast('합칠 답안을 2개 이상 고르세요.'); return; }
+  EB.mergeKeys = keys;
+  var cs = keys.map(function(k){ return all[k]; }), cnt = {}, best = cs[0];
+  cs.forEach(function(c){ cnt[c.score] = (cnt[c.score] || 0) + 1; if (c.text.length > best.text.length) best = c; });
+  var sc = gr ? gr.score : +Object.keys(cnt).sort(function(a, b){ return cnt[b] - cnt[a]; })[0];
+  $('ebMgSrc').innerHTML = cs.map(function(c){ return '<div><b>[' + esc(ebSrcName(c)) + (c.who && c.src !== 'dev' ? ' · ' + esc(c.who) : '') + ', ' + c.score + '점]</b>\n' + esc(c.text) + '</div>'; }).join('');
+  $('ebMgScore').innerHTML = ebScoreOpts(sc);
+  $('ebMgText').value = gr ? gr.text : best.text;
+  $('ebMerge').hidden = false; $('ebMgText').focus();
+}
+$('ebMgNo').addEventListener('click', function(){ $('ebMerge').hidden = true; });
+$('ebMgOk').addEventListener('click', function(){
+  var text = $('ebMgText').value.trim(), score = +$('ebMgScore').value, btn = this;
+  if (!text) { toast('합친 예시답안을 적어 주세요.'); return; }
+  if (!ebWho().by) { toast('이름(별명)을 먼저 적어 주세요.'); return; }
+  btn.disabled = true;
+  /* 그사이 다른 분이 먼저 지우거나 합친 답안은 빼고 합친다 */
+  ebLoad(true).then(function(){
+    var gone = {}; ebCards(true).forEach(function(c){ if (c.gone) gone[c.key] = true; });
+    var keys = EB.mergeKeys.filter(function(k){ return !gone[k]; }), skipped = EB.mergeKeys.length - keys.length;
+    var p = ebReq({ action: 'exAdd', si: EB.si, ii: EB.ii, score: score, text: text, from: keys }, true);
+    if (!p) { btn.disabled = false; return; }
+    return p.then(function(res){
+      btn.disabled = false;
+      if (!res.ok) { toast(res.msg || '합치지 못했습니다.'); return; }
+      ebPush({ op: 'add', id: res.id, si: EB.si, ii: EB.ii, score: score, text: text, by: ebWho().by, from: keys, at: res.at });
+      EB.sel = {}; $('ebMerge').hidden = true;
+      toast('합쳤습니다.' + (skipped ? ' 다른 분이 먼저 정리한 답안 ' + skipped + '개는 뺐습니다.' : ''));
+      renderEbGrid(); renderEbOrg(); ebLoad(true);
+    });
+  }).catch(function(){ btn.disabled = false; toast('서버에 보내지 못했습니다. 다시 눌러 보세요.'); });
+});
+function ebOrganize(btn){
+  var cards = ebCards(true).filter(function(c){ return !c.gone; });
+  if (cards.length < 2) { toast('정리할 예시답안이 2개 이상 있어야 합니다.'); return; }
+  var pl = ebPayload(), lbl = ebLabel();
+  var p = ebReq({ action: 'exOrganize', set: pl.set, item: pl.item, cards: cards.map(function(c){ return { key: c.key, score: c.score, src: ebSrcName(c), text: c.text }; }) }, false); if (!p) return;
+  btn.disabled = true; EB.org = { label: lbl, wait: true }; renderEbOrg();
+  p.then(function(res){
+    btn.disabled = false;
+    if (!res.ok) { EB.org = null; renderEbOrg(); toast(res.msg || 'AI 정리에 실패했습니다.'); return; }
+    EB.org = { label: lbl, res: res }; renderEbOrg(); renderEbGrid();
+  }).catch(function(){ btn.disabled = false; EB.org = null; renderEbOrg(); toast('서버에 보내지 못했습니다. 다시 눌러 보세요.'); });
+}
+setInterval(function(){ if (view === 'exbank' && $('ebAuto').checked && !document.hidden && $('ebMerge').hidden && EB.loaded) ebLoad(true); }, 15000);
 
 /* ---------- 실제 시스템 안내 ---------- */
 var AP_STEPS = [
@@ -4646,6 +5084,7 @@ $('apFlow').addEventListener('click', function(e){
   else if (k === 'tfinal') openTfinal();
   else if (k === 'cross') openCross();
   else if (k === 'board') openBoard();
+  else if (k === 'exbank') openExbank();
 });
 $('apHome').addEventListener('click', function(){ show('home'); });
 $('apToday').addEventListener('click', openToday);
@@ -4667,6 +5106,7 @@ else if (location.hash === '#proto') openProto();
 else if (location.hash === '#rubtry') openRubtry();
 else if (location.hash === '#cross') openCross();
 else if (location.hash === '#board') openBoard();
+else if (location.hash === '#exbank') openExbank();
 else if (location.hash === '#today') openToday();
 else if (location.hash === '#aiep') openAiep();
 else if (location.hash === '#final') openTfinal();
