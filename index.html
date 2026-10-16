@@ -4696,15 +4696,15 @@ $('bdCross').addEventListener('click', function(){ openCross(); });
 /* ---------- 오늘의 연수 ---------- */
 var TD_QR = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 148 148\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#1c2657\" d=\"M2 2.5h7m1 0h3m1 0h4m2 0h1m2 0h1m2 0h1m1 0h7m-33 1h1m5 0h1m1 0h1m3 0h1m1 0h1m2 0h1m2 0h1m1 0h1m3 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m3 0h5m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m6 0h2m1 0h3m1 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m3 0h1m1 0h2m1 0h1m2 0h6m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h1m3 0h1m3 0h2m1 0h2m4 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h1m3 0h3m2 0h1m1 0h1m1 0h1m-22 1h1m4 0h3m2 0h1m1 0h2m2 0h4m2 0h1m1 0h1m5 0h2m-32 1h1m3 0h1m2 0h2m3 0h7m3 0h2m3 0h4m-30 1h2m1 0h4m4 0h5m8 0h1m1 0h1m1 0h2m-32 1h1m2 0h1m1 0h1m6 0h1m9 0h4m1 0h5m-32 1h4m2 0h2m1 0h1m1 0h1m1 0h2m2 0h2m1 0h1m2 0h2m1 0h2m3 0h1m-32 1h1m1 0h2m1 0h1m2 0h1m1 0h2m1 0h1m1 0h2m1 0h3m1 0h3m1 0h2m1 0h4m-33 1h4m2 0h2m1 0h2m2 0h1m3 0h1m2 0h1m4 0h4m1 0h2m-32 1h2m2 0h1m3 0h2m1 0h3m1 0h2m1 0h1m5 0h2m1 0h1m1 0h2m1 0h1m-33 1h4m2 0h1m3 0h2m1 0h1m1 0h1m7 0h1m1 0h1m1 0h2m3 0h1m-29 1h2m1 0h4m1 0h4m1 0h1m1 0h2m1 0h3m1 0h1m2 0h2m1 0h1m-32 1h3m2 0h3m3 0h2m2 0h4m2 0h2m3 0h1m1 0h2m1 0h1m-32 1h1m1 0h2m2 0h2m1 0h1m4 0h2m1 0h1m1 0h1m1 0h5m1 0h5m-32 1h1m1 0h2m1 0h1m2 0h1m1 0h2m2 0h5m2 0h1m1 0h1m2 0h3m1 0h1m-32 1h3m6 0h1m1 0h2m6 0h1m3 0h1m4 0h1m-29 1h1m1 0h3m1 0h3m3 0h1m1 0h1m1 0h1m5 0h1m3 0h3m1 0h2m-32 1h1m1 0h2m4 0h4m1 0h3m4 0h1m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m-33 1h2m1 0h2m1 0h3m1 0h2m1 0h2m4 0h2m1 0h7m-21 1h1m2 0h1m1 0h1m2 0h1m2 0h1m1 0h4m3 0h1m1 0h1m1 0h1m-33 1h7m1 0h1m2 0h1m3 0h3m3 0h1m1 0h2m1 0h1m1 0h1m1 0h2m-32 1h1m5 0h1m2 0h2m1 0h1m1 0h2m2 0h2m4 0h1m3 0h3m-31 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m2 0h2m5 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m2 0h2m2 0h3m3 0h2m2 0h1m3 0h4m1 0h1m-33 1h1m1 0h3m1 0h1m4 0h1m1 0h2m2 0h3m3 0h2m2 0h2m1 0h3m-33 1h1m5 0h1m1 0h1m1 0h1m3 0h5m1 0h1m4 0h6m-31 1h7m2 0h3m7 0h2m2 0h5m3 0h1\"/><\/svg>\n";
 var TODAY = [
-  { tm: '13:00', len: '약 60분', t: '① 시스템 소개와 문항 의도', p: '실천교사가 쓰는 두 시스템(문항 출제·검수는 문항출제시스템, 학생 대상 배포·채점은 인천 AI 평가지원시스템)을 구분해 소개하고, 반티 문항의 출제 의도와 채점기준표 구조를 설명합니다. 이 사이트에서는 같은 문항을 학생 화면과 교사 화면으로 함께 볼 수 있습니다.',
-    go: [['실제 시스템 안내', 'aiep'], ['문항을 학생 화면으로 보기', 'pv0'], ['1번 세트 채점기준표', 'rub0'], ['출제 프로토콜 5단계', 'proto'], ['AI용 채점기준표 비교', 'compare']] },
-  { tm: '14:00', len: '약 60분', t: '② 자료집으로 예시답안 종이 채점', p: '자료집의 학생 A·B·C 답안(문항 1·3)을 각자 채점한 뒤 모둠에서 점수를 맞춥니다. 모둠 점수와 판단 근거를 교차 채점 화면에 입력해 저장하면 현황판에 모입니다. 시간이 남는 모둠은 중2 주말 야외 행사(문항 2·3) 예시답안도 골라 채점할 수 있습니다.',
-    go: [['교차 채점 실습 열기', 'cross'], ['모둠 채점 현황판', 'board'], ['중2 예시답안(선택)', 'cross2']] },
-  { tm: '15:00', len: '약 60분', t: '③ 학생처럼 풀고 AI 채점 받기', p: '선생님이 학생이 되어 반티 문항을 직접 풀고 ‘이 문항 AI 채점’으로 결과를 받아 봅니다. 채점 근거를 채점기준표와 견주어 보고, 결과 창의 ‘교사 최종 채점 화면’에서 교사로서 점수를 확정해 봅니다. 기준표 문장을 바꾸면 점수가 어떻게 달라지는지도 확인합니다.',
-    go: [['학생 화면에서 문제 풀기', 'student'], ['예시 채점 결과 보기', 'example'], ['교사 최종 채점 화면', 'tfinal'], ['채점 기준 바꿔 보기', 'rubtry']] },
-  { tm: '16:00', len: '약 50분', t: '④ 채점 결과로 협의하기', p: '현황판에서 모둠 판단이 갈린 채점 요소와 AI와 다른 요소를 먼저 보고, 학생 C의 쟁점 세 가지를 중심으로 채점기준을 어떻게 고치면 좋을지 이야기합니다.',
-    go: [['현황판(해설 함께)', 'boardkey'], ['학생 C 쟁점·해설', 'crossC']] },
-  { tm: '16:50', len: '10분', t: '마무리', p: '실습용 자료집은 반드시 회수합니다(모둠별로 모아 배부·회수 수량 확인). 만족도 조사 참여를 안내하고 멀티탭을 정리합니다.', note: true, go: [] }
+  { tm: '13:00', len: '1교시', t: '① 문항 확인 (강사 PPT 설명)', p: '첫 화면의 ‘학생’으로 들어가면 실제 학생 화면처럼 문항과 잠긴 답안 칸만 보입니다. 강사의 설명을 들으며 1번 세트(중1 반티)와 2번 세트(중2 주말 야외 행사)의 지시문·제시자료·발문·조건을 살펴봅니다. 아직 ‘응시하기’는 누르지 않습니다.',
+    go: [['학생 화면에서 문항 보기', 'view'], ['실제 시스템 안내', 'aiep']] },
+  { tm: '14:00', len: '2교시', t: '② 학생이 되어 답안 쓰고 AI 채점 받기', p: '학생 화면 위 ‘응시하기’ → ‘시작’을 누르면 답안 칸과 AI 채점 단추가 나타납니다. 답안을 쓰고 ‘이 문항 AI 채점’ 또는 ‘답안 제출’로 결과를 받습니다(별명·접속 코드 필요). 최소 한 세트는 꼭 AI 채점을 받아 주세요. 다음 시간 활동에 쓰입니다.',
+    go: [['학생 화면에서 응시하기', 'student'], ['예시 채점 결과 보기', 'example'], ['교사 최종 채점 화면', 'tfinal']] },
+  { tm: '15:00', len: '3교시', t: '③ 동료 답안 채점 → AI 채점 결과 모아 보기', p: '처음 화면 → ‘교사’. 다른 선생님 한 분의 답안을 무작위로 가져와 채점 요소별로 직접 점수를 매기고 AI 채점과 비교합니다. 이어서 하위 문항별로 출제팀 예시답안과 선생님들의 답안이 AI 채점 점수 칸별로 어떻게 모이는지 봅니다.',
+    go: [['① 동료 답안 채점하기', 'peer'], ['② AI 채점 결과 모아 보기', 'aiv']] },
+  { tm: '16:00', len: '4교시', t: '④ 점수별 예시답안 함께 만들기·정리', p: '점수를 정해 예시답안을 쓰고 ‘AI 검토’로 조언을 받은 뒤 ‘입력’합니다. 여러 명이 동시에 넣을 수 있습니다. 비슷한 답안은 합치고, ‘AI로 표 정리’로 중복·점수 의심·부족한 점수를 확인하며 모둠에서 점수 경계를 협의합니다.',
+    go: [['③ 예시답안 함께 만들기', 'make']] },
+  { tm: '16:50', len: '10분', t: '마무리', p: '실습용 자료집은 반드시 회수합니다(모둠별로 모아 배부·회수 수량 확인). 만족도 조사 참여를 안내하고 멀티탭을 정리합니다. 이 사이트는 보안을 위해 연수가 끝나면 닫습니다.', note: true, go: [] }
 ];
 function openToday(){
   $('tdLine').innerHTML = TODAY.map(function(b){
@@ -4717,7 +4717,11 @@ function openToday(){
 $('tdLine').addEventListener('click', function(e){
   var b = e.target.closest('[data-td]'); if (!b) return;
   var k = b.dataset.td;
-  if (k === 'pv0') enterStudent({ preview: 0 });
+  if (k === 'view') { try { history.replaceState(null, '', '#view'); } catch (er) {} delete answers._exam; persistAns(); enterStudent(); }
+  else if (k === 'peer' || k === 'aiv' || k === 'make') { EB.mode = { peer: 'peer', aiv: 'ai', make: 'make' }[k]; openExbank(); }
+  else if (k === 'aiep') openAiep();
+  else if (k === 'tfinal') openTfinal();
+  else if (k === 'pv0') enterStudent({ preview: 0 });
   else if (k === 'rub0') openTeacher(0, 'rubric');
   else if (k === 'proto') openProto();
   else if (k === 'compare') openCompare(1);
