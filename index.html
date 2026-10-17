@@ -397,6 +397,20 @@ u.ul { text-decoration-color: #d0432b; text-decoration-thickness: 2px; text-unde
 .ttab .cnt2 { display: inline-block; min-width: 18px; padding: 0 5px; margin-left: 4px; border-radius: 999px; background: var(--err); color: #fff; font-size: .74em; line-height: 18px; text-align: center; }
 .tip { background: #f6f6ff; border: 1px solid #e0e1fb; border-radius: 12px; padding: 10px 14px; font-size: .84em; color: var(--ink-2); line-height: 1.7; margin-bottom: 14px; }
 .tip b { color: var(--indigo); }
+/* 채점기준 공유 (10/17) */
+.rsbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; border: 1px solid #cfe0f7; background: #f3f8ff; border-radius: 12px; padding: 10px 14px; margin-bottom: 14px; font-size: .86em; color: var(--ink-2); line-height: 1.6; }
+.rsbar b { color: var(--navy); }
+.rsbar .rsacts { display: flex; gap: 6px; flex-wrap: wrap; }
+.rsbar .rscur { display: inline-block; margin-left: 4px; font-size: .92em; font-weight: 700; color: #1e5fbf; background: #e2edfc; border-radius: 999px; padding: 1px 9px; }
+.rswho { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; margin-bottom: 12px; }
+.rswho .f { flex: 1 1 160px; }
+.rswho label.ck2 { font-size: .84em; color: var(--ink-2); display: flex; gap: 5px; align-items: center; padding-bottom: 8px; }
+.rslist { display: grid; gap: 6px; max-height: 34vh; overflow: auto; margin-bottom: 10px; }
+.rsitem { text-align: left; border: 1px solid #dde4f1; background: #fff; border-radius: 9px; padding: 8px 12px; font-size: .86em; line-height: 1.55; color: var(--ink); }
+.rsitem.on { border-color: var(--indigo); box-shadow: 0 0 0 1px var(--indigo); background: #f6f6ff; }
+.rsitem .v { display: inline-block; min-width: 34px; font-weight: 800; color: var(--indigo); }
+.rsitem .m { display: block; color: var(--ink-3); font-size: .92em; }
+.rsmsg { font-size: .86em; color: var(--ink-2); margin: 6px 0; line-height: 1.6; }
 .fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .f { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
 .f.wide { grid-column: 1 / -1; }
@@ -1817,6 +1831,26 @@ body[data-view]:not([data-view="home"]) #guideDock, body[data-view]:not([data-vi
     <div class="acts"><button class="nbtn" id="cfNo">취소</button><button class="nbtn pri" id="cfYes">진행</button></div>
   </div>
 </div>
+<div class="ov" id="ovRs" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="rsTitle" style="width:min(820px,100%)">
+    <h3 id="rsTitle">채점기준 공유</h3>
+    <div class="rswho">
+      <div class="f"><label for="rsBy">이름(별명)</label><input id="rsBy" maxlength="20" placeholder="예: 김OO"></div>
+      <div class="f"><label for="rsCode">접속 코드</label><input id="rsCode" maxlength="30"></div>
+      <label class="ck2"><input type="checkbox" id="rsTest"> 리허설 기록</label>
+    </div>
+    <div id="rsSaveBox">
+      <div class="f"><label for="rsNote">메모 (무엇을 왜 바꿨는지, 선택)</label><input id="rsNote" maxlength="200" placeholder="예: 1-1 (나) 식만 맞아도 1점 인정"></div>
+      <p class="rsmsg" id="rsChg"></p>
+    </div>
+    <div id="rsLoadBox">
+      <p class="rsmsg" id="rsSt"></p>
+      <div class="rslist" id="rsList"></div>
+      <div id="rsDetail"></div>
+    </div>
+    <div class="acts"><button class="nbtn" id="rsClose">닫기</button><button class="nbtn" id="rsReload">목록 새로 고침</button><button class="nbtn ind" id="rsGo">서버에 저장</button></div>
+  </div>
+</div>
 <div class="ov" id="ovData" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="dtTitle" style="width:min(720px,100%)">
     <h3 id="dtTitle">문항 데이터 복사·붙여넣기</h3>
@@ -2755,16 +2789,8 @@ function baseRow(sv){
   return { label: sv.row.label, q: it.q + (own ? '\n\n[이 문항의 제시자료]\n' + own : ''), cond: it.cond || [], pts: +it.pts || 0, rubric: it.rubric || [], rubricNote: it.rubricNote || '', custom: false, answer: sv.row.answer };
 }
 /* 고친 기준표 결과와 기본 기준표 결과를 나란히 */
-function baseHtml(it, side){
-  var b = it.base, cell = function(el){ return '<b' + (el.score ? '' : ' class="zero"') + '>' + el.score + ' / ' + el.pts + '</b>' + fmt(el.reason); };
-  var s = '<div class="gcmp"><h5>고치기 전·후 나란히 보기<span class="sc">고친 기준표 ' + it.score + ' / ' + it.pts + '점 · 기본 기준표 ' + b.score + ' / ' + b.pts + '점</span></h5>';
-  if (side) s += '<table class="gel cmp"><thead><tr><th>채점 요소</th><th>고친 기준표 (지금)</th><th>기본 기준표 (고치기 전)</th></tr></thead><tbody>' + it.elements.map(function(el, k){
-    var o = b.elements[k];
-    return '<tr' + (el.score !== o.score ? ' class="diff"' : '') + '><th>' + esc(el.sub) + '</th><td' + (/기준표가 모호함/.test(el.reason) ? ' class="amb"' : '') + '>' + cell(el) + '</td><td' + (/기준표가 모호함/.test(o.reason) ? ' class="amb"' : '') + '>' + cell(o) + '</td></tr>';
-  }).join('') + '</tbody></table><p class="lg"><i style="background:var(--lav)"></i>점수가 달라진 채점 요소<i style="background:var(--warn-soft)"></i>AI가 기준표가 모호하다고 밝힌 칸</p>';
-  else s += '<p class="rubhint">채점 요소의 개수가 달라 나란히 놓지 못했습니다. 아래는 기본 기준표로 채점한 결과입니다.</p><table class="gel"><tbody>' + b.elements.map(function(el){
-    return '<tr><th>' + esc(el.sub) + '</th><td class="n' + (el.score ? '' : ' zero') + '">' + el.score + ' / ' + el.pts + '</td><td>' + fmt(el.reason) + '</td></tr>';
-  }).join('') + '</tbody></table>';
+/* 기준표 두 개(it = 고친 뒤, b = 고치기 전)의 점수 칸 문장·안내가 달라진 곳 */
+function rubChanges(it, b){
   var ch = [];
   (it.rubric || []).forEach(function(r, k){
     var o = (b.rubric || [])[k];
@@ -2775,6 +2801,19 @@ function baseHtml(it, side){
     });
   });
   if ((it.rubricNote || '') !== (b.rubricNote || '')) ch.push({ t: '채점기준표 아래 안내', before: b.rubricNote || '(없음)', after: it.rubricNote || '(없음)' });
+  return ch;
+}
+function baseHtml(it, side){
+  var b = it.base, cell = function(el){ return '<b' + (el.score ? '' : ' class="zero"') + '>' + el.score + ' / ' + el.pts + '</b>' + fmt(el.reason); };
+  var s = '<div class="gcmp"><h5>고치기 전·후 나란히 보기<span class="sc">고친 기준표 ' + it.score + ' / ' + it.pts + '점 · 기본 기준표 ' + b.score + ' / ' + b.pts + '점</span></h5>';
+  if (side) s += '<table class="gel cmp"><thead><tr><th>채점 요소</th><th>고친 기준표 (지금)</th><th>기본 기준표 (고치기 전)</th></tr></thead><tbody>' + it.elements.map(function(el, k){
+    var o = b.elements[k];
+    return '<tr' + (el.score !== o.score ? ' class="diff"' : '') + '><th>' + esc(el.sub) + '</th><td' + (/기준표가 모호함/.test(el.reason) ? ' class="amb"' : '') + '>' + cell(el) + '</td><td' + (/기준표가 모호함/.test(o.reason) ? ' class="amb"' : '') + '>' + cell(o) + '</td></tr>';
+  }).join('') + '</tbody></table><p class="lg"><i style="background:var(--lav)"></i>점수가 달라진 채점 요소<i style="background:var(--warn-soft)"></i>AI가 기준표가 모호하다고 밝힌 칸</p>';
+  else s += '<p class="rubhint">채점 요소의 개수가 달라 나란히 놓지 못했습니다. 아래는 기본 기준표로 채점한 결과입니다.</p><table class="gel"><tbody>' + b.elements.map(function(el){
+    return '<tr><th>' + esc(el.sub) + '</th><td class="n' + (el.score ? '' : ' zero') + '">' + el.score + ' / ' + el.pts + '</td><td>' + fmt(el.reason) + '</td></tr>';
+  }).join('') + '</tbody></table>';
+  var ch = rubChanges(it, b);
   if (ch.length) s += '<details class="gchg" open><summary>달라진 기준표 문장 ' + ch.length + '곳</summary>' + ch.map(function(c){
     return '<div class="one"><b>' + esc(c.t) + '</b><p class="bf"><span>고치기 전</span>' + fmt(c.before) + '</p><p class="af"><span>고친 뒤</span>' + fmt(c.after) + '</p></div>';
   }).join('') + '</details>';
@@ -3204,6 +3243,10 @@ function renderTab(){
   }
   else if (tTab === 'rubric') {
     h += '<div class="tip"><b>채점기준표</b>는 하위 문항마다 1개씩 씁니다. 세부 채점 요소의 배점을 정하면 수행 특성 칸이 배점부터 0점까지 만들어집니다. 감점형보다 수준을 구분하는 방식으로 쓰고, 0점 칸은 위의 모든 배점 기준을 빠짐없이 언급하세요. 인정하는 동치 표현·별해와 대표 오답을 괄호로 적어 두면 AI와 채점교사의 판단이 일치합니다.</div>';
+    h += '<div class="rsbar"><div><b>채점기준 공유</b> 고친 채점기준표를 이름과 함께 서버에 저장하면 버전(v1, v2 …)이 붙고, 다른 선생님이 목록에서 골라 불러올 수 있습니다.' +
+      (st.rsBase ? '<span class="rscur">지금 기준표: v' + st.rsBase.ver + ' · ' + esc(st.rsBase.by) + (st.rsBase.mine ? ' 저장' : ' 불러옴') + '</span>' : '') + '</div>' +
+      '<div class="rsacts"><button class="nbtn sm ind" data-act="rsave">서버에 저장</button><button class="nbtn sm" data-act="rload">공유된 채점기준 불러오기</button>' +
+      (RS.undo && RS.undo.id === st.id ? '<button class="nbtn sm" data-act="rsundo">불러오기 취소</button>' : '') + '</div></div>';
     st.items.forEach(function(it, ii){
       var p = 'items.' + ii, sum = rubricSum(it), okp = sum === +it.pts;
       h += '<div class="blkcard">' + qhead(it, ii, '<span class="pill ' + (okp ? 'ok' : 'err') + '">채점기준 합 ' + sum + '점' + (okp ? '' : ' ≠ 배점 ' + it.pts + '점') + '</span>');
@@ -3285,6 +3328,9 @@ $('tbody').addEventListener('click', function(e){
   var b = e.target.closest('[data-act]'); if (!b || b.tagName === 'INPUT') return;
   var st = S(), a = b.dataset.act, d = b.dataset, it = d.i != null ? st.items[+d.i] : null, m = d.m != null ? st.materials[+d.m] : null;
   switch (a) {
+    case 'rsave': rsOpen('save'); return;
+    case 'rload': rsOpen('load'); return;
+    case 'rsundo': rsUndo(); return;
     case 'setv': var sr = getRef(st, d.p), nv = d.v;
       if (/\.perf$/.test(d.p) && sr.o[sr.k] === nv) nv = '';
       sr.o[sr.k] = nv;
@@ -3321,6 +3367,116 @@ $('tbody').addEventListener('click', function(e){
   if (a === 'aex') target = $('tbody').querySelector('[data-p="items.' + d.i + '.rubric.' + d.r + '.ex.' + d.s + '.' + (it.rubric[+d.r].ex[d.s].length - 1) + '"]');
   if (a === 'acond') target = $('tbody').querySelector('[data-p="items.' + d.i + '.cond.' + (it.cond.length - 1) + '"]');
   if (target) target.focus();
+});
+
+/* ---------- 채점기준 공유 (10/17 추가) ----------
+   교사 화면 채점기준표 탭에서 고친 기준표(하위 문항별 배점·평가 요소·세부 채점 요소·예시답안·안내)를
+   이름과 함께 서버 ‘채점기준공유’ 시트에 저장하고(rubSave, 세트마다 v1, v2 …),
+   다른 선생님이 목록(rubList)에서 골라 이 브라우저의 같은 세트에 불러온다. 발문·조건·제시자료는 건드리지 않는다. */
+var RS = { mode: 'save', list: [], pick: -1, busy: false, undo: null };
+function rsPack(st){ return st.items.map(function(it){ return { pts: +it.pts || 0, area: it.area || '', rubricNote: it.rubricNote || '', rubric: clone(it.rubric || []) }; }); }
+function rsApply(st, items){ items.forEach(function(x, ii){ var it = st.items[ii]; if (!it) return; it.pts = x.pts; it.area = x.area; it.rubricNote = x.rubricNote; it.rubric = clone(x.rubric); }); }
+function rsDefault(st){ return DEFAULT_SETS.filter(function(d){ return d.id === st.id; })[0] || null; }
+function rsSetNo(st){ var k = DEFAULT_SETS.indexOf(rsDefault(st)); return (k < 0 ? sets.indexOf(st) : k) + 1; }
+function rsWho(){ var by = $('rsBy').value.trim(); return { by: by, code: $('rsCode').value.trim(), test: $('rsTest').checked || /^시험/.test(by) }; }
+function rsTime(t){ var d = new Date(t); return (d.getMonth() + 1) + '/' + d.getDate() + ' ' + pad2(d.getHours()) + ':' + pad2(d.getMinutes()); }
+/* items(새것)가 base(견줄 것)와 달라진 곳: 배점·평가 요소·채점 요소 이름·점수 칸 문장·예시답안·안내 */
+function rsDiff(items, base, no){
+  var out = [];
+  items.forEach(function(it, ii){
+    var b = base[ii], lab = no + '-' + (ii + 1);
+    if (!b) { out.push({ t: lab, before: '(없는 하위 문항)', after: '하위 문항 ' + lab + '의 채점기준표' }); return; }
+    if (+it.pts !== +b.pts) out.push({ t: lab + ' 배점', before: b.pts + '점', after: it.pts + '점' });
+    if ((it.area || '') !== (b.area || '')) out.push({ t: lab + ' 평가 요소', before: b.area || '(없음)', after: it.area || '(없음)' });
+    (it.rubric || []).forEach(function(r, k){
+      var o = (b.rubric || [])[k];
+      if (o && (r.sub || '') !== (o.sub || '')) out.push({ t: lab + ' 채점 요소 ' + (k + 1) + ' 이름', before: o.sub || '(없음)', after: r.sub || '(없음)' });
+      if (o && JSON.stringify(r.ex || {}) !== JSON.stringify(o.ex || {})) {
+        var cnt = function(x){ return Object.keys(x.ex || {}).reduce(function(t, s){ return t + (x.ex[s] || []).filter(function(v){ return String(v).trim(); }).length; }, 0); };
+        out.push({ t: lab + ' ' + (r.sub || '채점 요소 ' + (k + 1)) + ' · 예시답안', before: cnt(o) + '개', after: cnt(r) + '개 (내용이 달라짐)' });
+      }
+    });
+    (b.rubric || []).slice((it.rubric || []).length).forEach(function(o){ out.push({ t: lab + ' ' + (o.sub || '채점 요소'), before: (o.levels || []).map(function(l){ return l.s + '점: ' + l.d; }).join('\n'), after: '(지운 채점 요소)' }); });
+    rubChanges(it, b).forEach(function(c){ c.t = lab + ' ' + c.t; out.push(c); });
+  });
+  return out;
+}
+function rsOpen(mode){
+  var st = S(), no = rsSetNo(st), w = lsGet(KEY_WHO) || {};
+  RS.mode = mode; RS.pick = -1;
+  if (!$('rsBy').value) $('rsBy').value = w.nick || '';
+  if (!$('rsCode').value) $('rsCode').value = w.code || '';
+  $('rsTitle').textContent = (mode === 'save' ? '채점기준 서버에 저장 · ' : '공유된 채점기준 불러오기 · ') + no + '번 세트';
+  $('rsSaveBox').hidden = mode !== 'save'; $('rsLoadBox').hidden = mode === 'save'; $('rsReload').hidden = mode === 'save';
+  $('rsGo').textContent = mode === 'save' ? '서버에 저장' : '이 채점기준 불러오기'; $('rsGo').disabled = mode !== 'save';
+  if (mode === 'save') {
+    var base = rsDefault(st), ch = base ? rsDiff(rsPack(st), rsPack(base), no) : [];
+    $('rsChg').innerHTML = !base ? '직접 만든 세트라 처음 기준표와 견주지 않습니다.' : ch.length ? '<b>처음(기본) 기준표와 달라진 곳 ' + ch.length + '곳</b>: ' + esc(ch.map(function(c){ return c.t; }).join(' · ')) : '처음(기본) 기준표와 같습니다. 그대로 저장할 수도 있습니다.';
+    $('rsChg').innerHTML += '<br>저장하면 이 세트의 다음 버전 번호가 붙고, 이름과 함께 모든 선생님의 불러오기 목록에 나타납니다.';
+  } else { $('rsList').innerHTML = ''; $('rsDetail').innerHTML = ''; rsFetch(); }
+  $('ovRs').hidden = false;
+}
+function rsFetch(){
+  var w = rsWho(), sid = S().id;
+  if (!w.code) { $('rsSt').textContent = '접속 코드를 적고 ‘목록 새로 고침’을 누르세요.'; return; }
+  lsSet(KEY_WHO, { nick: w.by || (lsGet(KEY_WHO) || {}).nick || '', code: w.code });
+  $('rsSt').textContent = '목록을 불러오는 중…'; $('rsGo').disabled = true;
+  gradePost({ action: 'rubList', code: w.code, setId: sid, test: w.test }).then(function(res){
+    if (RS.mode !== 'load' || S().id !== sid) return;
+    if (!res.ok) { $('rsSt').textContent = res.msg || '목록을 불러오지 못했습니다.'; return; }
+    RS.list = res.list || []; RS.pick = -1; rsRender();
+  }, function(){ $('rsSt').textContent = '서버에 연결하지 못했습니다. 잠시 뒤 ‘목록 새로 고침’을 눌러 주세요.'; });
+}
+function rsRender(){
+  var st = S(), no = rsSetNo(st), cur = st.rsBase && st.rsBase.id, r = RS.list[RS.pick];
+  $('rsSt').textContent = RS.list.length ? '저장된 채점기준 ' + RS.list.length + '개 (최근 것이 위)' + (rsWho().test ? ' · 리허설 기록' : '') + '. 하나를 고르면 지금 내 기준표와 달라지는 곳을 보여 줍니다.' : '아직 ' + no + '번 세트에 저장된 채점기준이 없습니다' + (rsWho().test ? '(리허설 기록)' : '') + '.';
+  $('rsList').innerHTML = RS.list.map(function(x, i){
+    return '<button type="button" class="rsitem' + (i === RS.pick ? ' on' : '') + '" data-k="' + i + '"><span class="v">v' + x.ver + '</span><b>' + esc(x.by) + '</b> · ' + rsTime(x.at) + (x.id === cur ? ' · <b>지금 쓰는 기준표</b>' : '') + (x.note ? ' · ' + esc(x.note) : '') +
+      '<span class="m">처음 기준표와 달라진 곳: ' + esc(x.changes || '-') + '</span></button>';
+  }).join('');
+  $('rsGo').disabled = !r;
+  if (!r) { $('rsDetail').innerHTML = ''; return; }
+  var ch = rsDiff(r.items, rsPack(st), no);
+  $('rsDetail').innerHTML = '<details class="gchg" open><summary>' + (ch.length ? '지금 내 기준표와 달라지는 곳 ' + ch.length + '곳' : '지금 내 기준표와 같습니다') + '</summary>' + ch.map(function(c){
+    return '<div class="one"><b>' + esc(c.t) + '</b><p class="bf"><span>지금</span>' + fmt(c.before) + '</p><p class="af"><span>v' + r.ver + '</span>' + fmt(c.after) + '</p></div>';
+  }).join('') + '</details>' +
+    (r.items.length !== st.items.length ? '<p class="rsmsg" style="color:var(--warn)">하위 문항 수가 다릅니다(지금 ' + st.items.length + '개, v' + r.ver + ' ' + r.items.length + '개). 앞에서부터 겹치는 하위 문항만 바뀝니다.</p>' : '') +
+    '<p class="rsmsg">불러오면 이 브라우저의 ' + no + '번 세트 채점기준표(배점·평가 요소·세부 채점 요소·예시답안·안내)가 v' + r.ver + '(' + esc(r.by) + ')로 바뀝니다. 발문·조건·제시자료는 그대로이고, 불러온 뒤 ‘불러오기 취소’로 되돌릴 수 있습니다.</p>';
+}
+function rsUndo(){
+  var u = RS.undo, st = S(); if (!u || u.id !== st.id) return;
+  rsApply(st, u.items); if (u.base) st.rsBase = u.base; else delete st.rsBase;
+  RS.undo = null; renderTabs(); renderTab(); afterEdit(); toast('불러오기 전 채점기준표로 되돌렸습니다.');
+}
+$('rsList').addEventListener('click', function(e){ var b = e.target.closest('.rsitem'); if (b) { RS.pick = +b.dataset.k; rsRender(); } });
+$('rsClose').addEventListener('click', function(){ $('ovRs').hidden = true; });
+$('rsReload').addEventListener('click', rsFetch);
+$('rsTest').addEventListener('change', function(){ if (RS.mode === 'load') rsFetch(); });
+$('rsGo').addEventListener('click', function(){
+  if (RS.busy) return;
+  var w = rsWho(), st = S(), no = rsSetNo(st);
+  if (RS.mode === 'load') {
+    var r = RS.list[RS.pick]; if (!r) return;
+    RS.undo = { id: st.id, items: rsPack(st), base: st.rsBase || null };
+    rsApply(st, r.items); st.rsBase = { id: r.id, ver: r.ver, by: r.by, at: r.at };
+    $('ovRs').hidden = true; tTab = 'rubric'; renderTabs(); renderTab(); afterEdit();
+    toast('v' + r.ver + '(' + r.by + ') 채점기준을 불러왔습니다. 학생 화면 미리보기에서 바로 채점해 볼 수 있습니다.');
+    return;
+  }
+  if (!w.by) { toast('이름(별명)을 적어 주세요.'); $('rsBy').focus(); return; }
+  if (!w.code) { toast('접속 코드를 적어 주세요.'); $('rsCode').focus(); return; }
+  lsSet(KEY_WHO, { nick: w.by, code: w.code });
+  var base = rsDefault(st), ch = base ? rsDiff(rsPack(st), rsPack(base), no) : [];
+  var done = function(){ RS.busy = false; $('rsGo').disabled = false; $('rsGo').textContent = '서버에 저장'; };
+  RS.busy = true; $('rsGo').disabled = true; $('rsGo').textContent = '저장하는 중…';
+  gradePost({ action: 'rubSave', code: w.code, by: w.by, test: w.test, setId: st.id, setName: no + '번 세트 ' + (st.info.nick || st.info.area || ''), note: $('rsNote').value.trim(),
+    changes: base ? (ch.length ? ch.map(function(c){ return c.t; }).join(' · ') : '처음 기준표와 같음') : '직접 만든 세트', items: rsPack(st) }).then(function(res){
+    done();
+    if (!res.ok) { toast(res.msg || '저장하지 못했습니다.'); return; }
+    st.rsBase = { id: res.id, ver: res.ver, by: w.by, at: res.at, mine: true }; saveSets();
+    $('rsNote').value = ''; $('ovRs').hidden = true; renderTab();
+    toast(no + '번 세트 채점기준을 v' + res.ver + '로 저장했습니다' + (w.test ? '(리허설 기록)' : '') + '. 다른 선생님이 ‘공유된 채점기준 불러오기’에서 고를 수 있습니다.');
+  }, function(){ done(); toast('서버에 연결하지 못했습니다. 잠시 뒤 다시 눌러 주세요.'); });
 });
 
 $('addSet').addEventListener('click', function(){
