@@ -3492,7 +3492,7 @@ $('delSet').addEventListener('click', function(){
   confirmDo((tSet + 1) + '번 세트(' + (S().info.nick || '') + ')를 삭제할까요? 되돌릴 수 없습니다.', function(){ sets.splice(tSet, 1); tSet = Math.max(0, tSet - 1); saveSets(); openTeacher(); });
 });
 $('resetAll').addEventListener('click', function(){
-  confirmDo('모든 문항을 처음 상태(시스템용 2차검토본)로 되돌릴까요? 이 브라우저에서 고친 내용이 모두 지워집니다.', function(){ sets = clone(DEFAULT_SETS); tSet = 0; saveSets(); openTeacher(0, 'items'); toast('처음 상태로 되돌렸습니다.'); });
+  confirmDo('모든 문항을 처음 상태(시스템용 2차검토본)로 되돌릴까요? 이 브라우저에서 고친 내용이 모두 지워집니다.', function(){ sets = clone(DEFAULT_SETS); tSet = 0; RS.undo = null; saveSets(); openTeacher(0, 'items'); toast('처음 상태로 되돌렸습니다.'); });
 });
 var cfFn = null;
 function confirmDo(msg, fn){ $('cfMsg').textContent = msg; cfFn = fn; $('ovConfirm').hidden = false; $('cfNo').focus(); }
@@ -3510,7 +3510,7 @@ $('dtLoad').addEventListener('click', function(){
   try {
     var v = JSON.parse($('dtBox').value);
     if (!Array.isArray(v) || !v.length || !v[0].items) throw 0;
-    sets = v; tSet = 0; saveSets(); $('ovData').hidden = true; openTeacher(0); toast('문항 데이터를 불러왔습니다.');
+    sets = v; tSet = 0; RS.undo = null; saveSets(); $('ovData').hidden = true; openTeacher(0); toast('문항 데이터를 불러왔습니다.');
   } catch (e) { toast('불러오지 못했습니다. 이 화면에서 복사한 내용 전체를 그대로 붙여넣어 주세요.'); }
 });
 
