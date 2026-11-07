@@ -7,6 +7,7 @@
 <script>
 /* 연수 종료(2026-10-17 17:00 KST) 뒤 원래 주소에서는 설명서를 닫는다(옮긴 주소에서는 그대로) */
 (function(){
+  return; /* 2026. 11. 7. 다시 엶 */
   if (!/^\/ai-essy-demo\/guide\.html$/.test(location.pathname) || Date.now() < Date.parse('2026-10-17T17:00:00+09:00')) return;
   document.documentElement.style.visibility = 'hidden';
   document.addEventListener('DOMContentLoaded', function(){ document.title = '연수 종료'; document.body.innerHTML = '<p style="font-family:sans-serif;text-align:center;margin-top:30vh;font-size:1.2em">연수가 끝나 사이트를 닫았습니다.</p>'; document.documentElement.style.visibility = ''; });

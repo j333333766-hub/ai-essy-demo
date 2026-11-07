@@ -11,6 +11,7 @@
 (function(){
   var END = Date.parse('2026-10-17T17:00:00+09:00');
   var root = /^\/ai-essy-demo\/(index\.html)?$/.test(location.pathname);
+  return; /* 2026. 11. 7. 원래 주소 다시 엶 — 종료 화면 끔 */
   if (!root) return;
   var shut = function(){
     if (Date.now() < END || !document.body) return false;
